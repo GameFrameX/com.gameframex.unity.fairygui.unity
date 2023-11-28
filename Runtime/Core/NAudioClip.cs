@@ -41,6 +41,10 @@ namespace FairyGUI
                 Resources.UnloadAsset(nativeClip);
             else if (destroyMethod == DestroyMethod.Destroy)
                 UnityEngine.Object.DestroyImmediate(nativeClip, true);
+            else if (destroyMethod == DestroyMethod.AsyncResource)
+            {
+                UIPackage.AsyncLoadResource?.ReleaseResource(nativeClip);
+            }
             else if (destroyMethod == DestroyMethod.Custom)
             {
                 if (CustomDestroyMethod == null)

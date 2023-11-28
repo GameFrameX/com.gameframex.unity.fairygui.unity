@@ -14,6 +14,7 @@ namespace FairyGUI
         Unload,
         None,
         ReleaseTemp,
+        AsyncResource,
         Custom
     }
 
@@ -436,6 +437,15 @@ namespace FairyGUI
                     RenderTexture.ReleaseTemporary((RenderTexture)_nativeTexture);
                     if (_alphaTexture is RenderTexture)
                         RenderTexture.ReleaseTemporary((RenderTexture)_alphaTexture);
+                    else if (destroyMethod == DestroyMethod.AsyncResource)
+                    {
+                        UIPackage.AsyncLoadResource?.ReleaseResource(_nativeTexture);
+                        if (_alphaTexture != null)
+                        {
+                            UIPackage.AsyncLoadResource?.ReleaseResource(_alphaTexture);
+                        }
+                    }
+
                     break;
                 case DestroyMethod.Custom:
                     if (CustomDestroyMethod == null)
