@@ -354,13 +354,14 @@ namespace FairyGUI
             else
                 throw new Exception("Invalid child index: " + index + ">" + numChildren);
         }
-
+        
         /// <summary>
         /// Remove all children.
         /// </summary>
-        public void RemoveChildren()
+        /// <param name="dispose">是否销毁</param>
+        public void RemoveChildren(bool dispose = false)
         {
-            RemoveChildren(0, -1, false);
+            RemoveChildren(0, -1, dispose);
         }
 
         /// <summary>

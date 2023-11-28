@@ -234,8 +234,11 @@ namespace FairyGUI
             {
                 UnityEngine.Object.DontDestroyOnLoad(gameObject);
 
-                DisplayObjectInfo info = gameObject.AddComponent<DisplayObjectInfo>();
-                info.displayObject = this;
+                if (!UIConfig.disableDisplayObjectInfo)
+                {
+                    DisplayObjectInfo info = gameObject.AddComponent<DisplayObjectInfo>();
+                    info.displayObject = this;
+                }
             }
             gameObject.hideFlags = DisplayObject.hideFlags;
             gameObject.SetActive(false);
@@ -367,6 +370,8 @@ namespace FairyGUI
         /// <param name="yv"></param>
         public void SetXY(float xv, float yv)
         {
+            if(cachedTransform == null) // ui被删除
+                return;
             SetPosition(xv, yv, cachedTransform.localPosition.z);
         }
 

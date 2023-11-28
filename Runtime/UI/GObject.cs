@@ -11,11 +11,21 @@ namespace FairyGUI
         /// id is for internal use only.
         /// </summary>
         public string id { get; private set; }
-
+        
+        private string _name;
+        
         /// <summary>
         /// Name of the object.
         /// </summary>
-        public string name;
+        public string name
+        {
+            get { return _name;}
+            set
+            {
+                _name = value;
+                gameObjectName = _name;
+            }
+        }
 
         /// <summary>
         /// User defined data. 
