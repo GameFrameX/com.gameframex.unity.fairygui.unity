@@ -26,7 +26,11 @@ namespace FairyGUI
                 gameObjectName = _name;
             }
         }
-
+        /// <summary>
+        /// User defined data.
+        /// GList 内部会赋值
+        /// </summary>
+        public object dataSource;
         /// <summary>
         /// User defined data. 
         /// </summary>

@@ -71,6 +71,7 @@ namespace FairyGUI
         bool _virtual;
         bool _loop;
         int _numItems;
+        List<object> _dataList; // list自身绑定的数据
         int _realNumItems;
         int _firstIndex; //the top left index
         int _curLineItemCount; //item count in one line
@@ -104,7 +105,7 @@ namespace FairyGUI
             rootContainer.gameObject.name = "GList";
 
             _pool = new GObjectPool(container.cachedTransform);
-
+            _dataList = new List<object>();
             _itemClickDelegate = __clickItem;
         }
 
@@ -118,7 +119,8 @@ namespace FairyGUI
             scrollItemToViewOnClick = false;
             itemRenderer = null;
             itemProvider = null;
-
+            _dataList.Clear();
+            _dataList = null;
             base.Dispose();
         }
 
@@ -1511,6 +1513,22 @@ namespace FairyGUI
         }
 
         /// <summary>
+        /// 设置list数据源
+        /// 设置后会绑定数据在每个子对象，可以根据 dataSource 来直接获取数据
+        /// </summary>
+        public List<object> DataList
+        {
+            get{
+                return _dataList;
+            }
+            set
+            {
+                _dataList = value;
+                numItems = value.Count;
+            }
+        }
+        
+        /// <summary>
         /// Set the list item count. 
         /// If the list is not virtual, specified number of items will be created. 
         /// If the list is virtual, only items in view will be created.
@@ -1581,7 +1599,14 @@ namespace FairyGUI
                     if (itemRenderer != null)
                     {
                         for (int i = 0; i < value; i++)
-                            itemRenderer(i, GetChildAt(i));
+                        {
+                            var child = GetChildAt(i);
+                            if (i < _dataList.Count)
+                            {   // 赋值
+                                child.dataSource = _dataList[i];
+                            }
+                            itemRenderer(i, child);
+                        }
                     }
                 }
             }
@@ -2041,7 +2066,11 @@ namespace FairyGUI
                 {
                     if (_autoResizeItem && (_layout == ListLayoutType.SingleColumn || _columnCount > 0))
                         ii.obj.SetSize(partSize, ii.obj.height, true);
-
+                    
+                    if (curIndex % _numItems < _dataList.Count)
+                    {   // 赋值
+                        ii.obj.dataSource = _dataList[curIndex % _numItems];
+                    }
                     itemRenderer(curIndex % _numItems, ii.obj);
                     if (curIndex % _curLineItemCount == 0)
                     {
@@ -2209,8 +2238,13 @@ namespace FairyGUI
                 if (needRender)
                 {
                     if (_autoResizeItem && (_layout == ListLayoutType.SingleRow || _lineCount > 0))
+                    {
                         ii.obj.SetSize(ii.obj.width, partSize, true);
-
+                    }
+                    if (curIndex % _numItems < _dataList.Count)
+                    {   // 赋值
+                        ii.obj.dataSource = _dataList[curIndex % _numItems];
+                    }
                     itemRenderer(curIndex % _numItems, ii.obj);
                     if (curIndex % _curLineItemCount == 0)
                     {
@@ -2392,7 +2426,10 @@ namespace FairyGUI
                         else if (_curLineItemCount2 == _lineCount)
                             ii.obj.SetSize(ii.obj.width, partHeight, true);
                     }
-
+                    if (i % _numItems < _dataList.Count)
+                    {   // 赋值
+                        ii.obj.dataSource = _dataList[i % _numItems];
+                    }
                     itemRenderer(i % _numItems, ii.obj);
                     ii.size.x = Mathf.CeilToInt(ii.obj.size.x);
                     ii.size.y = Mathf.CeilToInt(ii.obj.size.y);
