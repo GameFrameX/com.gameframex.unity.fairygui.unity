@@ -125,6 +125,28 @@ namespace FairyGUI
                 SetGoLayers(this.layer);
             }
         }
+        
+        internal override void _SetLayerDirect(int value)
+        {  
+            if (_paintingMode > 0)
+            {
+                paintingGraphics.gameObject.layer = value;
+            }
+            else
+            {
+                gameObject.layer = value;
+                if (_wrapTarget != null) //这个if是为了在GoWrapper里使用模糊效果
+                {
+                    _wrapTarget.layer = value;
+                    var tfs = _wrapTarget.GetComponentInChildren<Transform>(true);
+                    foreach (Transform tf in tfs)
+                    {
+                        tf.gameObject.layer = value;
+                    }
+                }
+            }
+        }
+        
         private void SearchChildrenCanvas(Transform rootTransform)
         {
             for (int i = 0; i < rootTransform.childCount; i++)

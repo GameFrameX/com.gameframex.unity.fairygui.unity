@@ -1764,7 +1764,7 @@ namespace FairyGUI
             return true;
         }
 
-        internal void _SetLayerDirect(int value)
+        internal virtual void _SetLayerDirect(int value)
         {
             if (_paintingMode > 0)
                 paintingGraphics.gameObject.layer = value;
