@@ -142,9 +142,9 @@ namespace FairyGUI
                     if (stage != null)
                     {
                         if (child is Container)
-                            child.BroadcastEvent("onAddedToStage", null);
+                            child.BroadcastEvent(EventName.onAddedToStage, null);
                         else
-                            child.DispatchEvent("onAddedToStage", null);
+                            child.DispatchEvent(EventName.onAddedToStage, null);
                     }
 
                     InvalidateBatchingState(true);
@@ -267,13 +267,13 @@ namespace FairyGUI
                 {
                     if (child is Container)
                     {
-                        child.BroadcastEvent("onRemovedFromStage", null);
+                        child.BroadcastEvent(EventName.onRemovedFromStage, null);
                         if (child == Stage.inst.focus || ((Container)child).IsAncestorOf(Stage.inst.focus))
                             Stage.inst._OnFocusRemoving(this);
                     }
                     else
                     {
-                        child.DispatchEvent("onRemovedFromStage", null);
+                        child.DispatchEvent(EventName.onRemovedFromStage, null);
                         if (child == Stage.inst.focus)
                             Stage.inst._OnFocusRemoving(this);
                     }

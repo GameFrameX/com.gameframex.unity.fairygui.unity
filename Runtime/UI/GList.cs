@@ -129,7 +129,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onClickItem
         {
-            get { return _onClickItem ?? (_onClickItem = new EventListener(this, "onClickItem")); }
+            get { return _onClickItem ?? (_onClickItem = new EventListener(this, EventName.onClickItem)); }
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onRightClickItem
         {
-            get { return _onRightClickItem ?? (_onRightClickItem = new EventListener(this, "onRightClickItem")); }
+            get { return _onRightClickItem ?? (_onRightClickItem = new EventListener(this, EventName.onRightClickItem)); }
         }
 
         /// <summary>
@@ -1050,9 +1050,9 @@ namespace FairyGUI
         virtual protected void DispatchItemEvent(GObject item, EventContext context)
         {
             if (context.type == item.onRightClick.type)
-                DispatchEvent("onRightClickItem", item);
+                DispatchEvent(EventName.onRightClickItem, item);
             else
-                DispatchEvent("onClickItem", item);
+                DispatchEvent(EventName.onClickItem, item);
         }
 
         void SetSelectionOnEvent(GObject item, InputEvent evt)

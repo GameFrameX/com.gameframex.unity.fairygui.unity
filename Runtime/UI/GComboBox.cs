@@ -65,7 +65,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onChanged
         {
-            get { return _onChanged ?? (_onChanged = new EventListener(this, "onChanged")); }
+            get { return _onChanged ?? (_onChanged = new EventListener(this, EventName.onChanged)); }
         }
 
         /// <summary>
@@ -576,7 +576,7 @@ namespace FairyGUI
             _selectedIndex = int.MinValue;
             this.selectedIndex = _list.GetChildIndex((GObject)context.data);
 
-            DispatchEvent("onChanged", null);
+            DispatchEvent(EventName.onChanged, null);
         }
 
         private void __rollover()

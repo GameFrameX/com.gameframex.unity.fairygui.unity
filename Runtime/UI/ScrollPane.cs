@@ -91,8 +91,8 @@ namespace FairyGUI
 
         public ScrollPane(GComponent owner)
         {
-            _onScroll = new EventListener(this, "onScroll");
-            _onScrollEnd = new EventListener(this, "onScrollEnd");
+            _onScroll = new EventListener(this, EventName.onScroll);
+            _onScrollEnd = new EventListener(this, EventName.onScrollEnd);
 
             _scrollStep = UIConfig.defaultScrollStep;
             _softnessOnTopOrLeftSide = UIConfig.allowSoftnessOnTopOrLeftSide;
@@ -267,7 +267,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onScroll
         {
-            get { return _onScroll ?? (_onScroll = new EventListener(this, "onScroll")); }
+            get { return _onScroll ?? (_onScroll = new EventListener(this, EventName.onScroll)); }
         }
 
         /// <summary>
@@ -275,7 +275,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onScrollEnd
         {
-            get { return _onScrollEnd ?? (_onScrollEnd = new EventListener(this, "onScrollEnd")); }
+            get { return _onScrollEnd ?? (_onScrollEnd = new EventListener(this, EventName.onScrollEnd)); }
         }
 
         /// <summary>
@@ -283,7 +283,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onPullDownRelease
         {
-            get { return _onPullDownRelease ?? (_onPullDownRelease = new EventListener(this, "onPullDownRelease")); }
+            get { return _onPullDownRelease ?? (_onPullDownRelease = new EventListener(this, EventName.onPullDownRelease)); }
         }
 
         /// <summary>
@@ -291,7 +291,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onPullUpRelease
         {
-            get { return _onPullUpRelease ?? (_onPullUpRelease = new EventListener(this, "onPullUpRelease")); }
+            get { return _onPullUpRelease ?? (_onPullUpRelease = new EventListener(this, EventName.onPullUpRelease)); }
         }
 
         /// <summary>
@@ -1650,9 +1650,9 @@ namespace FairyGUI
             {
                 _tweenChange = endPos - _tweenStart;
                 if (_tweenChange.x < -UIConfig.touchDragSensitivity || _tweenChange.y < -UIConfig.touchDragSensitivity)
-                    DispatchEvent("onPullDownRelease", null);
+                    DispatchEvent(EventName.onPullDownRelease, null);
                 else if (_tweenChange.x > UIConfig.touchDragSensitivity || _tweenChange.y > UIConfig.touchDragSensitivity)
-                    DispatchEvent("onPullUpRelease", null);
+                    DispatchEvent(EventName.onPullUpRelease, null);
 
                 if (_headerLockedSize > 0 && endPos[_refreshBarAxis] == 0)
                 {

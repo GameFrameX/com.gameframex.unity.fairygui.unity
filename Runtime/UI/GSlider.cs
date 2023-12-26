@@ -48,7 +48,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onChanged
         {
-            get { return _onChanged ?? (_onChanged = new EventListener(this, "onChanged")); }
+            get { return _onChanged ?? (_onChanged = new EventListener(this, EventName.onChanged)); }
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onGripTouchEnd
         {
-            get { return _onGripTouchEnd ?? (_onGripTouchEnd = new EventListener(this, "onGripTouchEnd")); }
+            get { return _onGripTouchEnd ?? (_onGripTouchEnd = new EventListener(this, EventName.onGripTouchEnd)); }
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace FairyGUI
                 if (newValue != _value)
                 {
                     _value = newValue;
-                    if (DispatchEvent("onChanged", null))
+                    if (DispatchEvent(EventName.onChanged, null))
                         return;
                 }
             }
@@ -378,7 +378,7 @@ namespace FairyGUI
 
         private void __gripTouchEnd(EventContext context)
         {
-            DispatchEvent("onGripTouchEnd", null);
+            DispatchEvent(EventName.onGripTouchEnd, null);
         }
 
         private void __barTouchBegin(EventContext context)

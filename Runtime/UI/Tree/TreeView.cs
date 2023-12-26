@@ -71,8 +71,8 @@ namespace FairyGUI
 
             indent = 30;
 
-            onClickNode = new EventListener(this, "onClickNode");
-            onRightClickNode = new EventListener(this, "onRightClickNode");
+            onClickNode = new EventListener(this, EventName.onClickNode);
+            onRightClickNode = new EventListener(this, EventName.onRightClickNode);
         }
 
         /// <summary>

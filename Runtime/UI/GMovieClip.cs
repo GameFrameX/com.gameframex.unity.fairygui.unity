@@ -28,7 +28,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onPlayEnd
         {
-            get { return _onPlayEnd ?? (_onPlayEnd = new EventListener(this, "onPlayEnd")); }
+            get { return _onPlayEnd ?? (_onPlayEnd = new EventListener(this, EventName.onPlayEnd)); }
         }
 
         /// <summary>

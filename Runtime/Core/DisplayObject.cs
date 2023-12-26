@@ -118,7 +118,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onClick
         {
-            get { return _onClick ?? (_onClick = new EventListener(this, "onClick")); }
+            get { return _onClick ?? (_onClick = new EventListener(this,EventName. onClick)); }
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onRightClick
         {
-            get { return _onRightClick ?? (_onRightClick = new EventListener(this, "onRightClick")); }
+            get { return _onRightClick ?? (_onRightClick = new EventListener(this, EventName.onRightClick)); }
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onTouchBegin
         {
-            get { return _onTouchBegin ?? (_onTouchBegin = new EventListener(this, "onTouchBegin")); }
+            get { return _onTouchBegin ?? (_onTouchBegin = new EventListener(this, EventName.onTouchBegin)); }
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onTouchMove
         {
-            get { return _onTouchMove ?? (_onTouchMove = new EventListener(this, "onTouchMove")); }
+            get { return _onTouchMove ?? (_onTouchMove = new EventListener(this, EventName.onTouchMove)); }
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onTouchEnd
         {
-            get { return _onTouchEnd ?? (_onTouchEnd = new EventListener(this, "onTouchEnd")); }
+            get { return _onTouchEnd ?? (_onTouchEnd = new EventListener(this, EventName.onTouchEnd)); }
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onRollOver
         {
-            get { return _onRollOver ?? (_onRollOver = new EventListener(this, "onRollOver")); }
+            get { return _onRollOver ?? (_onRollOver = new EventListener(this, EventName.onRollOver)); }
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onRollOut
         {
-            get { return _onRollOut ?? (_onRollOut = new EventListener(this, "onRollOut")); }
+            get { return _onRollOut ?? (_onRollOut = new EventListener(this, EventName.onRollOut)); }
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onMouseWheel
         {
-            get { return _onMouseWheel ?? (_onMouseWheel = new EventListener(this, "onMouseWheel")); }
+            get { return _onMouseWheel ?? (_onMouseWheel = new EventListener(this, EventName.onMouseWheel)); }
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onAddedToStage
         {
-            get { return _onAddedToStage ?? (_onAddedToStage = new EventListener(this, "onAddedToStage")); }
+            get { return _onAddedToStage ?? (_onAddedToStage = new EventListener(this, EventName.onAddedToStage)); }
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onRemovedFromStage
         {
-            get { return _onRemovedFromStage ?? (_onRemovedFromStage = new EventListener(this, "onRemovedFromStage")); }
+            get { return _onRemovedFromStage ?? (_onRemovedFromStage = new EventListener(this, EventName.onRemovedFromStage)); }
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onKeyDown
         {
-            get { return _onKeyDown ?? (_onKeyDown = new EventListener(this, "onKeyDown")); }
+            get { return _onKeyDown ?? (_onKeyDown = new EventListener(this, EventName.onKeyDown)); }
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onClickLink
         {
-            get { return _onClickLink ?? (_onClickLink = new EventListener(this, "onClickLink")); }
+            get { return _onClickLink ?? (_onClickLink = new EventListener(this, EventName.onClickLink)); }
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onFocusIn
         {
-            get { return _onFocusIn ?? (_onFocusIn = new EventListener(this, "onFocusIn")); }
+            get { return _onFocusIn ?? (_onFocusIn = new EventListener(this, EventName.onFocusIn)); }
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onFocusOut
         {
-            get { return _onFocusOut ?? (_onFocusOut = new EventListener(this, "onFocusOut")); }
+            get { return _onFocusOut ?? (_onFocusOut = new EventListener(this, EventName.onFocusOut)); }
 
         }
 

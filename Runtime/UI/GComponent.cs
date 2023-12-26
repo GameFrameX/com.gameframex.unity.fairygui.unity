@@ -114,7 +114,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onDrop
         {
-            get { return _onDrop ?? (_onDrop = new EventListener(this, "onDrop")); }
+            get { return _onDrop ?? (_onDrop = new EventListener(this, EventName.onDrop)); }
         }
 
         /// <summary>

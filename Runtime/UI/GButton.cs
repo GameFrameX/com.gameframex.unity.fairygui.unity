@@ -73,7 +73,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onChanged
         {
-            get { return _onChanged ?? (_onChanged = new EventListener(this, "onChanged")); }
+            get { return _onChanged ?? (_onChanged = new EventListener(this, EventName.onChanged)); }
         }
 
         /// <summary>
@@ -636,7 +636,7 @@ namespace FairyGUI
                 if (changeStateOnClick)
                 {
                     this.selected = !_selected;
-                    DispatchEvent("onChanged", null);
+                    DispatchEvent(EventName.onChanged, null);
                 }
             }
             else if (_mode == ButtonMode.Radio)
@@ -644,7 +644,7 @@ namespace FairyGUI
                 if (changeStateOnClick && !_selected)
                 {
                     this.selected = true;
-                    DispatchEvent("onChanged", null);
+                    DispatchEvent(EventName.onChanged, null);
                 }
             }
             else

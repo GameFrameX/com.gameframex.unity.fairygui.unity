@@ -62,9 +62,9 @@ namespace FairyGUI
             holdRangeRadius = 50;
             Enable(true);
 
-            onBegin = new EventListener(this, "onLongPressBegin");
-            onEnd = new EventListener(this, "onLongPressEnd");
-            onAction = new EventListener(this, "onLongPressAction");
+            onBegin = new EventListener(this, EventName.onLongPressBegin);
+            onEnd = new EventListener(this, EventName.onLongPressEnd);
+            onAction = new EventListener(this, EventName.onLongPressAction);
         }
 
         public void Dispose()

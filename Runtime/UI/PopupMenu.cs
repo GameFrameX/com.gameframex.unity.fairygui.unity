@@ -40,12 +40,12 @@ namespace FairyGUI
 
         public EventListener onPopup
         {
-            get { return _onPopup ?? (_onPopup = new EventListener(this, "onPopup")); }
+            get { return _onPopup ?? (_onPopup = new EventListener(this, EventName.onPopup)); }
         }
 
         public EventListener onClose
         {
-            get { return _onClose ?? (_onClose = new EventListener(this, "onClose")); }
+            get { return _onClose ?? (_onClose = new EventListener(this, EventName.onClose)); }
         }
 
         void Create(string resourceURL)
@@ -468,7 +468,7 @@ namespace FairyGUI
 
         void __addedToStage()
         {
-            DispatchEvent("onPopup", null);
+            DispatchEvent(EventName.onPopup, null);
 
             if (autoSize)
             {
@@ -506,7 +506,7 @@ namespace FairyGUI
             if (_expandingItem != null)
                 Timers.inst.Add(0, 1, _closeSubMenu);
 
-            DispatchEvent("onClose", null);
+            DispatchEvent(EventName.onClose, null);
         }
 
         void __rollOver(EventContext context)

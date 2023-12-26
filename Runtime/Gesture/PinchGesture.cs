@@ -50,9 +50,9 @@ namespace FairyGUI
 
             _touches = new int[2];
 
-            onBegin = new EventListener(this, "onPinchBegin");
-            onEnd = new EventListener(this, "onPinchEnd");
-            onAction = new EventListener(this, "onPinchAction");
+            onBegin = new EventListener(this, EventName.onPinchBegin);
+            onEnd = new EventListener(this, EventName.onPinchEnd);
+            onAction = new EventListener(this, EventName.onPinchAction);
         }
 
         public void Dispose()

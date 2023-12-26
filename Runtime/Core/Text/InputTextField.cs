@@ -123,7 +123,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onChanged
         {
-            get { return _onChanged ?? (_onChanged = new EventListener(this, "onChanged")); }
+            get { return _onChanged ?? (_onChanged = new EventListener(this, EventName.onChanged)); }
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onSubmit
         {
-            get { return _onSubmit ?? (_onSubmit = new EventListener(this, "onSubmit")); }
+            get { return _onSubmit ?? (_onSubmit = new EventListener(this, EventName.onSubmit)); }
         }
 
         /// <summary>
@@ -870,7 +870,7 @@ namespace FairyGUI
 
         protected void OnChanged()
         {
-            DispatchEvent("onChanged", null);
+            DispatchEvent(EventName.onChanged, null);
 
             TextInputHistory.inst.MarkChanged(this);
         }
@@ -1349,8 +1349,8 @@ namespace FairyGUI
                         if (textField.singleLine)
                         {
                             Stage.inst.focus = parent;
-                            DispatchEvent("onSubmit", null);
-                            DispatchEvent("onKeyDown", null); //for backward compatibility
+                            DispatchEvent(EventName.onSubmit, null);
+                            DispatchEvent(EventName.onKeyDown, null); //for backward compatibility
                         }
                         break;
                     }

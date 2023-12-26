@@ -73,10 +73,10 @@ namespace FairyGUI
             snapping = true;
             Enable(true);
 
-            onBegin = new EventListener(this, "onSwipeBegin");
-            onEnd = new EventListener(this, "onSwipeEnd");
-            onMove = new EventListener(this, "onSwipeMove");
-            onAction = new EventListener(this, "onnSwipeAction");
+            onBegin = new EventListener(this, EventName.onSwipeBegin);
+            onEnd = new EventListener(this, EventName.onSwipeEnd);
+            onMove = new EventListener(this, EventName.onSwipeMove);
+            onAction = new EventListener(this, EventName.onnSwipeAction);
         }
 
         public void Dispose()

@@ -56,9 +56,9 @@ namespace FairyGUI
             _touches = new int[2];
             snapping = true;
 
-            onBegin = new EventListener(this, "onRotationBegin");
-            onEnd = new EventListener(this, "onRotationEnd");
-            onAction = new EventListener(this, "onRotationAction");
+            onBegin = new EventListener(this, EventName.onRotationBegin);
+            onEnd = new EventListener(this, EventName.onRotationEnd);
+            onAction = new EventListener(this, EventName.onRotationAction);
         }
 
         public void Dispose()

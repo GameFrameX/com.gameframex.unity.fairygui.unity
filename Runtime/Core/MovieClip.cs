@@ -83,7 +83,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onPlayEnd
         {
-            get { return _onPlayEnd ?? (_onPlayEnd = new EventListener(this, "onPlayEnd")); }
+            get { return _onPlayEnd ?? (_onPlayEnd = new EventListener(this, EventName.onPlayEnd)); }
         }
 
         /// <summary>
@@ -381,7 +381,7 @@ namespace FairyGUI
                 _status = 3; //ended
                 DrawFrame();
 
-                DispatchEvent("onPlayEnd", null);
+                DispatchEvent(EventName.onPlayEnd, null);
             }
             else
             {

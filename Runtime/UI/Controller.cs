@@ -51,7 +51,7 @@ namespace FairyGUI
         /// </summary>
         public EventListener onChanged
         {
-            get { return _onChanged ?? (_onChanged = new EventListener(this, "onChanged")); }
+            get { return _onChanged ?? (_onChanged = new EventListener(this, EventName.onChanged)); }
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace FairyGUI
                     _selectedIndex = value;
                     parent.ApplyController(this);
 
-                    DispatchEvent("onChanged", null);
+                    DispatchEvent(EventName.onChanged, null);
 
                     changing = false;
                 }
