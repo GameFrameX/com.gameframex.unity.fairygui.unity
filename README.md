@@ -1,4 +1,10 @@
- FairyGUI for Unity
+
+# 改动功能
+
+1. 增加 `link.xml` 的裁剪过滤
+2. 修复 "异步加载资源包" 没有回调的BUG
+
+FairyGUI for Unity
 ====
 
 FairyGUI是一个适用于许多游戏引擎的UI中间件。<br>
