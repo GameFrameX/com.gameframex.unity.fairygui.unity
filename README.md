@@ -1,3 +1,18 @@
+该库主要服务于 `https://github.com/AlianBlank/GameFrameX` 作为子库使用。
+
+# 使用方式(三种方式)
+
+1. 直接在 `manifest.json` 文件中添加以下内容
+   ```json
+      {"com.alianblank.gameframex.unity.fairygui.unity": "https://github.com/AlianBlank/com.alianblank.gameframex.unity.fairygui.unity.git"}
+    ```
+2. 在Unity 的`Packages Manager` 中使用`Git URL` 的方式添加库,地址为：https://github.com/AlianBlank/com.alianblank.gameframex.unity.fairygui.unity.git
+
+3. 直接下载仓库放置到Unity 项目的`Packages` 目录下。会自动加载识别
+
+# 改动功能
+
+1. 增加 `Packages` 的支持
 
 # 改动功能
 
@@ -8,7 +23,7 @@ FairyGUI for Unity
 ====
 
 FairyGUI是一个适用于许多游戏引擎的UI中间件。<br>
-[下载编辑器](https://www.fairygui.com/product.html)  
+[下载编辑器](https://www.fairygui.com/product.html)
 
 在运行效率方面，FairyGUI对DrawCall优化使用了特有的`FairyBatching`技术，相比NGUI、UGUI的传统优化技术更加高效而且容易控制，特别是对动静耦合越来越复杂的UI设计更是应付自如。<br>
 
