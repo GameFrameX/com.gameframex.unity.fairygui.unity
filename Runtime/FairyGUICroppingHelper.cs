@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace FairyGUI
 {
     /// <summary>
     /// 防止代码运行时发生裁剪报错。将这个脚本添加到启动场景中。不会对逻辑有任何影响
     /// </summary>
+    [Preserve]
     public class FairyGUICroppingHelper : MonoBehaviour
     {
+        [Preserve]
         void Start()
         {
             _ = typeof(FairyGUI.AlignType);
