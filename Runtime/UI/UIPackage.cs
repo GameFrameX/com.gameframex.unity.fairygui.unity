@@ -11,7 +11,7 @@ namespace FairyGUI
 {
     public interface IAsyncResource
     {
-        void LoadResource(string assetName, Action<bool, object> action);
+        void LoadResource(string assetName, string extension, Action<bool, object> action);
         void ReleaseResource(object obj);
     }
 
@@ -371,7 +371,9 @@ namespace FairyGUI
 
         public static void AddPackageAsync(string assetPath, Action<UIPackage> callback)
         {
-            _asyncLoadResource.LoadResource(assetPath + "_fui.bytes", (ok, asset) =>
+            var assetName = assetPath + "_fui.bytes";
+            var extension = Path.GetExtension(assetName);
+            _asyncLoadResource.LoadResource(assetName, extension, (ok, asset) =>
             {
                 if (ok)
                 {
@@ -728,7 +730,8 @@ namespace FairyGUI
                 for (int i = 0; i < _loadlist.Count; ++i)
                 {
                     string assetName = _loadlist[i];
-                    _asyncLoadResource.LoadResource(assetName, (ok, o) =>
+                    string extension = Path.GetExtension(assetName);
+                    _asyncLoadResource.LoadResource(assetName, extension, (ok, o) =>
                     {
                         _loadlist.Remove(assetName);
                         if (ok)
