@@ -11,7 +11,7 @@ namespace FairyGUI
 {
     public interface IAsyncResource
     {
-        void LoadResource(string assetName, string extension, Action<bool, object> action);
+        void LoadResource(string assetName, string extension, Action<bool, string, object> action);
         void ReleaseResource(object obj);
     }
 
@@ -373,7 +373,7 @@ namespace FairyGUI
         {
             var assetName = assetPath + "_fui.bytes";
             var extension = Path.GetExtension(assetName);
-            _asyncLoadResource.LoadResource(assetName, extension, (ok, asset) =>
+            _asyncLoadResource.LoadResource(assetName, extension, (ok, loadAssetName, asset) =>
             {
                 if (ok)
                 {
@@ -395,7 +395,8 @@ namespace FairyGUI
                             callback?.Invoke(package);
                             return;
                         }
-                        if ( package != null)
+
+                        if (package != null)
                         {
                             _packageInstById[package.id] = package;
                             _packageInstByName[package.name] = package;
@@ -727,23 +728,27 @@ namespace FairyGUI
 
             if (_loadlist.Count > 0)
             {
-                for (int i = 0; i < _loadlist.Count; ++i)
-                {
-                    string assetName = _loadlist[i];
-                    string extension = Path.GetExtension(assetName);
-                    _asyncLoadResource.LoadResource(assetName, extension, (ok, o) =>
-                    {
-                        _loadlist.Remove(assetName);
-                        if (ok)
-                        {
-                            _resources.Add(assetName, o);
-                        }
+                var loadingList = new List<string>(_loadlist.Count);
+                loadingList.AddRange(_loadlist.ToArray());
 
-                        if (_loadlist.Count <= 0)
-                        {
-                            callback(false, this);
-                        }
-                    });
+                void LoadResourceComplete(bool ok, string loadAssetName, object o)
+                {
+                    loadingList.Remove(loadAssetName);
+                    if (ok)
+                    {
+                        _resources.Add(loadAssetName, o);
+                    }
+
+                    if (loadingList.Count <= 0)
+                    {
+                        callback(false, this);
+                    }
+                }
+
+                foreach (var assetName in _loadlist)
+                {
+                    string extension = Path.GetExtension(assetName);
+                    _asyncLoadResource.LoadResource(assetName, extension, LoadResourceComplete);
                 }
             }
             else
