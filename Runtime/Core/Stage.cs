@@ -189,7 +189,13 @@ namespace FairyGUI
         {
             get { return _inst != null && _inst.touchTarget != null; }
         }
-
+        /// <summary>
+        /// The scale of the mouse scroll delta.
+        /// </summary>
+        public static float mouseWheelScale
+        {
+            get; set;
+        }
         /// <summary>
         /// As unity does not provide ways to detect this, you should set it by yourself. 
         /// This will effect:
@@ -236,7 +242,7 @@ namespace FairyGUI
 
             //在PC上，是否retina屏对输入法位置，鼠标滚轮速度都有影响，但现在没发现Unity有获得的方式。仅判断是否Mac可能不够（外接显示器的情况）。所以最好自行设置。
             devicePixelRatio = (isOSX && Screen.dpi > 96) ? 2 : 1;
-
+            mouseWheelScale = 1;
             _rollOutChain = new List<DisplayObject>();
             _rollOverChain = new List<DisplayObject>();
             _focusOutChain = new List<DisplayObject>();
@@ -1014,7 +1020,7 @@ namespace FairyGUI
                 if (_touchTarget != null)
                 {
                     TouchInfo touch = _touches[0];
-                    touch.mouseWheelDelta = evt.delta.y;
+                    touch.mouseWheelDelta = evt.delta.y * mouseWheelScale;
                     touch.UpdateEvent();
                     _touchTarget.BubbleEvent(EventName.onMouseWheel, touch.evt);
                     touch.mouseWheelDelta = 0;
