@@ -1751,9 +1751,9 @@ namespace FairyGUI
 
 
 #if FAIRYGUI_SPINE
-            if (_loadAysncFunc != null)
+            if (_loadAsyncFunc != null)
             {
-                _loadAysncFunc(fileName + "_SkeletonData", ".asset", typeof(Spine.Unity.SkeletonDataAsset), item);
+                _loadAsyncFunc(fileName + "_SkeletonData", ".asset", typeof(Spine.Unity.SkeletonDataAsset), item);
             }
             else
             {

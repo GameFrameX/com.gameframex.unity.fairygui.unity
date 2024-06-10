@@ -11,26 +11,28 @@ namespace FairyGUI
         /// id is for internal use only.
         /// </summary>
         public string id { get; private set; }
-        
+
         private string _name;
-        
+
         /// <summary>
         /// Name of the object.
         /// </summary>
         public string name
         {
-            get { return _name;}
+            get { return _name; }
             set
             {
                 _name = value;
                 gameObjectName = _name;
             }
         }
+
         /// <summary>
         /// User defined data.
         /// GList 内部会赋值
         /// </summary>
         public object dataSource;
+
         /// <summary>
         /// User defined data. 
         /// </summary>
@@ -339,10 +341,7 @@ namespace FairyGUI
         public float x
         {
             get { return _x; }
-            set
-            {
-                SetPosition(value, _y, _z);
-            }
+            set { SetPosition(value, _y, _z); }
         }
 
         /// <summary>
@@ -351,10 +350,7 @@ namespace FairyGUI
         public float y
         {
             get { return _y; }
-            set
-            {
-                SetPosition(_x, value, _z);
-            }
+            set { SetPosition(_x, value, _z); }
         }
 
         /// <summary>
@@ -363,10 +359,7 @@ namespace FairyGUI
         public float z
         {
             get { return _z; }
-            set
-            {
-                SetPosition(_x, _y, value);
-            }
+            set { SetPosition(_x, _y, value); }
         }
 
         /// <summary>
@@ -466,7 +459,7 @@ namespace FairyGUI
         /// Set the object in middle of the parent or GRoot if the parent is not set.
         /// </summary>
         /// <param name="restraint">Add relations to maintain the center state.</param>
-        public void Center(bool restraint)
+        public virtual void Center(bool restraint)
         {
             GComponent r;
             if (parent != null)
@@ -483,6 +476,14 @@ namespace FairyGUI
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public Vector2 dragStartPos
+        {
+            get { return _dragTouchStartPos; }
+        }
+
+        /// <summary>
         /// 设置对象为全屏大小（逻辑屏幕）。
         /// </summary>
         public void MakeFullScreen()
@@ -495,14 +496,8 @@ namespace FairyGUI
         /// </summary>
         public float width
         {
-            get
-            {
-                return _width;
-            }
-            set
-            {
-                SetSize(value, _rawHeight);
-            }
+            get { return _width; }
+            set { SetSize(value, _rawHeight); }
         }
 
         /// <summary>
@@ -510,14 +505,8 @@ namespace FairyGUI
         /// </summary>
         public float height
         {
-            get
-            {
-                return _height;
-            }
-            set
-            {
-                SetSize(_rawWidth, value);
-            }
+            get { return _height; }
+            set { SetSize(_rawWidth, value); }
         }
 
         /// <summary>
@@ -629,10 +618,7 @@ namespace FairyGUI
         /// </summary>
         public float xMin
         {
-            get
-            {
-                return _pivotAsAnchor ? (_x - _width * _pivotX) : _x;
-            }
+            get { return _pivotAsAnchor ? (_x - _width * _pivotX) : _x; }
             set
             {
                 if (_pivotAsAnchor)
@@ -647,10 +633,7 @@ namespace FairyGUI
         /// </summary>
         public float yMin
         {
-            get
-            {
-                return _pivotAsAnchor ? (_y - _height * _pivotY) : _y;
-            }
+            get { return _pivotAsAnchor ? (_y - _height * _pivotY) : _y; }
             set
             {
                 if (_pivotAsAnchor)
@@ -666,10 +649,7 @@ namespace FairyGUI
         public float scaleX
         {
             get { return _scaleX; }
-            set
-            {
-                SetScale(value, _scaleY);
-            }
+            set { SetScale(value, _scaleY); }
         }
 
         /// <summary>
@@ -678,10 +658,7 @@ namespace FairyGUI
         public float scaleY
         {
             get { return _scaleY; }
-            set
-            {
-                SetScale(_scaleX, value);
-            }
+            set { SetScale(_scaleX, value); }
         }
 
         /// <summary>
@@ -736,10 +713,7 @@ namespace FairyGUI
         public float pivotX
         {
             get { return _pivotX; }
-            set
-            {
-                SetPivot(value, _pivotY, _pivotAsAnchor);
-            }
+            set { SetPivot(value, _pivotY, _pivotAsAnchor); }
         }
 
         /// <summary>
@@ -748,10 +722,7 @@ namespace FairyGUI
         public float pivotY
         {
             get { return _pivotY; }
-            set
-            {
-                SetPivot(_pivotX, value, _pivotAsAnchor);
-            }
+            set { SetPivot(_pivotX, value, _pivotAsAnchor); }
         }
 
         /// <summary>
@@ -766,10 +737,7 @@ namespace FairyGUI
         public bool pivotAsAnchor
         {
             get { return _pivotAsAnchor; }
-            set
-            {
-                SetPivot(_pivotX, _pivotY, value);
-            }
+            set { SetPivot(_pivotX, _pivotY, value); }
         }
 
         /// <summary>
@@ -806,10 +774,7 @@ namespace FairyGUI
         /// </summary>
         public bool touchable
         {
-            get
-            {
-                return _touchable;
-            }
+            get { return _touchable; }
             set
             {
                 if (_touchable != value)
@@ -828,10 +793,7 @@ namespace FairyGUI
         /// </summary>
         public bool grayed
         {
-            get
-            {
-                return _grayed;
-            }
+            get { return _grayed; }
             set
             {
                 if (_grayed != value)
@@ -848,10 +810,7 @@ namespace FairyGUI
         /// </summary>
         public bool enabled
         {
-            get
-            {
-                return !_grayed && _touchable;
-            }
+            get { return !_grayed && _touchable; }
             set
             {
                 this.grayed = !value;
@@ -864,10 +823,7 @@ namespace FairyGUI
         /// </summary>
         public float rotation
         {
-            get
-            {
-                return _rotation;
-            }
+            get { return _rotation; }
             set
             {
                 _rotation = value;
@@ -882,10 +838,7 @@ namespace FairyGUI
         /// </summary>
         public float rotationX
         {
-            get
-            {
-                return _rotationX;
-            }
+            get { return _rotationX; }
             set
             {
                 _rotationX = value;
@@ -899,10 +852,7 @@ namespace FairyGUI
         /// </summary>
         public float rotationY
         {
-            get
-            {
-                return _rotationY;
-            }
+            get { return _rotationY; }
             set
             {
                 _rotationY = value;
@@ -916,11 +866,7 @@ namespace FairyGUI
         /// </summary>
         public float alpha
         {
-
-            get
-            {
-                return _alpha;
-            }
+            get { return _alpha; }
 
             set
             {
@@ -935,10 +881,7 @@ namespace FairyGUI
         /// </summary>
         public bool visible
         {
-            get
-            {
-                return _visible;
-            }
+            get { return _visible; }
 
             set
             {
@@ -956,26 +899,17 @@ namespace FairyGUI
 
         internal bool internalVisible
         {
-            get
-            {
-                return _internalVisible && (group == null || group.internalVisible);
-            }
+            get { return _internalVisible && (group == null || group.internalVisible); }
         }
 
         internal bool internalVisible2
         {
-            get
-            {
-                return _visible && (group == null || group.internalVisible2);
-            }
+            get { return _visible && (group == null || group.internalVisible2); }
         }
 
         internal bool internalVisible3
         {
-            get
-            {
-                return _visible && _internalVisible;
-            }
+            get { return _visible && _internalVisible; }
         }
 
         /// <summary>
@@ -1005,7 +939,10 @@ namespace FairyGUI
         public bool focusable
         {
             get { return displayObject != null && displayObject.focusable; }
-            set { if (displayObject != null) displayObject.focusable = value; }
+            set
+            {
+                if (displayObject != null) displayObject.focusable = value;
+            }
         }
 
         /// <summary>
@@ -1014,7 +951,10 @@ namespace FairyGUI
         public bool tabStop
         {
             get { return displayObject != null && displayObject.tabStop; }
-            set { if (displayObject != null) displayObject.tabStop = value; }
+            set
+            {
+                if (displayObject != null) displayObject.tabStop = value;
+            }
         }
 
         /// <summary>
@@ -1097,7 +1037,10 @@ namespace FairyGUI
         virtual public IFilter filter
         {
             get { return displayObject != null ? displayObject.filter : null; }
-            set { if (displayObject != null) displayObject.filter = value; }
+            set
+            {
+                if (displayObject != null) displayObject.filter = value;
+            }
         }
 
         /// <summary>
@@ -1106,7 +1049,10 @@ namespace FairyGUI
         virtual public BlendMode blendMode
         {
             get { return displayObject != null ? displayObject.blendMode : BlendMode.None; }
-            set { if (displayObject != null) displayObject.blendMode = value; }
+            set
+            {
+                if (displayObject != null) displayObject.blendMode = value;
+            }
         }
 
         /// <summary>
@@ -1144,10 +1090,7 @@ namespace FairyGUI
         /// </summary>
         public bool inContainer
         {
-            get
-            {
-                return displayObject != null && displayObject.parent != null;
-            }
+            get { return displayObject != null && displayObject.parent != null; }
         }
 
         /// <summary>
@@ -1155,10 +1098,7 @@ namespace FairyGUI
         /// </summary>
         public bool onStage
         {
-            get
-            {
-                return displayObject != null && displayObject.stage != null;
-            }
+            get { return displayObject != null && displayObject.stage != null; }
         }
 
         /// <summary>
@@ -1180,10 +1120,7 @@ namespace FairyGUI
         /// </summary>
         public GearXY gearXY
         {
-            get
-            {
-                return (GearXY)GetGear(1);
-            }
+            get { return (GearXY)GetGear(1); }
         }
 
         /// <summary>
@@ -1191,10 +1128,7 @@ namespace FairyGUI
         /// </summary>
         public GearSize gearSize
         {
-            get
-            {
-                return (GearSize)GetGear(2);
-            }
+            get { return (GearSize)GetGear(2); }
         }
 
         /// <summary>
@@ -1202,10 +1136,7 @@ namespace FairyGUI
         /// </summary>
         public GearLook gearLook
         {
-            get
-            {
-                return (GearLook)GetGear(3);
-            }
+            get { return (GearLook)GetGear(3); }
         }
 
         public GearBase GetGear(int index)
@@ -1248,8 +1179,10 @@ namespace FairyGUI
                     default:
                         throw new System.Exception("FairyGUI: invalid gear index!");
                 }
+
                 _gears[index] = gear;
             }
+
             return gear;
         }
 
@@ -1337,6 +1270,7 @@ namespace FairyGUI
                 if (gear != null && gear.controller == c)
                     gear.Apply();
             }
+
             _handlingController = false;
 
             CheckGearDisplay();
@@ -1435,7 +1369,10 @@ namespace FairyGUI
         virtual public string text
         {
             get { return null; }
-            set { /*override in child*/}
+            set
+            {
+                /*override in child*/
+            }
         }
 
         /// <summary>
@@ -1444,7 +1381,10 @@ namespace FairyGUI
         virtual public string icon
         {
             get { return null; }
-            set { /*override in child*/}
+            set
+            {
+                /*override in child*/
+            }
         }
 
         /// <summary>
@@ -1511,6 +1451,7 @@ namespace FairyGUI
                 pt.x += _width * _pivotX;
                 pt.y += _height * _pivotY;
             }
+
             return displayObject.LocalToGlobal(pt);
         }
 
@@ -1527,6 +1468,7 @@ namespace FairyGUI
                 pt.x -= _width * _pivotX;
                 pt.y -= _height * _pivotY;
             }
+
             return pt;
         }
 
@@ -1600,6 +1542,7 @@ namespace FairyGUI
             }
             else
                 pt = r.LocalToGlobal(pt);
+
             return GlobalToLocal(pt);
         }
 
@@ -1640,6 +1583,7 @@ namespace FairyGUI
                 pt.x += _width * _pivotX;
                 pt.y += _height * _pivotY;
             }
+
             return this.displayObject.TransformPoint(pt, targetSpace != null ? targetSpace.displayObject : Stage.inst);
         }
 
@@ -1656,6 +1600,7 @@ namespace FairyGUI
                 rect.x += _width * _pivotX;
                 rect.y += _height * _pivotY;
             }
+
             return this.displayObject.TransformRect(rect, targetSpace != null ? targetSpace.displayObject : Stage.inst);
         }
 
@@ -1687,11 +1632,13 @@ namespace FairyGUI
                 if (gear != null)
                     gear.Dispose();
             }
+
             if (displayObject != null)
             {
                 displayObject.gOwner = null;
                 displayObject.Dispose();
             }
+
             data = null;
         }
 
@@ -1859,6 +1806,7 @@ namespace FairyGUI
                     xv += _width * _pivotX;
                     yv += _height * _pivotY;
                 }
+
                 displayObject.location = new Vector3(xv, yv, _z);
             }
         }
@@ -2005,6 +1953,7 @@ namespace FairyGUI
         }
 
         #region Drag support
+
         Vector2 _dragTouchStartPos;
         bool _dragTesting;
 
@@ -2141,9 +2090,11 @@ namespace FairyGUI
                 DispatchEvent(EventName.onDragEnd, null);
             }
         }
+
         #endregion
 
         #region Tween Helpers
+
         public GTweener TweenMove(Vector2 endValue, float duration)
         {
             return GTween.To(this.xy, endValue, duration).SetTarget(this, TweenPropType.XY);
@@ -2188,6 +2139,7 @@ namespace FairyGUI
         {
             return GTween.To(_rotation, endValue, duration).SetTarget(this, TweenPropType.Rotation);
         }
+
         #endregion
     }
 }
