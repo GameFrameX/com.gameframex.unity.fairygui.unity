@@ -7,7 +7,7 @@ using FairyGUI.Utils;
 using UnityEngine.SceneManagement;
 #endif
 
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.EnhancedTouch;
@@ -163,20 +163,20 @@ namespace FairyGUI
         /// 2. mouse wheel speed.
         /// </summary>
         public static float devicePixelRatio { get; set; }
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
         /// <summary>
         /// New Input System CompositionString
         /// </summary>
         static string inputSystemCompositionString = string.Empty;
 
-        static void HandleOnIMECompositionChange(IMECompositionString imeCompositionString)
+        static void HandleOnIMECompositionChange(IMECompositionString composition)
         {
             // 如果这里赋值了还会导致输入重复的Bug, 因为应对不同输入法时InputSystem可能会返回完整的文字
             // 此功能本身只是为了显示中途打字符号(例如打拼音时中途的英文), 不会影响最后输入, 而且严重依赖输入法, 故直接去除此功能
             // 参考链接:
             // https://github.com/Unity-Technologies/InputSystem/commit/6d8ff967aeff02a627668e878eda566b81fd7c40
             // https://issuetracker.unity3d.com/issues/onimecompositionchange-does-not-return-an-empty-string-on-accept-when-using-microsoft-ime
-            // inputSystemCompositionString = imeCompositionString.ToString();
+            inputSystemCompositionString = composition.ToString();
         }
 #endif
 
@@ -187,7 +187,7 @@ namespace FairyGUI
         {
             get
             {
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                 return inputSystemCompositionString;
 #else
                 return Input.compositionString;
@@ -218,7 +218,7 @@ namespace FairyGUI
                 touchScreen = false;
             else
             {
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                 touchScreen = Touchscreen.current != null && SystemInfo.deviceType != DeviceType.Desktop;
                 if (touchScreen && !EnhancedTouchSupport.enabled)
                     EnhancedTouchSupport.Enable();
@@ -238,18 +238,23 @@ namespace FairyGUI
             _cursors = new Dictionary<string, CursorDef>();
 
             SetSize(Screen.width, Screen.height);
-            this.cachedTransform.localScale = new Vector3(StageCamera.DefaultUnitsPerPixel, StageCamera.DefaultUnitsPerPixel, StageCamera.DefaultUnitsPerPixel);
-
+            cachedTransform.localScale = new Vector3(StageCamera.DefaultUnitsPerPixel, StageCamera.DefaultUnitsPerPixel, StageCamera.DefaultUnitsPerPixel);
+#if UNITY_2023_2_OR_NEWER
+            StageEngine engine = GameObject.FindFirstObjectByType<StageEngine>();
+#else
             StageEngine engine = GameObject.FindObjectOfType<StageEngine>();
+#endif
             if (engine != null)
+            {
                 UnityEngine.Object.Destroy(engine.gameObject);
+            }
 
-            this.gameObject.name = "Stage";
-            this.gameObject.layer = LayerMask.NameToLayer(StageCamera.LayerName);
-            this.gameObject.AddComponent<StageEngine>();
-            this.gameObject.AddComponent<UIContentScaler>();
-            this.gameObject.SetActive(true);
-            UnityEngine.Object.DontDestroyOnLoad(this.gameObject);
+            gameObject.name = "Stage";
+            gameObject.layer = LayerMask.NameToLayer(StageCamera.LayerName);
+            gameObject.AddComponent<StageEngine>();
+            gameObject.AddComponent<UIContentScaler>();
+            gameObject.SetActive(true);
+            UnityEngine.Object.DontDestroyOnLoad(gameObject);
 
             EnableSound();
 
@@ -258,7 +263,7 @@ namespace FairyGUI
 #if UNITY_5_4_OR_NEWER
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
 #endif
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
             Keyboard keyboard = Keyboard.current;
             if (keyboard != null)
             {
@@ -284,7 +289,7 @@ namespace FairyGUI
 #if UNITY_5_4_OR_NEWER
             SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
 #endif
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
             Keyboard keyboard = Keyboard.current;
             if (keyboard != null)
                 keyboard.onIMECompositionChange -= HandleOnIMECompositionChange;
@@ -885,7 +890,7 @@ namespace FairyGUI
             else if (touchScreen)
             {
                 _touchTarget = null;
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                 foreach (Touch uTouch in Touch.activeTouches)
                 {
                     Vector2 pos = uTouch.screenPosition;
@@ -935,7 +940,7 @@ namespace FairyGUI
             else
             {
                 Vector2 pos = Vector2.zero;
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                 Mouse mouse = Mouse.current;
                 if (mouse != null)
                     pos = mouse.position.ReadValue();
@@ -1054,7 +1059,7 @@ namespace FairyGUI
                 }
                 else if (touchScreen)
                 {
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                     if (Touch.activeTouches.Count > 0)
                     {
                         _touchPosition = Touch.activeTouches[Touch.activeTouches.Count - 1].screenPosition;
@@ -1069,7 +1074,7 @@ namespace FairyGUI
                 else
                 {
                     Vector2 pos = Vector2.zero;
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                     Mouse mouse = Mouse.current;
                     if (mouse != null)
                         pos = mouse.position.ReadValue();
@@ -1172,7 +1177,7 @@ namespace FairyGUI
 
             if (touch.lastRollOver != touch.target)
                 HandleRollOver(touch);
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
             Mouse mouse = Mouse.current;
             if (mouse == null)
                 return;
@@ -1186,7 +1191,7 @@ namespace FairyGUI
                 {
                     _touchCount = 1;
                     touch.Begin();
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                     touch.button = mouse.middleButton.wasPressedThisFrame ? 2 : (mouse.rightButton.wasPressedThisFrame ? 1 : 0);
 #else
                     touch.button = Input.GetMouseButtonDown(2) ? 2 : (Input.GetMouseButtonDown(1) ? 1 : 0);
@@ -1197,7 +1202,7 @@ namespace FairyGUI
                     touch.target.BubbleEvent(EventName.onTouchBegin, touch.evt);
                 }
             }
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
             if (mouse.leftButton.wasReleasedThisFrame || mouse.rightButton.wasReleasedThisFrame || mouse.middleButton.wasReleasedThisFrame)
 #else
             if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1) || Input.GetMouseButtonUp(2))
@@ -1212,7 +1217,7 @@ namespace FairyGUI
                     if (clickTarget != null)
                     {
                         touch.UpdateEvent();
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                         if (mouse.rightButton.wasReleasedThisFrame || mouse.middleButton.wasReleasedThisFrame)
 #else
                         if (Input.GetMouseButtonUp(1) || Input.GetMouseButtonUp(2))
@@ -1231,7 +1236,7 @@ namespace FairyGUI
             }
 
             //We have to do this, coz the cursor will auto change back after a click or dragging
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
             if (mouse.leftButton.wasReleasedThisFrame && _currentCursor != null)
 #else
             if (Input.GetMouseButtonUp(0) && _currentCursor != null)
@@ -1244,7 +1249,7 @@ namespace FairyGUI
         void HandleTouchEvents()
         {
             int tc = Input.touchCount;
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
             foreach (Touch uTouch in Touch.activeTouches)
             {
 #else
@@ -1256,7 +1261,7 @@ namespace FairyGUI
                 if (uTouch.phase == TouchPhase.Stationary)
                     continue;
 
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                 Vector2 pos = uTouch.screenPosition;
 #else
                 Vector2 pos = uTouch.position;
@@ -1266,7 +1271,7 @@ namespace FairyGUI
                 TouchInfo touch = null;
                 for (int j = 0; j < 5; j++)
                 {
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                     if (_touches[j].touchId == uTouch.touchId)
 #else
                     if (_touches[j].touchId == uTouch.fingerId)

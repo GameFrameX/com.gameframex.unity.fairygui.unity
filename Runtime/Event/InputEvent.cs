@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
 
@@ -105,7 +105,7 @@ namespace FairyGUI
         {
             get
             {
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                 Keyboard keyboard = Keyboard.current;
                 return keyboard != null && (keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed);
 #else
@@ -121,7 +121,7 @@ namespace FairyGUI
         {
             get
             {
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                 Keyboard keyboard = Keyboard.current;
                 return keyboard != null && (keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed);
 #else
@@ -137,7 +137,7 @@ namespace FairyGUI
         {
             get
             {
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                 Keyboard keyboard = Keyboard.current;
                 return keyboard != null && (keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed);
 #else
@@ -156,7 +156,7 @@ namespace FairyGUI
                 //In win, as long as the win key and other keys are pressed at the same time, the getKey will continue to return true. So it can only be shielded.
                 if (Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXEditor)
                 {
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                     Keyboard keyboard = Keyboard.current;
                     return keyboard != null && (keyboard.leftCommandKey.isPressed || keyboard.rightCommandKey.isPressed);
 #else

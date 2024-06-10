@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using FairyGUI.Utils;
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
 
@@ -669,25 +669,19 @@ namespace FairyGUI
                 {
                     Vector2 cursorPos = _caret.LocalToWorld(new Vector2(0, _caret.height));
                     cursorPos = StageCamera.main.WorldToScreenPoint(cursorPos);
-#if !UNITY_2019_OR_NEWER
-                    if (Stage.devicePixelRatio == 1)
+                    if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
                     {
+                        cursorPos.y = Screen.height - cursorPos.y + 20;
+#if UNITY_EDITOR
+                        cursorPos.y += 50;
 #endif
-                        cursorPos.y = Screen.height - cursorPos.y;
-                        cursorPos = cursorPos / Stage.devicePixelRatio;
-#if ENABLE_INPUT_SYSTEM
-                        Keyboard keyboard = Keyboard.current;
-                        if (keyboard != null)
-                            keyboard.SetIMECursorPosition(cursorPos + new Vector2(0, 20));
+                    }
+#if FAIRYGUI_INPUT_SYSTEM
+                    Keyboard keyboard = Keyboard.current;
+                    if (keyboard != null)
+                        keyboard.SetIMECursorPosition(cursorPos);
 #else
-                        Input.compositionCursorPos = cursorPos + new Vector2(0, 20);
-#endif
-#if !UNITY_2019_OR_NEWER
-                    }
-                    else // InputSystem 1.0 requires 2019.1+, not need to add input system symbol here.
-                    {
-                        Input.compositionCursorPos = cursorPos - new Vector2(0, 20);
-                    }
+                    Input.compositionCursorPos = cursorPos;
 #endif
                 }
 
@@ -948,7 +942,10 @@ namespace FairyGUI
                 onCopy(this, value);
                 return;
             }
-
+#if UNITY_2023_2_OR_NEWER
+            GUIUtility.systemCopyBuffer = value;
+#else
+            
 #if UNITY_WEBPLAYER || UNITY_WEBGL || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR
             TextEditor textEditor = new TextEditor();
 #if UNITY_5_3_OR_NEWER
@@ -959,6 +956,8 @@ namespace FairyGUI
             textEditor.OnFocus();
             textEditor.Copy();
 #endif
+            
+#endif
         }
 
         void DoPaste()
@@ -968,7 +967,11 @@ namespace FairyGUI
                 onPaste(this);
                 return;
             }
-
+#if UNITY_2023_2_OR_NEWER
+            string value = GUIUtility.systemCopyBuffer;
+            if (!string.IsNullOrEmpty(value))
+                ReplaceSelection(value);
+#else
 #if UNITY_WEBPLAYER || UNITY_WEBGL || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR
             TextEditor textEditor = new TextEditor();
 #if UNITY_5_3_OR_NEWER
@@ -985,6 +988,8 @@ namespace FairyGUI
 #endif
             if (!string.IsNullOrEmpty(value))
                 ReplaceSelection(value);
+#endif
+
 #endif
         }
 
@@ -1107,7 +1112,7 @@ namespace FairyGUI
             }
             else
             {
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                 Keyboard keyboard = Keyboard.current;
                 if (keyboard != null)
                     keyboard.SetIMEEnabled(!disableIME && !_displayAsPassword);
@@ -1139,7 +1144,7 @@ namespace FairyGUI
             }
             else
             {
-#if ENABLE_INPUT_SYSTEM
+#if FAIRYGUI_INPUT_SYSTEM
                 Keyboard keyboard = Keyboard.current;
                 if (keyboard != null)
                     keyboard.SetIMEEnabled(true);
