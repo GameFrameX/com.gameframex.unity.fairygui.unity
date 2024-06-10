@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
 
 namespace FairyGUI
 {
@@ -92,10 +95,7 @@ namespace FairyGUI
         /// </summary>
         public bool ctrlOrCmd
         {
-            get
-            {
-                return ctrl || command;
-            }
+            get { return ctrl || command; }
         }
 
         /// <summary>
@@ -105,7 +105,12 @@ namespace FairyGUI
         {
             get
             {
+#if ENABLE_INPUT_SYSTEM
+                Keyboard keyboard = Keyboard.current;
+                return keyboard != null && (keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed);
+#else
                 return Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
+#endif
             }
         }
 
@@ -116,7 +121,12 @@ namespace FairyGUI
         {
             get
             {
+#if ENABLE_INPUT_SYSTEM
+                Keyboard keyboard = Keyboard.current;
+                return keyboard != null && (keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed);
+#else
                 return Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+#endif
             }
         }
 
@@ -127,7 +137,12 @@ namespace FairyGUI
         {
             get
             {
+#if ENABLE_INPUT_SYSTEM
+                Keyboard keyboard = Keyboard.current;
+                return keyboard != null && (keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed);
+#else
                 return Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt);
+#endif
             }
         }
 
@@ -140,9 +155,18 @@ namespace FairyGUI
             {
                 //In win, as long as the win key and other keys are pressed at the same time, the getKey will continue to return true. So it can only be shielded.
                 if (Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXEditor)
+                {
+#if ENABLE_INPUT_SYSTEM
+                    Keyboard keyboard = Keyboard.current;
+                    return keyboard != null && (keyboard.leftCommandKey.isPressed || keyboard.rightCommandKey.isPressed);
+#else
                     return Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand);
+#endif
+                }
                 else
+                {
                     return false;
+                }
             }
         }
     }
