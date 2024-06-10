@@ -139,10 +139,7 @@ namespace FairyGUI
         /// </summary>
         public override string text
         {
-            get
-            {
-                return _text;
-            }
+            get { return _text; }
             set
             {
                 _text = value;
@@ -156,10 +153,7 @@ namespace FairyGUI
         /// </summary>
         public override TextFormat textFormat
         {
-            get
-            {
-                return base.textFormat;
-            }
+            get { return base.textFormat; }
             set
             {
                 base.textFormat = value;
@@ -197,10 +191,7 @@ namespace FairyGUI
                 textField.Redraw();
                 return _caretPosition;
             }
-            set
-            {
-                SetSelection(value, 0);
-            }
+            set { SetSelection(value, 0); }
         }
 
         public int selectionBeginIndex
@@ -218,10 +209,7 @@ namespace FairyGUI
         /// </summary>
         public string promptText
         {
-            get
-            {
-                return _promptText;
-            }
+            get { return _promptText; }
             set
             {
                 _promptText = value;
@@ -410,6 +398,7 @@ namespace FairyGUI
 
                 _caretPosition += GetTextlength(value);
             }
+
             GetPartialText(t1 + _composing, -1, buffer);
 
             string newText = buffer.ToString();
@@ -472,6 +461,7 @@ namespace FairyGUI
                     }
                 }
             }
+
             if (lastIndex < tt.Length)
                 buffer.Append(tt.Substring(lastIndex, endIndex - lastIndex));
         }
@@ -485,6 +475,7 @@ namespace FairyGUI
                 if (char.IsHighSurrogate(value[i]))
                     ret--;
             }
+
             return ret;
         }
 
@@ -503,6 +494,7 @@ namespace FairyGUI
                 i++;
                 len++;
             }
+
             return value;
         }
 
@@ -532,6 +524,7 @@ namespace FairyGUI
 
                     mc = mc.NextMatch();
                 }
+
                 for (int i = lastPos; i < source.Length; i++)
                 {
                     if (source[i] == '\n' || source[i] == '\t')
@@ -585,8 +578,10 @@ namespace FairyGUI
                         i++;
                     tmp.Append("*");
                 }
+
                 i++;
             }
+
             return tmp.ToString();
         }
 
@@ -717,6 +712,7 @@ namespace FairyGUI
                     _caret.SetXY(nx + _caret.x - ox, ny + _caret.y - oy);
                     _selectionShape.SetXY(nx, ny);
                 }
+
                 textField.SetXY(nx, ny);
 
                 List<HtmlElement> elements = textField.htmlElements;
@@ -751,6 +747,7 @@ namespace FairyGUI
             }
             else
                 start = GetCharPosition(_selectionStart);
+
             if (start.charIndex > cp.charIndex)
             {
                 TextField.CharPosition tmp = start;
@@ -799,6 +796,7 @@ namespace FairyGUI
                 if (line.y + line.height > location.y)
                     break;
             }
+
             if (i == len)
                 i = len - 1;
 
@@ -818,7 +816,9 @@ namespace FairyGUI
                         return v;
                 }
                 else if (firstInLine != -1)
-                    return v;
+                {
+                    return textField.charPositions[i - 1];
+                }
             }
 
             return textField.charPositions[i - 1];
@@ -845,6 +845,7 @@ namespace FairyGUI
                 TextField.CharPosition v = textField.charPositions[Math.Min(cp.charIndex, textField.charPositions.Count - 1)];
                 pos.x = v.offsetX;
             }
+
             pos.y = line.y;
             return pos;
         }
@@ -983,8 +984,8 @@ namespace FairyGUI
         void __touchBegin(EventContext context)
         {
             if (!_editing || textField.charPositions.Count <= 1
-                || keyboardInput && Stage.keyboardInput && !Stage.inst.keyboard.supportsCaret
-                || context.inputEvent.button != 0)
+                          || keyboardInput && Stage.keyboardInput && !Stage.inst.keyboard.supportsCaret
+                          || context.inputEvent.button != 0)
                 return;
 
             ClearSelection();
@@ -1071,8 +1072,8 @@ namespace FairyGUI
                     if (_editable)
                     {
                         var limit = this.maxLength;
-#if UNITY_IOS//IOS上如果 limit >0 会在输入时就限制了输入，导致输入有问题。
-                        limit = 0;       
+#if UNITY_IOS //IOS上如果 limit >0 会在输入时就限制了输入，导致输入有问题。
+                        limit = 0;
 #endif
                         Stage.inst.OpenKeyboard(_text, keyboardType, false, _displayAsPassword ? false : !textField.singleLine,
                             displayAsPassword, false, this.hideInput, null, limit); // custom, 增加keyboardType参数
@@ -1138,239 +1139,250 @@ namespace FairyGUI
             switch (evt.keyCode)
             {
                 case KeyCode.Backspace:
+                {
+                    if (evt.command)
+                    {
+                        //for mac:CMD+Backspace=Delete
+                        if (_selectionStart == _caretPosition && _caretPosition < textField.charPositions.Count - 1)
+                            _selectionStart = _caretPosition + 1;
+                    }
+                    else
+                    {
+                        if (_selectionStart == _caretPosition && _caretPosition > 0)
+                            _selectionStart = _caretPosition - 1;
+                    }
+
+                    if (_editable)
+                        ReplaceSelection(null);
+                    break;
+                }
+
+                case KeyCode.Delete:
+                {
+                    if (_selectionStart == _caretPosition && _caretPosition < textField.charPositions.Count - 1)
+                        _selectionStart = _caretPosition + 1;
+                    if (_editable)
+                        ReplaceSelection(null);
+                    break;
+                }
+
+                case KeyCode.LeftArrow:
+                {
+                    if (!evt.shift)
+                        ClearSelection();
+                    if (_caretPosition > 0)
+                    {
+                        if (evt.command) //mac keyboard
+                        {
+                            TextField.CharPosition cp = GetCharPosition(_caretPosition);
+                            TextField.LineInfo line = textField.lines[cp.lineIndex];
+                            cp = GetCharPosition(new Vector2(int.MinValue, line.y + textField.y));
+                            AdjustCaret(cp, !evt.shift);
+                        }
+                        else
+                        {
+                            TextField.CharPosition cp = GetCharPosition(_caretPosition - 1);
+                            AdjustCaret(cp, !evt.shift);
+                        }
+                    }
+
+                    break;
+                }
+
+                case KeyCode.RightArrow:
+                {
+                    if (!evt.shift)
+                        ClearSelection();
+                    if (_caretPosition < textField.charPositions.Count - 1)
                     {
                         if (evt.command)
                         {
-                            //for mac:CMD+Backspace=Delete
-                            if (_selectionStart == _caretPosition && _caretPosition < textField.charPositions.Count - 1)
-                                _selectionStart = _caretPosition + 1;
-                        }
-                        else
-                        {
-                            if (_selectionStart == _caretPosition && _caretPosition > 0)
-                                _selectionStart = _caretPosition - 1;
-                        }
-                        if (_editable)
-                            ReplaceSelection(null);
-                        break;
-                    }
-
-                case KeyCode.Delete:
-                    {
-                        if (_selectionStart == _caretPosition && _caretPosition < textField.charPositions.Count - 1)
-                            _selectionStart = _caretPosition + 1;
-                        if (_editable)
-                            ReplaceSelection(null);
-                        break;
-                    }
-
-                case KeyCode.LeftArrow:
-                    {
-                        if (!evt.shift)
-                            ClearSelection();
-                        if (_caretPosition > 0)
-                        {
-                            if (evt.command) //mac keyboard
-                            {
-                                TextField.CharPosition cp = GetCharPosition(_caretPosition);
-                                TextField.LineInfo line = textField.lines[cp.lineIndex];
-                                cp = GetCharPosition(new Vector2(int.MinValue, line.y + textField.y));
-                                AdjustCaret(cp, !evt.shift);
-                            }
-                            else
-                            {
-                                TextField.CharPosition cp = GetCharPosition(_caretPosition - 1);
-                                AdjustCaret(cp, !evt.shift);
-                            }
-                        }
-                        break;
-                    }
-
-                case KeyCode.RightArrow:
-                    {
-                        if (!evt.shift)
-                            ClearSelection();
-                        if (_caretPosition < textField.charPositions.Count - 1)
-                        {
-                            if (evt.command)
-                            {
-                                TextField.CharPosition cp = GetCharPosition(_caretPosition);
-                                TextField.LineInfo line = textField.lines[cp.lineIndex];
-                                cp = GetCharPosition(new Vector2(int.MaxValue, line.y + textField.y));
-                                AdjustCaret(cp, !evt.shift);
-                            }
-                            else
-                            {
-                                TextField.CharPosition cp = GetCharPosition(_caretPosition + 1);
-                                AdjustCaret(cp, !evt.shift);
-                            }
-                        }
-                        break;
-                    }
-
-                case KeyCode.UpArrow:
-                    {
-                        if (!evt.shift)
-                            ClearSelection();
-
-                        TextField.CharPosition cp = GetCharPosition(_caretPosition);
-                        if (cp.lineIndex > 0)
-                        {
-                            TextField.LineInfo line = textField.lines[cp.lineIndex - 1];
-                            cp = GetCharPosition(new Vector2(_caret.x, line.y + textField.y));
+                            TextField.CharPosition cp = GetCharPosition(_caretPosition);
+                            TextField.LineInfo line = textField.lines[cp.lineIndex];
+                            cp = GetCharPosition(new Vector2(int.MaxValue, line.y + textField.y));
                             AdjustCaret(cp, !evt.shift);
                         }
-                        break;
-                    }
-
-                case KeyCode.DownArrow:
-                    {
-                        if (!evt.shift)
-                            ClearSelection();
-
-                        TextField.CharPosition cp = GetCharPosition(_caretPosition);
-                        if (cp.lineIndex == textField.lines.Count - 1)
-                            cp.charIndex = textField.charPositions.Count - 1;
                         else
                         {
-                            TextField.LineInfo line = textField.lines[cp.lineIndex + 1];
-                            cp = GetCharPosition(new Vector2(_caret.x, line.y + textField.y));
+                            TextField.CharPosition cp = GetCharPosition(_caretPosition + 1);
+                            AdjustCaret(cp, !evt.shift);
                         }
-                        AdjustCaret(cp, !evt.shift);
-                        break;
                     }
+
+                    break;
+                }
+
+                case KeyCode.UpArrow:
+                {
+                    if (!evt.shift)
+                        ClearSelection();
+
+                    TextField.CharPosition cp = GetCharPosition(_caretPosition);
+                    if (cp.lineIndex > 0)
+                    {
+                        TextField.LineInfo line = textField.lines[cp.lineIndex - 1];
+                        cp = GetCharPosition(new Vector2(_caret.x, line.y + textField.y));
+                        AdjustCaret(cp, !evt.shift);
+                    }
+
+                    break;
+                }
+
+                case KeyCode.DownArrow:
+                {
+                    if (!evt.shift)
+                        ClearSelection();
+
+                    TextField.CharPosition cp = GetCharPosition(_caretPosition);
+                    if (cp.lineIndex == textField.lines.Count - 1)
+                        cp.charIndex = textField.charPositions.Count - 1;
+                    else
+                    {
+                        TextField.LineInfo line = textField.lines[cp.lineIndex + 1];
+                        cp = GetCharPosition(new Vector2(_caret.x, line.y + textField.y));
+                    }
+
+                    AdjustCaret(cp, !evt.shift);
+                    break;
+                }
 
                 case KeyCode.PageUp:
-                    {
-                        ClearSelection();
-                        break;
-                    }
+                {
+                    ClearSelection();
+                    break;
+                }
 
                 case KeyCode.PageDown:
-                    {
-                        ClearSelection();
-                        break;
-                    }
+                {
+                    ClearSelection();
+                    break;
+                }
 
                 case KeyCode.Home:
-                    {
-                        if (!evt.shift)
-                            ClearSelection();
+                {
+                    if (!evt.shift)
+                        ClearSelection();
 
-                        TextField.CharPosition cp = GetCharPosition(_caretPosition);
-                        TextField.LineInfo line = textField.lines[cp.lineIndex];
-                        cp = GetCharPosition(new Vector2(int.MinValue, line.y + textField.y));
-                        AdjustCaret(cp, !evt.shift);
-                        break;
-                    }
+                    TextField.CharPosition cp = GetCharPosition(_caretPosition);
+                    TextField.LineInfo line = textField.lines[cp.lineIndex];
+                    cp = GetCharPosition(new Vector2(int.MinValue, line.y + textField.y));
+                    AdjustCaret(cp, !evt.shift);
+                    break;
+                }
 
                 case KeyCode.End:
-                    {
-                        if (!evt.shift)
-                            ClearSelection();
+                {
+                    if (!evt.shift)
+                        ClearSelection();
 
-                        TextField.CharPosition cp = GetCharPosition(_caretPosition);
-                        TextField.LineInfo line = textField.lines[cp.lineIndex];
-                        cp = GetCharPosition(new Vector2(int.MaxValue, line.y + textField.y));
-                        AdjustCaret(cp, !evt.shift);
+                    TextField.CharPosition cp = GetCharPosition(_caretPosition);
+                    TextField.LineInfo line = textField.lines[cp.lineIndex];
+                    cp = GetCharPosition(new Vector2(int.MaxValue, line.y + textField.y));
+                    AdjustCaret(cp, !evt.shift);
 
-                        break;
-                    }
+                    break;
+                }
 
                 //Select All
                 case KeyCode.A:
+                {
+                    if (evt.ctrlOrCmd)
                     {
-                        if (evt.ctrlOrCmd)
-                        {
-                            _selectionStart = 0;
-                            AdjustCaret(GetCharPosition(int.MaxValue));
-                        }
-                        break;
+                        _selectionStart = 0;
+                        AdjustCaret(GetCharPosition(int.MaxValue));
                     }
+
+                    break;
+                }
 
                 //Copy
                 case KeyCode.C:
+                {
+                    if (evt.ctrlOrCmd && !_displayAsPassword)
                     {
-                        if (evt.ctrlOrCmd && !_displayAsPassword)
-                        {
-                            string s = GetSelection();
-                            if (!string.IsNullOrEmpty(s))
-                                DoCopy(s);
-                        }
-                        break;
+                        string s = GetSelection();
+                        if (!string.IsNullOrEmpty(s))
+                            DoCopy(s);
                     }
+
+                    break;
+                }
 
                 //Paste
                 case KeyCode.V:
-                    {
-                        if (evt.ctrlOrCmd && _editable)
-                            DoPaste();
-                        break;
-                    }
+                {
+                    if (evt.ctrlOrCmd && _editable)
+                        DoPaste();
+                    break;
+                }
 
                 //Cut
                 case KeyCode.X:
+                {
+                    if (evt.ctrlOrCmd && !_displayAsPassword)
                     {
-                        if (evt.ctrlOrCmd && !_displayAsPassword)
+                        string s = GetSelection();
+                        if (!string.IsNullOrEmpty(s))
                         {
-                            string s = GetSelection();
-                            if (!string.IsNullOrEmpty(s))
-                            {
-                                DoCopy(s);
-                                if (_editable)
-                                    ReplaceSelection(null);
-                            }
+                            DoCopy(s);
+                            if (_editable)
+                                ReplaceSelection(null);
                         }
-                        break;
                     }
+
+                    break;
+                }
 
                 case KeyCode.Z:
+                {
+                    if (evt.ctrlOrCmd && _editable)
                     {
-                        if (evt.ctrlOrCmd && _editable)
-                        {
-                            if (evt.shift)
-                                TextInputHistory.inst.Redo(this);
-                            else
-                                TextInputHistory.inst.Undo(this);
-                        }
-                        break;
+                        if (evt.shift)
+                            TextInputHistory.inst.Redo(this);
+                        else
+                            TextInputHistory.inst.Undo(this);
                     }
 
+                    break;
+                }
+
                 case KeyCode.Y:
-                    {
-                        if (evt.ctrlOrCmd && _editable)
-                            TextInputHistory.inst.Redo(this);
-                        break;
-                    }
+                {
+                    if (evt.ctrlOrCmd && _editable)
+                        TextInputHistory.inst.Redo(this);
+                    break;
+                }
 
                 case KeyCode.Return:
                 case KeyCode.KeypadEnter:
+                {
+                    if (textField.singleLine)
                     {
-                        if (textField.singleLine)
-                        {
-                            Stage.inst.focus = parent;
-                            DispatchEvent(EventName.onSubmit, null);
-                            DispatchEvent(EventName.onKeyDown, null); //for backward compatibility
-                        }
-                        break;
+                        Stage.inst.focus = parent;
+                        DispatchEvent(EventName.onSubmit, null);
+                        DispatchEvent(EventName.onKeyDown, null); //for backward compatibility
                     }
+
+                    break;
+                }
 
                 case KeyCode.Tab:
+                {
+                    if (textField.singleLine)
                     {
-                        if (textField.singleLine)
-                        {
-                            Stage.inst.DoKeyNavigate(evt.shift);
-                            keyCodeHandled = false;
-                        }
-                        break;
+                        Stage.inst.DoKeyNavigate(evt.shift);
+                        keyCodeHandled = false;
                     }
 
+                    break;
+                }
+
                 case KeyCode.Escape:
-                    {
-                        this.text = _textBeforeEdit;
-                        Stage.inst.focus = parent;
-                        break;
-                    }
+                {
+                    this.text = _textBeforeEdit;
+                    Stage.inst.focus = parent;
+                    break;
+                }
 
                 default:
                     keyCodeHandled = (int)evt.keyCode <= 272 && !evt.ctrlOrCmd;
@@ -1386,10 +1398,10 @@ namespace FairyGUI
                 if (c == '\r' || c == 3)
                     c = '\n';
 
-                if (c == 25)/*shift+tab*/
+                if (c == 25) /*shift+tab*/
                     c = '\t';
 
-                if (c == 27/*escape*/ || textField.singleLine && (c == '\n' || c == '\t'))
+                if (c == 27 /*escape*/ || textField.singleLine && (c == '\n' || c == '\t'))
                     return true;
 
                 if (char.IsHighSurrogate(c))
@@ -1456,6 +1468,7 @@ namespace FairyGUI
     class TextInputHistory
     {
         static TextInputHistory _inst;
+
         public static TextInputHistory inst
         {
             get
@@ -1516,6 +1529,7 @@ namespace FairyGUI
                 if (cnt > 0 && newText == _undoBuffer[cnt - 1])
                     _undoBuffer.RemoveAt(cnt - 1);
             }
+
             _currentText = newText;
         }
 
