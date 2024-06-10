@@ -178,7 +178,7 @@ namespace FairyGUI
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void InitializeOnLoad()
         {
-            CustomDestroyMethod = null;
+            CustomSpineDestroyMethod = null;
         }
 #endif
     }
