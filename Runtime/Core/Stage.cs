@@ -74,9 +74,10 @@ namespace FairyGUI
 
         static bool _touchScreen;
         internal static int _clickTestThreshold;
-#pragma warning disable 0649
+        static bool _keyboardInput;
+        static bool _touchSupportDetected;
         static IKeyboard _keyboard;
-#pragma warning restore 0649
+        static bool _keyboardOpened;
 
         static Stage _inst;
 #if UNITY_2019_3_OR_NEWER
@@ -88,6 +89,8 @@ namespace FairyGUI
                 _inst.Dispose();
                 _inst = null;
             }
+
+            _touchSupportDetected = false;
         }
 #endif
         /// <summary>
@@ -138,12 +141,13 @@ namespace FairyGUI
                     keyboardInput = true;
 #endif
                     _clickTestThreshold = 50;
+                    _touchSupportDetected = true;
                 }
                 else
                 {
-                    _keyboard = null;
                     keyboardInput = false;
-                    Stage.inst.ResetInputState();
+                    _keyboardOpened = false;
+                    inst.ResetInputState();
                     _clickTestThreshold = 10;
                 }
             }
@@ -154,7 +158,29 @@ namespace FairyGUI
         /// 如果是false，表示是接受按键消息输入文字。常见于PC。
         /// 一般来说，不需要设置，底层会自动根据系统环境设置正确的值。
         /// </summary>
-        public static bool keyboardInput { get; set; }
+        public static bool keyboardInput
+        {
+            get { return _keyboardInput; }
+            set
+            {
+                _keyboardInput = value;
+                if (value && _keyboard == null)
+                {
+#if !(UNITY_WEBPLAYER || UNITY_WEBGL || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR)
+                    _keyboard = new TouchScreenKeyboard();
+#endif
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static IKeyboard keyboard
+        {
+            get { return _keyboard; }
+            set { _keyboard = value; }
+        }
 
         /// <summary>
         /// 
@@ -185,22 +211,26 @@ namespace FairyGUI
 
             _touches = new TouchInfo[5];
             for (int i = 0; i < _touches.Length; i++)
+            {
                 _touches[i] = new TouchInfo();
-
+            }
+#if FAIRYGUI_INPUT_SYSTEM
+            if (Touchscreen.current != null && !EnhancedTouchSupport.enabled)
+                EnhancedTouchSupport.Enable();
+#endif
             bool isOSX = Application.platform == RuntimePlatform.OSXPlayer
                          || Application.platform == RuntimePlatform.OSXEditor;
             if (Application.platform == RuntimePlatform.WindowsPlayer
                 || Application.platform == RuntimePlatform.WindowsEditor
+                || Application.platform == RuntimePlatform.WebGLPlayer
                 || isOSX)
                 touchScreen = false;
             else
             {
 #if FAIRYGUI_INPUT_SYSTEM
-                touchScreen = Touchscreen.current != null && SystemInfo.deviceType != DeviceType.Desktop;
-                if (touchScreen && !EnhancedTouchSupport.enabled)
-                    EnhancedTouchSupport.Enable();
+                touchScreen = Touchscreen.current != null;
 #else
-                touchScreen = Input.touchSupported && SystemInfo.deviceType != DeviceType.Desktop;
+                touchScreen = Input.touchSupported;
 #endif
             }
 
@@ -664,14 +694,6 @@ namespace FairyGUI
                 _audio.PlayOneShot(clip, this.soundVolume);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public IKeyboard keyboard
-        {
-            get { return _keyboard; }
-            set { _keyboard = value; }
-        }
 
         /// <summary>
         /// 
@@ -690,6 +712,7 @@ namespace FairyGUI
             if (_keyboard != null)
             {
                 _keyboard.Open(text, autocorrection, multiline, secure, alert, textPlaceholder, keyboardType, hideInput);
+                _keyboardOpened = true;
             }
         }
 
@@ -710,8 +733,8 @@ namespace FairyGUI
         {
             if (_keyboard != null)
             {
-                _keyboard.Open(text, keyboardType, autocorrection, multiline, secure, alert, hideInput, textPlaceholder,
-                    characterLimit);
+                _keyboard.Open(text, keyboardType, autocorrection, multiline, secure, alert, hideInput, textPlaceholder, characterLimit);
+                _keyboardOpened = true;
             }
         }
 
@@ -1010,15 +1033,29 @@ namespace FairyGUI
                 HandleCustomInput();
                 _customInput = false;
             }
-            else if (touchScreen)
-                HandleTouchEvents();
-            else
-                HandleMouseEvents();
+            {
+                if (!_touchSupportDetected)
+                {
+                    if (Application.platform == RuntimePlatform.WebGLPlayer)
+                    {
+#if FAIRYGUI_INPUT_SYSTEM
+                        if (Touch.activeTouches.Count > 0)
+                            touchScreen = true;
+#else
+                        if (Input.touchCount > 0)
+                            touchScreen = true;
+#endif
+                    }
+                    else
+                        _touchSupportDetected = true;
+                }
+                if (touchScreen)
+                    HandleTouchEvents();
+                else
+                    HandleMouseEvents();
+            }
 
-            if (keyboardInput && _keyboard != null
-                              && (_focused is InputTextField)
-                              && ((InputTextField)_focused).editable
-                              && ((InputTextField)_focused).keyboardInput)
+            if (keyboardInput)
             {
                 HandleKeyboardInput();
             }
@@ -1040,13 +1077,15 @@ namespace FairyGUI
                     if (Touch.activeTouches.Count > 0)
                     {
                         _touchPosition = Touch.activeTouches[Touch.activeTouches.Count - 1].screenPosition;
+                        _touchPosition.y = _contentRect.height - _touchPosition.y;
+                    }
 #else
                     if (Input.touchCount > 0)
                     {
                         _touchPosition = Input.GetTouch(Input.touchCount - 1).position;
-#endif
                         _touchPosition.y = _contentRect.height - _touchPosition.y;
                     }
+#endif
                 }
                 else
                 {
@@ -1069,17 +1108,24 @@ namespace FairyGUI
 
         void HandleKeyboardInput()
         {
-            InputTextField textField = (InputTextField)_focused;
             string s = _keyboard.GetInput();
             if (s != null)
             {
-                if (_keyboard.supportsCaret)
-                    textField.ReplaceSelection(s);
-                else
-                    textField.ReplaceText(s);
+                InputTextField textField = _focused as InputTextField;
+                if (textField != null)
+                {
+                    if (_keyboard.supportsCaret)
+                        textField.ReplaceSelection(s);
+                    else
+                        textField.ReplaceText(s);
+                }
             }
+
             if (_keyboard.done)
+            {
                 SetFocus(null);
+                _keyboardOpened = false;
+            }
         }
 
         void HandleCustomInput()
