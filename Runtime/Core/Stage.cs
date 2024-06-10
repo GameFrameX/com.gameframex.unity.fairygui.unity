@@ -108,7 +108,7 @@ namespace FairyGUI
                 _touchScreen = value;
                 if (_touchScreen)
                 {
-#if !(UNITY_WEBPLAYER || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR)
+#if !(UNITY_WEBGL || UNITY_WEBPLAYER || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR)
                     _keyboard = new FairyGUI.TouchScreenKeyboard();
                     keyboardInput = true;
 #endif
