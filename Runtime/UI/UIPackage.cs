@@ -1444,7 +1444,7 @@ namespace FairyGUI
                     if (((Texture2D)tex).mipmapCount > 1)
                         Debug.LogWarning("FairyGUI: settings for '" + item.file + "' is wrong! Correct values are: (Generate Mip Maps=unchecked)");
                 }
-
+#if FAIRYGUI_USE_ALPHA_TEXTURE
                 if (tex != null)
                 {
                     fileName = fileName + "!a";
@@ -1456,7 +1456,7 @@ namespace FairyGUI
                     else
                         alphaTex = (Texture2D)_loadFunc(fileName, ext, typeof(Texture2D), out dm);
                 }
-
+#endif
                 if (tex == null)
                 {
                     tex = NTexture.CreateEmptyTexture();
