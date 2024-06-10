@@ -580,14 +580,29 @@ namespace FairyGUI
             return this;
         }
 
+        /// <summary>
+        /// 默认动画曲线
+        /// </summary>
+        public static EaseType DefaultEaseType = EaseType.QuadOut;
+
+        /// <summary>
+        /// 默认忽略引擎时间缩放
+        /// </summary>
+        public static bool DefaultIgnoreEngineTimeScale = false;
+
+        /// <summary>
+        /// 默认时间缩放
+        /// </summary>
+        public static float DefaultTimeScale = 1;
+
         internal void _Init()
         {
             _delay = 0;
             _duration = 0;
             _breakpoint = -1;
-            _easeType = EaseType.QuadOut;
-            _timeScale = 1;
-            _ignoreEngineTimeScale = false;
+            _easeType = DefaultEaseType;
+            _timeScale = DefaultTimeScale;
+            _ignoreEngineTimeScale = DefaultIgnoreEngineTimeScale;
             _easePeriod = 0;
             _easeOvershootOrAmplitude = 1.70158f;
             _snapping = false;
@@ -602,7 +617,7 @@ namespace FairyGUI
             _ended = 0;
             _path = null;
             _customEase = null;
-            _smoothStart = Time.frameCount == 1 ? 3 : 1;//刚启动时会有多帧的超时
+            _smoothStart = Time.frameCount == 1 ? 3 : 1; //刚启动时会有多帧的超时
         }
 
         internal void _Reset()
@@ -635,6 +650,7 @@ namespace FairyGUI
                 dt = Time.unscaledDeltaTime;
             else
                 dt = Time.deltaTime;
+
             if (_timeScale != 1)
                 dt *= _timeScale;
             if (dt == 0)
@@ -745,6 +761,7 @@ namespace FairyGUI
                     vec3.y = Mathf.Round(vec3.y);
                     vec3.z = Mathf.Round(vec3.z);
                 }
+
                 _deltaValue.vec3 = vec3 - _value.vec3;
                 _value.vec3 = vec3;
             }
@@ -760,6 +777,7 @@ namespace FairyGUI
                     _deltaValue[i] = f - _value[i];
                     _value[i] = f;
                 }
+
                 _value.d = _value.x;
             }
 
