@@ -943,22 +943,8 @@ namespace FairyGUI
                 onCopy(this, value);
                 return;
             }
-#if UNITY_2023_2_OR_NEWER
+
             GUIUtility.systemCopyBuffer = value;
-#else
-            
-#if UNITY_WEBPLAYER || UNITY_WEBGL || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR
-            TextEditor textEditor = new TextEditor();
-#if UNITY_5_3_OR_NEWER
-            textEditor.text = value;
-#else
-            textEditor.content = new GUIContent(value);
-#endif
-            textEditor.OnFocus();
-            textEditor.Copy();
-#endif
-            
-#endif
         }
 
         void DoPaste()
@@ -968,30 +954,12 @@ namespace FairyGUI
                 onPaste(this);
                 return;
             }
-#if UNITY_2023_2_OR_NEWER
+
             string value = GUIUtility.systemCopyBuffer;
             if (!string.IsNullOrEmpty(value))
+            {
                 ReplaceSelection(value);
-#else
-#if UNITY_WEBPLAYER || UNITY_WEBGL || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR
-            TextEditor textEditor = new TextEditor();
-#if UNITY_5_3_OR_NEWER
-            textEditor.text = string.Empty;
-#else
-            textEditor.content = new GUIContent(string.Empty);
-#endif
-            textEditor.multiline = !textField.singleLine;
-            textEditor.Paste();
-#if UNITY_5_3_OR_NEWER
-            string value = textEditor.text;
-#else
-            string value = textEditor.content.text;
-#endif
-            if (!string.IsNullOrEmpty(value))
-                ReplaceSelection(value);
-#endif
-
-#endif
+            }
         }
 
         void CreateCaret()
@@ -1508,7 +1476,7 @@ namespace FairyGUI
                 contextMenu.Show();
             }
         }
-        
+
 #if !FAIRYGUI_INPUT_SYSTEM
         static bool _IMEActive;
 
@@ -1537,6 +1505,7 @@ namespace FairyGUI
                         ((InputTextField)focus).CheckComposition();
                     return true;
                 }
+
                 _IMEActive = false;
 
                 return false;

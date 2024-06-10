@@ -79,7 +79,17 @@ namespace FairyGUI
 #pragma warning restore 0649
 
         static Stage _inst;
-
+#if UNITY_2019_3_OR_NEWER
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void InitializeOnLoad()
+        {
+            if (_inst != null)
+            {
+                _inst.Dispose();
+                _inst = null;
+            }
+        }
+#endif
         /// <summary>
         /// 
         /// </summary>
@@ -206,7 +216,7 @@ namespace FairyGUI
 
             SetSize(Screen.width, Screen.height);
             cachedTransform.localScale = new Vector3(StageCamera.DefaultUnitsPerPixel, StageCamera.DefaultUnitsPerPixel, StageCamera.DefaultUnitsPerPixel);
-#if UNITY_2023_2_OR_NEWER
+#if UNITY_2022_2_OR_NEWER
             StageEngine engine = GameObject.FindFirstObjectByType<StageEngine>();
 #else
             StageEngine engine = GameObject.FindObjectOfType<StageEngine>();

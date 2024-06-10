@@ -52,7 +52,13 @@ namespace FairyGUI
 
         public static float DefaultCameraSize = 5;
         public static float DefaultUnitsPerPixel = 0.02f;
-
+#if UNITY_2019_3_OR_NEWER
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void Init()
+        {
+            main = null;
+        }
+#endif
         void OnEnable()
         {
             DontDestroyOnLoad(this);
@@ -114,7 +120,7 @@ namespace FairyGUI
                     Stage.inst.HandleScreenSizeChanged(screenWidth, screenHeight, unitsPerPixel);
                 else
                 {
-#if UNITY_2023_2_OR_NEWER
+#if UNITY_2022_2_OR_NEWER
                     UIContentScaler scaler = GameObject.FindFirstObjectByType<UIContentScaler>();
 #else
                     UIContentScaler scaler = GameObject.FindObjectOfType<UIContentScaler>();

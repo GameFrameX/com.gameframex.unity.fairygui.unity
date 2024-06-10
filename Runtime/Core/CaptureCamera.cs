@@ -10,25 +10,28 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
-        [System.NonSerialized]
-        public Transform cachedTransform;
+        [System.NonSerialized] public Transform cachedTransform;
+
         /// <summary>
         /// 
         /// </summary>
-        [System.NonSerialized]
-        public Camera cachedCamera;
+        [System.NonSerialized] public Camera cachedCamera;
 
-        [System.NonSerialized]
-        static CaptureCamera _main;
+        [System.NonSerialized] static CaptureCamera _main;
 
-        [System.NonSerialized]
-        static int _layer = -1;
+        [System.NonSerialized] static int _layer = -1;
         static int _hiddenLayer = -1;
 
         public const string Name = "Capture Camera";
         public const string LayerName = "VUI";
         public const string HiddenLayerName = "Hidden VUI";
-
+#if UNITY_2019_3_OR_NEWER
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void Init()
+        {
+            _main = null;
+        }
+#endif
         void OnEnable()
         {
             cachedCamera = this.GetComponent<Camera>();

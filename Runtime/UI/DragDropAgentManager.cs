@@ -1,4 +1,6 @@
-﻿namespace FairyGUI
+﻿using UnityEngine;
+
+namespace FairyGUI
 {
     /// <summary>
     /// Helper for drag and drop.
@@ -10,7 +12,13 @@
         private GObject _agent;
         private object _sourceData;
         private GObject _source;
-
+#if UNITY_2019_3_OR_NEWER
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void InitializeOnLoad()
+        {
+            _inst = null;
+        }
+#endif
         private static DragDropAgentManager _inst;
 
         public static DragDropAgentManager Instance

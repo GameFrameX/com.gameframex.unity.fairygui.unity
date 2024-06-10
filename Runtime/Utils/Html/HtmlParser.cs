@@ -11,7 +11,13 @@ namespace FairyGUI.Utils
     public class HtmlParser
     {
         public static HtmlParser inst = new HtmlParser();
-
+#if UNITY_2019_3_OR_NEWER
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void InitializeOnLoad()
+        {
+            inst = new HtmlParser();
+        }
+#endif
         protected class TextFormat2 : TextFormat
         {
             public bool colorChanged;

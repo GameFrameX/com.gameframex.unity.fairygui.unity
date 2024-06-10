@@ -11,7 +11,13 @@ namespace FairyGUI
         public int GraphicsOnStage;
 
         public static bool beingQuit;
-
+#if UNITY_2019_3_OR_NEWER
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void InitializeOnLoad()
+        {
+            beingQuit = false;
+        }
+#endif
         void Start()
         {
             useGUILayout = false;

@@ -17,8 +17,7 @@ namespace FairyGUI
         /// </summary>
         public static string defaultFont = "";
 
-        [Obsolete("No use anymore")]
-        public static bool renderingTextBrighterOnDesktop = true;
+        [Obsolete("No use anymore")] public static bool renderingTextBrighterOnDesktop = true;
 
         /// <summary>
         /// Resource using in Window.ShowModalWait for locking the window.
@@ -171,8 +170,7 @@ namespace FairyGUI
         /// </summary>
         public static bool enhancedTextOutlineEffect = false;
 
-        [Obsolete("No use anymore.")]
-        public static VertAlignType richTextRowVerticalAlign = VertAlignType.Bottom;
+        [Obsolete("No use anymore.")] public static VertAlignType richTextRowVerticalAlign = VertAlignType.Bottom;
 
         /// <summary>
         /// Suggest to enable it on low dpi (e.g. 96dpi) screens.
@@ -185,7 +183,7 @@ namespace FairyGUI
         /// the Poco SDK to get or set object properties
         /// </summary>
         public static bool disableDisplayObjectInfo = false;
-        
+
         public enum ConfigKey
         {
             DefaultFont,
@@ -441,16 +439,17 @@ namespace FairyGUI
 
         public static void ClearResourceRefs()
         {
-            UIConfig.defaultFont = "";
-            UIConfig.buttonSound = null;
-            UIConfig.globalModalWaiting = null;
-            UIConfig.horizontalScrollBar = null;
-            UIConfig.loaderErrorSign = null;
-            UIConfig.popupMenu = null;
-            UIConfig.popupMenu_seperator = null;
-            UIConfig.tooltipsWin = null;
-            UIConfig.verticalScrollBar = null;
-            UIConfig.windowModalWaiting = null;
+            defaultFont = "";
+            buttonSound = null;
+            globalModalWaiting = null;
+            horizontalScrollBar = null;
+            loaderErrorSign = null;
+            popupMenu = null;
+            popupMenu_seperator = null;
+            tooltipsWin = null;
+            verticalScrollBar = null;
+            windowModalWaiting = null;
+            soundLoader = null;
             UIPackage.branch = null;
         }
 
@@ -465,5 +464,12 @@ namespace FairyGUI
         /// 
         /// </summary>
         public static SoundLoader soundLoader = null;
+#if UNITY_2019_3_OR_NEWER
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void InitializeOnLoad()
+        {
+            ClearResourceRefs();
+        }
+#endif
     }
 }

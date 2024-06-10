@@ -24,6 +24,7 @@ namespace FairyGUI
             }
             else
                 tweener = new GTweener();
+
             tweener._Init();
             _activeTweens[_totalActiveTweens++] = tweener;
 
@@ -146,6 +147,7 @@ namespace FairyGUI
                         j++;
                     }
                 }
+
                 _totalActiveTweens = freePosStart;
             }
         }
@@ -168,7 +170,16 @@ namespace FairyGUI
                 gameObject.AddComponent<TweenEngine>();
             }
         }
-
+#if UNITY_2019_3_OR_NEWER
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void InitializeOnLoad()
+        {
+            _tweenerPool.Clear();
+            _activeTweens = new GTweener[30];
+            _totalActiveTweens = 0;
+            _inited = false;
+        }
+#endif
         class TweenEngine : MonoBehaviour
         {
             void Update()

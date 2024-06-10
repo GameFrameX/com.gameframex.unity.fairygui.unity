@@ -164,7 +164,13 @@ namespace FairyGUI.Utils
         #region Pool Support
 
         static Stack<HtmlElement> elementPool = new Stack<HtmlElement>();
-
+#if UNITY_2019_3_OR_NEWER
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void InitializeOnLoad()
+        {
+            elementPool.Clear();
+        }
+#endif
         public static HtmlElement GetElement(HtmlElementType type)
         {
             HtmlElement ret;
@@ -199,6 +205,7 @@ namespace FairyGUI.Utils
                 HtmlElement element = elements[i];
                 ReturnElement(element);
             }
+
             elements.Clear();
         }
 

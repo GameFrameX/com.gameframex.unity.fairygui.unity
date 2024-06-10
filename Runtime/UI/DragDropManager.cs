@@ -16,7 +16,13 @@ namespace FairyGUI
         private bool _useCustomAgent;
         private object _sourceData;
         private GObject _source;
-
+#if UNITY_2019_3_OR_NEWER
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void InitializeOnLoad()
+        {
+            _inst = null;
+        }
+#endif
         private static DragDropManager _inst;
 
         /// <summary>

@@ -9,6 +9,13 @@ namespace FairyGUI
     /// </summary>
     public class GRoot : GComponent
     {
+#if UNITY_2019_3_OR_NEWER
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void InitializeOnLoad()
+        {
+            _inst = null;
+        }
+#endif
         /// <summary>
         /// 
         /// </summary>
@@ -34,6 +41,7 @@ namespace FairyGUI
         GObject _defaultTooltipWin;
 
         internal static GRoot _inst;
+
         public static GRoot inst
         {
             get
@@ -201,6 +209,7 @@ namespace FairyGUI
                     _modalWaitPane = UIPackage.CreateObjectFromURL(UIConfig.globalModalWaiting);
                     _modalWaitPane.SetHome(this);
                 }
+
                 _modalWaitPane.SetSize(this.width, this.height);
                 _modalWaitPane.AddRelation(this, RelationType.Size);
 
@@ -298,10 +307,7 @@ namespace FairyGUI
         /// </summary>
         public bool modalWaiting
         {
-            get
-            {
-                return (_modalWaitPane != null) && _modalWaitPane.onStage;
-            }
+            get { return (_modalWaitPane != null) && _modalWaitPane.onStage; }
         }
 
         /// <summary>
@@ -309,10 +315,7 @@ namespace FairyGUI
         /// </summary>
         public GObject touchTarget
         {
-            get
-            {
-                return DisplayObjectToGObject(Stage.inst.touchTarget);
-            }
+            get { return DisplayObjectToGObject(Stage.inst.touchTarget); }
         }
 
         /// <summary>
@@ -329,6 +332,7 @@ namespace FairyGUI
 
                 obj = obj.parent;
             }
+
             return null;
         }
 
@@ -430,6 +434,7 @@ namespace FairyGUI
                     }
                 }
             }
+
             _popupStack.Add(popup);
             if (closeUntilUpEvent)
                 _specialPopups.Add(popup);
@@ -445,8 +450,10 @@ namespace FairyGUI
                         {
                             popup.sortingOrder = p.sortingOrder;
                         }
+
                         break;
                     }
+
                     p = p.parent;
                 }
             }
@@ -488,6 +495,7 @@ namespace FairyGUI
             {
                 pos = this.GlobalToLocal(Stage.inst.touchPosition);
             }
+
             float xx, yy;
             xx = pos.x;
             if (xx + popup.width > this.width)
@@ -776,10 +784,12 @@ namespace FairyGUI
                                 _popupStack.RemoveAt(last);
                                 _specialPopups.Remove(popup);
                             }
+
                             handled = true;
                             break;
                         }
                     }
+
                     mc = mc.parent;
                 }
 
