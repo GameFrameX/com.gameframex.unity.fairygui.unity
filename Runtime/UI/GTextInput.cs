@@ -20,7 +20,7 @@ namespace FairyGUI
 
 #if UNITY_WEBGL
 #if WECHAT_MINI_GAME
-        private WeChatTextInput weChatTextInput;
+        private GTextInputWeChat weChatTextInput;
 #elif DOUYIN_MINI_GAME
         private GTextInputDouYin douYinTextInput;
 #endif
