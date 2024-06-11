@@ -21,6 +21,8 @@ namespace FairyGUI
 #if UNITY_WEBGL
 #if WECHAT_MINI_GAME
         private WeChatTextInput weChatTextInput;
+#elif DOUYIN_MINI_GAME
+       private GTextInputDouYin douYinTextInput;
 #endif
 #endif
 
@@ -31,6 +33,8 @@ namespace FairyGUI
 #if UNITY_WEBGL
 #if WECHAT_MINI_GAME
             weChatTextInput = new GTextInputWeChat(this);
+#elif DOUYIN_MINI_GAME
+            douYinTextInput = new GTextInputDouYin(this);
 #endif
 #endif
         }
@@ -45,6 +49,8 @@ namespace FairyGUI
 #if UNITY_WEBGL
 #if WECHAT_MINI_GAME
             weChatTextInput.Dispose();
+#elif DOUYIN_MINI_GAME
+            douYinTextInput.Dispose();
 #endif
 #endif
             base.Dispose();
