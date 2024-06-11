@@ -8,6 +8,9 @@ var WebGLTextInput = {
     WebGLTextInputInit: function (onInputCallback, onBlurCallback) {
         callbacks = { onInputCallback: onInputCallback, onBlurCallback: onBlurCallback };
         canvasEle = document.getElementById('unity-canvas');
+        if(canvasEle == null) {
+            canvasEle = document.getElementById('unityContainer');
+        }
     },
 
     WebGLTextInputSetText: function (text, multiline, color, fontSize, fontFace, maxLength) {
