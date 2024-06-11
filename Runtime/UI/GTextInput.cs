@@ -30,7 +30,7 @@ namespace FairyGUI
             _textField.wordWrap = false;
 #if UNITY_WEBGL
 #if WECHAT_MINI_GAME
-            weChatTextInput = new WeChatTextInput(this);
+            weChatTextInput = new GTextInputWeChat(this);
 #endif
 #endif
         }
