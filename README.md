@@ -16,6 +16,7 @@
 2. 增加 `FairyGUICroppingHelper` 防裁剪脚本
 3. 增加 `link.xml` 的裁剪过滤
 4. 修复 `异步加载资源包` 没有回调的BUG
+5. 增加 `微信小游戏` 和 `抖音小游戏` 的输入框拉不起键盘的适配
 
 FairyGUI for Unity
 ====
