@@ -22,7 +22,7 @@ namespace FairyGUI
 #if WECHAT_MINI_GAME
         private WeChatTextInput weChatTextInput;
 #elif DOUYIN_MINI_GAME
-       private GTextInputDouYin douYinTextInput;
+        private GTextInputDouYin douYinTextInput;
 #endif
 #endif
 
