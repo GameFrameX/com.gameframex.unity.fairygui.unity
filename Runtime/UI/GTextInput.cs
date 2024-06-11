@@ -15,12 +15,39 @@ namespace FairyGUI
         public InputTextField inputTextField { get; private set; }
 
         EventListener _onChanged;
+
         EventListener _onSubmit;
+
+#if UNITY_WEBGL
+#if WECHAT_MINI_GAME
+        private WeChatTextInput weChatTextInput;
+#endif
+#endif
 
         public GTextInput()
         {
             _textField.autoSize = AutoSizeType.None;
             _textField.wordWrap = false;
+#if UNITY_WEBGL
+#if WECHAT_MINI_GAME
+            weChatTextInput = new WeChatTextInput(this);
+#endif
+#endif
+        }
+
+        public override void Dispose()
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+#if UNITY_WEBGL
+#if WECHAT_MINI_GAME
+            weChatTextInput.Dispose();
+#endif
+#endif
+            base.Dispose();
         }
 
         /// <summary>

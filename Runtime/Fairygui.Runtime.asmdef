@@ -1,9 +1,12 @@
 {
     "name": "FairyGUI.Runtime",
+    "rootNamespace": "",
     "references": [
         "FarryGU.Extension.TextMeshPro",
         "FarryGU.Extension.Spine",
-        "FairyGU.Extension.DragonBones"
+        "FairyGU.Extension.DragonBones",
+        "FairyGUI.Extension.WebGLTextInput",
+        "Wx"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -12,6 +15,12 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.qq.weixin.minigame",
+            "expression": "",
+            "define": "WECHAT_MINI_GAME"
+        }
+    ],
     "noEngineReferences": false
 }
