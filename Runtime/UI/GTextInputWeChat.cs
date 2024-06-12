@@ -1,4 +1,4 @@
-﻿#if UNITY_WEBGL && WECHAT_MINI_GAME
+﻿#if UNITY_WEBGL && WECHAT_MINI_GAME && ENABLE_WECHAT_MINI_GAME
 using UnityEngine;
 using UnityEngine.Scripting;
 using WeChatWASM;

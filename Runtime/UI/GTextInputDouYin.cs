@@ -1,4 +1,4 @@
-﻿#if UNITY_WEBGL && DOUYIN_MINI_GAME
+﻿#if UNITY_WEBGL && DOUYIN_MINI_GAME && ENABLE_DOUYIN_MINI_GAME
 
 using System.Collections;
 using System.Collections.Generic;
