@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEditor;
 using FairyGUI;
+using UnityEditor.Build;
 
 namespace FairyGUIEditor
 {
@@ -61,6 +63,78 @@ namespace FairyGUIEditor
         static void RefreshPanels()
         {
             ReloadPackages();
+        }
+
+        /// <summary>
+        /// 开启微信小游戏的键盘适配
+        /// </summary>
+        [MenuItem("Tools/FairyGUI/Open WeChat MiniGame")]
+        public static void OpenWeChatMiniGame()
+        {
+            AddDefine("ENABLE_WECHAT_MINI_GAME");
+        }
+
+        /// <summary>
+        /// 关闭微信小游戏的键盘适配
+        /// </summary>
+        [MenuItem("Tools/FairyGUI/Close WeChat MiniGame")]
+        public static void CloseWeChatMiniGame()
+        {
+            RemoveDefine("ENABLE_WECHAT_MINI_GAME");
+        }
+
+        /// <summary>
+        /// 开启抖音小游戏的键盘适配
+        /// </summary>
+        [MenuItem("Tools/FairyGUI/Open DouYin MiniGame")]
+        public static void OpenDouYinMiniGame()
+        {
+            AddDefine("ENABLE_DOUYIN_MINI_GAME");
+        }
+
+        /// <summary>
+        /// 关闭抖音小游戏的键盘适配
+        /// </summary>
+        [MenuItem("Tools/FairyGUI/Close DouYin MiniGame")]
+        public static void CloseDouYinMiniGame()
+        {
+            RemoveDefine("ENABLE_DOUYIN_MINI_GAME");
+        }
+
+        private static void AddDefine(string defineName)
+        {
+            PlayerSettings.GetScriptingDefineSymbols(NamedBuildTarget.WebGL, out var defines);
+            foreach (var define in defines)
+            {
+                if (define == defineName)
+                {
+                    return;
+                }
+            }
+
+            var newDefines = defines.ToList();
+            newDefines.Add(defineName);
+            PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.WebGL, newDefines.ToArray());
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+
+
+        private static void RemoveDefine(string defineName)
+        {
+            PlayerSettings.GetScriptingDefineSymbols(NamedBuildTarget.WebGL, out var defines);
+            foreach (var define in defines)
+            {
+                if (define == defineName)
+                {
+                    var newDefines = defines.ToList();
+                    newDefines.Remove(defineName);
+                    PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.WebGL, newDefines.ToArray());
+                    AssetDatabase.SaveAssets();
+                    AssetDatabase.Refresh();
+                    return;
+                }
+            }
         }
 
         static void EditorApplication_Update()
