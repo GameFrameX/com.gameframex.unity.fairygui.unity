@@ -103,7 +103,7 @@ namespace FairyGUIEditor
 
         private static void AddDefine(string defineName)
         {
-            PlayerSettings.GetScriptingDefineSymbols(NamedBuildTarget.WebGL, out var defines);
+            var defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.WebGL).Split(new string[] { ";" }, System.StringSplitOptions.RemoveEmptyEntries);
             foreach (var define in defines)
             {
                 if (define == defineName)
@@ -114,7 +114,7 @@ namespace FairyGUIEditor
 
             var newDefines = defines.ToList();
             newDefines.Add(defineName);
-            PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.WebGL, newDefines.ToArray());
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.WebGL, string.Join(";", newDefines.ToArray()));
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
@@ -122,14 +122,14 @@ namespace FairyGUIEditor
 
         private static void RemoveDefine(string defineName)
         {
-            PlayerSettings.GetScriptingDefineSymbols(NamedBuildTarget.WebGL, out var defines);
+            var defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.WebGL).Split(new string[] { ";" }, System.StringSplitOptions.RemoveEmptyEntries);
             foreach (var define in defines)
             {
                 if (define == defineName)
                 {
                     var newDefines = defines.ToList();
                     newDefines.Remove(defineName);
-                    PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.WebGL, newDefines.ToArray());
+                    PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.WebGL, string.Join(";", newDefines.ToArray()));
                     AssetDatabase.SaveAssets();
                     AssetDatabase.Refresh();
                     return;
