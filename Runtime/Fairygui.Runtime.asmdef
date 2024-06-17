@@ -1,13 +1,11 @@
 {
     "name": "FairyGUI.Runtime",
-    "rootNamespace": "",
+    "rootNamespace": "FairyGUI",
     "references": [
-        "FarryGU.Extension.TextMeshPro",
-        "FarryGU.Extension.Spine",
-        "FairyGU.Extension.DragonBones",
-        "FairyGUI.Extension.WebGLTextInput",
+        "spine-unity.Runtime",
         "StarkWebGL",
-        "Wx"
+        "Wx",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -26,6 +24,21 @@
             "name": "com.bytedance.starksdk",
             "expression": "",
             "define": "DOUYIN_MINI_GAME"
+        },
+        {
+            "name": "com.unity.textmeshpro",
+            "expression": "",
+            "define": "FAIRYGUI_TMPRO"
+        },
+        {
+            "name": "com.alianblank.gameframex.unity.esotericsoftware.spine.spine-unity",
+            "expression": "",
+            "define": "FAIRYGUI_SPINE"
+        },
+        {
+            "name": "com.esotericsoftware.spine.spine-csharp",
+            "expression": "",
+            "define": "FAIRYGUI_SPINE"
         }
     ],
     "noEngineReferences": false
