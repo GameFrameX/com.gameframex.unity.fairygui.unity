@@ -31,7 +31,7 @@
             "define": "FAIRYGUI_TMPRO"
         },
         {
-            "name": "com.alianblank.gameframex.unity.esotericsoftware.spine.spine-unity",
+            "name": "com.gameframex.unity.esotericsoftware.spine.spine-unity",
             "expression": "",
             "define": "FAIRYGUI_SPINE"
         },
