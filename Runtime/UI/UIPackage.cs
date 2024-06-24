@@ -11,7 +11,7 @@ namespace FairyGUI
 {
     public interface IAsyncResource
     {
-        void LoadResource(string assetName, string extension, Action<bool, string, object> action);
+        void LoadResource(string assetName, string extension, PackageItemType type, Action<bool, string, object> action);
         void ReleaseResource(object obj);
     }
 
@@ -373,7 +373,7 @@ namespace FairyGUI
         {
             var assetName = assetPath + "_fui.bytes";
             var extension = Path.GetExtension(assetName);
-            _asyncLoadResource.LoadResource(assetName, extension, (ok, loadAssetName, asset) =>
+            _asyncLoadResource.LoadResource(assetName, extension, PackageItemType.Misc, (ok, loadAssetName, asset) =>
             {
                 if (ok)
                 {
@@ -687,7 +687,7 @@ namespace FairyGUI
         }
 
         Dictionary<string, object> _resources = new Dictionary<string, object>();
-        List<string> _loadlist = new List<string>();
+        Dictionary<string, PackageItemType> _loadlist = new Dictionary<string, PackageItemType>();
 
         object GetAsset(string name, string extension, System.Type type, out DestroyMethod destroyMethod)
         {
@@ -711,9 +711,11 @@ namespace FairyGUI
             foreach (PackageItem packageItem in _items)
             {
                 if (string.IsNullOrEmpty(packageItem.file))
+                {
                     continue;
+                }
 
-                _loadlist.Add(packageItem.file);
+                _loadlist.Add(packageItem.file, packageItem.type);
                 if (packageItem.type == PackageItemType.Atlas)
                 {
                     string ext = Path.GetExtension(packageItem.file);
@@ -721,7 +723,7 @@ namespace FairyGUI
                     {
                         string fileName = packageItem.file.Substring(0, packageItem.file.Length - ext.Length);
                         string assetName = fileName += "!a" + ext;
-                        _loadlist.Add(assetName);
+                        _loadlist.Add(assetName, packageItem.type);
                     }
                 }
             }
@@ -729,7 +731,7 @@ namespace FairyGUI
             if (_loadlist.Count > 0)
             {
                 var loadingList = new List<string>(_loadlist.Count);
-                loadingList.AddRange(_loadlist.ToArray());
+                loadingList.AddRange(_loadlist.Keys);
 
                 void LoadResourceComplete(bool ok, string loadAssetName, object o)
                 {
@@ -747,8 +749,8 @@ namespace FairyGUI
 
                 foreach (var assetName in _loadlist)
                 {
-                    string extension = Path.GetExtension(assetName);
-                    _asyncLoadResource.LoadResource(assetName, extension, LoadResourceComplete);
+                    string extension = Path.GetExtension(assetName.Key);
+                    _asyncLoadResource.LoadResource(assetName.Key, extension, assetName.Value, LoadResourceComplete);
                 }
             }
             else
@@ -1388,7 +1390,7 @@ namespace FairyGUI
                     item.skeletonAsset = (Spine.Unity.SkeletonDataAsset)asset;
                     foreach (var gLoader3D in item.skeletonLoaders)
                     {
-                        gLoader3D.SetSpine((Spine.Unity.SkeletonDataAsset) item.skeletonAsset);
+                        gLoader3D.SetSpine((Spine.Unity.SkeletonDataAsset)item.skeletonAsset);
                     }
 #endif
                     break;
@@ -1763,8 +1765,11 @@ namespace FairyGUI
                 else
                 {
                     DestroyMethod dm;
-                    asset = (Spine.Unity.SkeletonDataAsset)_loadFunc(fileName + "_SkeletonData", ".asset", typeof(Spine.Unity.SkeletonDataAsset), out dm);
+                    string assetName = fileName + "_SkeletonData";
+                    var assetLoadFunc = _loadFunc(assetName, ".asset", typeof(Spine.Unity.SkeletonDataAsset), out dm);
+                    asset = (Spine.Unity.SkeletonDataAsset)assetLoadFunc;
                 }
+
                 if (asset == null)
                     Debug.LogWarning("FairyGUI: Failed to load " + fileName);
                 item.skeletonAsset = asset;
