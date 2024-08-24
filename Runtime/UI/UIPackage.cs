@@ -11,7 +11,16 @@ namespace FairyGUI
 {
     public interface IAsyncResource
     {
-        void LoadResource(string assetName, string extension, PackageItemType type, Action<bool, string, object> action);
+        /// <summary>
+        /// 加载资源
+        /// </summary>
+        /// <param name="assetName">资源名称</param>
+        /// <param name="uiPackageName">UI包名称</param>
+        /// <param name="extension">扩展名</param>
+        /// <param name="type">资源类型</param>
+        /// <param name="action"></param>
+        void LoadResource(string assetName, string uiPackageName, string extension, PackageItemType type, Action<bool, string, object> action);
+
         void ReleaseResource(object obj);
     }
 
@@ -372,8 +381,14 @@ namespace FairyGUI
         public static void AddPackageAsync(string assetPath, Action<UIPackage> callback)
         {
             var assetName = assetPath + "_fui.bytes";
+            var packageName = Path.GetFileNameWithoutExtension(assetPath);
+            if (packageName.EndsWith("_fui"))
+            {
+                packageName = packageName.Replace("_fui", string.Empty);
+            }
+
             var extension = Path.GetExtension(assetName);
-            _asyncLoadResource.LoadResource(assetName, extension, PackageItemType.Misc, (ok, loadAssetName, asset) =>
+            _asyncLoadResource.LoadResource(assetName, packageName, extension, PackageItemType.Misc, (ok, loadAssetName, asset) =>
             {
                 if (ok)
                 {
@@ -750,7 +765,7 @@ namespace FairyGUI
                 foreach (var assetName in _loadlist)
                 {
                     string extension = Path.GetExtension(assetName.Key);
-                    _asyncLoadResource.LoadResource(assetName.Key, extension, assetName.Value, LoadResourceComplete);
+                    _asyncLoadResource.LoadResource(assetName.Key, name, extension, assetName.Value, LoadResourceComplete);
                 }
             }
             else
@@ -1595,7 +1610,7 @@ namespace FairyGUI
                 if (spriteId != null && _sprites.TryGetValue(spriteId, out sprite))
                 {
                     frame.texture = new NTexture((NTexture)GetItemAsset(sprite.atlas), sprite.rect, sprite.rotated,
-                        new Vector2(item.width, item.height), frameRect.position);
+                                                 new Vector2(item.width, item.height), frameRect.position);
                 }
 
                 item.frames[i] = frame;
@@ -1674,7 +1689,7 @@ namespace FairyGUI
                     if (mainSprite.rotated)
                     {
                         bg.uv[0] = new Vector2((float)(by + bgHeight + mainSprite.rect.x) * texScaleX,
-                            1 - (float)(mainSprite.rect.yMax - bx) * texScaleY);
+                                               1 - (float)(mainSprite.rect.yMax - bx) * texScaleY);
                         bg.uv[1] = new Vector2(bg.uv[0].x - (float)bgHeight * texScaleX, bg.uv[0].y);
                         bg.uv[2] = new Vector2(bg.uv[1].x, bg.uv[0].y + (float)bgWidth * texScaleY);
                         bg.uv[3] = new Vector2(bg.uv[0].x, bg.uv[2].y);
@@ -1682,7 +1697,7 @@ namespace FairyGUI
                     else
                     {
                         bg.uv[0] = new Vector2((float)(bx + mainSprite.rect.x) * texScaleX,
-                            1 - (float)(by + bgHeight + mainSprite.rect.y) * texScaleY);
+                                               1 - (float)(by + bgHeight + mainSprite.rect.y) * texScaleY);
                         bg.uv[1] = new Vector2(bg.uv[0].x, bg.uv[0].y + (float)bgHeight * texScaleY);
                         bg.uv[2] = new Vector2(bg.uv[0].x + (float)bgWidth * texScaleX, bg.uv[1].y);
                         bg.uv[3] = new Vector2(bg.uv[2].x, bg.uv[0].y);
