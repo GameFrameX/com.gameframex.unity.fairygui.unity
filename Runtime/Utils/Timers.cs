@@ -117,9 +117,22 @@ namespace FairyGUI
             Add(0.001f, 0, callback, callbackParam);
         }
 
+        /// <summary>
+        /// 启动协程
+        /// </summary>
+        /// <param name="routine"></param>
         public void StartCoroutine(IEnumerator routine)
         {
             _engine.StartCoroutine(routine);
+        }
+
+        /// <summary>
+        /// 停止协程
+        /// </summary>
+        /// <param name="routine"></param>
+        public void StopCoroutine(IEnumerator routine)
+        {
+            _engine.StopCoroutine(routine);
         }
 
         public bool Exists(TimerCallback callback)
@@ -160,6 +173,7 @@ namespace FairyGUI
             }
             else
                 t = new Anymous_T();
+
             return t;
         }
 
@@ -203,6 +217,7 @@ namespace FairyGUI
                             _toRemove.Add(i);
                         }
                     }
+
                     repeat = i.repeat;
                     if (i.callback != null)
                     {
@@ -222,6 +237,7 @@ namespace FairyGUI
                             i.callback(i.param);
                     }
                 }
+
                 iter.Dispose();
             }
 
@@ -237,6 +253,7 @@ namespace FairyGUI
                         ReturnToPool(i);
                     }
                 }
+
                 _toRemove.Clear();
             }
 
