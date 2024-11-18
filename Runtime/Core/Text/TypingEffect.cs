@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +26,17 @@ namespace FairyGUI
 
         protected bool _started;
 
+
+        /// <summary>
+        /// 打字完成事件
+        /// </summary>
+        public Action OnComplete;
+
+        /// <summary>
+        /// 打字进度变化事件
+        /// </summary>
+        public Action<float> OnProgress;
+
         /// <summary>
         /// 
         /// </summary>
@@ -42,16 +54,21 @@ namespace FairyGUI
         public TypingEffect(GTextField textField)
         {
             if (textField is GRichTextField)
+            {
                 _textField = ((RichTextField)textField.displayObject).textField;
+            }
             else
+            {
                 _textField = (TextField)textField.displayObject;
+            }
+
             _textField.EnableCharPositionSupport();
         }
 
         /// <summary>
         /// 总输出次数
         /// </summary>
-        public int totalTimes
+        public int TotalTimes
         {
             get
             {
@@ -60,10 +77,15 @@ namespace FairyGUI
                 for (int i = 0; i < charPositions.Count - 1; i++)
                 {
                     if (charPositions[i].imgIndex > 0) //这是一个图片
+                    {
                         times++;
+                    }
                     else if (!char.IsWhiteSpace(_textField.parsedText[i]))
+                    {
                         times++;
+                    }
                 }
+
                 return times;
             }
         }
@@ -89,10 +111,16 @@ namespace FairyGUI
             int vertCount = _textField.graphics.mesh.vertexCount;
             _backupVerts = _textField.graphics.mesh.vertices;
             if (_vertices == null || _vertices.Length != vertCount)
+            {
                 _vertices = new Vector3[vertCount];
+            }
+
             Vector3 zero = Vector3.zero;
             for (int i = 0; i < vertCount; i++)
+            {
                 _vertices[i] = zero;
+            }
+
             _textField.graphics.mesh.vertices = _vertices;
 
             //隐藏所有混排的对象
@@ -100,7 +128,9 @@ namespace FairyGUI
             {
                 int ec = _textField.richTextField.htmlElementCount;
                 for (int i = 0; i < ec; i++)
+                {
                     _textField.richTextField.ShowHtmlObject(i, false);
+                }
             }
 
             int charCount = _textField.charPositions.Count;
@@ -128,38 +158,48 @@ namespace FairyGUI
         public bool Print()
         {
             if (!_started)
+            {
                 return false;
+            }
 
-            TextField.CharPosition cp;
             List<TextField.CharPosition> charPositions = _textField.charPositions;
             int listCnt = charPositions.Count;
 
             while (_printIndex < listCnt - 1) //最后一个是占位的，无效的，所以-1
             {
-                cp = charPositions[_printIndex++];
+                var cp = charPositions[_printIndex++];
                 if (cp.vertCount > 0)
-                    output(cp.vertCount);
+                {
+                    Output(cp.vertCount);
+                }
+
+                // 更新进度
+                OnProgress?.Invoke((float)_printIndex / (listCnt - 1));
                 if (cp.imgIndex > 0) //这是一个图片
                 {
                     _textField.richTextField.ShowHtmlObject(cp.imgIndex - 1, true);
                     return true;
                 }
                 else if (!char.IsWhiteSpace(_textField.parsedText[_printIndex - 1]))
+                {
                     return true;
+                }
             }
 
+            // 打字完成
+            OnComplete?.Invoke();
             Cancel();
             return false;
         }
 
-        private void output(int vertCount)
+        private void Output(int vertCount)
         {
-            int start, end;
-
-            start = _mainLayerStart + _vertIndex;
-            end = start + vertCount;
+            var start = _mainLayerStart + _vertIndex;
+            var end = start + vertCount;
             for (int i = start; i < end; i++)
+            {
                 _vertices[i] = _backupVerts[i];
+            }
 
             if (_stroke)
             {
@@ -193,27 +233,44 @@ namespace FairyGUI
         /// <summary>
         /// 打印的协程。
         /// </summary>
-        /// <param name="interval">每个字符输出的时间间隔</param>
+        /// <param name="interval">每个字符输出的时间间隔，单位秒</param>
         /// <returns></returns>
         public IEnumerator Print(float interval)
         {
             while (Print())
+            {
                 yield return new WaitForSeconds(interval);
+            }
         }
 
         /// <summary>
         /// 使用固定时间间隔完成整个打印过程。
         /// </summary>
-        /// <param name="interval"></param>
+        /// <param name="interval">每个字符输出的时间间隔，单位秒</param>
         public void PrintAll(float interval)
         {
-            Timers.inst.StartCoroutine(Print(interval));
+            var coroutine = Print(interval);
+            Timers.inst.StopCoroutine(coroutine);
+            Timers.inst.StartCoroutine(coroutine);
         }
 
+        /// <summary>
+        /// 快速完成方法
+        /// </summary>
+        public void CompleteInstantly()
+        {
+            PrintAll(0.005f);
+        }
+
+        /// <summary>
+        /// 取消
+        /// </summary>
         public void Cancel()
         {
             if (!_started)
+            {
                 return;
+            }
 
             _started = false;
             _textField.graphics.meshModifier -= OnMeshModified;
@@ -239,7 +296,9 @@ namespace FairyGUI
             for (int i = 0; i < vertCount; i++)
             {
                 if (_vertices[i] != zero)
+                {
                     _vertices[i] = _backupVerts[i];
+                }
             }
 
             _textField.graphics.mesh.vertices = _vertices;
