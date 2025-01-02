@@ -259,7 +259,7 @@ namespace FairyGUIEditor
 
                                 for (var i = 0; i < ctl.pageCount; i++)
                                 {
-                                    var btnName = ctl.GetPageId(i) + ": " + ctl.GetPageName(i);
+                                    var btnName = i + ": " + ctl.GetPageName(i);
                                     var btnStyle = new GUIStyle("ButtonMid");
                                     if (ctl.selectedIndex == i)
                                     {
