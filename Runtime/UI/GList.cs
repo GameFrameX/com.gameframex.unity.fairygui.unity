@@ -6,14 +6,14 @@ using UnityEngine;
 namespace FairyGUI
 {
     /// <summary>
-    /// Callback function when an item is needed to update its look.
+    /// 当需要更新item的外观时，回调函数
     /// </summary>
     /// <param name="index">Item index.</param>
     /// <param name="item">Item object.</param>
     public delegate void ListItemRenderer(int index, GObject item);
 
     /// <summary>
-    /// 
+    /// 返回item的资源url
     /// </summary>
     /// <param name="index"></param>
     /// <returns></returns>
@@ -30,23 +30,23 @@ namespace FairyGUI
         public bool foldInvisibleItems = false;
 
         /// <summary>
-        /// List selection mode
+        /// 列表选择模式
         /// </summary>
         /// <seealso cref="ListSelectionMode"/>
         public ListSelectionMode selectionMode;
 
         /// <summary>
-        /// Callback function when an item is needed to update its look.
+        /// 当需要更新item的外观时，回调函数
         /// </summary>
         public ListItemRenderer itemRenderer;
 
         /// <summary>
-        /// Callback funtion to return item resource url.
+        /// 返回item的资源url
         /// </summary>
         public ListItemProvider itemProvider;
 
         /// <summary>
-        /// 
+        /// 点击item时，是否滚动到item
         /// </summary>
         public bool scrollItemToViewOnClick;
 
@@ -89,6 +89,7 @@ namespace FairyGUI
             public uint updateFlag;
             public bool selected;
         }
+
         List<ItemInfo> _virtualItems;
 
         EventCallback1 _itemClickDelegate;
@@ -125,7 +126,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when a list item being clicked.
+        /// 点击item时，回调函数
         /// </summary>
         public EventListener onClickItem
         {
@@ -133,7 +134,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when a list item being clicked with right button.
+        /// 右键点击item时，回调函数
         /// </summary>
         public EventListener onRightClickItem
         {
@@ -141,19 +142,16 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Resource url of the default item.
+        /// 默认item的资源url
         /// </summary>
         public string defaultItem
         {
             get { return _defaultItem; }
-            set
-            {
-                _defaultItem = UIPackage.NormalizeURL(value);
-            }
+            set { _defaultItem = UIPackage.NormalizeURL(value); }
         }
 
         /// <summary>
-        /// List layout type.
+        /// 列表布局类型
         /// </summary>
         public ListLayoutType layout
         {
@@ -171,7 +169,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 行数
         /// </summary>
         public int lineCount
         {
@@ -192,7 +190,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 列数
         /// </summary>
         public int columnCount
         {
@@ -213,7 +211,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 行间距
         /// </summary>
         public int lineGap
         {
@@ -231,7 +229,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 列间距
         /// </summary>
         public int columnGap
         {
@@ -249,7 +247,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 对齐方式
         /// </summary>
         public AlignType align
         {
@@ -267,7 +265,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 垂直对齐方式
         /// </summary>
         public VertAlignType verticalAlign
         {
@@ -283,8 +281,9 @@ namespace FairyGUI
                 }
             }
         }
+
         /// <summary>
-        /// If the item will resize itself to fit the list width/height.
+        /// 如果item会调整自身以适应列表的宽度/高度
         /// </summary>
         public bool autoResizeItem
         {
@@ -302,7 +301,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 默认item的尺寸
         /// </summary>
         /// <value></value>
         public Vector2 defaultItemSize
@@ -323,7 +322,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// item池
         /// </summary>
         public GObjectPool itemPool
         {
@@ -331,10 +330,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 从item池中获取item
         /// </summary>
-        /// <param name="url"></param>
-        /// <returns></returns>
+        /// <param name="url">item的资源url</param>
+        /// <returns>item</returns>
         public GObject GetFromPool(string url)
         {
             if (string.IsNullOrEmpty(url))
@@ -352,9 +351,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Add a item to list, same as GetFromPool+AddChild
+        /// 添加item到列表，相当于GetFromPool+AddChild
         /// </summary>
-        /// <returns>Item object</returns>
+        /// <returns>item</returns>
         public GObject AddItemFromPool()
         {
             GObject obj = GetFromPool(null);
@@ -363,10 +362,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Add a item to list, same as GetFromPool+AddChild
+        /// 添加item到列表，相当于GetFromPool+AddChild
         /// </summary>
-        /// <param name="url">Item resource url</param>
-        /// <returns>Item object</returns>
+        /// <param name="url">item的资源url</param>
+        /// <returns>item</returns>
         public GObject AddItemFromPool(string url)
         {
             GObject obj = GetFromPool(url);
@@ -377,8 +376,8 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="child"></param>
-        /// <param name="index"></param>
+        /// <param name="child">item</param>
+        /// <param name="index">index</param>
         /// <returns></returns>
         override public GObject AddChildAt(GObject child, int index)
         {
@@ -397,11 +396,11 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 移除item
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="dispose"></param>
-        /// <returns></returns>
+        /// <param name="index">index</param>
+        /// <param name="dispose">是否销毁</param>
+        /// <returns>item</returns>
         override public GObject RemoveChildAt(int index, bool dispose)
         {
             GObject child = base.RemoveChildAt(index, dispose);
@@ -412,9 +411,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 移除item并将其返回item池    
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">index</param>
         public void RemoveChildToPoolAt(int index)
         {
             GObject child = base.RemoveChildAt(index);
@@ -422,9 +421,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 移除item并将其返回item池
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="child">item</param>
         public void RemoveChildToPool(GObject child)
         {
             base.RemoveChild(child);
@@ -432,7 +431,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 移除所有item并将其返回item池
         /// </summary>
         public void RemoveChildrenToPool()
         {
@@ -440,10 +439,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 移除指定范围内的item并将其返回item池
         /// </summary>
-        /// <param name="beginIndex"></param>
-        /// <param name="endIndex"></param>
+        /// <param name="beginIndex">开始索引</param>
+        /// <param name="endIndex">结束索引</param>
         public void RemoveChildrenToPool(int beginIndex, int endIndex)
         {
             if (endIndex < 0 || endIndex >= _children.Count)
@@ -454,7 +453,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 选中的item的index
         /// </summary>
         public int selectedIndex
         {
@@ -486,6 +485,7 @@ namespace FairyGUI
                             return i;
                     }
                 }
+
                 return -1;
             }
 
@@ -503,7 +503,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 选中的item的Controller
         /// </summary>
         public Controller selectionController
         {
@@ -512,18 +512,19 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 获取选中的item的index
         /// </summary>
-        /// <returns></returns>
+        /// <returns>index</returns>
         public List<int> GetSelection()
         {
             return GetSelection(null);
         }
 
         /// <summary>
-        /// 
+        /// 获取选中的item的index
         /// </summary>
-        /// <returns></returns>
+        /// <param name="result">结果</param>
+        /// <returns>index</returns>
         public List<int> GetSelection(List<int> result)
         {
             if (result == null)
@@ -544,6 +545,7 @@ namespace FairyGUI
                             if (result.Contains(j))
                                 continue;
                         }
+
                         result.Add(j);
                     }
                 }
@@ -558,14 +560,15 @@ namespace FairyGUI
                         result.Add(i);
                 }
             }
+
             return result;
         }
 
         /// <summary>
-        /// 
+        /// 添加选中item
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="scrollItToView"></param>
+        /// <param name="index">index</param>
+        /// <param name="scrollItToView">是否滚动到item</param>
         public void AddSelection(int index, bool scrollItToView)
         {
             if (selectionMode == ListSelectionMode.None)
@@ -599,9 +602,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 移除选中item
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">index</param>
         public void RemoveSelection(int index)
         {
             if (selectionMode == ListSelectionMode.None)
@@ -623,7 +626,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 清除选中item
         /// </summary>
         public void ClearSelection()
         {
@@ -679,7 +682,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 选中所有item
         /// </summary>
         public void SelectAll()
         {
@@ -697,6 +700,7 @@ namespace FairyGUI
                         ((GButton)ii.obj).selected = true;
                         last = i;
                     }
+
                     ii.selected = true;
                 }
             }
@@ -719,7 +723,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 清除选中item
         /// </summary>
         public void SelectNone()
         {
@@ -727,7 +731,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 反向选中item
         /// </summary>
         public void SelectReverse()
         {
@@ -746,6 +750,7 @@ namespace FairyGUI
                         if (((GButton)ii.obj).selected)
                             last = i;
                     }
+
                     ii.selected = !ii.selected;
                 }
             }
@@ -769,9 +774,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 启用选中item的焦点事件
         /// </summary>
-        /// <param name="enabled"></param>
+        /// <param name="enabled">是否启用</param>
         public void EnableSelectionFocusEvents(bool enabled)
         {
             if (((_miscFlags & 2) != 0) == enabled)
@@ -805,8 +810,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 启用箭头键导航
         /// </summary>
+        /// <param name="enabled">是否启用</param>
         public void EnableArrowKeyNavigation(bool enabled)
         {
             if (enabled)
@@ -854,9 +860,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 处理箭头键导航
         /// </summary>
-        /// <param name="dir"></param>
+        /// <param name="dir">方向</param>
+        /// <returns>index</returns>
         public int HandleArrowKey(int dir)
         {
             int curIndex = this.selectedIndex;
@@ -866,7 +873,7 @@ namespace FairyGUI
             int index = curIndex;
             switch (dir)
             {
-                case 1://up
+                case 1: //up
                     if (_layout == ListLayoutType.SingleColumn || _layout == ListLayoutType.FlowVertical)
                     {
                         index--;
@@ -890,8 +897,10 @@ namespace FairyGUI
                                     current = obj;
                                     break;
                                 }
+
                                 k++;
                             }
+
                             for (; i >= 0; i--)
                             {
                                 GObject obj = _children[i];
@@ -903,9 +912,10 @@ namespace FairyGUI
                             }
                         }
                     }
+
                     break;
 
-                case 3://right
+                case 3: //right
                     if (_layout == ListLayoutType.SingleRow || _layout == ListLayoutType.FlowHorizontal || _layout == ListLayoutType.Pagination)
                     {
                         index++;
@@ -930,8 +940,10 @@ namespace FairyGUI
                                     current = obj;
                                     break;
                                 }
+
                                 k++;
                             }
+
                             for (; i < cnt; i++)
                             {
                                 GObject obj = _children[i];
@@ -943,9 +955,10 @@ namespace FairyGUI
                             }
                         }
                     }
+
                     break;
 
-                case 5://down
+                case 5: //down
                     if (_layout == ListLayoutType.SingleColumn || _layout == ListLayoutType.FlowVertical)
                     {
                         index++;
@@ -970,8 +983,10 @@ namespace FairyGUI
                                     current = obj;
                                     break;
                                 }
+
                                 k++;
                             }
+
                             for (; i < cnt; i++)
                             {
                                 GObject obj = _children[i];
@@ -983,9 +998,10 @@ namespace FairyGUI
                             }
                         }
                     }
+
                     break;
 
-                case 7://left
+                case 7: //left
                     if (_layout == ListLayoutType.SingleRow || _layout == ListLayoutType.FlowHorizontal || _layout == ListLayoutType.Pagination)
                     {
                         index--;
@@ -1009,8 +1025,10 @@ namespace FairyGUI
                                     current = obj;
                                     break;
                                 }
+
                                 k++;
                             }
+
                             for (; i >= 0; i--)
                             {
                                 GObject obj = _children[i];
@@ -1022,6 +1040,7 @@ namespace FairyGUI
                             }
                         }
                     }
+
                     break;
             }
 
@@ -1132,9 +1151,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Resize to list size to fit specified item count. 
-        /// If list layout is single column or flow horizontally, the height will change to fit. 
-        /// If list layout is single row or flow vertically, the width will change to fit.
+        /// 调整列表大小以适应指定数量的item。
+        /// 如果列表布局为单列或水平流，则高度将改变以适应。
+        /// 如果列表布局为单行或垂直流，则宽度将改变以适应。
         /// </summary>
         public void ResizeToFit()
         {
@@ -1142,9 +1161,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Resize to list size to fit specified item count. 
-        /// If list layout is single column or flow horizontally, the height will change to fit. 
-        /// If list layout is single row or flow vertically, the width will change to fit.
+        /// 调整列表大小以适应指定数量的item。
+        /// 如果列表布局为单列或水平流，则高度将改变以适应。
+        /// 如果列表布局为单行或垂直流，则宽度将改变以适应。
         /// </summary>
         /// <param name="itemCount">Item count</param>
         public void ResizeToFit(int itemCount)
@@ -1153,11 +1172,11 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Resize to list size to fit specified item count. 
-        /// If list layout is single column or flow horizontally, the height will change to fit. 
-        /// If list layout is single row or flow vertically, the width will change to fit.
+        /// 调整列表大小以适应指定数量的item。
+        /// 如果列表布局为单列或水平流，则高度将改变以适应。
+        /// 如果列表布局为单行或垂直流，则宽度将改变以适应。
         /// </summary>
-        /// <param name="itemCount">>Item count</param>
+        /// <param name="itemCount">Item count</param>
         /// <param name="minSize">If the result size if smaller than minSize, then use minSize.</param>
         public void ResizeToFit(int itemCount, int minSize)
         {
@@ -1193,6 +1212,7 @@ namespace FairyGUI
                         break;
                     i--;
                 }
+
                 if (i < 0)
                 {
                     if (_layout == ListLayoutType.SingleColumn || _layout == ListLayoutType.FlowHorizontal)
@@ -1222,7 +1242,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 处理尺寸变化
         /// </summary>
         override protected void HandleSizeChanged()
         {
@@ -1244,7 +1264,7 @@ namespace FairyGUI
         void UpdateSelectionController(int index)
         {
             if (_selectionController != null && !_selectionController.changing
-                && index < _selectionController.pageCount)
+                                             && index < _selectionController.pageCount)
             {
                 Controller c = _selectionController;
                 _selectionController = null;
@@ -1254,7 +1274,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Scroll the list to make an item with certain index visible.
+        /// 滚动列表以使指定索引的item可见。
         /// </summary>
         /// <param name="index">Item index</param>
         public void ScrollToView(int index)
@@ -1263,7 +1283,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        ///  Scroll the list to make an item with certain index visible.
+        /// 滚动列表以使指定索引的item可见。
         /// </summary>
         /// <param name="index">Item index</param>
         /// <param name="ani">True to scroll smoothly, othewise immdediately.</param>
@@ -1273,7 +1293,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        ///  Scroll the list to make an item with certain index visible.
+        /// 滚动列表以使指定索引的item可见。
         /// </summary>
         /// <param name="index">Item index</param>
         /// <param name="ani">True to scroll smoothly, othewise immdediately.</param>
@@ -1313,8 +1333,8 @@ namespace FairyGUI
                 {
                     int page = index / (_curLineItemCount * _curLineItemCount2);
                     rect = new Rect(page * viewWidth + (index % _curLineItemCount) * (ii.size.x + _columnGap),
-                        (index / _curLineItemCount) % _curLineItemCount2 * (ii.size.y + _lineGap),
-                        ii.size.x, ii.size.y);
+                                    (index / _curLineItemCount) % _curLineItemCount2 * (ii.size.y + _lineGap),
+                                    ii.size.x, ii.size.y);
                 }
 
                 if (this.scrollPane != null)
@@ -1357,14 +1377,19 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Get first child in view.
+        /// 获取视口中的第一个子对象
         /// </summary>
-        /// <returns></returns>
+        /// <returns>index</returns>
         public override int GetFirstChildInView()
         {
             return ChildIndexToItemIndex(base.GetFirstChildInView());
         }
 
+        /// <summary>
+        /// 将子对象的索引转换为item的索引
+        /// </summary>
+        /// <param name="index">子对象的索引</param>
+        /// <returns>item的索引</returns>
         public int ChildIndexToItemIndex(int index)
         {
             if (!_virtual)
@@ -1394,6 +1419,11 @@ namespace FairyGUI
             }
         }
 
+        /// <summary>
+        /// 将item的索引转换为子对象的索引
+        /// </summary>
+        /// <param name="index">item的索引</param>
+        /// <returns>子对象的索引</returns>
         public int ItemIndexToChildIndex(int index)
         {
             if (!_virtual)
@@ -1422,7 +1452,6 @@ namespace FairyGUI
 
 
         /// <summary>
-        /// Set the list to be virtual list.
         /// 设置列表为虚拟列表模式。在虚拟列表模式下，列表不会为每一条列表数据创建一个实体对象，而是根据视口大小创建最小量的显示对象，然后通过itemRenderer指定的回调函数设置列表数据。
         /// 在虚拟模式下，你不能通过AddChild、RemoveChild等方式管理列表，只能通过设置numItems设置列表数据的长度。
         /// 如果要刷新列表，可以通过重新设置numItems，或者调用RefreshVirtualList完成。
@@ -1434,19 +1463,26 @@ namespace FairyGUI
             SetVirtual(false);
         }
 
+        /// <summary>
+        /// 获取列表是否为虚拟列表
+        /// </summary>
         public bool isVirtual
         {
             get { return _virtual; }
         }
 
         /// <summary>
-        /// Set the list to be virtual list, and has loop behavior.
+        /// 设置列表为虚拟列表，并开启循环滚动
         /// </summary>
         public void SetVirtualAndLoop()
         {
             SetVirtual(true);
         }
 
+        /// <summary>
+        /// 设置列表为虚拟列表
+        /// </summary>
+        /// <param name="loop">是否开启循环滚动</param>
         void SetVirtual(bool loop)
         {
             if (!_virtual)
@@ -1518,20 +1554,18 @@ namespace FairyGUI
         /// </summary>
         public List<object> DataList
         {
-            get{
-                return _dataList;
-            }
+            get { return _dataList; }
             set
             {
                 _dataList = value;
                 numItems = value.Count;
             }
         }
-        
+
         /// <summary>
-        /// Set the list item count. 
-        /// If the list is not virtual, specified number of items will be created. 
-        /// If the list is virtual, only items in view will be created.
+        /// 设置列表的item数量
+        /// 如果列表不是虚拟列表，则指定数量的item会被创建。
+        /// 如果列表是虚拟列表，则只有视口内的item会被创建。
         /// </summary>
         public int numItems
         {
@@ -1551,7 +1585,7 @@ namespace FairyGUI
 
                     _numItems = value;
                     if (_loop)
-                        _realNumItems = _numItems * 6;//设置6倍数量，用于循环滚动
+                        _realNumItems = _numItems * 6; //设置6倍数量，用于循环滚动
                     else
                         _realNumItems = _numItems;
 
@@ -1602,9 +1636,11 @@ namespace FairyGUI
                         {
                             var child = GetChildAt(i);
                             if (i < _dataList.Count)
-                            {   // 赋值
+                            {
+                                // 赋值
                                 child.dataSource = _dataList[i];
                             }
+
                             itemRenderer(i, child);
                         }
                     }
@@ -1612,6 +1648,9 @@ namespace FairyGUI
             }
         }
 
+        /// <summary>
+        /// 刷新虚拟列表
+        /// </summary>
         public void RefreshVirtualList()
         {
             if (!_virtual)
@@ -1620,6 +1659,9 @@ namespace FairyGUI
             SetVirtualListChangedFlag(false);
         }
 
+        /// <summary>
+        /// 检查虚拟列表
+        /// </summary>
         void CheckVirtualList()
         {
             if (_virtualListChanged != 0)
@@ -1629,6 +1671,10 @@ namespace FairyGUI
             }
         }
 
+        /// <summary>
+        /// 设置虚拟列表改变标志
+        /// </summary>
+        /// <param name="layoutChanged">是否布局改变</param>
         void SetVirtualListChangedFlag(bool layoutChanged)
         {
             if (layoutChanged)
@@ -1639,6 +1685,10 @@ namespace FairyGUI
             Timers.inst.CallLater(RefreshVirtualList);
         }
 
+        /// <summary>
+        /// 刷新虚拟列表
+        /// </summary>
+        /// <param name="param">参数</param>
         void RefreshVirtualList(object param)
         {
             bool layoutChanged = _virtualListChanged == 2;
@@ -1790,6 +1840,7 @@ namespace FairyGUI
                             pos = pos2;
                             return i;
                         }
+
                         pos2 = pos3 + _lineGap;
                     }
 
@@ -1809,6 +1860,7 @@ namespace FairyGUI
                         pos = pos2;
                         return i;
                     }
+
                     pos2 = pos3 + _lineGap;
                 }
 
@@ -1854,6 +1906,7 @@ namespace FairyGUI
                             pos = pos2;
                             return i;
                         }
+
                         pos2 = pos3 + _columnGap;
                     }
 
@@ -1873,6 +1926,7 @@ namespace FairyGUI
                         pos = pos2;
                         return i;
                     }
+
                     pos2 = pos3 + _columnGap;
                 }
 
@@ -1902,6 +1956,7 @@ namespace FairyGUI
                     pos = pos2;
                     return startIndex + i;
                 }
+
                 pos2 = pos3 + _columnGap;
             }
 
@@ -1959,7 +2014,7 @@ namespace FairyGUI
         {
             float pos = scrollPane.scrollingPosY;
             float max = pos + scrollPane.viewHeight;
-            bool end = max == scrollPane.contentHeight;//这个标志表示当前需要滚动到最末，无论内容变化大小
+            bool end = max == scrollPane.contentHeight; //这个标志表示当前需要滚动到最末，无论内容变化大小
 
             //寻找当前位置的第一条项目
             int newFirstIndex = GetIndexOnPos1(ref pos, forceUpdate);
@@ -2054,6 +2109,7 @@ namespace FairyGUI
                         else
                             this.AddChild(ii.obj);
                     }
+
                     if (ii.obj is GButton)
                         ((GButton)ii.obj).selected = ii.selected;
 
@@ -2066,11 +2122,13 @@ namespace FairyGUI
                 {
                     if (_autoResizeItem && (_layout == ListLayoutType.SingleColumn || _columnCount > 0))
                         ii.obj.SetSize(partSize, ii.obj.height, true);
-                    
+
                     if (curIndex % _numItems < _dataList.Count)
-                    {   // 赋值
+                    {
+                        // 赋值
                         ii.obj.dataSource = _dataList[curIndex % _numItems];
                     }
+
                     itemRenderer(curIndex % _numItems, ii.obj);
                     if (curIndex % _curLineItemCount == 0)
                     {
@@ -2081,6 +2139,7 @@ namespace FairyGUI
                             firstItemDeltaSize = Mathf.CeilToInt(ii.obj.size.y) - ii.size.y;
                         }
                     }
+
                     ii.size.x = Mathf.CeilToInt(ii.obj.size.x);
                     ii.size.y = Mathf.CeilToInt(ii.obj.size.y);
                 }
@@ -2097,6 +2156,7 @@ namespace FairyGUI
                     curX = 0;
                     curY += ii.size.y + _lineGap;
                 }
+
                 curIndex++;
             }
 
@@ -2123,7 +2183,7 @@ namespace FairyGUI
             if (deltaSize != 0 || firstItemDeltaSize != 0)
                 this.scrollPane.ChangeContentSizeOnScrolling(0, deltaSize, 0, firstItemDeltaSize);
 
-            if (curIndex > 0 && this.numChildren > 0 && this.container.y <= 0 && GetChildAt(0).y > -this.container.y)//最后一页没填满！
+            if (curIndex > 0 && this.numChildren > 0 && this.container.y <= 0 && GetChildAt(0).y > -this.container.y) //最后一页没填满！
                 return true;
             else
                 return false;
@@ -2133,7 +2193,7 @@ namespace FairyGUI
         {
             float pos = scrollPane.scrollingPosX;
             float max = pos + scrollPane.viewWidth;
-            bool end = pos == scrollPane.contentWidth;//这个标志表示当前需要滚动到最末，无论内容变化大小
+            bool end = pos == scrollPane.contentWidth; //这个标志表示当前需要滚动到最末，无论内容变化大小
 
             //寻找当前位置的第一条项目
             int newFirstIndex = GetIndexOnPos2(ref pos, forceUpdate);
@@ -2227,6 +2287,7 @@ namespace FairyGUI
                         else
                             this.AddChild(ii.obj);
                     }
+
                     if (ii.obj is GButton)
                         ((GButton)ii.obj).selected = ii.selected;
 
@@ -2241,10 +2302,13 @@ namespace FairyGUI
                     {
                         ii.obj.SetSize(ii.obj.width, partSize, true);
                     }
+
                     if (curIndex % _numItems < _dataList.Count)
-                    {   // 赋值
+                    {
+                        // 赋值
                         ii.obj.dataSource = _dataList[curIndex % _numItems];
                     }
+
                     itemRenderer(curIndex % _numItems, ii.obj);
                     if (curIndex % _curLineItemCount == 0)
                     {
@@ -2255,6 +2319,7 @@ namespace FairyGUI
                             firstItemDeltaSize = Mathf.CeilToInt(ii.obj.size.x) - ii.size.x;
                         }
                     }
+
                     ii.size.x = Mathf.CeilToInt(ii.obj.size.x);
                     ii.size.y = Mathf.CeilToInt(ii.obj.size.y);
                 }
@@ -2271,6 +2336,7 @@ namespace FairyGUI
                     curY = 0;
                     curX += ii.size.x + _columnGap;
                 }
+
                 curIndex++;
             }
 
@@ -2297,7 +2363,7 @@ namespace FairyGUI
             if (deltaSize != 0 || firstItemDeltaSize != 0)
                 this.scrollPane.ChangeContentSizeOnScrolling(deltaSize, 0, firstItemDeltaSize, 0);
 
-            if (curIndex > 0 && this.numChildren > 0 && this.container.x <= 0 && GetChildAt(0).x > -this.container.x)//最后一页没填满！
+            if (curIndex > 0 && this.numChildren > 0 && this.container.x <= 0 && GetChildAt(0).x > -this.container.x) //最后一页没填满！
                 return true;
             else
                 return false;
@@ -2378,6 +2444,7 @@ namespace FairyGUI
                             ii2.obj = null;
                             break;
                         }
+
                         reuseIndex++;
                     }
 
@@ -2401,6 +2468,7 @@ namespace FairyGUI
                     {
                         insertIndex = SetChildIndexBefore(ii.obj, insertIndex);
                     }
+
                     insertIndex++;
 
                     if (ii.obj is GButton)
@@ -2426,10 +2494,13 @@ namespace FairyGUI
                         else if (_curLineItemCount2 == _lineCount)
                             ii.obj.SetSize(ii.obj.width, partHeight, true);
                     }
+
                     if (i % _numItems < _dataList.Count)
-                    {   // 赋值
+                    {
+                        // 赋值
                         ii.obj.dataSource = _dataList[i % _numItems];
                     }
+
                     itemRenderer(i % _numItems, ii.obj);
                     ii.size.x = Mathf.CeilToInt(ii.obj.size.x);
                     ii.size.y = Mathf.CeilToInt(ii.obj.size.y);
@@ -2504,6 +2575,7 @@ namespace FairyGUI
                         }
                     }
                 }
+
                 this.apexIndex = apexIndex;
             }
         }
@@ -2529,6 +2601,7 @@ namespace FairyGUI
                         }
                     }
                 }
+
                 this.apexIndex = apexIndex;
             }
         }
@@ -2651,6 +2724,7 @@ namespace FairyGUI
                         child.SetSize(viewWidth, child.height, true);
                     }
                 }
+
                 cw = Mathf.CeilToInt(maxWidth);
             }
             else if (_layout == ListLayoutType.SingleRow)
@@ -2684,6 +2758,7 @@ namespace FairyGUI
                         child.SetSize(child.width, viewHeight, true);
                     }
                 }
+
                 ch = Mathf.CeilToInt(maxHeight);
             }
             else if (_layout == ListLayoutType.FlowHorizontal)
@@ -2724,6 +2799,7 @@ namespace FairyGUI
                                 if (child.height > maxHeight)
                                     maxHeight = child.height;
                             }
+
                             //new line
                             curY += Mathf.CeilToInt(maxHeight) + _lineGap;
                             maxHeight = 0;
@@ -2732,6 +2808,7 @@ namespace FairyGUI
                             lineSize = 0;
                         }
                     }
+
                     ch = curY + Mathf.CeilToInt(maxHeight);
                     cw = viewWidth;
                 }
@@ -2755,6 +2832,7 @@ namespace FairyGUI
                             maxHeight = 0;
                             j = 0;
                         }
+
                         child.SetXY(curX, curY);
                         curX += Mathf.CeilToInt(child.width);
                         if (curX > maxWidth)
@@ -2763,6 +2841,7 @@ namespace FairyGUI
                             maxHeight = child.height;
                         j++;
                     }
+
                     ch = curY + Mathf.CeilToInt(maxHeight);
                     cw = Mathf.CeilToInt(maxWidth);
                 }
@@ -2805,6 +2884,7 @@ namespace FairyGUI
                                 if (child.width > maxWidth)
                                     maxWidth = child.width;
                             }
+
                             //new line
                             curX += Mathf.CeilToInt(maxWidth) + _columnGap;
                             maxWidth = 0;
@@ -2813,6 +2893,7 @@ namespace FairyGUI
                             lineSize = 0;
                         }
                     }
+
                     cw = curX + Mathf.CeilToInt(maxWidth);
                     ch = viewHeight;
                 }
@@ -2835,6 +2916,7 @@ namespace FairyGUI
                             maxWidth = 0;
                             j = 0;
                         }
+
                         child.SetXY(curX, curY);
                         curY += child.height;
                         if (curY > maxHeight)
@@ -2843,6 +2925,7 @@ namespace FairyGUI
                             maxWidth = child.width;
                         j++;
                     }
+
                     cw = curX + Mathf.CeilToInt(maxWidth);
                     ch = Mathf.CeilToInt(maxHeight);
                 }
@@ -2869,7 +2952,7 @@ namespace FairyGUI
                             continue;
 
                         if (j == 0 && (_lineCount != 0 && k >= _lineCount
-                            || _lineCount == 0 && curY + (_lineCount > 0 ? eachHeight : child.height) > viewHeight))
+                                       || _lineCount == 0 && curY + (_lineCount > 0 ? eachHeight : child.height) > viewHeight))
                         {
                             //new page
                             page++;
@@ -2900,6 +2983,7 @@ namespace FairyGUI
                                 if (child.height > maxHeight)
                                     maxHeight = child.height;
                             }
+
                             //new line
                             curY += Mathf.CeilToInt(maxHeight) + _lineGap;
                             maxHeight = 0;
@@ -2935,13 +3019,14 @@ namespace FairyGUI
                             k++;
 
                             if (_lineCount != 0 && k >= _lineCount
-                                || _lineCount == 0 && curY + child.height > viewHeight && maxWidth != 0)//new page
+                                || _lineCount == 0 && curY + child.height > viewHeight && maxWidth != 0) //new page
                             {
                                 page++;
                                 curY = 0;
                                 k = 0;
                             }
                         }
+
                         child.SetXY(page * viewWidth + curX, curY);
                         curX += Mathf.CeilToInt(child.width);
                         if (curX > maxWidth)
@@ -2951,6 +3036,7 @@ namespace FairyGUI
                         j++;
                     }
                 }
+
                 ch = page > 0 ? viewHeight : (curY + Mathf.CeilToInt(maxHeight));
                 cw = (page + 1) * viewWidth;
             }
