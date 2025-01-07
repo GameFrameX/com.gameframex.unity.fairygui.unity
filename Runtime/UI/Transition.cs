@@ -18,7 +18,7 @@ namespace FairyGUI
     /// <summary>
     /// 
     /// </summary>
-    public partial class Transition : ITweenListener
+    public sealed partial class Transition : ITweenListener
     {
         /// <summary>
         /// 动效的名称。在编辑器里设定。
@@ -69,7 +69,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 播放动效
         /// </summary>
         public void Play()
         {
@@ -77,40 +77,40 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 播放动效
         /// </summary>
-        /// <param name="onComplete"></param>
+        /// <param name="onComplete">完成回调</param>
         public void Play(PlayCompleteCallback onComplete)
         {
             _Play(1, 0, 0, -1, onComplete, false);
         }
 
         /// <summary>
-        /// 
+        /// 播放动效
         /// </summary>
-        /// <param name="times"></param>
-        /// <param name="delay"></param>
-        /// <param name="onComplete"></param>
+        /// <param name="times">次数</param>
+        /// <param name="delay">延迟</param>
+        /// <param name="onComplete">完成回调</param>
         public void Play(int times, float delay, PlayCompleteCallback onComplete)
         {
             _Play(times, delay, 0, -1, onComplete, false);
         }
 
         /// <summary>
-        /// 
+        /// 播放动效
         /// </summary>
-        /// <param name="times"></param>
-        /// <param name="delay"></param>
-        /// <param name="startTime"></param>
-        /// <param name="endTime"></param>
-        /// <param name="onComplete"></param>
+        /// <param name="times">次数</param>
+        /// <param name="delay">延迟</param>
+        /// <param name="startTime">开始时间</param>
+        /// <param name="endTime">结束时间</param>
+        /// <param name="onComplete">完成回调</param>
         public void Play(int times, float delay, float startTime, float endTime, PlayCompleteCallback onComplete)
         {
             _Play(times, delay, startTime, endTime, onComplete, false);
         }
 
         /// <summary>
-        /// 
+        /// 反向播放动效
         /// </summary>
         public void PlayReverse()
         {
@@ -118,29 +118,29 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 反向播放动效
         /// </summary>
-        /// <param name="onComplete"></param>
+        /// <param name="onComplete">完成回调</param>
         public void PlayReverse(PlayCompleteCallback onComplete)
         {
             _Play(1, 0, 0, -1, onComplete, true);
         }
 
         /// <summary>
-        /// 
+        /// 反向播放动效
         /// </summary>
-        /// <param name="times"></param>
-        /// <param name="delay"></param>
-        /// <param name="onComplete"></param>
+        /// <param name="times">次数</param>
+        /// <param name="delay">延迟</param>
+        /// <param name="onComplete">完成回调</param>
         public void PlayReverse(int times, float delay, PlayCompleteCallback onComplete)
         {
             _Play(times, delay, 0, -1, onComplete, true);
         }
 
         /// <summary>
-        /// 
+        /// 设置动效播放次数
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">次数</param>
         public void ChangePlayTimes(int value)
         {
             _totalTimes = value;
@@ -149,9 +149,9 @@ namespace FairyGUI
         /// <summary>
         /// 设置动效是否自动播放。
         /// </summary>
-        /// <param name="autoPlay"></param>
-        /// <param name="times"></param>
-        /// <param name="delay"></param>
+        /// <param name="autoPlay">是否自动播放</param>
+        /// <param name="times">次数</param>
+        /// <param name="delay">延迟</param>
         public void SetAutoPlay(bool autoPlay, int times, float delay)
         {
             if (_autoPlay != autoPlay)
@@ -241,7 +241,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 停止动效
         /// </summary>
         public void Stop()
         {
@@ -249,10 +249,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 停止动效
         /// </summary>
-        /// <param name="setToComplete"></param>
-        /// <param name="processCallback"></param>
+        /// <param name="setToComplete">是否设置为完成状态</param>
+        /// <param name="processCallback">是否处理回调</param>
         public void Stop(bool setToComplete, bool processCallback)
         {
             if (!_playing)
@@ -327,9 +327,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 设置动效是否暂停
         /// </summary>
-        /// <param name="paused"></param>
+        /// <param name="paused">是否暂停</param>
         public void SetPaused(bool paused)
         {
             if (!_playing || _paused == paused)
@@ -394,7 +394,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 是否正在播放
         /// </summary>
         public bool playing
         {
@@ -402,7 +402,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// transition's total duration, maybe zero when the transition only has one frame
+        /// 动效的总持续时间，当动效只有一个帧时可能为0
         /// </summary>
         public float totalDuration
         {
@@ -410,10 +410,10 @@ namespace FairyGUI
         }
         
         /// <summary>
-        /// 
+        /// 设置动效值
         /// </summary>
-        /// <param name="label"></param>
-        /// <param name="aParams"></param>
+        /// <param name="label">标签</param>
+        /// <param name="aParams">参数</param>
         public void SetValue(string label, params object[] aParams)
         {
             int cnt = _items.Length;
@@ -531,11 +531,11 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 设置动效回调
         /// </summary>
-        /// <param name="label"></param>
-        /// <param name="callback"></param>
-        /// <param name="isSetAllLabel"></param>
+        /// <param name="label">标签</param>
+        /// <param name="callback">回调</param>
+        /// <param name="isSetAllLabel">是否设置所有标签</param>
         public void SetHook(string label, TransitionHook callback, bool isSetAllLabel = false)
         {
             int cnt = _items.Length;
@@ -563,7 +563,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 清除动效回调
         /// </summary>
         public void ClearHooks()
         {
@@ -578,10 +578,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 设置动效目标
         /// </summary>
-        /// <param name="label"></param>
-        /// <param name="newTarget"></param>
+        /// <param name="label">标签</param>
+        /// <param name="newTarget">新目标</param>
         public void SetTarget(string label, GObject newTarget)
         {
             int cnt = _items.Length;
@@ -609,10 +609,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 设置动效持续时间
         /// </summary>
-        /// <param name="label"></param>
-        /// <param name="value"></param>
+        /// <param name="label">标签</param>
+        /// <param name="value">持续时间</param>
         public void SetDuration(string label, float value)
         {
             int cnt = _items.Length;
@@ -632,10 +632,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 获取动效标签的时间
         /// </summary>
-        /// <param name="label"></param>
-        /// <returns></returns>
+        /// <param name="label">标签</param>
+        /// <returns>时间</returns>
         public float GetLabelTime(string label)
         {
             int cnt = _items.Length;
@@ -652,7 +652,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 设置动效时间缩放
         /// </summary>
         public float timeScale
         {
@@ -685,7 +685,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 设置动效是否忽略引擎时间缩放
         /// </summary>
         public bool ignoreEngineTimeScale
         {
@@ -1037,6 +1037,10 @@ namespace FairyGUI
             CheckAllComplete();
         }
 
+        /// <summary>
+        /// 动效开始
+        /// </summary>
+        /// <param name="tweener"></param>
         public void OnTweenStart(GTweener tweener)
         {
             TransitionItem item = (TransitionItem)tweener.target;
@@ -1154,6 +1158,10 @@ namespace FairyGUI
             ApplyValue(item);
         }
 
+        /// <summary>
+        /// 动效结束
+        /// </summary>
+        /// <param name="tweener"></param>
         public void OnTweenComplete(GTweener tweener)
         {
             TransitionItem item = (TransitionItem)tweener.target;

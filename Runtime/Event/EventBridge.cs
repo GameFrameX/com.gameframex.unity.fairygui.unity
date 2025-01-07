@@ -22,34 +22,58 @@ namespace FairyGUI
             this.owner = owner;
         }
 
+        /// <summary>
+        /// 添加捕获事件监听器。
+        /// </summary>
+        /// <param name="callback">事件回调</param> 
         public void AddCapture(EventCallback1 callback)
         {
             _captureCallback -= callback;
             _captureCallback += callback;
         }
 
+        /// <summary>
+        /// 移除捕获事件监听器。
+        /// </summary>
+        /// <param name="callback">事件回调</param> 
         public void RemoveCapture(EventCallback1 callback)
         {
             _captureCallback -= callback;
         }
 
+        /// <summary>
+        /// 添加事件监听器。
+        /// </summary>
+        /// <param name="callback">事件回调</param>
         public void Add(EventCallback1 callback)
         {
             _callback1 -= callback;
             _callback1 += callback;
         }
 
+        /// <summary>
+        /// 移除事件监听器。
+        /// </summary>
+        /// <param name="callback">事件回调</param>
         public void Remove(EventCallback1 callback)
         {
             _callback1 -= callback;
         }
 
+        /// <summary>
+        /// 添加事件监听器。
+        /// </summary>
+        /// <param name="callback">事件回调</param>
         public void Add(EventCallback0 callback)
         {
             _callback0 -= callback;
             _callback0 += callback;
         }
 
+        /// <summary>
+        /// 移除事件监听器。
+        /// </summary>
+        /// <param name="callback">事件回调</param>
         public void Remove(EventCallback0 callback)
         {
             _callback0 -= callback;
@@ -110,11 +134,17 @@ namespace FairyGUI
         }
 #endif
 
+        /// <summary>
+        /// 是否为空。
+        /// </summary>
         public bool isEmpty
         {
             get { return _callback1 == null && _callback0 == null && _captureCallback == null; }
         }
 
+        /// <summary>
+        /// 清除事件监听器。
+        /// </summary>
         public void Clear()
         {
 #if FAIRYGUI_TOLUA
@@ -139,6 +169,10 @@ namespace FairyGUI
             _captureCallback = null;
         }
 
+        /// <summary>
+        /// 调用事件监听器。
+        /// </summary>
+        /// <param name="context">事件上下文</param>
         public void CallInternal(EventContext context)
         {
             _dispatching = true;
@@ -156,6 +190,10 @@ namespace FairyGUI
             }
         }
 
+        /// <summary>
+        /// 调用捕获事件监听器。
+        /// </summary>
+        /// <param name="context">事件上下文</param>
         public void CallCaptureInternal(EventContext context)
         {
             if (_captureCallback == null)

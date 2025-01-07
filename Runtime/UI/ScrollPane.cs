@@ -7,7 +7,7 @@ namespace FairyGUI
     /// <summary>
     /// 
     /// </summary>
-    public class ScrollPane : EventDispatcher
+    public sealed class ScrollPane : EventDispatcher
     {
         /// <summary>
         /// 当前被拖拽的滚动面板。同一时间只能有一个在进行此操作。
@@ -295,7 +295,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 所属组件
         /// </summary>
         public GComponent owner
         {
@@ -311,7 +311,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 垂直滚动条
         /// </summary>
         public GScrollBar vtScrollBar
         {
@@ -319,7 +319,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 头部组件
         /// </summary>
         public GComponent header
         {
@@ -327,7 +327,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 尾部组件
         /// </summary>
         public GComponent footer
         {
@@ -431,6 +431,7 @@ namespace FairyGUI
         }
 
         /// <summary>
+        /// 是否可以拖拽
         /// </summary>
         public bool isDragged
         {
@@ -714,7 +715,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 滚动到顶部
         /// </summary>
         public void ScrollTop()
         {
@@ -722,16 +723,16 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 滚动到顶部
         /// </summary>
-        /// <param name="ani"></param>
+        /// <param name="ani">是否使用缓动</param>
         public void ScrollTop(bool ani)
         {
             this.SetPercY(0, ani);
         }
 
         /// <summary>
-        /// 
+        /// 滚动到底部
         /// </summary>
         public void ScrollBottom()
         {
@@ -739,9 +740,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 滚动到底部
         /// </summary>
-        /// <param name="ani"></param>
+        /// <param name="ani">是否使用缓动</param>
         public void ScrollBottom(bool ani)
         {
             this.SetPercY(1, ani);
@@ -756,10 +757,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 滚动到顶部
         /// </summary>
-        /// <param name="ratio"></param>
-        /// <param name="ani"></param>
+        /// <param name="ratio">滚动比例</param>
+        /// <param name="ani">是否使用缓动</param>
         public void ScrollUp(float ratio, bool ani)
         {
             if (_pageMode)
@@ -769,7 +770,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 滚动到底部
         /// </summary>
         public void ScrollDown()
         {
@@ -777,10 +778,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 滚动到底部
         /// </summary>
-        /// <param name="ratio"></param>
-        /// <param name="ani"></param>
+        /// <param name="ratio">滚动比例</param>
+        /// <param name="ani">是否使用缓动</param>
         public void ScrollDown(float ratio, bool ani)
         {
             if (_pageMode)
@@ -790,7 +791,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 滚动到左边
         /// </summary>
         public void ScrollLeft()
         {
@@ -798,10 +799,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 滚动到左边
         /// </summary>
-        /// <param name="speed"></param>
-        /// <param name="ani"></param>
+        /// <param name="ratio">滚动比例</param>
+        /// <param name="ani">是否使用缓动</param>
         public void ScrollLeft(float ratio, bool ani)
         {
             if (_pageMode)
@@ -811,7 +812,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 滚动到右边
         /// </summary>
         public void ScrollRight()
         {
@@ -832,30 +833,30 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 滚动到目标对象
         /// </summary>
-        /// <param name="obj">obj can be any object on stage, not limited to the direct child of this container.</param>
+        /// <param name="obj">obj可以是在舞台上的任何对象，不限于直接子对象。</param>
         public void ScrollToView(GObject obj)
         {
             ScrollToView(obj, false);
         }
 
         /// <summary>
-        /// 
+        /// 滚动到目标对象
         /// </summary>
-        /// <param name="obj">obj can be any object on stage, not limited to the direct child of this container.</param>
-        /// <param name="ani">If moving to target position with animation</param>
+        /// <param name="obj">obj可以是在舞台上的任何对象，不限于直接子对象。</param>
+        /// <param name="ani">是否使用缓动</param>
         public void ScrollToView(GObject obj, bool ani)
         {
             ScrollToView(obj, ani, false);
         }
 
         /// <summary>
-        /// 
+        /// 滚动到目标对象
         /// </summary>
-        /// <param name="obj">obj can be any object on stage, not limited to the direct child of this container.</param>
-        /// <param name="ani">If moving to target position with animation</param>
-        /// <param name="setFirst">If true, scroll to make the target on the top/left; If false, scroll to make the target any position in view.</param>
+        /// <param name="obj">obj可以是在舞台上的任何对象，不限于直接子对象。</param>
+        /// <param name="ani">是否使用缓动</param>
+        /// <param name="setFirst">如果为true，滚动到目标对象在顶部/左边；如果为false，滚动到目标对象在视图内。</param>
         public void ScrollToView(GObject obj, bool ani, bool setFirst)
         {
             _owner.EnsureBoundsCorrect();
@@ -869,11 +870,11 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 滚动到目标矩形
         /// </summary>
         /// <param name="rect">Rect in local coordinates</param>
-        /// <param name="ani">If moving to target position with animation</param>
-        /// <param name="setFirst">If true, scroll to make the target on the top/left; If false, scroll to make the target any position in view.</param>
+        /// <param name="ani">是否使用缓动</param>
+        /// <param name="setFirst">如果为true，滚动到目标对象在顶部/左边；如果为false，滚动到目标对象在视图内。</param>
         public void ScrollToView(Rect rect, bool ani, bool setFirst)
         {
             _owner.EnsureBoundsCorrect();
@@ -931,9 +932,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 判断目标对象是否在视图内
         /// </summary>
-        /// <param name="obj">obj must be the direct child of this container</param>
+        /// <param name="obj">obj必须是此容器的直接子对象</param>
         /// <returns></returns>
         public bool IsChildInView(GObject obj)
         {

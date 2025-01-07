@@ -9,27 +9,27 @@ namespace FairyGUI
     public class EventContext
     {
         /// <summary>
-        /// 
+        /// 事件发送者。
         /// </summary>
         public EventDispatcher sender { get; internal set; }
 
         /// <summary>
-        /// /
+        /// 事件发起者。
         /// </summary>
         public object initiator { get; internal set; }
 
         /// <summary>
-        /// /
+        /// 输入事件。
         /// </summary>
         public InputEvent inputEvent { get; internal set; }
 
         /// <summary>
-        /// 
+        /// 事件类型。
         /// </summary>
         public string type;
 
         /// <summary>
-        /// 
+        /// 事件数据。
         /// </summary>
         public object data;
 
@@ -40,7 +40,7 @@ namespace FairyGUI
         internal List<EventBridge> callChain = new List<EventBridge>();
 
         /// <summary>
-        /// 
+        /// 停止事件传播。
         /// </summary>
         public void StopPropagation()
         {
@@ -48,7 +48,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 阻止事件默认行为。
         /// </summary>
         public void PreventDefault()
         {
@@ -56,7 +56,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 捕获触摸事件。
         /// </summary>
         public void CaptureTouch()
         {
@@ -64,7 +64,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 是否阻止事件默认行为。
         /// </summary>
         public bool isDefaultPrevented
         {

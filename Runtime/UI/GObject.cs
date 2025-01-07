@@ -31,70 +31,70 @@ namespace FairyGUI
         /// User defined data.
         /// GList 内部会赋值
         /// </summary>
-        public object dataSource;
+        public object dataSource { get; internal set; }
 
         /// <summary>
-        /// User defined data. 
+        /// 用户定义的数据。
         /// </summary>
         public object data;
 
         /// <summary>
-        /// The source width of the object.
+        /// 对象的源宽度。
         /// </summary>
         public int sourceWidth;
 
         /// <summary>
-        /// The source height of the object.
+        /// 对象的源高度。
         /// </summary>
         public int sourceHeight;
 
         /// <summary>
-        /// The initial width of the object.
+        /// 对象的初始宽度。
         /// </summary>
         public int initWidth;
 
         /// <summary>
-        /// The initial height of the object.
+        /// 对象的初始高度。
         /// </summary>
         public int initHeight;
 
         /// <summary>
-        /// 
+        /// 对象的最小宽度。
         /// </summary>
         public int minWidth;
 
         /// <summary>
-        /// 
+        /// 对象的最大宽度。
         /// </summary>
         public int maxWidth;
 
         /// <summary>
-        /// 
+        /// 对象的最小高度。
         /// </summary>
         public int minHeight;
 
         /// <summary>
-        /// 
+        /// 对象的最大高度。
         /// </summary>
         public int maxHeight;
 
         /// <summary>
-        /// Relations Object.
+        /// 关系对象。
         /// </summary>
         public Relations relations { get; private set; }
 
         /// <summary>
-        /// Restricted range of dragging.
+        /// 拖动限制范围。
         /// </summary>
         public Rect? dragBounds;
 
         /// <summary>
-        /// Parent object.
+        /// 父对象。
         /// </summary>
         public GComponent parent { get; private set; }
 
         /// <summary>
-        /// Lowlevel display object.
+        /// 显示对象。
         /// </summary>
         public DisplayObject displayObject { get; protected set; }
 
@@ -104,7 +104,7 @@ namespace FairyGUI
         public static GObject draggingObject { get; private set; }
 
         /// <summary>
-        /// 
+        /// 包数据
         /// </summary>
         public PackageItem packageItem;
 
@@ -184,7 +184,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when the object or its child was clicked.
+        /// 当对象或其子对象被点击时触发。
         /// </summary>
         public EventListener onClick
         {
@@ -192,7 +192,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when the object or its child was clicked by right mouse button. Web only.
+        /// 当对象或其子对象被右键点击时触发。仅限Web。
         /// </summary>
         public EventListener onRightClick
         {
@@ -200,7 +200,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when the finger touched the object or its child just now.
+        /// 当手指触摸到对象或其子对象时触发。
         /// </summary>
         public EventListener onTouchBegin
         {
@@ -208,7 +208,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 当手指触摸到对象或其子对象时触发。
         /// </summary>
         public EventListener onTouchMove
         {
@@ -216,7 +216,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when the finger was lifted from the screen or from the mouse button. 
+        /// 当手指从屏幕或鼠标按钮上抬起时触发。
         /// </summary>
         public EventListener onTouchEnd
         {
@@ -224,7 +224,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The cursor or finger hovers over an object.
+        /// 当光标或手指悬停在对象上时触发。
         /// </summary>
         public EventListener onRollOver
         {
@@ -232,7 +232,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The cursor or finger leave an object.
+        /// 当光标或手指离开对象时触发。
         /// </summary>
         public EventListener onRollOut
         {
@@ -240,7 +240,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when the object was added to the stage.
+        /// 当对象被添加到舞台时触发。
         /// </summary>
         public EventListener onAddedToStage
         {
@@ -248,7 +248,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when the object was removed from the stage.
+        /// 当对象从舞台移除时触发。
         /// </summary>
         public EventListener onRemovedFromStage
         {
@@ -256,7 +256,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched on key pressed when the object is in focus.
+        /// 当对象处于焦点时，按下按键时触发。
         /// </summary>
         public EventListener onKeyDown
         {
@@ -264,7 +264,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when links in the object or its child was clicked.
+        /// 当对象或其子对象中的链接被点击时触发。
         /// </summary>
         public EventListener onClickLink
         {
@@ -272,7 +272,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when the object was moved.
+        /// 当对象被移动时触发。
         /// </summary>
         public EventListener onPositionChanged
         {
@@ -280,7 +280,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when the object was resized.
+        /// 当对象被调整大小时触发。
         /// </summary>
         public EventListener onSizeChanged
         {
@@ -288,7 +288,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when drag start. 
+        /// 当拖动开始时触发。
         /// </summary>
         public EventListener onDragStart
         {
@@ -296,7 +296,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when dragging.
+        /// 当拖动时触发。
         /// </summary>
         public EventListener onDragMove
         {
@@ -304,7 +304,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Dispatched when drag end.
+        /// 当拖动结束时触发。
         /// </summary>
         public EventListener onDragEnd
         {
@@ -312,7 +312,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 当齿轮停止时触发。
         /// </summary>
         public EventListener onGearStop
         {
@@ -320,7 +320,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 当对象获得焦点时触发。
         /// </summary>
         public EventListener onFocusIn
         {
@@ -328,7 +328,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 当对象失去焦点时触发。
         /// </summary>
         public EventListener onFocusOut
         {
@@ -336,7 +336,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The x coordinate of the object relative to the local coordinates of the parent.
+        /// 对象相对于父对象的x坐标。
         /// </summary>
         public float x
         {
@@ -345,7 +345,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The y coordinate of the object relative to the local coordinates of the parent.
+        /// 对象相对于父对象的y坐标。
         /// </summary>
         public float y
         {
@@ -354,7 +354,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The z coordinate of the object relative to the local coordinates of the parent.
+        /// 对象相对于父对象的z坐标。
         /// </summary>
         public float z
         {
@@ -363,7 +363,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The x and y coordinates of the object relative to the local coordinates of the parent.
+        /// 对象相对于父对象的x和y坐标。
         /// </summary>
         public Vector2 xy
         {
@@ -372,7 +372,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The x,y,z coordinates of the object relative to the local coordinates of the parent.
+        /// 对象相对于父对象的x,y,z坐标。
         /// </summary>
         public Vector3 position
         {
@@ -381,21 +381,21 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// change the x and y coordinates of the object relative to the local coordinates of the parent.
+        /// 设置对象的x和y坐标。
         /// </summary>
-        /// <param name="xv">x value.</param>
-        /// <param name="yv">y value.</param>
+        /// <param name="xv">x值。</param>
+        /// <param name="yv">y值。</param>
         public void SetXY(float xv, float yv)
         {
             SetPosition(xv, yv, _z);
         }
 
         /// <summary>
-        /// 
+        /// 设置对象的x和y坐标。
         /// </summary>
-        /// <param name="xv"></param>
-        /// <param name="yv"></param>
-        /// <param name="topLeft"></param>
+        /// <param name="xv">x值。</param>
+        /// <param name="yv">y值。</param>
+        /// <param name="topLeftValue">是否使用左上角坐标。</param>
         public void SetXY(float xv, float yv, bool topLeftValue)
         {
             if (_pivotAsAnchor)
@@ -405,11 +405,11 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// change the x,y,z coordinates of the object relative to the local coordinates of the parent.
+        /// 设置对象的x,y,z坐标。
         /// </summary>
-        /// <param name="xv">x value.</param>
-        /// <param name="yv">y value.</param>
-        /// <param name="zv">z value.</param>
+        /// <param name="xv">x值。</param>
+        /// <param name="yv">y值。</param>
+        /// <param name="zv">z值。</param>
         public void SetPosition(float xv, float yv, float zv)
         {
             if (_x != xv || _y != yv || _z != zv)
@@ -448,7 +448,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Set the object in middle of the parent or GRoot if the parent is not set.
+        /// 将对象设置为父对象或GRoot的中间位置。
         /// </summary>
         public void Center()
         {
@@ -456,9 +456,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Set the object in middle of the parent or GRoot if the parent is not set.
+        /// 将对象设置为父对象或GRoot的中间位置。
         /// </summary>
-        /// <param name="restraint">Add relations to maintain the center state.</param>
+        /// <param name="restraint">添加关系以保持中间状态。</param>
         public virtual void Center(bool restraint)
         {
             GComponent r;
@@ -476,7 +476,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 拖动开始位置。
         /// </summary>
         public Vector2 dragStartPos
         {
@@ -492,7 +492,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The width of the object in pixels.
+        /// 对象的宽度（像素）。
         /// </summary>
         public float width
         {
@@ -501,7 +501,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The height of the object in pixels.
+        /// 对象的高度（像素）。
         /// </summary>
         public float height
         {
@@ -510,7 +510,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The size of the object in pixels.
+        /// 对象的大小（像素）。
         /// </summary>
         public Vector2 size
         {
@@ -519,7 +519,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// actualWidth = width * scalex
+        /// 实际宽度 = 宽度 * 缩放x
         /// </summary>
         public float actualWidth
         {
@@ -527,7 +527,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// actualHeight = height * scaleY
+        /// 实际高度 = 高度 * 缩放y
         /// </summary>
         public float actualHeight
         {
@@ -535,21 +535,21 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Change size.
+        /// 设置对象的大小。
         /// </summary>
-        /// <param name="wv">Width value.</param>
-        /// <param name="hv">Height value.</param>
+        /// <param name="wv">宽度值。</param>
+        /// <param name="hv">高度值。</param>
         public void SetSize(float wv, float hv)
         {
             SetSize(wv, hv, false);
         }
 
         /// <summary>
-        /// Change size.
+        /// 设置对象的大小。
         /// </summary>
-        /// <param name="wv">Width value.</param>
-        /// <param name="hv">Height value.</param>
-        /// <param name="ignorePivot">If pivot is set, the object's positon will change when its size change. Set ignorePivot=true to keep the position.</param>
+        /// <param name="wv">宽度值。</param>
+        /// <param name="hv">高度值。</param>
+        /// <param name="ignorePivot">如果设置了pivot，当对象的大小改变时，对象的位置会改变。设置ignorePivot=true以保持位置。</param>
         public void SetSize(float wv, float hv, bool ignorePivot)
         {
             if (_rawWidth != wv || _rawHeight != hv)
@@ -614,7 +614,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 对象的最小x坐标。
         /// </summary>
         public float xMin
         {
@@ -629,7 +629,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 对象的最小y坐标。
         /// </summary>
         public float yMin
         {
@@ -644,7 +644,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The horizontal scale factor. '1' means no scale, cannt be negative.
+        /// 水平缩放因子。'1'表示没有缩放，不能为负。
         /// </summary>
         public float scaleX
         {
@@ -653,7 +653,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The vertical scale factor. '1' means no scale, cannt be negative.
+        /// 垂直缩放因子。'1'表示没有缩放，不能为负。
         /// </summary>
         public float scaleY
         {
@@ -662,7 +662,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The scale factor.
+        /// 缩放因子。
         /// </summary>
         public Vector2 scale
         {
@@ -671,10 +671,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Change the scale factor.
+        /// 设置缩放因子。
         /// </summary>
-        /// <param name="wv">The horizontal scale factor.</param>
-        /// <param name="hv">The vertical scale factor</param>
+        /// <param name="wv">水平缩放因子。</param>
+        /// <param name="hv">垂直缩放因子。</param>
         public void SetScale(float wv, float hv)
         {
             if (_scaleX != wv || _scaleY != hv)
@@ -688,7 +688,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 倾斜因子。
         /// </summary>
         public Vector2 skew
         {
@@ -708,7 +708,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The x coordinate of the object's origin in its own coordinate space.
+        /// 对象的原点x坐标。
         /// </summary>
         public float pivotX
         {
@@ -717,7 +717,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The y coordinate of the object's origin in its own coordinate space.
+        /// 对象的原点y坐标。
         /// </summary>
         public float pivotY
         {
@@ -726,7 +726,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The x and y coordinates of the object's origin in its own coordinate space.
+        /// 对象的原点坐标。
         /// </summary>
         public Vector2 pivot
         {
@@ -734,6 +734,9 @@ namespace FairyGUI
             set { SetPivot(value.x, value.y, _pivotAsAnchor); }
         }
 
+        /// <summary>
+        /// 是否使用pivot作为锚点。
+        /// </summary>
         public bool pivotAsAnchor
         {
             get { return _pivotAsAnchor; }
@@ -741,21 +744,21 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Change the x and y coordinates of the object's origin in its own coordinate space.
+        /// 设置对象的原点坐标。
         /// </summary>
-        /// <param name="xv">x value in ratio</param>
-        /// <param name="yv">y value in ratio</param>
+        /// <param name="xv">x值。</param>
+        /// <param name="yv">y值。</param>
         public void SetPivot(float xv, float yv)
         {
             SetPivot(xv, yv, false);
         }
 
         /// <summary>
-        ///  Change the x and y coordinates of the object's origin in its own coordinate space.
+        /// 设置对象的原点坐标。
         /// </summary>
-        /// <param name="xv">x value in ratio</param>
-        /// <param name="yv">y value in ratio</param>
-        /// <param name="asAnchor">If use the pivot as the anchor position</param>
+        /// <param name="xv">x值。</param>
+        /// <param name="yv">y值。</param>
+        /// <param name="asAnchor">如果使用pivot作为锚点。</param>
         public void SetPivot(float xv, float yv, bool asAnchor)
         {
             if (_pivotX != xv || _pivotY != yv || _pivotAsAnchor != asAnchor)
@@ -770,7 +773,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// If the object can touch or click. GImage/GTextField is not touchable even it is true.
+        /// 是否可以触摸或点击。GImage/GTextField即使设置为true，也无法触摸或点击。
         /// </summary>
         public bool touchable
         {
@@ -789,7 +792,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// If true, apply a grayed effect on this object.
+        /// 如果为true，则对对象应用灰色效果。
         /// </summary>
         public bool grayed
         {
@@ -806,7 +809,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Enabled is shortcut for grayed and !touchable combination.
+        /// 启用是灰色和不可触摸的组合。
         /// </summary>
         public bool enabled
         {
@@ -819,7 +822,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The rotation around the z axis of the object in degrees.
+        /// 对象的z轴旋转角度。
         /// </summary>
         public float rotation
         {
@@ -834,7 +837,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The rotation around the x axis of the object in degrees.
+        /// 对象的x轴旋转角度。
         /// </summary>
         public float rotationX
         {
@@ -848,7 +851,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The rotation around the y axis of the object in degrees.
+        /// 对象的y轴旋转角度。
         /// </summary>
         public float rotationY
         {
@@ -862,7 +865,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The opacity of the object. 0 = transparent, 1 = opaque.
+        /// 对象的不透明度。0 = 透明，1 = 不透明。
         /// </summary>
         public float alpha
         {
@@ -877,7 +880,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// The visibility of the object. An invisible object will be untouchable.
+        /// 对象的可见性。不可见对象将无法触摸。
         /// </summary>
         public bool visible
         {
@@ -913,8 +916,8 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// By default(when sortingOrder==0), object added to component is arrange by the added roder. 
-        /// The bigger is the sorting order, the object is more in front.
+        /// 默认情况下（当sortingOrder==0），添加到组件的对象按添加顺序排列。
+        /// 排序顺序越大，对象越靠前。
         /// </summary>
         public int sortingOrder
         {
@@ -934,7 +937,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// If the object can be focused?
+        /// 是否可以聚焦？
         /// </summary>
         public bool focusable
         {
@@ -946,7 +949,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// If the object can be navigated by TAB?
+        /// 是否可以通过TAB键聚焦？
         /// </summary>
         public bool tabStop
         {
@@ -958,7 +961,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// If the object is focused. 
+        /// 是否聚焦。
         /// </summary>
         public bool focused
         {
@@ -966,7 +969,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Request focus on this object.
+        /// 请求聚焦。
         /// </summary>
         public void RequestFocus()
         {
@@ -975,7 +978,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Request focus on this object.
+        /// 请求聚焦。
         /// </summary>
         public void RequestFocus(bool byKey)
         {
@@ -984,7 +987,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Tooltips of this object. UIConfig.tooltipsWin must be set first.
+        /// 对象的工具提示。UIConfig.tooltipsWin必须先设置。
         /// </summary>
         public string tooltips
         {
@@ -1008,7 +1011,7 @@ namespace FairyGUI
 
 
         /// <summary>
-        /// 
+        /// 对象的鼠标光标。
         /// </summary>
         /// <value></value>
         public string cursor
@@ -1032,7 +1035,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 对象的滤镜。
         /// </summary>
         virtual public IFilter filter
         {
@@ -1044,7 +1047,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 对象的混合模式。
         /// </summary>
         virtual public BlendMode blendMode
         {
@@ -1076,7 +1079,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 设置对象的home。
         /// </summary>
         /// <param name="obj"></param>
         public void SetHome(GObject obj)
@@ -1086,7 +1089,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// If the object has lowlevel displayobject and the displayobject has a container parent?
+        /// 如果对象有显示对象，并且显示对象有容器父级？
         /// </summary>
         public bool inContainer
         {
@@ -1094,7 +1097,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// If the object is on stage.
+        /// 对象是否在舞台上。
         /// </summary>
         public bool onStage
         {
@@ -1102,7 +1105,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Resource url of this object.
+        /// 对象的资源URL。
         /// </summary>
         public string resourceURL
         {
@@ -1116,7 +1119,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Gear to xy controller.
+        /// xy控制器。
         /// </summary>
         public GearXY gearXY
         {
@@ -1124,7 +1127,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Gear to size controller.
+        /// 尺寸控制器。
         /// </summary>
         public GearSize gearSize
         {
@@ -1132,7 +1135,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Gear to look controller.
+        /// 外观控制器。
         /// </summary>
         public GearLook gearLook
         {
@@ -1251,7 +1254,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Mark the fairy batching state is invalid. 
+        /// 标记fairy批处理状态无效。
         /// </summary>
         public void InvalidateBatchingState()
         {
@@ -1277,38 +1280,38 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 添加关系。
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="relationType"></param>
+        /// <param name="target">目标对象</param>
+        /// <param name="relationType">关系类型</param>
         public void AddRelation(GObject target, RelationType relationType)
         {
             AddRelation(target, relationType, false);
         }
 
         /// <summary>
-        /// 
+        /// 添加关系。
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="relationType"></param>
-        /// <param name="usePercent"></param>
+        /// <param name="target">目标对象</param>
+        /// <param name="relationType">关系类型</param>
+        /// <param name="usePercent">是否使用百分比</param>
         public void AddRelation(GObject target, RelationType relationType, bool usePercent)
         {
             relations.Add(target, relationType, usePercent);
         }
 
         /// <summary>
-        /// 
+        /// 移除关系。
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="relationType"></param>
+        /// <param name="target">目标对象</param>
+        /// <param name="relationType">关系类型</param>
         public void RemoveRelation(GObject target, RelationType relationType)
         {
             relations.Remove(target, relationType);
         }
 
         /// <summary>
-        /// 
+        /// 从父级移除。
         /// </summary>
         public void RemoveFromParent()
         {
@@ -1317,7 +1320,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        ///  Group belonging to.
+        /// 所属组。
         /// </summary>
         public GGroup group
         {
@@ -1339,7 +1342,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 根对象。
         /// </summary>
         public GRoot root
         {
@@ -1364,7 +1367,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 文本。
         /// </summary>
         virtual public string text
         {
@@ -1376,7 +1379,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 图标。
         /// </summary>
         virtual public string icon
         {
@@ -1388,7 +1391,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 是否可拖动。
         /// </summary>
         public bool draggable
         {
@@ -1404,7 +1407,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 开始拖动。
         /// </summary>
         public void StartDrag()
         {
@@ -1412,9 +1415,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 开始拖动。
         /// </summary>
-        /// <param name="touchId"></param>
+        /// <param name="touchId">触摸ID</param>
         public void StartDrag(int touchId)
         {
             if (displayObject.stage == null)
@@ -1424,7 +1427,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 停止拖动。
         /// </summary>
         public void StopDrag()
         {
@@ -1432,7 +1435,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 是否正在拖动。
         /// </summary>
         public bool dragging
         {
@@ -1440,10 +1443,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Transforms a point from the local coordinate system to global (Stage) coordinates.
+        /// 将点从本地坐标系转换为全局（舞台）坐标系。
         /// </summary>
-        /// <param name="pt"></param>
-        /// <returns></returns>
+        /// <param name="pt">点</param>
+        /// <returns>点</returns>
         public Vector2 LocalToGlobal(Vector2 pt)
         {
             if (_pivotAsAnchor)
@@ -1456,10 +1459,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Transforms a point from global (Stage) coordinates to the local coordinate system.
+        /// 将点从全局（舞台）坐标系转换为本地坐标系。
         /// </summary>
-        /// <param name="pt"></param>
-        /// <returns></returns>
+        /// <param name="pt">点</param>
+        /// <returns>点</returns>
         public Vector2 GlobalToLocal(Vector2 pt)
         {
             pt = displayObject.GlobalToLocal(pt);
@@ -1473,10 +1476,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 将矩形从本地坐标系转换为全局（舞台）坐标系。
         /// </summary>
-        /// <param name="rect"></param>
-        /// <returns></returns>
+        /// <param name="rect">矩形</param>
+        /// <returns>矩形</returns>
         public Rect LocalToGlobal(Rect rect)
         {
             Rect ret = new Rect();
@@ -1490,10 +1493,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 将矩形从全局（舞台）坐标系转换为本地坐标系。
         /// </summary>
-        /// <param name="rect"></param>
-        /// <returns></returns>
+        /// <param name="rect">矩形</param>
+        /// <returns>矩形</returns>
         public Rect GlobalToLocal(Rect rect)
         {
             Rect ret = new Rect();
@@ -1507,11 +1510,11 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Transforms a point from the local coordinate system to GRoot coordinates.
+        /// 将点从本地坐标系转换为GRoot坐标系。
         /// </summary>
-        /// <param name="pt"></param>
-        /// <param name="r"></param>
-        /// <returns></returns>
+        /// <param name="pt">点</param>
+        /// <param name="r">GRoot</param>
+        /// <returns>点</returns>
         public Vector2 LocalToRoot(Vector2 pt, GRoot r)
         {
             pt = LocalToGlobal(pt);
@@ -1527,11 +1530,11 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Transforms a point from the GRoot coordinate  to local coordinates system.
+        /// 将点从GRoot坐标系转换为本地坐标系。
         /// </summary>
-        /// <param name="pt"></param>
-        /// <param name="r"></param>
-        /// <returns></returns>
+        /// <param name="pt">点</param>
+        /// <param name="r">GRoot</param>
+        /// <returns>点</returns>
         public Vector2 RootToLocal(Vector2 pt, GRoot r)
         {
             if (r == null || r == GRoot.inst)
@@ -1547,21 +1550,21 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 将点从世界坐标系转换为本地坐标系。
         /// </summary>
-        /// <param name="pt"></param>
-        /// <returns></returns>
+        /// <param name="pt">点</param>
+        /// <returns>点</returns>
         public Vector2 WorldToLocal(Vector3 pt)
         {
             return WorldToLocal(pt, HitTestContext.cachedMainCamera);
         }
 
         /// <summary>
-        /// 
+        /// 将点从世界坐标系转换为本地坐标系。
         /// </summary>
-        /// <param name="pt"></param>
-        /// <param name="camera"></param>
-        /// <returns></returns>
+        /// <param name="pt">点</param>
+        /// <param name="camera">相机</param>
+        /// <returns>点</returns>
         public Vector2 WorldToLocal(Vector3 pt, Camera camera)
         {
             Vector3 v = camera.WorldToScreenPoint(pt);
@@ -1571,11 +1574,11 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 将点从本地坐标系转换为指定目标坐标系。
         /// </summary>
-        /// <param name="point"></param>
-        /// <param name="targetSpace"></param>
-        /// <returns></returns>
+        /// <param name="point">点</param>
+        /// <param name="targetSpace">目标坐标系</param>
+        /// <returns>点</returns>
         public Vector2 TransformPoint(Vector2 pt, GObject targetSpace)
         {
             if (_pivotAsAnchor)
@@ -1588,11 +1591,11 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 将矩形从本地坐标系转换为指定目标坐标系。
         /// </summary>
-        /// <param name="rect"></param>
-        /// <param name="targetSpace"></param>
-        /// <returns></returns>
+        /// <param name="rect">矩形</param>
+        /// <param name="targetSpace">目标坐标系</param>
+        /// <returns>矩形</returns>
         public Rect TransformRect(Rect rect, GObject targetSpace)
         {
             if (_pivotAsAnchor)
@@ -1605,7 +1608,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 是否已释放。
         /// </summary>
         public bool isDisposed
         {
@@ -1613,7 +1616,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 释放。
         /// </summary>
         virtual public void Dispose()
         {
@@ -1643,7 +1646,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GImage。
         /// </summary>
         public GImage asImage
         {
@@ -1651,7 +1654,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GComponent。    
         /// </summary>
         public GComponent asCom
         {
@@ -1659,7 +1662,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GButton。
         /// </summary>
         public GButton asButton
         {
@@ -1667,7 +1670,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GLabel。
         /// </summary>
         public GLabel asLabel
         {
@@ -1675,7 +1678,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GProgressBar。
         /// </summary>
         public GProgressBar asProgress
         {
@@ -1683,7 +1686,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GSlider。
         /// </summary>
         public GSlider asSlider
         {
@@ -1691,7 +1694,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GComboBox。
         /// </summary>
         public GComboBox asComboBox
         {
@@ -1699,7 +1702,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GTextField。
         /// </summary>
         public GTextField asTextField
         {
@@ -1707,7 +1710,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GRichTextField。
         /// </summary>
         public GRichTextField asRichTextField
         {
@@ -1715,7 +1718,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GTextInput。
         /// </summary>
         public GTextInput asTextInput
         {
@@ -1723,7 +1726,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GLoader。
         /// </summary>
         public GLoader asLoader
         {
@@ -1731,7 +1734,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GLoader3D。
         /// </summary>
         public GLoader3D asLoader3D
         {
@@ -1739,7 +1742,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GList。
         /// </summary>
         public GList asList
         {
@@ -1747,7 +1750,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GGraph。
         /// </summary>
         public GGraph asGraph
         {
@@ -1755,7 +1758,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GGroup。
         /// </summary>
         public GGroup asGroup
         {
@@ -1763,7 +1766,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GMovieClip。
         /// </summary>
         public GMovieClip asMovieClip
         {
@@ -1771,7 +1774,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GTree。
         /// </summary>
         public GTree asTree
         {
@@ -1779,7 +1782,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 作为GTreeNode。
         /// </summary>
         public GTreeNode treeNode
         {
@@ -2095,46 +2098,100 @@ namespace FairyGUI
 
         #region Tween Helpers
 
+        /// <summary>
+        /// 移动。
+        /// </summary>
+        /// <param name="endValue">结束值</param>
+        /// <param name="duration">持续时间</param>
+        /// <returns>Tweener</returns>  
         public GTweener TweenMove(Vector2 endValue, float duration)
         {
             return GTween.To(this.xy, endValue, duration).SetTarget(this, TweenPropType.XY);
         }
 
+        /// <summary>
+        /// 调整X轴位置。
+        /// </summary>
+        /// <param name="endValue">结束值</param>
+        /// <param name="duration">持续时间</param>
+        /// <returns>Tweener</returns>  
         public GTweener TweenMoveX(float endValue, float duration)
         {
             return GTween.To(_x, endValue, duration).SetTarget(this, TweenPropType.X);
         }
 
+        /// <summary>
+        /// 调整Y轴位置。
+        /// </summary>
+        /// <param name="endValue">结束值</param>
+        /// <param name="duration">持续时间</param>
+        /// <returns>Tweener</returns>  
         public GTweener TweenMoveY(float endValue, float duration)
         {
             return GTween.To(_y, endValue, duration).SetTarget(this, TweenPropType.Y);
         }
 
+        /// <summary>
+        /// 调整缩放。
+        /// </summary>
+        /// <param name="endValue">结束值</param>
+        /// <param name="duration">持续时间</param>
+        /// <returns>Tweener</returns>    
         public GTweener TweenScale(Vector2 endValue, float duration)
         {
             return GTween.To(this.scale, endValue, duration).SetTarget(this, TweenPropType.Scale);
         }
 
+        /// <summary>
+        /// 调整X轴缩放。
+        /// </summary>
+        /// <param name="endValue">结束值</param>
+        /// <param name="duration">持续时间</param>
+        /// <returns>Tweener</returns>  
         public GTweener TweenScaleX(float endValue, float duration)
         {
             return GTween.To(_scaleX, endValue, duration).SetTarget(this, TweenPropType.ScaleX);
         }
 
+        /// <summary>
+        /// 调整Y轴缩放。
+        /// </summary>
+        /// <param name="endValue">结束值</param>
+        /// <param name="duration">持续时间</param>
+        /// <returns>Tweener</returns>  
         public GTweener TweenScaleY(float endValue, float duration)
         {
             return GTween.To(_scaleY, endValue, duration).SetTarget(this, TweenPropType.ScaleY);
         }
 
+        /// <summary>
+        /// 调整大小。
+        /// </summary>
+        /// <param name="endValue">结束值</param>
+        /// <param name="duration">持续时间</param>
+        /// <returns>Tweener</returns>      
         public GTweener TweenResize(Vector2 endValue, float duration)
         {
             return GTween.To(this.size, endValue, duration).SetTarget(this, TweenPropType.Size);
         }
 
+        /// <summary>
+        /// 渐入渐出。
+        /// </summary>
+        /// <param name="endValue">结束值</param>
+        /// <param name="duration">持续时间</param>
+        /// <returns>Tweener</returns>  
         public GTweener TweenFade(float endValue, float duration)
         {
             return GTween.To(_alpha, endValue, duration).SetTarget(this, TweenPropType.Alpha);
         }
 
+        /// <summary>
+        /// 旋转。
+        /// </summary>
+        /// <param name="endValue">结束值</param>
+        /// <param name="duration">持续时间</param>
+        /// <returns>Tweener</returns>  
         public GTweener TweenRotate(float endValue, float duration)
         {
             return GTween.To(_rotation, endValue, duration).SetTarget(this, TweenPropType.Rotation);

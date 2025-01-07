@@ -7,7 +7,7 @@ namespace FairyGUI
     /// <summary>
     /// GObjectPool is use for GObject pooling.
     /// </summary>
-    public class GObjectPool
+    public sealed class GObjectPool
     {
         /// <summary>
         /// Callback function when a new object is creating.

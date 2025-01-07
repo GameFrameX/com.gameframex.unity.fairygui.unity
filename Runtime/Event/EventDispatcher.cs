@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace FairyGUI
 {
     public delegate void EventCallback0();
+
     public delegate void EventCallback1(EventContext context);
 
     /// <summary>
@@ -18,30 +19,30 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 添加事件监听器。
         /// </summary>
-        /// <param name="strType"></param>
-        /// <param name="callback"></param>
+        /// <param name="strType">事件类型</param>
+        /// <param name="callback">事件回调</param>
         public void AddEventListener(string strType, EventCallback1 callback)
         {
             GetBridge(strType).Add(callback);
         }
 
         /// <summary>
-        /// 
+        /// 添加事件监听器。
         /// </summary>
-        /// <param name="strType"></param>
-        /// <param name="callback"></param>
+        /// <param name="strType">事件类型</param>
+        /// <param name="callback">事件回调</param>
         public void AddEventListener(string strType, EventCallback0 callback)
         {
             GetBridge(strType).Add(callback);
         }
 
         /// <summary>
-        /// 
+        /// 移除事件监听器。
         /// </summary>
-        /// <param name="strType"></param>
-        /// <param name="callback"></param>
+        /// <param name="strType">事件类型</param>
+        /// <param name="callback">事件回调</param>
         public void RemoveEventListener(string strType, EventCallback1 callback)
         {
             if (_dic == null)
@@ -53,10 +54,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 移除事件监听器。
         /// </summary>
-        /// <param name="strType"></param>
-        /// <param name="callback"></param>
+        /// <param name="strType">事件类型</param>
+        /// <param name="callback">事件回调</param>
         public void RemoveEventListener(string strType, EventCallback0 callback)
         {
             if (_dic == null)
@@ -68,20 +69,20 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 添加捕获事件监听器。
         /// </summary>
-        /// <param name="strType"></param>
-        /// <param name="callback"></param>
+        /// <param name="strType">事件类型</param>
+        /// <param name="callback">事件回调</param>
         public void AddCapture(string strType, EventCallback1 callback)
         {
             GetBridge(strType).AddCapture(callback);
         }
 
         /// <summary>
-        /// 
+        /// 移除捕获事件监听器。
         /// </summary>
-        /// <param name="strType"></param>
-        /// <param name="callback"></param>
+        /// <param name="strType">事件类型</param>
+        /// <param name="callback">事件回调</param>
         public void RemoveCapture(string strType, EventCallback1 callback)
         {
             if (_dic == null)
@@ -93,7 +94,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 移除所有事件监听器。
         /// </summary>
         public void RemoveEventListeners()
         {
@@ -101,9 +102,9 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 移除所有事件监听器。
         /// </summary>
-        /// <param name="strType"></param>
+        /// <param name="strType">事件类型</param>
         public void RemoveEventListeners(string strType)
         {
             if (_dic == null)
@@ -123,10 +124,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 是否存在事件监听器。
         /// </summary>
-        /// <param name="strType"></param>
-        /// <returns></returns>
+        /// <param name="strType">事件类型</param>
+        /// <returns>是否存在事件监听器</returns>
         public bool hasEventListeners(string strType)
         {
             EventBridge bridge = TryGetEventBridge(strType);
@@ -137,10 +138,10 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 是否正在分发事件。
         /// </summary>
-        /// <param name="strType"></param>
-        /// <returns></returns>
+        /// <param name="strType">事件类型</param>
+        /// <returns>是否正在分发事件</returns>
         public bool isDispatching(string strType)
         {
             EventBridge bridge = TryGetEventBridge(strType);
@@ -171,30 +172,38 @@ namespace FairyGUI
                 bridge = new EventBridge(this);
                 _dic[strType] = bridge;
             }
+
             return bridge;
         }
 
         /// <summary>
-        /// 
+        /// 分发事件。
         /// </summary>
-        /// <param name="strType"></param>
-        /// <returns></returns>
+        /// <param name="strType">事件类型</param>
+        /// <returns>是否阻止事件继续分发</returns>
         public bool DispatchEvent(string strType)
         {
             return DispatchEvent(strType, null);
         }
 
         /// <summary>
-        /// 
+        /// 分发事件。
         /// </summary>
-        /// <param name="strType"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        /// <param name="strType">事件类型</param>
+        /// <param name="data">事件数据</param>
+        /// <returns>是否阻止事件继续分发</returns>
         public bool DispatchEvent(string strType, object data)
         {
             return InternalDispatchEvent(strType, null, data, null);
         }
 
+        /// <summary>
+        /// 分发事件。
+        /// </summary>
+        /// <param name="strType">事件类型</param>
+        /// <param name="data">事件数据</param>
+        /// <param name="initiator">事件发起者</param>
+        /// <returns>是否阻止事件继续分发</returns>
         public bool DispatchEvent(string strType, object data, object initiator)
         {
             return InternalDispatchEvent(strType, null, data, initiator);
@@ -205,11 +214,15 @@ namespace FairyGUI
         internal bool InternalDispatchEvent(string strType, EventBridge bridge, object data, object initiator)
         {
             if (bridge == null)
+            {
                 bridge = TryGetEventBridge(strType);
+            }
 
             EventBridge gBridge = null;
             if ((this is DisplayObject) && ((DisplayObject)this).gOwner != null)
+            {
                 gBridge = ((DisplayObject)this).gOwner.TryGetEventBridge(strType);
+            }
 
             bool b1 = bridge != null && !bridge.isEmpty;
             bool b2 = gBridge != null && !gBridge.isEmpty;
@@ -220,7 +233,10 @@ namespace FairyGUI
                 context.type = strType;
                 context.data = data;
                 if (data is InputEvent)
+                {
                     sCurrentInputEvent = (InputEvent)data;
+                }
+
                 context.inputEvent = sCurrentInputEvent;
 
                 if (b1)
@@ -247,16 +263,18 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 分发事件。
         /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
+        /// <param name="context">事件上下文</param>
+        /// <returns>是否阻止事件继续分发</returns>
         public bool DispatchEvent(EventContext context)
         {
             EventBridge bridge = TryGetEventBridge(context.type);
             EventBridge gBridge = null;
             if ((this is DisplayObject) && ((DisplayObject)this).gOwner != null)
+            {
                 gBridge = ((DisplayObject)this).gOwner.TryGetEventBridge(context.type);
+            }
 
             EventDispatcher savedSender = context.sender;
 
@@ -277,12 +295,12 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 冒泡事件。
         /// </summary>
-        /// <param name="strType"></param>
-        /// <param name="data"></param>
-        /// <param name="addChain"></param>
-        /// <returns></returns>
+        /// <param name="strType">事件类型</param>
+        /// <param name="data">事件数据</param>
+        /// <param name="addChain">添加事件链</param>
+        /// <returns>是否阻止事件继续分发</returns>
         internal bool BubbleEvent(string strType, object data, List<EventBridge> addChain)
         {
             EventContext context = EventContext.Get();
@@ -305,7 +323,7 @@ namespace FairyGUI
                 if (context._touchCapture)
                 {
                     context._touchCapture = false;
-                    if (strType == "onTouchBegin")
+                    if (strType == EventName.onTouchBegin)
                         Stage.inst.AddTouchMonitor(context.inputEvent.touchId, bubbleChain[i].owner);
                 }
             }
@@ -319,7 +337,7 @@ namespace FairyGUI
                     if (context._touchCapture)
                     {
                         context._touchCapture = false;
-                        if (strType == "onTouchBegin")
+                        if (strType == EventName.onTouchBegin)
                             Stage.inst.AddTouchMonitor(context.inputEvent.touchId, bubbleChain[i].owner);
                     }
 
@@ -350,22 +368,22 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// 
+        /// 冒泡事件。
         /// </summary>
-        /// <param name="strType"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        /// <param name="strType">事件类型</param>
+        /// <param name="data">事件数据</param>
+        /// <returns>是否阻止事件继续分发</returns>
         public bool BubbleEvent(string strType, object data)
         {
             return BubbleEvent(strType, data, null);
         }
 
         /// <summary>
-        /// 
+        /// 广播事件。
         /// </summary>
-        /// <param name="strType"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        /// <param name="strType">事件类型</param>
+        /// <param name="data">事件数据</param>
+        /// <returns>是否阻止事件继续分发</returns>
         public bool BroadcastEvent(string strType, object data)
         {
             EventContext context = EventContext.Get();
@@ -373,19 +391,28 @@ namespace FairyGUI
             context.type = strType;
             context.data = data;
             if (data is InputEvent)
+            {
                 sCurrentInputEvent = (InputEvent)data;
+            }
+
             context.inputEvent = sCurrentInputEvent;
             List<EventBridge> bubbleChain = context.callChain;
             bubbleChain.Clear();
 
             if (this is Container)
+            {
                 GetChildEventBridges(strType, (Container)this, bubbleChain);
+            }
             else if (this is GComponent)
+            {
                 GetChildEventBridges(strType, (GComponent)this, bubbleChain);
+            }
 
             int length = bubbleChain.Count;
             for (int i = 0; i < length; ++i)
+            {
                 bubbleChain[i].CallInternal(context);
+            }
 
             EventContext.Return(context);
             context.initiator = null;
