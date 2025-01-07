@@ -6,7 +6,7 @@ namespace FairyGUI
     /// <summary>
     /// 
     /// </summary>
-    public class PopupMenu : EventDispatcher
+    public sealed class PopupMenu : EventDispatcher
     {
         protected GComponent _contentPane;
         protected GList _list;

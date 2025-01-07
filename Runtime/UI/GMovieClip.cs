@@ -6,7 +6,7 @@ namespace FairyGUI
     /// <summary>
     /// GMovieClip class.
     /// </summary>
-    public class GMovieClip : GObject, IAnimationGear, IColorGear
+    public sealed class GMovieClip : GObject, IAnimationGear, IColorGear
     {
         MovieClip _content;
         EventListener _onPlayEnd;

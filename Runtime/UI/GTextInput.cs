@@ -7,7 +7,7 @@ namespace FairyGUI
     /// <summary>
     /// 
     /// </summary>
-    public class GTextInput : GTextField
+    public sealed class GTextInput : GTextField
     {
         /// <summary>
         /// 

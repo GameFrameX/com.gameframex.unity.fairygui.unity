@@ -27,7 +27,7 @@ namespace FairyGUI
     /// <summary>
     /// A UI Package contains a description file and some texture, sound assets.
     /// </summary>
-    public class UIPackage
+    public sealed class UIPackage
     {
         /// <summary>
         /// Unload UIAssetBundle by FairyGUI system.

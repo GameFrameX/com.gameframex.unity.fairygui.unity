@@ -4,7 +4,7 @@ using FairyGUI.Utils;
 
 namespace FairyGUI
 {
-    class RelationDef
+    sealed class RelationDef
     {
         public bool percent;
         public RelationType type;
@@ -18,7 +18,7 @@ namespace FairyGUI
         }
     }
 
-    class RelationItem
+    sealed class RelationItem
     {
         GObject _owner;
         GObject _target;
@@ -220,6 +220,7 @@ namespace FairyGUI
                     }
                     else
                         _owner.width = _owner._rawWidth - dx;
+
                     break;
 
                 case RelationType.RightExt_Left:
@@ -232,6 +233,7 @@ namespace FairyGUI
                     }
                     else
                         _owner.width = _owner._rawWidth + dx;
+
                     break;
 
                 case RelationType.TopExt_Top:
@@ -244,6 +246,7 @@ namespace FairyGUI
                     }
                     else
                         _owner.height = _owner._rawHeight - dy;
+
                     break;
 
                 case RelationType.BottomExt_Top:
@@ -256,6 +259,7 @@ namespace FairyGUI
                     }
                     else
                         _owner.height = _owner._rawHeight + dy;
+
                     break;
             }
         }
@@ -408,6 +412,7 @@ namespace FairyGUI
                     }
                     else
                         _owner.width = _target._width + v;
+
                     break;
                 case RelationType.Height:
                     if (_owner.underConstruct && _owner == _target.parent)
@@ -429,6 +434,7 @@ namespace FairyGUI
                     }
                     else
                         _owner.height = _target._height + v;
+
                     break;
 
                 case RelationType.LeftExt_Left:
@@ -466,7 +472,7 @@ namespace FairyGUI
                         {
                             if (_owner.underConstruct)
                                 _owner.width = pos + _target._width - _target._width * pivot +
-                                    (_owner.sourceWidth - pos - _target.initWidth + _target.initWidth * pivot) * delta;
+                                               (_owner.sourceWidth - pos - _target.initWidth + _target.initWidth * pivot) * delta;
                             else
                                 _owner.width = pos + (_owner._rawWidth - pos) * delta;
                         }
@@ -493,6 +499,7 @@ namespace FairyGUI
                             _owner.xMin = tmp;
                         }
                     }
+
                     break;
                 case RelationType.TopExt_Top:
                     tmp = _owner.yMin;
@@ -529,7 +536,7 @@ namespace FairyGUI
                         {
                             if (_owner.underConstruct)
                                 _owner.height = pos + _target._height - _target._height * pivot +
-                                    (_owner.sourceHeight - pos - _target.initHeight + _target.initHeight * pivot) * delta;
+                                                (_owner.sourceHeight - pos - _target.initHeight + _target.initHeight * pivot) * delta;
                             else
                                 _owner.height = pos + (_owner._rawHeight - pos) * delta;
                         }
@@ -556,6 +563,7 @@ namespace FairyGUI
                             _owner.yMin = tmp;
                         }
                     }
+
                     break;
             }
         }

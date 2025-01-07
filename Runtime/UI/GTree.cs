@@ -7,7 +7,7 @@ namespace FairyGUI
     /// <summary>
     /// 
     /// </summary>
-    public class GTree : GList
+    public sealed class GTree : GList
     {
         public delegate void TreeNodeRenderDelegate(GTreeNode node, GComponent obj);
         public delegate void TreeNodeWillExpandDelegate(GTreeNode node, bool expand);

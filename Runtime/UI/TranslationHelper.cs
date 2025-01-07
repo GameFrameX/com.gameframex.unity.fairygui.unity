@@ -3,7 +3,7 @@ using FairyGUI.Utils;
 
 namespace FairyGUI
 {
-    public class TranslationHelper
+    public sealed class TranslationHelper
     {
         public static Dictionary<string, Dictionary<string, string>> strings;
 

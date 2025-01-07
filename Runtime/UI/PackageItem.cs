@@ -7,7 +7,7 @@ namespace FairyGUI
     /// <summary>
     /// 
     /// </summary>
-    public class PackageItem
+    public sealed class PackageItem
     {
         public UIPackage owner;
 

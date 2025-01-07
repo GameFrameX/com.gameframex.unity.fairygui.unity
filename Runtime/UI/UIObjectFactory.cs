@@ -10,7 +10,7 @@ namespace FairyGUI
     /// <summary>
     /// 
     /// </summary>
-    public class UIObjectFactory
+    public sealed class UIObjectFactory
     {
         public delegate GComponent GComponentCreator();
 

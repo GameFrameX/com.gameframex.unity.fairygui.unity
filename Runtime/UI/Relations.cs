@@ -7,7 +7,7 @@ namespace FairyGUI
     /// <summary>
     /// 
     /// </summary>
-    public class Relations
+    public sealed class Relations
     {
         GObject _owner;
         List<RelationItem> _items;

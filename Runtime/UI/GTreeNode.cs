@@ -6,7 +6,7 @@ namespace FairyGUI
     /// <summary>
     /// 
     /// </summary>
-    public class GTreeNode
+    public sealed class GTreeNode
     {
         /// <summary>
         /// 
