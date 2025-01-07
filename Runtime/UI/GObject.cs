@@ -2198,5 +2198,10 @@ namespace FairyGUI
         }
 
         #endregion
+
+        public string Path
+        {
+            get { return PathFinderHelper.GetUIPath(this); }
+        }
     }
 }
