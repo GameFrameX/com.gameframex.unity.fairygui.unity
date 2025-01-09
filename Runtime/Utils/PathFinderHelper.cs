@@ -45,7 +45,7 @@ namespace FairyGUI.Utils
         {
             //GRoot / UISynthesisScene / ContentBox / ListSelect / 1990197248 / icon
 
-            string[] arr = path.Split('/', StringSplitOptions.RemoveEmptyEntries);
+            string[] arr = path.Split(new char[] { '/', }, StringSplitOptions.RemoveEmptyEntries);
 
             var q = new Queue<string>();
             foreach (string pathName in arr)
@@ -136,7 +136,7 @@ namespace FairyGUI.Utils
 
             var q = new List<string>();
 
-            foreach (string pathName in path.Split('/', StringSplitOptions.RemoveEmptyEntries))
+            foreach (string pathName in path.Split(new char[] { '/', }, StringSplitOptions.RemoveEmptyEntries))
             {
                 if (pathName == "GRoot")
                 {
