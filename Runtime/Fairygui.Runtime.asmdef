@@ -5,6 +5,7 @@
         "spine-unity.Runtime",
         "StarkWebGL",
         "Wx",
+        "Unity.InputSystem",
         "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
@@ -39,6 +40,11 @@
             "name": "com.esotericsoftware.spine.spine-csharp",
             "expression": "",
             "define": "FAIRYGUI_SPINE"
+        },
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "",
+            "define": "FAIRYGUI_INPUT_SYSTEM"
         }
     ],
     "noEngineReferences": false

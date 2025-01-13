@@ -908,7 +908,7 @@ namespace FairyGUI
                     TouchInfo free = null;
                     for (int j = 0; j < 5; j++)
                     {
-                        if (_touches[j].touchId == uTouch.fingerId)
+                        if (_touches[j].touchId == uTouch.finger.index)
                         {
                             touch = _touches[j];
                             break;
