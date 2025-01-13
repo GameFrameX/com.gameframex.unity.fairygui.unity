@@ -1,7 +1,7 @@
 {
   "name": "com.gameframex.unity.fairygui.unity",
   "displayName": "FairyGUI",
-  "version": "5.1.3",
+  "version": "5.1.5",
   "unity": "2017.1",
   "description": "FairyGUI is a Cross Platform UI Editor & UI framework",
   "author": {
@@ -20,6 +20,5 @@
     "url": "https://github.com/fairygui/FairyGUI-unity.git"
   },
   "relatedPackages": {},
-  "dependencies": {
-  }
+  "dependencies": {}
 }
