@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/tree/HEAD)
+## [5.1.8](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/tree/5.1.8) (2025-01-15)
 
-[Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/compare/5.1.7...HEAD)
+[Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/compare/5.1.7...5.1.8)
 
 **Closed issues:**
 
