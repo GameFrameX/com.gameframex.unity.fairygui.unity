@@ -147,6 +147,7 @@ namespace FairyGUIEditor
                 if (colorProperty != null)
                 {
                     Color color = (Color)colorProperty.GetValue(gObj);
+                    EditorGUI.BeginChangeCheck();
                     color = EditorGUILayout.ColorField("Color", color);
                     if (EditorGUI.EndChangeCheck())
                     {
