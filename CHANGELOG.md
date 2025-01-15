@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/tree/HEAD)
+
+[Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/compare/5.1.7...HEAD)
+
+**Closed issues:**
+
+- uTouch兼容性问题 [\#1](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/issues/1)
+
+## [5.1.7](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/tree/5.1.7) (2025-01-15)
+
+[Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/compare/5.1.6...5.1.7)
+
 ## [5.1.6](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/tree/5.1.6) (2025-01-14)
 
 [Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/compare/5.1.5...5.1.6)
