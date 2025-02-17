@@ -8,7 +8,7 @@ namespace FairyGUI
     /// <summary>
     /// 
     /// </summary>
-    class EventBridge
+    sealed class EventBridge
     {
         public EventDispatcher owner;
 

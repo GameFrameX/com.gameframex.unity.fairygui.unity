@@ -4,9 +4,9 @@ using UnityEngine;
 namespace FairyGUI
 {
     /// <summary>
-    /// 
+    /// 事件上下文
     /// </summary>
-    public class EventContext
+    public sealed class EventContext
     {
         /// <summary>
         /// 事件发送者。
