@@ -26,6 +26,7 @@ namespace FairyGUI
         public const string onDrop = "onDrop";
         public const string onClickItem = "onClickItem";
         public const string onRightClickItem = "onRightClickItem";
+        public const string onPreviousClickItem = "onPreviousClickItem";
         public const string onGripTouchEnd = "onGripTouchEnd";
         public const string onPopup = "onPopup";
         public const string onClose = "onClose";

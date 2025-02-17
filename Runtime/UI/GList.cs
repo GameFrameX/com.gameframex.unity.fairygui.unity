@@ -66,6 +66,7 @@ namespace FairyGUI
 
         EventListener _onClickItem;
         EventListener _onRightClickItem;
+        EventListener _onPreviousClickItem;
 
         //Virtual List support
         bool _virtual;
@@ -139,6 +140,14 @@ namespace FairyGUI
         public EventListener onRightClickItem
         {
             get { return _onRightClickItem ?? (_onRightClickItem = new EventListener(this, EventName.onRightClickItem)); }
+        }
+
+        /// <summary>
+        /// 点击item时，在 onClickItem 之前的回调函数，可以决定是否执行 onClickItem 回调函数
+        /// </summary>
+        public EventListener onPreviousClickItem
+        {
+            get { return _onPreviousClickItem ?? (_onPreviousClickItem = new EventListener(this, EventName.onPreviousClickItem)); }
         }
 
         /// <summary>
@@ -1057,6 +1066,12 @@ namespace FairyGUI
         void __clickItem(EventContext context)
         {
             GObject item = context.sender as GObject;
+
+            if (DispatchEvent(EventName.onPreviousClickItem, item))
+            {
+                return;
+            }
+
             if ((item is GButton) && selectionMode != ListSelectionMode.None)
                 SetSelectionOnEvent(item, context.inputEvent);
 
