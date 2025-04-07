@@ -46,6 +46,11 @@ namespace FairyGUI
         /// </summary>
         public event Action meshModifier;
 
+        /// <summary>
+        /// 销毁触发
+        /// </summary>
+        public Action disposeCallback;
+
         NTexture _texture;
         string _shader;
         Material _material;
@@ -66,6 +71,7 @@ namespace FairyGUI
             public Vector3 cameraPos;
             public Matrix4x4 matrix;
         }
+
         VertexMatrix _vertexMatrix;
 
         bool hasAlphaBackup;
@@ -141,6 +147,7 @@ namespace FairyGUI
                 _meshFactory = new T();
                 _meshDirty = true;
             }
+
             return (T)_meshFactory;
         }
 
@@ -184,13 +191,21 @@ namespace FairyGUI
                 if (_texture != value)
                 {
                     if (value != null)
+                    {
                         value.AddRef();
+                    }
+
                     if (_texture != null)
+                    {
                         _texture.ReleaseRef();
+                    }
 
                     _texture = value;
                     if (_customMatarial != 0 && _material != null)
+                    {
                         _material.mainTexture = _texture != null ? _texture.nativeTexture : null;
+                    }
+
                     _meshDirty = true;
                     UpdateManager();
                 }
@@ -219,9 +234,13 @@ namespace FairyGUI
         {
             _shader = shader;
             if (_texture != texture)
+            {
                 this.texture = texture;
+            }
             else
+            {
                 UpdateManager();
+            }
         }
 
         /// <summary>
@@ -232,24 +251,33 @@ namespace FairyGUI
             get
             {
                 if (_customMatarial == 0 && _material == null && _manager != null)
+                {
                     _material = _manager.GetMaterial(_materialFlags, blendMode, 0);
+                }
+
                 return _material;
             }
             set
             {
                 if ((_customMatarial & 128) != 0 && _material != null)
+                {
                     Object.DestroyImmediate(_material);
+                }
 
                 _material = value;
                 if (_material != null)
                 {
                     _customMatarial = 1;
                     if (_material.HasProperty(ShaderConfig.ID_Stencil) || _material.HasProperty(ShaderConfig.ID_ClipBox))
+                    {
                         _customMatarial |= 2;
+                    }
 
                     meshRenderer.sharedMaterial = _material;
                     if (_texture != null)
+                    {
                         _material.mainTexture = _texture.nativeTexture;
+                    }
                 }
                 else
                 {
@@ -320,9 +348,14 @@ namespace FairyGUI
         void UpdateManager()
         {
             if (_texture != null)
+            {
                 _manager = _texture.GetMaterialManager(_shader);
+            }
             else
+            {
                 _manager = null;
+            }
+
             UpdateMaterialFlags();
         }
 
@@ -331,12 +364,18 @@ namespace FairyGUI
             if (_customMatarial != 0)
             {
                 if (material != null)
+                {
                     material.shaderKeywords = _shaderKeywords;
+                }
             }
             else if (_shaderKeywords != null && _manager != null)
+            {
                 _materialFlags = _manager.GetFlagsByKeywords(_shaderKeywords);
+            }
             else
+            {
                 _materialFlags = 0;
+            }
         }
 
         /// <summary>
@@ -504,16 +543,25 @@ namespace FairyGUI
             if (mesh != null)
             {
                 if (Application.isPlaying)
+                {
                     Object.Destroy(mesh);
+                }
                 else
+                {
                     Object.DestroyImmediate(mesh);
+                }
+
                 mesh = null;
             }
+
             if ((_customMatarial & 128) != 0 && _material != null)
+            {
                 Object.DestroyImmediate(_material);
+            }
 
             if (_texture != null)
             {
+                disposeCallback?.Invoke();
                 _texture.ReleaseRef();
                 _texture = null;
             }
@@ -524,6 +572,7 @@ namespace FairyGUI
             meshFilter = null;
             _stencilEraser = null;
             meshModifier = null;
+            disposeCallback = null;
         }
 
         /// <summary>
@@ -542,7 +591,9 @@ namespace FairyGUI
                 UpdateMeshNow();
             }
             else if (_alpha != alpha)
+            {
                 ChangeAlpha(alpha);
+            }
 
             if (_propertyBlock != null && _blockUpdated)
             {
@@ -553,7 +604,9 @@ namespace FairyGUI
             if (_customMatarial != 0)
             {
                 if ((_customMatarial & 2) != 0 && _material != null)
+                {
                     context.ApplyClippingProperties(_material, false);
+                }
             }
             else
             {
@@ -573,38 +626,57 @@ namespace FairyGUI
                         if (context.clipped)
                         {
                             if (context.stencilReferenceValue > 0)
+                            {
                                 matFlags |= (int)MaterialFlags.StencilTest;
+                            }
+
                             if (context.rectMaskDepth > 0)
                             {
                                 if (context.clipInfo.soft)
+                                {
                                     matFlags |= (int)MaterialFlags.SoftClipped;
+                                }
                                 else
+                                {
                                     matFlags |= (int)MaterialFlags.Clipped;
+                                }
                             }
 
                             _material = _manager.GetMaterial(matFlags, blendMode, context.clipInfo.clipId);
                             if (_manager.firstMaterialInFrame)
+                            {
                                 context.ApplyClippingProperties(_material, true);
+                            }
                         }
                         else
+                        {
                             _material = _manager.GetMaterial(matFlags, blendMode, 0);
+                        }
                     }
                 }
                 else
+                {
                     _material = null;
+                }
 
                 if (!Material.ReferenceEquals(_material, meshRenderer.sharedMaterial))
+                {
                     meshRenderer.sharedMaterial = _material;
+                }
             }
 
             if (_maskFlag != 0)
             {
                 if (_maskFlag == 1)
+                {
                     _maskFlag = 2;
+                }
                 else
                 {
                     if (_stencilEraser != null)
+                    {
                         _stencilEraser.enabled = false;
+                    }
 
                     _maskFlag = 0;
                 }
@@ -622,7 +694,9 @@ namespace FairyGUI
                     _stencilEraser.meshFilter.mesh = mesh;
                 }
                 else
+                {
                     _stencilEraser.enabled = true;
+                }
             }
 
             _maskFlag = 1;
@@ -632,7 +706,9 @@ namespace FairyGUI
                 //这里使用maskId而不是clipInfo.clipId，是因为遮罩有两个用途，一个是写入遮罩，一个是擦除，两个不能用同一个材质
                 Material mat = _manager.GetMaterial((int)MaterialFlags.AlphaMask | _materialFlags, BlendMode.Normal, maskId);
                 if (!Material.ReferenceEquals(mat, _stencilEraser.meshRenderer.sharedMaterial))
+                {
                     _stencilEraser.meshRenderer.sharedMaterial = mat;
+                }
 
                 context.ApplyAlphaMaskProperties(mat, true);
             }
@@ -649,8 +725,11 @@ namespace FairyGUI
                     mesh.Clear();
 
                     if (meshModifier != null)
+                    {
                         meshModifier();
+                    }
                 }
+
                 return;
             }
 
@@ -658,9 +737,14 @@ namespace FairyGUI
             vb.contentRect = _contentRect;
             vb.uvRect = _texture.uvRect;
             if (_texture != null)
+            {
                 vb.textureSize = new Vector2(_texture.width, _texture.height);
+            }
             else
+            {
                 vb.textureSize = new Vector2(0, 0);
+            }
+
             if (_flip != FlipType.None)
             {
                 if (_flip == FlipType.Horizontal || _flip == FlipType.Both)
@@ -669,6 +753,7 @@ namespace FairyGUI
                     vb.uvRect.xMin = vb.uvRect.xMax;
                     vb.uvRect.xMax = tmp;
                 }
+
                 if (_flip == FlipType.Vertical || _flip == FlipType.Both)
                 {
                     float tmp = vb.uvRect.yMin;
@@ -676,6 +761,7 @@ namespace FairyGUI
                     vb.uvRect.yMax = tmp;
                 }
             }
+
             vb.vertexColor = _color;
             _meshFactory.OnPopulateMesh(vb);
 
@@ -687,8 +773,11 @@ namespace FairyGUI
                     mesh.Clear();
 
                     if (meshModifier != null)
+                    {
                         meshModifier();
+                    }
                 }
+
                 vb.End();
                 return;
             }
@@ -760,13 +849,20 @@ namespace FairyGUI
 #if UNITY_5_2 || UNITY_5_3_OR_NEWER
             mesh.SetVertices(vb.vertices);
             if (vb._isArbitraryQuad)
+            {
                 mesh.SetUVs(0, vb.FixUVForArbitraryQuad());
+            }
             else
+            {
                 mesh.SetUVs(0, vb.uvs);
+            }
+
             mesh.SetColors(vb.colors);
             mesh.SetTriangles(vb.triangles, 0);
             if (vb.uvs2.Count == vb.uvs.Count)
+            {
                 mesh.SetUVs(1, vb.uvs2);
+            }
 
 #if !UNITY_5_6_OR_NEWER
             _colors = null;
@@ -797,7 +893,9 @@ namespace FairyGUI
             vb.End();
 
             if (meshModifier != null)
+            {
                 meshModifier();
+            }
         }
 
         public void OnPopulateMesh(VertexBuffer vb)
@@ -809,7 +907,7 @@ namespace FairyGUI
             vb._isArbitraryQuad = _vertexMatrix != null;
         }
 
-        class StencilEraser
+        sealed class StencilEraser
         {
             public GameObject gameObject;
             public MeshFilter meshFilter;
