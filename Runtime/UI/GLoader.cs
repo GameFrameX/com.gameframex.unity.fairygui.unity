@@ -15,7 +15,7 @@ namespace FairyGUI
         /// </summary>
         public bool showErrorSign;
 
-        string _url;
+        protected string _url;
         AlignType _align;
         VertAlignType _verticalAlign;
         bool _autoSize;
@@ -44,7 +44,7 @@ namespace FairyGUI
             _reloadDelegate = OnExternalReload;
         }
 
-        override protected void CreateDisplayObject()
+        protected override void CreateDisplayObject()
         {
             displayObject = new Container("GLoader");
             displayObject.gOwner = this;
@@ -53,9 +53,12 @@ namespace FairyGUI
             ((Container)displayObject).opaque = true;
         }
 
-        override public void Dispose()
+        public override void Dispose()
         {
-            if (_disposed) return;
+            if (_disposed)
+            {
+                return;
+            }
 
             if (_content.texture != null)
             {
@@ -74,9 +77,15 @@ namespace FairyGUI
             }
 
             if (_errorSign != null)
+            {
                 _errorSign.Dispose();
+            }
+
             if (_content2 != null)
+            {
                 _content2.Dispose();
+            }
+
             _content.Dispose();
 
             base.Dispose();
@@ -101,22 +110,37 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
-        public string url
+        public virtual string url
         {
             get { return _url; }
             set
             {
+                bool isClear = false;
                 if (_url == value)
-                    return;
+                {
+                    if (_content2 == null && (_content.texture == null || _content.texture.nativeTexture == null) && _content.frames == null)
+                    {
+                        ClearContent();
+                        isClear = true;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
 
-                ClearContent();
+                if (!isClear)
+                {
+                    ClearContent();
+                }
+
                 _url = value;
                 LoadContent();
                 UpdateGear(7);
             }
         }
 
-        override public string icon
+        public override string icon
         {
             get { return _url; }
             set { this.url = value; }
@@ -375,13 +399,13 @@ namespace FairyGUI
             }
         }
 
-        override public IFilter filter
+        public override IFilter filter
         {
             get { return _content.filter; }
             set { _content.filter = value; }
         }
 
-        override public BlendMode blendMode
+        public override BlendMode blendMode
         {
             get { return _content.blendMode; }
             set { _content.blendMode = value; }
@@ -395,12 +419,18 @@ namespace FairyGUI
             ClearContent();
 
             if (string.IsNullOrEmpty(_url))
+            {
                 return;
+            }
 
             if (_url.StartsWith(UIPackage.URL_PREFIX))
+            {
                 LoadFromPackage(_url);
+            }
             else
+            {
                 LoadExternal();
+            }
         }
 
         protected void LoadFromPackage(string itemURL)
@@ -462,10 +492,12 @@ namespace FairyGUI
                 }
             }
             else
+            {
                 SetErrorState();
+            }
         }
 
-        virtual protected void LoadExternal()
+        protected virtual void LoadExternal()
         {
 #if FAIRYGUI_PUERTS
             if (__loadExternal != null) 
@@ -476,12 +508,16 @@ namespace FairyGUI
 #endif
             Texture2D tex = (Texture2D)Resources.Load(_url, typeof(Texture2D));
             if (tex != null)
+            {
                 onExternalLoadSuccess(new NTexture(tex));
+            }
             else
+            {
                 onExternalLoadFailed();
+            }
         }
 
-        virtual protected void FreeExternal(NTexture texture)
+        protected virtual void FreeExternal(NTexture texture)
         {
 #if FAIRYGUI_PUERTS
             if (__freeExternal != null) 
@@ -518,14 +554,20 @@ namespace FairyGUI
         private void SetErrorState()
         {
             if (!showErrorSign || !Application.isPlaying)
+            {
                 return;
+            }
 
             if (_errorSign == null)
             {
                 if (UIConfig.loaderErrorSign != null)
+                {
                     _errorSign = UIPackage.CreateObjectFromURL(UIConfig.loaderErrorSign);
+                }
                 else
+                {
                     return;
+                }
             }
 
             if (_errorSign != null)
@@ -538,7 +580,9 @@ namespace FairyGUI
         protected void ClearErrorState()
         {
             if (_errorSign != null && _errorSign.displayObject.parent != null)
+            {
                 ((Container)displayObject).RemoveChild(_errorSign.displayObject);
+            }
         }
 
         protected void UpdateLayout()
@@ -562,9 +606,15 @@ namespace FairyGUI
             {
                 _updatingLayout = true;
                 if (contentWidth == 0)
+                {
                     contentWidth = 50;
+                }
+
                 if (contentHeight == 0)
+                {
                     contentHeight = 30;
+                }
+
                 SetSize(contentWidth, contentHeight);
 
                 _updatingLayout = false;
@@ -640,7 +690,9 @@ namespace FairyGUI
                     _content2.SetSize(contentWidth, contentHeight, true);
                 }
                 else
+                {
                     _content2.SetScale(sx, sy);
+                }
             }
             else
             {
@@ -650,21 +702,39 @@ namespace FairyGUI
             float nx;
             float ny;
             if (_align == AlignType.Center)
+            {
                 nx = (this.width - contentWidth) / 2;
+            }
             else if (_align == AlignType.Right)
+            {
                 nx = this.width - contentWidth;
+            }
             else
+            {
                 nx = 0;
+            }
+
             if (_verticalAlign == VertAlignType.Middle)
+            {
                 ny = (this.height - contentHeight) / 2;
+            }
             else if (_verticalAlign == VertAlignType.Bottom)
+            {
                 ny = this.height - contentHeight;
+            }
             else
+            {
                 ny = 0;
+            }
+
             if (_content2 != null)
+            {
                 _content2.SetXY(nx, ny);
+            }
             else
+            {
                 _content.SetXY(nx, ny);
+            }
 
             InvalidateBatchingState();
         }
@@ -695,15 +765,17 @@ namespace FairyGUI
             _contentItem = null;
         }
 
-        override protected void HandleSizeChanged()
+        protected override void HandleSizeChanged()
         {
             base.HandleSizeChanged();
 
             if (!_updatingLayout)
+            {
                 UpdateLayout();
+            }
         }
 
-        override public void Setup_BeforeAdd(ByteBuffer buffer, int beginPos)
+        public override void Setup_BeforeAdd(ByteBuffer buffer, int beginPos)
         {
             base.Setup_BeforeAdd(buffer, beginPos);
 
@@ -720,7 +792,10 @@ namespace FairyGUI
             _content.frame = buffer.ReadInt();
 
             if (buffer.ReadBool())
+            {
                 _content.color = buffer.ReadColor();
+            }
+
             _content.fillMethod = (FillMethod)buffer.ReadByte();
             if (_content.fillMethod != FillMethod.None)
             {
@@ -735,7 +810,9 @@ namespace FairyGUI
             }
 
             if (!string.IsNullOrEmpty(_url))
+            {
                 LoadContent();
+            }
         }
     }
 }
