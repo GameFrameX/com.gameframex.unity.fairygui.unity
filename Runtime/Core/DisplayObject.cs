@@ -303,7 +303,11 @@ namespace FairyGUI
 
                     if (parent != null && _visible)
                     {
-                        gameObject.SetActive(true);
+                        if (gameObject.activeSelf == false)
+                        {
+                            gameObject.SetActive(true);
+                        }
+
                         InvalidateBatchingState();
                         if (this is Container)
                         {
@@ -312,7 +316,10 @@ namespace FairyGUI
                     }
                     else
                     {
-                        gameObject.SetActive(false);
+                        if (gameObject.activeSelf)
+                        {
+                            gameObject.SetActive(false);
+                        }
                     }
                 }
             }
