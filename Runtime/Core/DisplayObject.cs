@@ -2,13 +2,14 @@
 using System.Text;
 using UnityEngine;
 using FairyGUI.Utils;
+using System.Collections.Generic;
 
 namespace FairyGUI
 {
     /// <summary>
     /// 
     /// </summary>
-    public class DisplayObject : EventDispatcher
+    public class DisplayObject : EventDispatcher, IBatchable
     {
         /// <summary>
         /// 
@@ -93,7 +94,6 @@ namespace FairyGUI
         protected Rect _contentRect;
         protected NGraphics.VertexMatrix _vertexMatrix;
         protected internal Flags _flags;
-        protected internal float[] _batchingBounds;
 
         internal static uint _gInstanceCounter;
 
@@ -239,7 +239,6 @@ namespace FairyGUI
                     info.displayObject = this;
                 }
             }
-
             gameObject.hideFlags = DisplayObject.hideFlags;
             gameObject.SetActive(false);
         }
@@ -476,7 +475,10 @@ namespace FairyGUI
                 EnsureSizeCorrect();
                 return _contentRect.size;
             }
-            set { SetSize(value.x, value.y); }
+            set
+            {
+                SetSize(value.x, value.y);
+            }
         }
 
         /// <summary>
@@ -588,7 +590,10 @@ namespace FairyGUI
         public Vector2 scale
         {
             get { return cachedTransform.localScale; }
-            set { SetScale(value.x, value.y); }
+            set
+            {
+                SetScale(value.x, value.y);
+            }
         }
 
         /// <summary>
@@ -620,7 +625,10 @@ namespace FairyGUI
         /// </summary>
         public float rotationX
         {
-            get { return _rotation.x; }
+            get
+            {
+                return _rotation.x;
+            }
             set
             {
                 _rotation.x = value;
@@ -640,7 +648,10 @@ namespace FairyGUI
         /// </summary>
         public float rotationY
         {
-            get { return _rotation.y; }
+            get
+            {
+                return _rotation.y;
+            }
             set
             {
                 _rotation.y = value;
@@ -678,7 +689,10 @@ namespace FairyGUI
         /// </summary>
         public bool perspective
         {
-            get { return _perspective; }
+            get
+            {
+                return _perspective;
+            }
             set
             {
                 if (_perspective != value)
@@ -819,13 +833,16 @@ namespace FairyGUI
                 return pos;
             }
 
-            set { this.SetPosition(value.x - _pivotOffset.x, value.y + _pivotOffset.y, value.z - _pivotOffset.z); }
+            set
+            {
+                this.SetPosition(value.x - _pivotOffset.x, value.y + _pivotOffset.y, value.z - _pivotOffset.z);
+            }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        virtual public Material material
+        public Material material
         {
             get
             {
@@ -844,7 +861,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
-        virtual public string shader
+        public string shader
         {
             get
             {
@@ -863,23 +880,30 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
-        virtual public int renderingOrder
+        public int renderingOrder
         {
-            get { return _renderingOrder; }
-            set
+            get
             {
-                if ((_flags & Flags.GameObjectDisposed) != 0)
-                {
-                    DisplayDisposedWarning();
-                    return;
-                }
-
-                _renderingOrder = value;
-                if (graphics != null)
-                    graphics.sortingOrder = value;
-                if (_paintingMode > 0)
-                    paintingGraphics.sortingOrder = value;
+                return _renderingOrder;
             }
+        }
+
+        virtual public void SetRenderingOrder(UpdateContext context, bool inBatch)
+        {
+            if ((_flags & Flags.GameObjectDisposed) != 0)
+            {
+                DisplayDisposedWarning();
+                return;
+            }
+
+            _renderingOrder = context.renderingOrder;
+            if (graphics != null)
+                graphics.SetRenderingOrder(context, inBatch);
+            else
+                context.renderingOrder++;
+
+            if (_paintingMode > 0)
+                paintingGraphics.renderingOrder = _renderingOrder;
         }
 
         /// <summary>
@@ -894,7 +918,10 @@ namespace FairyGUI
                 else
                     return gameObject.layer;
             }
-            set { SetLayer(value, false); }
+            set
+            {
+                SetLayer(value, false);
+            }
         }
 
         /// <summary>
@@ -932,14 +959,17 @@ namespace FairyGUI
         /// </summary>
         public bool focused
         {
-            get { return Stage.inst.focus == this || (this is Container) && ((Container)this).IsAncestorOf(Stage.inst.focus); }
+            get
+            {
+                return Stage.inst.focus == this || (this is Container) && ((Container)this).IsAncestorOf(Stage.inst.focus);
+            }
         }
 
         internal bool _AcceptTab()
         {
             if (_touchable && _visible
-                           && ((_flags & Flags.TabStop) != 0 || (_flags & Flags.TabStopChildren) != 0)
-                           && (_flags & Flags.NotFocusable) == 0)
+                && ((_flags & Flags.TabStop) != 0 || (_flags & Flags.TabStopChildren) != 0)
+                && (_flags & Flags.NotFocusable) == 0)
             {
                 Stage.inst.SetFocus(this, true);
                 return true;
@@ -1009,7 +1039,10 @@ namespace FairyGUI
         /// </summary>
         public Stage stage
         {
-            get { return topmost as Stage; }
+            get
+            {
+                return topmost as Stage;
+            }
         }
 
         /// <summary>
@@ -1137,7 +1170,7 @@ namespace FairyGUI
                     this.InvalidateBatchingState();
 
                 if (graphics != null)
-                    this.gameObject.layer = CaptureCamera.hiddenLayer;
+                    _SetLayerDirect(CaptureCamera.hiddenLayer);
             }
 
             if (extend != null)
@@ -1169,7 +1202,7 @@ namespace FairyGUI
                     this.InvalidateBatchingState();
 
                 if (graphics != null)
-                    this.gameObject.layer = paintingGraphics.gameObject.layer;
+                    _SetLayerDirect(paintingGraphics.gameObject.layer);
             }
         }
 
@@ -1240,7 +1273,10 @@ namespace FairyGUI
         /// </summary>
         public IFilter filter
         {
-            get { return _filter; }
+            get
+            {
+                return _filter;
+            }
 
             set
             {
@@ -1735,8 +1771,9 @@ namespace FairyGUI
                 paintingGraphics.gameObject.layer = value;
             else if (gameObject.layer != value)
             {
-                gameObject.layer = value;
-                if ((this is Container))
+                _SetLayerDirect(value);
+
+                if (this is Container)
                 {
                     int cnt = ((Container)this).numChildren;
                     for (int i = 0; i < cnt; i++)
@@ -1750,12 +1787,17 @@ namespace FairyGUI
             return true;
         }
 
-        internal virtual void _SetLayerDirect(int value)
+        virtual internal void _SetLayerDirect(int value)
         {
-            if (_paintingMode > 0)
-                paintingGraphics.gameObject.layer = value;
-            else
-                gameObject.layer = value;
+            gameObject.layer = value;
+
+            if (graphics != null && graphics.subInstances != null)
+            {
+                foreach (var g in graphics.subInstances)
+                {
+                    g.gameObject.layer = value;
+                }
+            }
         }
 
         virtual public void Dispose()
@@ -1810,6 +1852,39 @@ namespace FairyGUI
                 sb.Append(")");
                 Debug.LogError(sb.ToString());
             }
+        }
+
+        BatchElement _batchElement;
+        virtual public BatchElement AddToBatch(List<BatchElement> batchElements, bool force)
+        {
+            if (graphics != null || force)
+            {
+                if (_batchElement == null)
+                    _batchElement = new BatchElement(this, null);
+                _batchElement.material = material;
+                _batchElement.breakBatch = (_flags & Flags.SkipBatching) != 0;
+                batchElements.Add(_batchElement);
+
+                if (graphics != null && graphics.subInstances != null)
+                {
+                    foreach (var g in graphics.subInstances)
+                    {
+                        var m = g.material;
+                        if (m != null)
+                        {
+                            var subBatchElement = g._batchElement;
+                            if (subBatchElement == null)
+                                subBatchElement = new BatchElement(g, _batchElement.bounds);
+                            subBatchElement.material = m;
+                            batchElements.Add(subBatchElement);
+                        }
+                    }
+                }
+
+                return _batchElement;
+            }
+            else
+                return null;
         }
 
         protected internal class PaintingInfo

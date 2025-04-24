@@ -31,9 +31,11 @@ namespace FairyGUIEditor
 
         public override void OnInspectorGUI()
         {
-            DisplayObject obj = (target as DisplayObjectInfo).displayObject;
+            DisplayObject obj = (target as DisplayObjectInfo)?.displayObject;
             if (obj == null)
+            {
                 return;
+            }
 
             EditorGUILayout.LabelField(obj.GetType().Name + ": " + obj.id, (GUIStyle)"OL Title");
             EditorGUILayout.Separator();
@@ -64,6 +66,11 @@ namespace FairyGUIEditor
                     EditorGUILayout.LabelField(pi.name + "@" + pi.owner.name);
                     EditorGUILayout.EndHorizontal();
                 }
+
+                EditorGUI.BeginChangeCheck();
+                name = EditorGUILayout.TextField("Name", gObj.name);
+                if (EditorGUI.EndChangeCheck())
+                    gObj.name = name;
 
                 if (gObj.parent != null)
                 {
@@ -146,8 +153,8 @@ namespace FairyGUIEditor
                 var colorProperty = objType.GetProperty("color");
                 if (colorProperty != null)
                 {
-                    Color color = (Color)colorProperty.GetValue(gObj);
                     EditorGUI.BeginChangeCheck();
+                    Color color = (Color)colorProperty.GetValue(gObj);
                     color = EditorGUILayout.ColorField("Color", color);
                     if (EditorGUI.EndChangeCheck())
                     {
@@ -173,6 +180,7 @@ namespace FairyGUIEditor
                         gObj.draggable = draggable;
                 }
 
+#if UNITY_2019_1_OR_NEWER
                 TextFormat textFormat = null;
                 if (gObj is GTextField gTxt)
                 {
@@ -260,7 +268,7 @@ namespace FairyGUIEditor
 
                                 for (var i = 0; i < ctl.pageCount; i++)
                                 {
-                                    var btnName = i + ": " + ctl.GetPageName(i);
+                                    var btnName = ctl.GetPageId(i) + ": " + ctl.GetPageName(i);
                                     var btnStyle = new GUIStyle("ButtonMid");
                                     if (ctl.selectedIndex == i)
                                     {
@@ -333,6 +341,7 @@ namespace FairyGUIEditor
                     EditorGUILayout.EndHorizontal();
                     EditorGUI.EndDisabledGroup();
                 }
+#endif
             }
         }
     }

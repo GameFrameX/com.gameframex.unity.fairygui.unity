@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,31 +10,10 @@ namespace FairyGUI
     public class TypingEffect
     {
         protected TextField _textField;
-        protected Vector3[] _backupVerts;
-        protected Vector3[] _vertices;
-
-        protected bool _stroke;
-        protected bool _shadow;
 
         protected int _printIndex;
-        protected int _mainLayerStart;
-        protected int _strokeLayerStart;
-        protected int _strokeDrawDirs;
-        protected int _vertIndex;
-        protected int _mainLayerVertCount;
 
         protected bool _started;
-
-
-        /// <summary>
-        /// 打字完成事件
-        /// </summary>
-        public Action OnComplete;
-
-        /// <summary>
-        /// 打字进度变化事件
-        /// </summary>
-        public Action<float> OnProgress;
 
         /// <summary>
         /// 
@@ -44,7 +22,6 @@ namespace FairyGUI
         public TypingEffect(TextField textField)
         {
             _textField = textField;
-            _textField.EnableCharPositionSupport();
         }
 
         /// <summary>
@@ -54,38 +31,32 @@ namespace FairyGUI
         public TypingEffect(GTextField textField)
         {
             if (textField is GRichTextField)
-            {
                 _textField = ((RichTextField)textField.displayObject).textField;
-            }
             else
-            {
                 _textField = (TextField)textField.displayObject;
-            }
-
-            _textField.EnableCharPositionSupport();
         }
 
         /// <summary>
         /// 总输出次数
         /// </summary>
-        public int TotalTimes
+        public int totalTimes
         {
             get
             {
                 int times = 0;
-                List<TextField.CharPosition> charPositions = _textField.charPositions;
-                for (int i = 0; i < charPositions.Count - 1; i++)
+                for (int i = 0; i < _textField.parsedText.Length; i++)
                 {
-                    if (charPositions[i].imgIndex > 0) //这是一个图片
-                    {
+                    if (!char.IsWhiteSpace(_textField.parsedText[i]))
                         times++;
-                    }
-                    else if (!char.IsWhiteSpace(_textField.parsedText[i]))
+                }
+                if (_textField.richTextField != null)
+                {
+                    for (int i = 0; i < _textField.richTextField.htmlElementCount; i++)
                     {
-                        times++;
+                        if (_textField.richTextField.GetHtmlElementAt(i).isEntity)
+                            times++;
                     }
                 }
-
                 return times;
             }
         }
@@ -95,60 +66,21 @@ namespace FairyGUI
         /// </summary>
         public void Start()
         {
-            _textField.graphics.meshModifier -= OnMeshModified;
-            _textField.Redraw();
-            _textField.graphics.meshModifier += OnMeshModified;
-
-            _stroke = false;
-            _shadow = false;
-            _strokeDrawDirs = 4;
-            _mainLayerStart = 0;
-            _mainLayerVertCount = 0;
-            _printIndex = 0;
-            _vertIndex = 0;
-            _started = true;
-
-            int vertCount = _textField.graphics.mesh.vertexCount;
-            _backupVerts = _textField.graphics.mesh.vertices;
-            if (_vertices == null || _vertices.Length != vertCount)
+            if (_textField.SetTypingEffectPos(0) != -1)
             {
-                _vertices = new Vector3[vertCount];
-            }
+                _started = true;
+                _printIndex = 1;
 
-            Vector3 zero = Vector3.zero;
-            for (int i = 0; i < vertCount; i++)
-            {
-                _vertices[i] = zero;
-            }
-
-            _textField.graphics.mesh.vertices = _vertices;
-
-            //隐藏所有混排的对象
-            if (_textField.richTextField != null)
-            {
-                int ec = _textField.richTextField.htmlElementCount;
-                for (int i = 0; i < ec; i++)
+                //隐藏所有混排的对象
+                if (_textField.richTextField != null)
                 {
-                    _textField.richTextField.ShowHtmlObject(i, false);
+                    int ec = _textField.richTextField.htmlElementCount;
+                    for (int i = 0; i < ec; i++)
+                        _textField.richTextField.ShowHtmlObject(i, false);
                 }
             }
-
-            int charCount = _textField.charPositions.Count;
-            for (int i = 0; i < charCount; i++)
-            {
-                TextField.CharPosition cp = _textField.charPositions[i];
-                _mainLayerVertCount += cp.vertCount;
-            }
-
-            if (_mainLayerVertCount < vertCount) //说明有描边或者阴影
-            {
-                int repeat = vertCount / _mainLayerVertCount;
-                _stroke = repeat > 2;
-                _shadow = repeat % 2 == 0;
-                _mainLayerStart = vertCount - vertCount / repeat;
-                _strokeLayerStart = _shadow ? (vertCount / repeat) : 0;
-                _strokeDrawDirs = repeat > 8 ? 8 : 4;
-            }
+            else
+                _started = false;
         }
 
         /// <summary>
@@ -158,150 +90,45 @@ namespace FairyGUI
         public bool Print()
         {
             if (!_started)
+                return false;
+
+            _printIndex = _textField.SetTypingEffectPos(_printIndex);
+            if (_printIndex != -1)
+                return true;
+            else
             {
+                _started = false;
                 return false;
             }
-
-            List<TextField.CharPosition> charPositions = _textField.charPositions;
-            int listCnt = charPositions.Count;
-
-            while (_printIndex < listCnt - 1) //最后一个是占位的，无效的，所以-1
-            {
-                var cp = charPositions[_printIndex++];
-                if (cp.vertCount > 0)
-                {
-                    Output(cp.vertCount);
-                }
-
-                // 更新进度
-                OnProgress?.Invoke((float)_printIndex / (listCnt - 1));
-                if (cp.imgIndex > 0) //这是一个图片
-                {
-                    _textField.richTextField.ShowHtmlObject(cp.imgIndex - 1, true);
-                    return true;
-                }
-                else if (!char.IsWhiteSpace(_textField.parsedText[_printIndex - 1]))
-                {
-                    return true;
-                }
-            }
-
-            // 打字完成
-            OnComplete?.Invoke();
-            Cancel();
-            return false;
-        }
-
-        private void Output(int vertCount)
-        {
-            var start = _mainLayerStart + _vertIndex;
-            var end = start + vertCount;
-            for (int i = start; i < end; i++)
-            {
-                _vertices[i] = _backupVerts[i];
-            }
-
-            if (_stroke)
-            {
-                start = _strokeLayerStart + _vertIndex;
-                end = start + vertCount;
-                for (int i = start; i < end; i++)
-                {
-                    for (int j = 0; j < _strokeDrawDirs; j++)
-                    {
-                        int k = i + _mainLayerVertCount * j;
-                        _vertices[k] = _backupVerts[k];
-                    }
-                }
-            }
-
-            if (_shadow)
-            {
-                start = _vertIndex;
-                end = start + vertCount;
-                for (int i = start; i < end; i++)
-                {
-                    _vertices[i] = _backupVerts[i];
-                }
-            }
-
-            _textField.graphics.mesh.vertices = _vertices;
-
-            _vertIndex += vertCount;
         }
 
         /// <summary>
         /// 打印的协程。
         /// </summary>
-        /// <param name="interval">每个字符输出的时间间隔，单位秒</param>
+        /// <param name="interval">每个字符输出的时间间隔</param>
         /// <returns></returns>
         public IEnumerator Print(float interval)
         {
             while (Print())
-            {
                 yield return new WaitForSeconds(interval);
-            }
         }
 
         /// <summary>
         /// 使用固定时间间隔完成整个打印过程。
         /// </summary>
-        /// <param name="interval">每个字符输出的时间间隔，单位秒</param>
+        /// <param name="interval"></param>
         public void PrintAll(float interval)
         {
-            var coroutine = Print(interval);
-            Timers.inst.StopCoroutine(coroutine);
-            Timers.inst.StartCoroutine(coroutine);
+            Timers.inst.StartCoroutine(Print(interval));
         }
 
-        /// <summary>
-        /// 快速完成方法
-        /// </summary>
-        public void CompleteInstantly()
-        {
-            PrintAll(0.005f);
-        }
-
-        /// <summary>
-        /// 取消
-        /// </summary>
         public void Cancel()
         {
             if (!_started)
-            {
                 return;
-            }
 
             _started = false;
-            _textField.graphics.meshModifier -= OnMeshModified;
-            _textField.graphics.SetMeshDirty();
-        }
-
-        /// <summary>
-        /// 当打字过程中，文本可能会由于字体纹理更改而发生字体重建，要处理这种情况。
-        /// 图片对象不需要处理，因为HtmlElement.status里设定的隐藏标志不会因为Mesh更新而被冲掉。
-        /// </summary>
-        void OnMeshModified()
-        {
-            if (_textField.graphics.mesh.vertexCount != _backupVerts.Length) //可能文字都改了
-            {
-                Cancel();
-                return;
-            }
-
-            _backupVerts = _textField.graphics.mesh.vertices;
-
-            int vertCount = _vertices.Length;
-            Vector3 zero = Vector3.zero;
-            for (int i = 0; i < vertCount; i++)
-            {
-                if (_vertices[i] != zero)
-                {
-                    _vertices[i] = _backupVerts[i];
-                }
-            }
-
-            _textField.graphics.mesh.vertices = _vertices;
+            _textField.SetTypingEffectPos(-1);
         }
     }
 }

@@ -378,7 +378,10 @@ namespace FairyGUI
         /// </summary>
         public NTexture texture
         {
-            get { return _content.texture; }
+            get
+            {
+                return _content.texture;
+            }
 
             set
             {

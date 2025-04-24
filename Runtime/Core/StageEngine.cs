@@ -49,6 +49,7 @@ namespace FairyGUI
             {
                 beingQuit = true;
                 UIPackage.RemoveAllPackages();
+                Stage.inst.Dispose();
             }
         }
     }

@@ -109,10 +109,12 @@ namespace FairyGUI.Utils
                     fromPool = true;
                 }
                 else
-                if (HtmlSelect.resource != null)
-                    ret = new HtmlSelect();
-                else
-                    Debug.LogWarning("FairyGUI: Set HtmlSelect.resource first");
+                {
+                    if (HtmlSelect.resource != null)
+                        ret = new HtmlSelect();
+                    else
+                        Debug.LogWarning("FairyGUI: Set HtmlSelect.resource first");
+                }
             }
 
             //Debug.Log("from=" + fromPool);

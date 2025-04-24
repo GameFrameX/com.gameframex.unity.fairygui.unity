@@ -21,8 +21,6 @@ namespace FairyGUI
         protected List<RendererInfo> _renderers;
         protected Dictionary<Material, Material> _materialsBackup;
         protected Canvas _canvas;
-        protected List<Canvas> _subCanvas;
-        protected int _subCanvasIndex = 0;
         protected bool _cloneMaterial;
         protected bool _shouldCloneMaterial;
 
@@ -40,8 +38,6 @@ namespace FairyGUI
         /// </summary>
         public GoWrapper()
         {
-            // _flags |= Flags.SkipBatching;
-
             _renderers = new List<RendererInfo>();
             _materialsBackup = new Dictionary<Material, Material>();
 
@@ -80,9 +76,6 @@ namespace FairyGUI
         /// <param name="cloneMaterial">如果true，则复制材质，否则直接使用sharedMaterial。</param>
         public void SetWrapTarget(GameObject target, bool cloneMaterial)
         {
-            // set Flags.SkipBatching only target not null
-            if (target == null) _flags &= ~Flags.SkipBatching;
-            else _flags |= Flags.SkipBatching;
             InvalidateBatchingState();
 
             RecoverMaterials();
@@ -92,7 +85,6 @@ namespace FairyGUI
                 _wrapTarget.transform.SetParent(null, false);
 
             _canvas = null;
-            _subCanvas = null;
             _wrapTarget = target;
             _shouldCloneMaterial = false;
             _renderers.Clear();
@@ -111,10 +103,6 @@ namespace FairyGUI
                     rt.pivot = new Vector2(0, 1);
                     rt.position = new Vector3(0, 0, 0);
                     this.SetSize(rt.rect.width, rt.rect.height);
-
-                    _subCanvas = new List<Canvas>();
-                    SearchChildrenCanvas(_canvas.transform);
-                    ResortChildrenCanvas();
                 }
                 else
                 {
@@ -125,63 +113,20 @@ namespace FairyGUI
                 SetGoLayers(this.layer);
             }
         }
-        
-        internal override void _SetLayerDirect(int value)
-        {  
-            if (_paintingMode > 0)
-            {
-                paintingGraphics.gameObject.layer = value;
-            }
-            else
-            {
-                gameObject.layer = value;
-                if (_wrapTarget != null) //这个if是为了在GoWrapper里使用模糊效果
-                {
-                    _wrapTarget.layer = value;
-                    var tfs = _wrapTarget.GetComponentInChildren<Transform>(true);
-                    foreach (Transform tf in tfs)
-                    {
-                        tf.gameObject.layer = value;
-                    }
-                }
-            }
-        }
-        
-        private void SearchChildrenCanvas(Transform rootTransform)
+
+        override internal void _SetLayerDirect(int value)
         {
-            for (int i = 0; i < rootTransform.childCount; i++)
+            gameObject.layer = value;
+            if (_wrapTarget != null)//这个if是为了在GoWrapper里使用模糊效果
             {
-                var transform = rootTransform.GetChild(i);
-                var canvas = transform.GetComponent<Canvas>();
-                if (canvas != null)
+                _wrapTarget.layer = value;
+                foreach (Transform tf in _wrapTarget.GetComponentsInChildren<Transform>(true))
                 {
-                    if (canvas.overrideSorting)
-                    {
-                        _subCanvas.Add(canvas);
-                    }
+                    tf.gameObject.layer = value;
                 }
-                SearchChildrenCanvas(transform);
             }
         }
 
-
-        private void ResortChildrenCanvas()
-        {
-            _subCanvas.Sort((canvas, canvas1) => canvas.sortingOrder - canvas1.sortingOrder);
-            _subCanvasIndex = 0;
-
-            for (int i = 0; i < _subCanvas.Count; i++)
-            {
-                if (_subCanvas[i].sortingOrder >= _canvas.sortingOrder)
-                {
-                    _subCanvasIndex = i;
-                    break;
-                }
-
-                _subCanvasIndex++;
-            }
-        }
-        
         /// <summary>
         /// GoWrapper will cache all renderers of your gameobject on constructor. 
         /// If your gameobject change laterly, call this function to update the cache.
@@ -313,52 +258,40 @@ namespace FairyGUI
             _materialsBackup.Clear();
         }
 
-        public override int renderingOrder
+        public override void SetRenderingOrder(UpdateContext context, bool inBatch)
         {
-            get
-            {
-                return base.renderingOrder;
-            }
-            set
-            {
-                base.renderingOrder = value;
+            base.SetRenderingOrder(context, inBatch);
 
-                if (_canvas != null)
+            int value = base.renderingOrder;
+
+            if (_canvas != null)
+                _canvas.sortingOrder = value;
+            else
+            {
+                int cnt = _renderers.Count;
+                for (int i = 0; i < cnt; i++)
                 {
-                    if (_subCanvas != null && _subCanvas.Count>0)
+                    RendererInfo ri = _renderers[i];
+                    if (ri.renderer != null)
                     {
-                        for (int i = 0; i < _subCanvas.Count; i++)
-                        {
-                            if (i == _subCanvasIndex)
-                            {
-                                _canvas.sortingOrder = value;
-                                value++;
-                            }
-                            _subCanvas[i].sortingOrder = value;
-                            value++;
-                        }
-                        UpdateContext.current.renderingOrder = value;
-                    }
-                    else
-                    {
-                        _canvas.sortingOrder = value;
-                    }
-                }
-                else
-                {
-                    int cnt = _renderers.Count;
-                    for (int i = 0; i < cnt; i++)
-                    {
-                        RendererInfo ri = _renderers[i];
-                        if (ri.renderer != null)
-                        {
-                            if (i != 0 && _renderers[i].sortingOrder != _renderers[i - 1].sortingOrder)
-                                value = UpdateContext.current.renderingOrder++;
-                            ri.renderer.sortingOrder = value;
-                        }
+                        if (i != 0 && _renderers[i].sortingOrder != _renderers[i - 1].sortingOrder)
+                            value = context.renderingOrder++;
+                        ri.renderer.sortingOrder = value;
                     }
                 }
             }
+        }
+
+        public override BatchElement AddToBatch(List<BatchElement> batchElements, bool force)
+        {
+            if (this._wrapTarget != null)
+            {
+                BatchElement batchElement = base.AddToBatch(batchElements, true);
+                batchElement.breakBatch = true;
+                return batchElement;
+            }
+            else
+                return null;
         }
 
         override protected bool SetLayer(int value, bool fromParent)

@@ -341,7 +341,10 @@ namespace FairyGUI
         public float x
         {
             get { return _x; }
-            set { SetPosition(value, _y, _z); }
+            set
+            {
+                SetPosition(value, _y, _z);
+            }
         }
 
         /// <summary>
@@ -350,7 +353,10 @@ namespace FairyGUI
         public float y
         {
             get { return _y; }
-            set { SetPosition(_x, value, _z); }
+            set
+            {
+                SetPosition(_x, value, _z);
+            }
         }
 
         /// <summary>
@@ -359,7 +365,10 @@ namespace FairyGUI
         public float z
         {
             get { return _z; }
-            set { SetPosition(_x, _y, value); }
+            set
+            {
+                SetPosition(_x, _y, value);
+            }
         }
 
         /// <summary>
@@ -496,8 +505,14 @@ namespace FairyGUI
         /// </summary>
         public float width
         {
-            get { return _width; }
-            set { SetSize(value, _rawHeight); }
+            get
+            {
+                return _width;
+            }
+            set
+            {
+                SetSize(value, _rawHeight);
+            }
         }
 
         /// <summary>
@@ -505,8 +520,14 @@ namespace FairyGUI
         /// </summary>
         public float height
         {
-            get { return _height; }
-            set { SetSize(_rawWidth, value); }
+            get
+            {
+                return _height;
+            }
+            set
+            {
+                SetSize(_rawWidth, value);
+            }
         }
 
         /// <summary>
@@ -618,7 +639,10 @@ namespace FairyGUI
         /// </summary>
         public float xMin
         {
-            get { return _pivotAsAnchor ? (_x - _width * _pivotX) : _x; }
+            get
+            {
+                return _pivotAsAnchor ? (_x - _width * _pivotX) : _x;
+            }
             set
             {
                 if (_pivotAsAnchor)
@@ -633,7 +657,10 @@ namespace FairyGUI
         /// </summary>
         public float yMin
         {
-            get { return _pivotAsAnchor ? (_y - _height * _pivotY) : _y; }
+            get
+            {
+                return _pivotAsAnchor ? (_y - _height * _pivotY) : _y;
+            }
             set
             {
                 if (_pivotAsAnchor)
@@ -649,7 +676,10 @@ namespace FairyGUI
         public float scaleX
         {
             get { return _scaleX; }
-            set { SetScale(value, _scaleY); }
+            set
+            {
+                SetScale(value, _scaleY);
+            }
         }
 
         /// <summary>
@@ -658,7 +688,10 @@ namespace FairyGUI
         public float scaleY
         {
             get { return _scaleY; }
-            set { SetScale(_scaleX, value); }
+            set
+            {
+                SetScale(_scaleX, value);
+            }
         }
 
         /// <summary>
@@ -713,7 +746,10 @@ namespace FairyGUI
         public float pivotX
         {
             get { return _pivotX; }
-            set { SetPivot(value, _pivotY, _pivotAsAnchor); }
+            set
+            {
+                SetPivot(value, _pivotY, _pivotAsAnchor);
+            }
         }
 
         /// <summary>
@@ -722,7 +758,10 @@ namespace FairyGUI
         public float pivotY
         {
             get { return _pivotY; }
-            set { SetPivot(_pivotX, value, _pivotAsAnchor); }
+            set
+            {
+                SetPivot(_pivotX, value, _pivotAsAnchor);
+            }
         }
 
         /// <summary>
@@ -740,7 +779,10 @@ namespace FairyGUI
         public bool pivotAsAnchor
         {
             get { return _pivotAsAnchor; }
-            set { SetPivot(_pivotX, _pivotY, value); }
+            set
+            {
+                SetPivot(_pivotX, _pivotY, value);
+            }
         }
 
         /// <summary>
@@ -777,7 +819,10 @@ namespace FairyGUI
         /// </summary>
         public bool touchable
         {
-            get { return _touchable; }
+            get
+            {
+                return _touchable;
+            }
             set
             {
                 if (_touchable != value)
@@ -796,7 +841,10 @@ namespace FairyGUI
         /// </summary>
         public bool grayed
         {
-            get { return _grayed; }
+            get
+            {
+                return _grayed;
+            }
             set
             {
                 if (_grayed != value)
@@ -813,7 +861,10 @@ namespace FairyGUI
         /// </summary>
         public bool enabled
         {
-            get { return !_grayed && _touchable; }
+            get
+            {
+                return !_grayed && _touchable;
+            }
             set
             {
                 this.grayed = !value;
@@ -826,7 +877,10 @@ namespace FairyGUI
         /// </summary>
         public float rotation
         {
-            get { return _rotation; }
+            get
+            {
+                return _rotation;
+            }
             set
             {
                 _rotation = value;
@@ -841,7 +895,10 @@ namespace FairyGUI
         /// </summary>
         public float rotationX
         {
-            get { return _rotationX; }
+            get
+            {
+                return _rotationX;
+            }
             set
             {
                 _rotationX = value;
@@ -855,7 +912,10 @@ namespace FairyGUI
         /// </summary>
         public float rotationY
         {
-            get { return _rotationY; }
+            get
+            {
+                return _rotationY;
+            }
             set
             {
                 _rotationY = value;
@@ -869,7 +929,11 @@ namespace FairyGUI
         /// </summary>
         public float alpha
         {
-            get { return _alpha; }
+
+            get
+            {
+                return _alpha;
+            }
 
             set
             {
@@ -884,7 +948,10 @@ namespace FairyGUI
         /// </summary>
         public bool visible
         {
-            get { return _visible; }
+            get
+            {
+                return _visible;
+            }
 
             set
             {
@@ -902,17 +969,26 @@ namespace FairyGUI
 
         internal bool internalVisible
         {
-            get { return _internalVisible && (group == null || group.internalVisible); }
+            get
+            {
+                return _internalVisible && (group == null || group.internalVisible);
+            }
         }
 
         internal bool internalVisible2
         {
-            get { return _visible && (group == null || group.internalVisible2); }
+            get
+            {
+                return _visible && (group == null || group.internalVisible2);
+            }
         }
 
         internal bool internalVisible3
         {
-            get { return _visible && _internalVisible; }
+            get
+            {
+                return _visible && _internalVisible;
+            }
         }
 
         /// <summary>

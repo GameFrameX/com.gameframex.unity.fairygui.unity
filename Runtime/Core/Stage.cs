@@ -189,13 +189,7 @@ namespace FairyGUI
         {
             get { return _inst != null && _inst.touchTarget != null; }
         }
-        /// <summary>
-        /// The scale of the mouse scroll delta.
-        /// </summary>
-        public static float mouseWheelScale
-        {
-            get; set;
-        }
+
         /// <summary>
         /// As unity does not provide ways to detect this, you should set it by yourself. 
         /// This will effect:
@@ -203,6 +197,11 @@ namespace FairyGUI
         /// 2. mouse wheel speed.
         /// </summary>
         public static float devicePixelRatio { get; set; }
+
+        /// <summary>
+        /// The scale of the mouse scroll delta.
+        /// </summary>
+        public static float mouseWheelScale { get; set; }
 
         /// <summary>
         /// 
@@ -1048,6 +1047,7 @@ namespace FairyGUI
                 HandleCustomInput();
                 _customInput = false;
             }
+            else
             {
                 if (!_touchSupportDetected)
                 {
@@ -1064,6 +1064,7 @@ namespace FairyGUI
                     else
                         _touchSupportDetected = true;
                 }
+
                 if (touchScreen)
                     HandleTouchEvents();
                 else
@@ -1272,7 +1273,6 @@ namespace FairyGUI
 
         void HandleTouchEvents()
         {
-            int tc = Input.touchCount;
 #if FAIRYGUI_INPUT_SYSTEM
             foreach (Touch uTouch in Touch.activeTouches)
             {

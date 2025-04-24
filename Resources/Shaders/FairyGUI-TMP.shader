@@ -83,6 +83,9 @@ Shader "FairyGUI/TextMeshPro/Distance Field"
         _StencilReadMask ("Stencil Read Mask", Float) = 255
 
         _ColorMask ("Color Mask", Float) = 15
+
+        _BlendSrcFactor ("Blend SrcFactor", Float) = 5
+        _BlendDstFactor ("Blend DstFactor", Float) = 10
     }
 
     SubShader
@@ -112,7 +115,8 @@ Shader "FairyGUI/TextMeshPro/Distance Field"
             Mode Off
         }
         ZTest [unity_GUIZTestMode]
-        Blend One OneMinusSrcAlpha
+
+        Blend [_BlendSrcFactor] [_BlendDstFactor]
         ColorMask [_ColorMask]
 
         Pass
@@ -121,14 +125,14 @@ Shader "FairyGUI/TextMeshPro/Distance Field"
             #pragma target 3.0
             #pragma vertex VertShader
             #pragma fragment PixShader
-            #pragma shader_feature __ BEVEL_ON
+            //#pragma shader_feature __ BEVEL_ON
             #pragma shader_feature __ UNDERLAY_ON UNDERLAY_INNER
-            #pragma shader_feature __ GLOW_ON
+            //#pragma shader_feature __ GLOW_ON
 
             //#pragma multi_compile __ UNITY_UI_CLIP_RECT
             //#pragma multi_compile __ UNITY_UI_ALPHACLIP
-            #pragma multi_compile NOT_GRAYED GRAYED
-            #pragma multi_compile NOT_CLIPPED CLIPPED SOFT_CLIPPED
+            #pragma multi_compile _ GRAYED
+            #pragma multi_compile _ CLIPPED SOFT_CLIPPED
 
             #include "UnityCG.cginc"
             #include "UnityUI.cginc"
@@ -247,68 +251,6 @@ Shader "FairyGUI/TextMeshPro/Distance Field"
                 return faceColor;
             }
 
-            float3 GetSurfaceNormal(float4 h, float bias)
-            {
-                bool raisedBevel = step(1, fmod(_ShaderFlags, 2));
-
-                h += bias + _BevelOffset;
-
-                float bevelWidth = max(.01, _OutlineWidth + _BevelWidth);
-
-                // Track outline
-                h -= .5;
-                h /= bevelWidth;
-                h = saturate(h + .5);
-
-                if (raisedBevel) h = 1 - abs(h * 2.0 - 1.0);
-                h = lerp(h, sin(h * 3.141592 / 2.0), _BevelRoundness);
-                h = min(h, 1.0 - _BevelClamp);
-                h *= _Bevel * bevelWidth * _GradientScale * -2.0;
-
-                float3 va = normalize(float3(1.0, 0.0, h.y - h.x));
-                float3 vb = normalize(float3(0.0, -1.0, h.w - h.z));
-
-                return cross(va, vb);
-            }
-
-            float3 GetSurfaceNormal(float2 uv, float bias, float3 delta)
-            {
-                // Read "height field"
-                float4 h = {
-                    tex2D(_MainTex, uv - delta.xz).a,
-                    tex2D(_MainTex, uv + delta.xz).a,
-                    tex2D(_MainTex, uv - delta.zy).a,
-                    tex2D(_MainTex, uv + delta.zy).a
-                };
-
-                return GetSurfaceNormal(h, bias);
-            }
-
-            float3 GetSpecular(float3 n, float3 l)
-            {
-                float spec = pow(max(0.0, dot(n, l)), _Reflectivity);
-                return _SpecularColor.rgb * spec * _SpecularPower;
-            }
-
-            float4 GetGlowColor(float d, float scale)
-            {
-                float glow = d - (_GlowOffset * _ScaleRatioB) * 0.5 * scale;
-                float t = lerp(_GlowInner, (_GlowOuter * _ScaleRatioB), step(0.0, glow)) * 0.5 * scale;
-                glow = saturate(abs(glow / (1.0 + t)));
-                glow = 1.0 - pow(glow, _GlowPower);
-                glow *= sqrt(min(1.0, t)); // Fade off glow thinner than 1 screen pixel
-                return float4(_GlowColor.rgb, saturate(_GlowColor.a * glow * 2));
-            }
-
-            float4 BlendARGB(float4 overlying, float4 underlying)
-            {
-                overlying.rgb *= overlying.a;
-                underlying.rgb *= underlying.a;
-                float3 blended = overlying.rgb + ((1 - overlying.a) * underlying.rgb);
-                float alpha = underlying.a + (1 - underlying.a) * overlying.a;
-                return float4(blended, alpha);
-            }
-
             //end copy
 
 
@@ -386,9 +328,9 @@ Shader "FairyGUI/TextMeshPro/Distance Field"
 
                 float alphaClip = (1.0 - _OutlineWidth * _ScaleRatioA - _OutlineSoftness * _ScaleRatioA);
 
-                #if GLOW_ON
-			alphaClip = min(alphaClip, 1.0 - _GlowOffset * _ScaleRatioB - _GlowOuter * _ScaleRatioB);
-                #endif
+                // #if GLOW_ON
+                // 	alphaClip = min(alphaClip, 1.0 - _GlowOffset * _ScaleRatioB - _GlowOuter * _ScaleRatioB);
+                // #endif
 
                 alphaClip = alphaClip / 2.0 - (.5 / scale) - weight;
 
@@ -411,8 +353,8 @@ Shader "FairyGUI/TextMeshPro/Distance Field"
 
                 // Support for texture tiling and offset
                 float2 textureUV = UnpackUV(input.texcoord1.x);
-                float2 faceUV = TRANSFORM_TEX(textureUV, _FaceTex);
-                float2 outlineUV = TRANSFORM_TEX(textureUV, _OutlineTex);
+                //float2 faceUV = TRANSFORM_TEX(textureUV, _FaceTex);
+                //float2 outlineUV = TRANSFORM_TEX(textureUV, _OutlineTex);
 
                 output.position = vPosition;
                 #if !defined(UNITY_COLORSPACE_GAMMA) && (UNITY_VERSION >= 550)
@@ -429,7 +371,7 @@ Shader "FairyGUI/TextMeshPro/Distance Field"
 			output.texcoord2 = float4(input.texcoord0 + bOffset, bScale, bBias);
 			output.underlayColor = underlayColor;
                 #endif
-                output.textures = float4(faceUV, outlineUV);
+                //output.textures = float4(faceUV, outlineUV);
 
                 #ifdef CLIPPED
 			output.mask = mul(unity_ObjectToWorld, input.position).xy * _ClipBox.zw + _ClipBox.xy;
@@ -466,29 +408,29 @@ Shader "FairyGUI/TextMeshPro/Distance Field"
 
                 faceColor.rgb *= input.color.rgb;
 
-                faceColor *= tex2D(_FaceTex, input.textures.xy + float2(_FaceUVSpeedX, _FaceUVSpeedY) * _Time.y);
-                outlineColor *= tex2D(_OutlineTex, input.textures.zw + float2(_OutlineUVSpeedX, _OutlineUVSpeedY) * _Time.y);
+                //faceColor *= tex2D(_FaceTex, input.textures.xy + float2(_FaceUVSpeedX, _FaceUVSpeedY) * _Time.y);
+                //outlineColor *= tex2D(_OutlineTex, input.textures.zw + float2(_OutlineUVSpeedX, _OutlineUVSpeedY) * _Time.y);
 
                 faceColor = GetColor(sd, faceColor, outlineColor, outline, softness);
 
-                #if BEVEL_ON
-			float3 dxy = float3(0.5 / _TextureWidth, 0.5 / _TextureHeight, 0);
-			float3 n = GetSurfaceNormal(input.atlas, weight, dxy);
+                // #if BEVEL_ON
+                // 	float3 dxy = float3(0.5 / _TextureWidth, 0.5 / _TextureHeight, 0);
+                // 	float3 n = GetSurfaceNormal(input.atlas, weight, dxy);
 
-			float3 bump = UnpackNormal(tex2D(_BumpMap, input.textures.xy + float2(_FaceUVSpeedX, _FaceUVSpeedY) * _Time.y)).xyz;
-			bump *= lerp(_BumpFace, _BumpOutline, saturate(sd + outline * 0.5));
-			n = normalize(n- bump);
+                // 	float3 bump = UnpackNormal(tex2D(_BumpMap, input.textures.xy + float2(_FaceUVSpeedX, _FaceUVSpeedY) * _Time.y)).xyz;
+                // 	bump *= lerp(_BumpFace, _BumpOutline, saturate(sd + outline * 0.5));
+                // 	n = normalize(n- bump);
 
-			float3 light = normalize(float3(sin(_LightAngle), cos(_LightAngle), -1.0));
+                // 	float3 light = normalize(float3(sin(_LightAngle), cos(_LightAngle), -1.0));
 
-			float3 col = GetSpecular(n, light);
-			faceColor.rgb += col*faceColor.a;
-			faceColor.rgb *= 1-(dot(n, light)*_Diffuse);
-			faceColor.rgb *= lerp(_Ambient, 1, n.z*n.z);
+                // 	float3 col = GetSpecular(n, light);
+                // 	faceColor.rgb += col*faceColor.a;
+                // 	faceColor.rgb *= 1-(dot(n, light)*_Diffuse);
+                // 	faceColor.rgb *= lerp(_Ambient, 1, n.z*n.z);
 
-			fixed4 reflcol = texCUBE(_Cube, reflect(input.viewDir, -n));
-			faceColor.rgb += reflcol.rgb * lerp(_ReflectFaceColor.rgb, _ReflectOutlineColor.rgb, saturate(sd + outline * 0.5)) * faceColor.a;
-                #endif
+                // 	fixed4 reflcol = texCUBE(_Cube, reflect(input.viewDir, -n));
+                // 	faceColor.rgb += reflcol.rgb * lerp(_ReflectFaceColor.rgb, _ReflectOutlineColor.rgb, saturate(sd + outline * 0.5)) * faceColor.a;
+                // #endif
 
                 #if UNDERLAY_ON
 			float d = tex2D(_MainTex, input.texcoord2.xy).a * input.texcoord2.z;
@@ -500,10 +442,10 @@ Shader "FairyGUI/TextMeshPro/Distance Field"
 			faceColor += input.underlayColor * (1 - saturate(d - input.texcoord2.w)) * saturate(1 - sd) * (1 - faceColor.a);
                 #endif
 
-                #if GLOW_ON
-			float4 glowColor = GetGlowColor(sd, scale);
-			faceColor.rgb += glowColor.rgb * glowColor.a;
-                #endif
+                // #if GLOW_ON
+                // 	float4 glowColor = GetGlowColor(sd, scale);
+                // 	faceColor.rgb += glowColor.rgb * glowColor.a;
+                // #endif
 
                 // Alternative implementation to UnityGet2DClipping with support for softness.
                 // #if UNITY_UI_CLIP_RECT
@@ -526,25 +468,19 @@ Shader "FairyGUI/TextMeshPro/Distance Field"
                 #endif
 
                 #ifdef SOFT_CLIPPED
-			float2 factor = float2(0,0);
-			if(input.mask.x<0)
-				factor.x = (1.0-abs(input.mask.x)) * _ClipSoftness.x;
-			else
-				factor.x = (1.0-input.mask.x) * _ClipSoftness.z;
-			if(input.mask.y<0)
-				factor.y = (1.0-abs(input.mask.y)) * _ClipSoftness.w;
-			else
-				factor.y = (1.0-input.mask.y) * _ClipSoftness.y;
+			float2 factor;
+			float2 condition = step(input.mask.xy, 0);
+			float4 clip_softness = _ClipSoftness * float4(condition, 1 - condition);
+			factor.xy = (1.0 - abs(input.mask.xy)) * (clip_softness.xw + clip_softness.zy);
 			faceColor.a *= clamp(min(factor.x, factor.y), 0.0, 1.0);
 			clip(faceColor.a - 0.001);
                 #endif
-
-                return faceColor * input.color.a;
+                return half4(faceColor.rgb, input.color.a * faceColor.a);
             }
             ENDCG
         }
     }
 
-    Fallback "TextMeshPro/Mobile/Distance Field"
+    //Fallback "TextMeshPro/Mobile/Distance Field"
     CustomEditor "TMPro.EditorUtilities.TMP_SDFShaderGUI"
 }
