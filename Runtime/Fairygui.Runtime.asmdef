@@ -1,51 +1,53 @@
 {
-    "name": "FairyGUI.Runtime",
-    "rootNamespace": "FairyGUI",
-    "references": [
-        "spine-unity.Runtime",
-        "StarkWebGL",
-        "Wx",
-        "Unity.InputSystem",
-        "Unity.TextMeshPro"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [
-        {
-            "name": "com.qq.weixin.minigame",
-            "expression": "",
-            "define": "WECHAT_MINI_GAME"
-        },
-        {
-            "name": "com.bytedance.starksdk",
-            "expression": "",
-            "define": "DOUYIN_MINI_GAME"
-        },
-        {
-            "name": "com.unity.textmeshpro",
-            "expression": "",
-            "define": "FAIRYGUI_TMPRO"
-        },
-        {
-            "name": "com.gameframex.unity.esotericsoftware.spine.spine-unity",
-            "expression": "",
-            "define": "FAIRYGUI_SPINE"
-        },
-        {
-            "name": "com.esotericsoftware.spine.spine-csharp",
-            "expression": "",
-            "define": "FAIRYGUI_SPINE"
-        },
-        {
-            "name": "com.unity.inputsystem",
-            "expression": "",
-            "define": "FAIRYGUI_INPUT_SYSTEM"
-        }
-    ],
-    "noEngineReferences": false
+  "name": "FairyGUI.Runtime",
+  "rootNamespace": "FairyGUI",
+  "references": [
+    "spine-unity.Runtime",
+    "StarkWebGL",
+    "spine-unity",
+    "spine-csharp",
+    "Wx",
+    "Unity.InputSystem",
+    "Unity.TextMeshPro"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [
+    {
+      "name": "com.qq.weixin.minigame",
+      "expression": "",
+      "define": "WECHAT_MINI_GAME"
+    },
+    {
+      "name": "com.bytedance.starksdk",
+      "expression": "",
+      "define": "DOUYIN_MINI_GAME"
+    },
+    {
+      "name": "com.unity.textmeshpro",
+      "expression": "",
+      "define": "FAIRYGUI_TMPRO"
+    },
+    {
+      "name": "com.gameframex.unity.esotericsoftware.spine.spine-unity",
+      "expression": "",
+      "define": "FAIRYGUI_SPINE"
+    },
+    {
+      "name": "com.esotericsoftware.spine.spine-csharp",
+      "expression": "",
+      "define": "FAIRYGUI_SPINE"
+    },
+    {
+      "name": "com.unity.inputsystem",
+      "expression": "",
+      "define": "FAIRYGUI_INPUT_SYSTEM"
+    }
+  ],
+  "noEngineReferences": false
 }
