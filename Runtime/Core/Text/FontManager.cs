@@ -162,6 +162,7 @@ namespace FairyGUI
         static void InitializeOnLoad()
         {
             Clear();
+            _checkTextMeshPro = false;
         }
 #endif
     }

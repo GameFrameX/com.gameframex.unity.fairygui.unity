@@ -132,9 +132,6 @@ Shader "FairyGUI/TextMeshPro/Distance Field"
 
             #include "UnityCG.cginc"
             #include "UnityUI.cginc"
-            //#include "Assets/TextMesh Pro/Resources/Shaders/TMPro_Properties.cginc"
-            //#include "Assets/TextMesh Pro/Resources/Shaders/TMPro.cginc"
-            #include "Packages/com.unity.textmeshpro/Editor Resources/Shaders/TMP_Properties.cginc"
 
             //begin copy
             //#include "Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc"
@@ -363,7 +360,7 @@ Shader "FairyGUI/TextMeshPro/Distance Field"
             {
                 pixel_t output;
 
-                UNITY_INITIALIZE_OUTPUT(pixel_t, output);
+                    UNITY_INITIALIZE_OUTPUT(pixel_t, output);
                 UNITY_SETUP_INSTANCE_ID(input);
                 UNITY_TRANSFER_INSTANCE_ID(input, output);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
