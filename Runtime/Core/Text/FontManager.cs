@@ -10,6 +10,7 @@ namespace FairyGUI
     public class FontManager
     {
         public static Dictionary<string, BaseFont> sFontFactory = new Dictionary<string, BaseFont>();
+        static bool _checkTextMeshPro;
 
         /// <summary>
         /// 
@@ -95,12 +96,26 @@ namespace FairyGUI
                 font.name = name;
                 sFontFactory.Add(name, font);
                 ((TMPFont)font).fontAsset = (TMPro.TMP_FontAsset)asset;
+                if (!_checkTextMeshPro)
+                {
+                    _checkTextMeshPro = true;
+                    if (ShaderConfig.Get("TextMeshPro/Distance Field") == null)
+                    {
+                        Debug.LogWarning("Missing TMP_SDF.shader, please import the TMP essential resources.");
+                    }
+                }
             }
 #endif
             else
             {
                 if (asset.GetType().Name.Contains("TMP_FontAsset"))
-                    Debug.LogWarning("To enable TextMeshPro support, add script define symbol: FAIRYGUI_TMPRO");
+                {
+                    if (!_checkTextMeshPro)
+                    {
+                        _checkTextMeshPro = true;
+                        Debug.LogWarning("To enable TextMeshPro support, add script define symbol: FAIRYGUI_TMPRO");
+                    }
+                }
 
                 return Fallback(name);
             }
