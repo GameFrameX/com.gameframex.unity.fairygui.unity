@@ -521,6 +521,7 @@ namespace FairyGUI
                     HitTestContext.screenPoint = p;
                 }
             }
+
             HitTestContext.worldPoint = StageCamera.main.ScreenToWorldPoint(HitTestContext.screenPoint);
             HitTestContext.direction = Vector3.back;
             HitTestContext.forTouch = forTouch;
