@@ -32,6 +32,32 @@ namespace FairyGUI
             _textField.wordWrap = false;
         }
 
+        public override BlendMode blendMode
+        {
+            get
+            {
+                if (displayObject != null)
+                {
+                    return displayObject.blendMode;
+                }
+                else
+                {
+#if FAIRYGUI_TMPRO
+                    return BlendMode.One_OneMinusSrcAlpha;
+#else
+                    return BlendMode.None;
+#endif
+                }
+            }
+            set
+            {
+                if (displayObject != null)
+                {
+                    displayObject.blendMode = value;
+                }
+            }
+        }
+
         override protected void CreateDisplayObject()
         {
             _textField = new TextField();
@@ -166,9 +192,11 @@ namespace FairyGUI
                     if (!_templateVars.TryGetValue(tag, out value))
                         value = "";
                 }
+
                 buffer.Append(value);
                 pos1 = pos2 + 1;
             }
+
             if (pos1 < template.Length)
                 buffer.Append(template, pos1, template.Length - pos1);
 
@@ -180,10 +208,7 @@ namespace FairyGUI
         /// </summary>
         public TextFormat textFormat
         {
-            get
-            {
-                return _textField.textFormat;
-            }
+            get { return _textField.textFormat; }
             set
             {
                 _textField.textFormat = value;
@@ -197,10 +222,7 @@ namespace FairyGUI
         /// </summary>
         public Color color
         {
-            get
-            {
-                return _textField.textFormat.color;
-            }
+            get { return _textField.textFormat.color; }
             set
             {
                 if (_textField.textFormat.color != value)
@@ -362,7 +384,7 @@ namespace FairyGUI
             {
                 if (_textField.autoSize == AutoSizeType.Height)
                 {
-                    displayObject.width = this.width;//先调整宽度，让文本重排
+                    displayObject.width = this.width; //先调整宽度，让文本重排
                     if (_text != string.Empty) //文本为空时，1是本来就不需要调整， 2是为了防止改掉文本为空时的默认高度，造成关联错误
                         SetSizeDirectly(this.width, displayObject.height);
                 }
