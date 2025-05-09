@@ -87,6 +87,26 @@ namespace FairyGUI
         }
 
         /// <summary>
+        /// 重置事件监听器。注册前先移除再添加
+        /// </summary>
+        /// <param name="callback">事件回调</param>
+        public void Reset(EventCallback0 callback)
+        {
+            _bridge.Remove(callback);
+            _bridge.Add(callback);
+        }
+
+        /// <summary>
+        /// 重置事件监听器。注册前先移除再添加
+        /// </summary>
+        /// <param name="callback">事件回调</param>
+        public void Reset(EventCallback1 callback)
+        {
+            _bridge.Remove(callback);
+            _bridge.Add(callback);
+        }
+
+        /// <summary>
         /// 设置事件监听器。
         /// </summary>
         /// <param name="callback">事件回调 </param>
