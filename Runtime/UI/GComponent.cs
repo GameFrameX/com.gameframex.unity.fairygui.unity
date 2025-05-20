@@ -19,12 +19,12 @@ namespace FairyGUI
         public Container rootContainer { get; private set; }
 
         /// <summary>
-        /// Content container. If the component is not clipped, then container==rootContainer.
+        /// 内容容器。如果组件未被裁剪，则 container==rootContainer 。
         /// </summary>
         public Container container { get; protected set; }
 
         /// <summary>
-        /// ScrollPane of the component. If the component is not scrollable, the value is null.
+        /// ScrollPane 的组件。如果组件不可滚动，则值为 null。
         /// </summary>
         public ScrollPane scrollPane { get; private set; }
 
@@ -120,7 +120,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// Draw call optimization switch.
+        /// Draw call optimization 开关。
         /// </summary>
         public bool fairyBatching
         {
@@ -141,7 +141,7 @@ namespace FairyGUI
         }
 
         /// <summary>
-        /// If true, mouse/touch events cannot pass through the empty area of the component. Default is true.
+        /// 如果为 true，则鼠标/触摸事件无法穿过组件的空白区域。默认值为 true。
         /// </summary>
         public bool opaque
         {
