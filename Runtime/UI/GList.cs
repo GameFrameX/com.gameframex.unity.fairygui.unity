@@ -1083,6 +1083,10 @@ namespace FairyGUI
 
         virtual protected void DispatchItemEvent(GObject item, EventContext context)
         {
+            if (context.data != null && item.data == null)
+            {
+                item.data = context.data;
+            }
             if (context.type == item.onRightClick.type)
                 DispatchEvent(EventName.onRightClickItem, item);
             else
