@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.2.0](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/tree/5.2.0) (2025-09-08)
+
+[Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/compare/5.1.11...5.2.0)
+
+**Merged pull requests:**
+
+- \[修改\]\(GList\): 解决 data 丢失问题 [\#2](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/pull/2) ([BrokenMyth](https://github.com/BrokenMyth))
+
 ## [5.1.11](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/tree/5.1.11) (2025-05-31)
 
 [Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/compare/v4.3.3...5.1.11)
