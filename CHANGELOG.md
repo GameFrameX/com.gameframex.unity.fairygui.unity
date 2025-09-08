@@ -1,5 +1,9 @@
 # Changelog
 
+## [5.2.1](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/tree/5.2.1) (2025-09-08)
+
+[Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/compare/5.2.0...5.2.1)
+
 ## [5.2.0](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/tree/5.2.0) (2025-09-08)
 
 [Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/compare/5.1.11...5.2.0)
