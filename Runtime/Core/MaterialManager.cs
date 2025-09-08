@@ -13,7 +13,10 @@ namespace FairyGUI
         StencilTest = 4,
         AlphaMask = 8,
         Grayed = 16,
-        ColorFilter = 32
+        ColorFilter = 32,
+#if ENABLE_GAMEFRAMEX_FAIRYGUI_PIXELATED
+        Pixelated = 64
+#endif
     }
 
     /// <summary>
@@ -39,8 +42,13 @@ namespace FairyGUI
             public uint group;
         }
 
+#if ENABLE_GAMEFRAMEX_FAIRYGUI_PIXELATED
+        const int internalKeywordsCount = 7;
+        static string[] internalKeywords = new[] { "CLIPPED", "SOFT_CLIPPED", null, "ALPHA_MASK", "GRAYED", "COLOR_FILTER", "PIXELATED" };
+#else
         const int internalKeywordsCount = 6;
         static string[] internalKeywords = new[] { "CLIPPED", "SOFT_CLIPPED", null, "ALPHA_MASK", "GRAYED", "COLOR_FILTER" };
+#endif
 
         /// <summary>
         /// 
@@ -94,6 +102,11 @@ namespace FairyGUI
         {
             if (blendMode != BlendMode.Normal && BlendModeUtils.Factors[(int)blendMode].pma)
                 flags |= (int)MaterialFlags.ColorFilter;
+            
+#if ENABLE_GAMEFRAMEX_FAIRYGUI_PIXELATED
+            // 当定义了宏时，默认启用像素化效果
+            flags |= (int)MaterialFlags.Pixelated;
+#endif
 
             List<MaterialRef> items;
             if (!_materials.TryGetValue(flags, out items))

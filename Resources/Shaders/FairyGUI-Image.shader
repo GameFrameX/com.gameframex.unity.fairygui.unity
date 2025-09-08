@@ -17,6 +17,9 @@ Shader "FairyGUI/Image"
 
         _BlendSrcFactor ("Blend SrcFactor", Float) = 5
         _BlendDstFactor ("Blend DstFactor", Float) = 10
+
+        // 像素化参数
+        _PixelSize ("Pixel Size", Float) = 1
     }
 
     SubShader
@@ -55,6 +58,7 @@ Shader "FairyGUI/Image"
             #pragma multi_compile _ COMBINED
             #pragma multi_compile _ GRAYED COLOR_FILTER
             #pragma multi_compile _ CLIPPED SOFT_CLIPPED ALPHA_MASK
+            #pragma multi_compile _ PIXELATED
             #pragma vertex vert
             #pragma fragment frag
 
@@ -83,6 +87,7 @@ Shader "FairyGUI/Image"
             };
 
             sampler2D _MainTex;
+            float4 _MainTex_TexelSize;
 
             #ifdef COMBINED
                 sampler2D _AlphaTex;
@@ -96,6 +101,10 @@ Shader "FairyGUI/Image"
                 #ifdef SOFT_CLIPPED
                 float4 _ClipBox = float4(-2, -2, 0, 0);
                 float4 _ClipSoftness = float4(0, 0, 0, 0);
+                #endif
+
+                #ifdef PIXELATED
+                float _PixelSize;
                 #endif
             CBUFFER_END
 
@@ -130,7 +139,14 @@ Shader "FairyGUI/Image"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.texcoord.xy / i.texcoord.w) * i.color;
+                float2 uv = i.texcoord.xy / i.texcoord.w;
+
+                #ifdef PIXELATED
+                    float2 pixelatedUV = floor(uv * texSize / _PixelSize) * _PixelSize / texSize;
+                    uv = pixelatedUV;
+                #endif
+
+                fixed4 col = tex2D(_MainTex, uv) * i.color;
 
                 #ifdef COMBINED
                     col.a *= tex2D(_AlphaTex, i.texcoord.xy / i.texcoord.w).g;
