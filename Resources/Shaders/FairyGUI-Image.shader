@@ -142,6 +142,7 @@ Shader "FairyGUI/Image"
                 float2 uv = i.texcoord.xy / i.texcoord.w;
 
                 #ifdef PIXELATED
+                    float2 texSize = 1.0 / _MainTex_TexelSize.xy; // 获取纹理实际大小
                     float2 pixelatedUV = floor(uv * texSize / _PixelSize) * _PixelSize / texSize;
                     uv = pixelatedUV;
                 #endif
