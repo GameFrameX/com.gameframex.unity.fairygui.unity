@@ -8,7 +8,7 @@ namespace FairyGUI
     /// </summary>
     public class GImage : GObject, IColorGear
     {
-        Image _content;
+        internal Image _content;
 
         public GImage()
         {
@@ -104,6 +104,7 @@ namespace FairyGUI
                     sourceWidth = 0;
                     sourceHeight = 0;
                 }
+
                 initWidth = sourceWidth;
                 initHeight = sourceHeight;
                 _content.texture = value;
@@ -131,7 +132,7 @@ namespace FairyGUI
         override public void ConstructFromResource()
         {
             this.gameObjectName = packageItem.name;
-            
+
             PackageItem contentItem = packageItem.getBranch();
             sourceWidth = contentItem.width;
             sourceHeight = contentItem.height;
