@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEditor;
 using FairyGUI;
 
@@ -29,6 +30,32 @@ namespace FairyGUIEditor
             Repaint();
         }
 
+        /// <summary>
+        /// 根据UI对象获取路径
+        /// </summary>
+        /// <param name="o">UI对象</param>
+        /// <returns>UI所在路径</returns>
+        private static string GetUIPath(GObject o)
+        {
+            var ls = new List<string>();
+            SearchParent(o, ls);
+            ls.Reverse();
+            return string.Join("/", ls);
+        }
+
+        private static void SearchParent(GObject o, List<string> st)
+        {
+            if (o.parent != null)
+            {
+                st.Add(o.name);
+                SearchParent(o.parent, st);
+            }
+            else
+            {
+                st.Add(o.name);
+            }
+        }
+
         public override void OnInspectorGUI()
         {
             DisplayObject obj = (target as DisplayObjectInfo)?.displayObject;
@@ -42,18 +69,39 @@ namespace FairyGUIEditor
             EditorGUI.BeginChangeCheck();
             string name = EditorGUILayout.TextField("Name", obj.name);
             if (EditorGUI.EndChangeCheck())
+            {
                 obj.name = name;
+            }
+
             if (obj is Container)
             {
                 EditorGUI.BeginChangeCheck();
                 bool fairyBatching = EditorGUILayout.Toggle("FairyBatching", ((Container)obj).fairyBatching);
                 if (EditorGUI.EndChangeCheck())
+                {
                     ((Container)obj).fairyBatching = fairyBatching;
+                }
             }
 
             GObject gObj = obj.gOwner;
             if (gObj != null)
             {
+                // 操作按钮 Start
+                EditorGUILayout.BeginHorizontal();
+                {
+                    EditorGUILayout.LabelField("Operations", GUILayout.Width(200));
+                    if (GUILayout.Button("Copy Path", GUILayout.ExpandWidth(true)))
+                    {
+                        var uiPath = GetUIPath(gObj);
+                        Debug.Log("Copy Path: " + uiPath);
+                        EditorGUIUtility.systemCopyBuffer = uiPath;
+                    }
+
+                    EditorGUILayout.Separator();
+                }
+                EditorGUILayout.EndHorizontal();
+                // 操作按钮 End
+
                 EditorGUILayout.Separator();
                 EditorGUILayout.LabelField(gObj.GetType().Name + ": " + gObj.id, (GUIStyle)"OL Title");
                 EditorGUILayout.Separator();
@@ -70,7 +118,9 @@ namespace FairyGUIEditor
                 EditorGUI.BeginChangeCheck();
                 name = EditorGUILayout.TextField("Name", gObj.name);
                 if (EditorGUI.EndChangeCheck())
+                {
                     gObj.name = name;
+                }
 
                 if (gObj.parent != null)
                 {
@@ -85,7 +135,9 @@ namespace FairyGUIEditor
                     EditorGUI.BeginChangeCheck();
                     int childIndex = EditorGUILayout.IntPopup("Child Index", gObj.parent.GetChildIndex(gObj), options, values);
                     if (EditorGUI.EndChangeCheck())
+                    {
                         gObj.parent.SetChildIndex(gObj, childIndex);
+                    }
                 }
                 else
                 {
@@ -105,7 +157,9 @@ namespace FairyGUIEditor
                 EditorGUI.BeginChangeCheck();
                 Vector3 position = EditorGUILayout.Vector3Field("Position", gObj.position);
                 if (EditorGUI.EndChangeCheck())
+                {
                     gObj.position = position;
+                }
 
                 EditorGUI.BeginChangeCheck();
                 Vector3 rotation = EditorGUILayout.Vector3Field("Rotation", new Vector3(gObj.rotationX, gObj.rotationY, gObj.rotation));
@@ -119,27 +173,37 @@ namespace FairyGUIEditor
                 EditorGUI.BeginChangeCheck();
                 Vector2 scale = EditorGUILayout.Vector2Field("Scale", gObj.scale);
                 if (EditorGUI.EndChangeCheck())
+                {
                     gObj.scale = scale;
+                }
 
                 EditorGUI.BeginChangeCheck();
                 Vector2 skew = EditorGUILayout.Vector2Field("Skew", gObj.skew);
                 if (EditorGUI.EndChangeCheck())
+                {
                     gObj.skew = skew;
+                }
 
                 EditorGUI.BeginChangeCheck();
                 Vector2 size = EditorGUILayout.Vector2Field("Size", gObj.size);
                 if (EditorGUI.EndChangeCheck())
+                {
                     gObj.size = size;
+                }
 
                 EditorGUI.BeginChangeCheck();
                 Vector2 pivot = EditorGUILayout.Vector2Field("Pivot", gObj.pivot);
                 if (EditorGUI.EndChangeCheck())
+                {
                     gObj.pivot = pivot;
+                }
 
                 EditorGUI.BeginChangeCheck();
                 string text = EditorGUILayout.TextField("Text", gObj.text);
                 if (EditorGUI.EndChangeCheck())
+                {
                     gObj.text = text;
+                }
 
                 EditorGUI.BeginChangeCheck();
                 string icon = EditorGUILayout.TextField("Icon", gObj.icon);
@@ -165,19 +229,25 @@ namespace FairyGUIEditor
                 EditorGUI.BeginChangeCheck();
                 string tooltips = EditorGUILayout.TextField("Tooltips", gObj.tooltips);
                 if (EditorGUI.EndChangeCheck())
+                {
                     gObj.tooltips = tooltips;
+                }
 
                 if (!(gObj is GImage))
                 {
                     EditorGUI.BeginChangeCheck();
                     bool touchable = EditorGUILayout.Toggle("Touchable", gObj.touchable);
                     if (EditorGUI.EndChangeCheck())
+                    {
                         gObj.touchable = touchable;
+                    }
 
                     EditorGUI.BeginChangeCheck();
                     bool draggable = EditorGUILayout.Toggle("Draggable", gObj.draggable);
                     if (EditorGUI.EndChangeCheck())
+                    {
                         gObj.draggable = draggable;
+                    }
                 }
 
 #if UNITY_2019_1_OR_NEWER
@@ -241,7 +311,9 @@ namespace FairyGUIEditor
                     }
 
                     if (EditorGUI.EndChangeCheck())
+                    {
                         gObj.asTextField.textFormat = textFormat;
+                    }
 
                     EditorGUILayout.EndFoldoutHeaderGroup();
                 }
@@ -251,7 +323,9 @@ namespace FairyGUIEditor
                     EditorGUI.BeginChangeCheck();
                     bool opaque = EditorGUILayout.Toggle("Opaque", gComp.opaque);
                     if (EditorGUI.EndChangeCheck())
+                    {
                         gComp.opaque = opaque;
+                    }
 
                     var headerLabelStyle = new GUIStyle(GUI.skin.label);
                     headerLabelStyle.fontStyle = FontStyle.Bold;
@@ -310,7 +384,9 @@ namespace FairyGUIEditor
 
 
                                 if (EditorGUI.EndChangeCheck())
+                                {
                                     transition.timeScale = timeScale;
+                                }
 
 
                                 if (GUILayout.Button("▶", GUILayout.Width(20)))
