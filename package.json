@@ -1,7 +1,7 @@
 {
   "name": "com.gameframex.unity.fairygui.unity",
   "displayName": "FairyGUI",
-  "version": "5.2.1",
+  "version": "5.3.0",
   "unity": "2017.1",
   "description": "FairyGUI is a Cross Platform UI Editor & UI framework",
   "samples": [

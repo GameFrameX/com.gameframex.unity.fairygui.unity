@@ -1,3 +1,10 @@
+# [5.3.0](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.2.1...5.3.0) (2025-12-23)
+
+
+### Features
+
+* **Editor:** 添加复制UI路径功能按钮 ([0a44852](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/commit/0a44852717b384ef0a088464690ce0d69681dbcf))
+
 # Changelog
 
 ## [5.2.1](https://github.com/GameFrameX/com.gameframex.unity.fairygui.unity/tree/5.2.1) (2025-09-08)
