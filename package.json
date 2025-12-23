@@ -4,10 +4,6 @@
   "version": "5.2.1",
   "unity": "2017.1",
   "description": "FairyGUI is a Cross Platform UI Editor & UI framework",
-  "author": {
-    "name": "fairygui",
-    "url": "https://github.com/fairygui/FairyGUI-unity"
-  },
   "samples": [
     {
       "displayName": "Samples",
@@ -15,10 +11,27 @@
       "path": "Samples~"
     }
   ],
+  "keywords": [
+    "Game Framework X"
+  ],
   "repository": {
-    "type": "git",
-    "url": "https://github.com/fairygui/FairyGUI-unity.git"
+    "name": "com.gameframex.unity.fairygui.unity",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.fairygui.unity.git",
+    "type": "git"
   },
-  "relatedPackages": {},
-  "dependencies": {}
+  "author": {
+    "name": "fairygui",
+    "email": "alianblank@outlook.com",
+    "url": "https://github.com/fairygui/FairyGUI-unity"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  }
 }
