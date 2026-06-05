@@ -1,3 +1,10 @@
+## [5.3.3](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.2...5.3.3) (2026-06-05)
+
+
+### Bug Fixes
+
+* **editor:** 添加 Unity 2020+ FreeMoveHandle API 兼容 ([5ea59fc](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/commit/5ea59fc2fe462ad1454bb63ece43baf7df5a7419))
+
 ## [5.3.2](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.1...5.3.2) (2026-06-05)
 
 
