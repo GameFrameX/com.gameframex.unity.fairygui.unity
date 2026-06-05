@@ -48,8 +48,8 @@ namespace FairyGUIEditor
 
 
             propertyToExclude = new string[] { "m_Script", "packageName", "componentName", "packagePath", "renderMode",
-                "renderCamera", "sortingOrder", "position", "scale", "rotation", "fairyBatching", "fitScreen","touchDisabled",
-                "hitTestMode","cachedUISize","setNativeChildrenOrder"
+                "renderCamera", "sortingOrder", "position", "scale", "rotation", "fairyBatching", "fitScreen", "touchDisabled",
+                "hitTestMode", "cachedUISize", "setNativeChildrenOrder"
             };
         }
 
@@ -83,6 +83,7 @@ namespace FairyGUIEditor
                 EditorUtility.SetDirty(panel);
 #endif
             }
+
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
@@ -139,11 +140,15 @@ namespace FairyGUIEditor
         {
             FairyGUI.UIPanel panel = (target as FairyGUI.UIPanel);
             if (panel.container == null)
+            {
                 return;
+            }
 
             Vector3 pos = panel.GetUIWorldPosition();
             float sizeFactor = HandleUtility.GetHandleSize(pos);
-#if UNITY_2017_1_OR_NEWER
+#if UNITY_2020_1_OR_NEWER
+            Vector3 newPos = Handles.FreeMoveHandle(pos, sizeFactor, Vector3.one, Handles.ArrowHandleCap);
+#elif UNITY_2017_1_OR_NEWER
             Vector3 newPos = Handles.FreeMoveHandle(pos, Quaternion.identity, sizeFactor, Vector3.one, Handles.ArrowCap);
 #else
             Vector3 newPos = Handles.FreeMoveHandle(pos, Quaternion.identity, sizeFactor, Vector3.one, Handles.ArrowCap);
