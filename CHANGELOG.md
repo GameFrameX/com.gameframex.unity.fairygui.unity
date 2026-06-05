@@ -1,3 +1,10 @@
+## [5.3.2](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.1...5.3.2) (2026-06-05)
+
+
+### Bug Fixes
+
+* **editor:** 修复 FreeMoveHandle API 调用签名 ([07df73c](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/commit/07df73c249ef5db1c15cbd3d5bc3a637519a0967))
+
 ## [5.3.1](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.0...5.3.1) (2026-05-28)
 
 
