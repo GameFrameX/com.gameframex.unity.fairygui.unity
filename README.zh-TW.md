@@ -12,7 +12,7 @@
 
 <br />
 
-[文檔](https://gameframex.doc.alianblank.com) · [快速開始](#快速開始) · [QQ群](https://qm.qq.com/q/5kbDVBdUeS)
+[文檔](https://gameframex.doc.alianblank.com) · [快速開始](#快速開始) · QQ群: 467608841 / 233840761
 
 <br />
 
@@ -97,7 +97,7 @@ FairyGUI 還對所有輸入方式進行了完整的封裝，無論是滑鼠、�
 
 ## 社區與支援
 
-- [QQ群](https://qm.qq.com/q/5kbDVBdUeS)
+- QQ群: 467608841 / 233840761
 
 ## 更新日誌
 

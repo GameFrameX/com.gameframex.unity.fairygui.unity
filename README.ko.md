@@ -12,7 +12,7 @@
 
 <br />
 
-[문서](https://gameframex.doc.alianblank.com) · [빠른 시작](#빠른-시작) · [QQ 그룹](https://qm.qq.com/q/5kbDVBdUeS)
+[문서](https://gameframex.doc.alianblank.com) · [빠른 시작](#빠른-시작) · QQ 그룹: 467608841 / 233840761
 
 <br />
 
@@ -97,7 +97,7 @@ FairyGUI는 많은 게임 엔진을 위한 UI 미들웨어입니다. [에디터 
 
 ## 커뮤니티 및 지원
 
-- [QQ 그룹](https://qm.qq.com/q/5kbDVBdUeS)
+- QQ 그룹: 467608841 / 233840761
 
 ## 변경 로그
 
