@@ -111,7 +111,6 @@ Then add the package to `dependencies`:
 }
 ```
 
-
 ## 文档与资源
 
 - [FairyGUI 教程](https://www.fairygui.com/docs/guide/index.html)
@@ -127,4 +126,4 @@ Then add the package to `dependencies`:
 
 ## 开源协议
 
-本项目基于 [MIT 协议](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/blob/main/LICENSE) 开源。
+详见 [LICENSE.md](LICENSE.md) 文件。

@@ -111,7 +111,6 @@ Then add the package to `dependencies`:
 }
 ```
 
-
 ## ドキュメントとリソース
 
 - [FairyGUI チュートリアル](https://www.fairygui.com/docs/guide/index.html)
@@ -127,4 +126,4 @@ Then add the package to `dependencies`:
 
 ## ライセンス
 
-このプロジェクトは [MIT ライセンス](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/blob/main/LICENSE) の下で公開されています。
+詳しくは [LICENSE.md](LICENSE.md) をご参照ください。

@@ -111,7 +111,6 @@ Then add the package to `dependencies`:
 }
 ```
 
-
 ## 문서 및 자료
 
 - [FairyGUI 튜토리얼](https://www.fairygui.com/docs/guide/index.html)
@@ -127,4 +126,4 @@ Then add the package to `dependencies`:
 
 ## 라이선스
 
-이 프로젝트는 [MIT 라이선스](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/blob/main/LICENSE)에 따라 배포됩니다.
+자세한 내용은 [LICENSE.md](LICENSE.md) 파일을 참조하세요.

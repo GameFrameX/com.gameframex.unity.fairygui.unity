@@ -111,7 +111,6 @@ Then add the package to `dependencies`:
 }
 ```
 
-
 ## Documentation & Resources
 
 - [FairyGUI Tutorial](https://www.fairygui.com/docs/guide/index.html)
@@ -127,4 +126,4 @@ See [Releases](https://github.com/gameframex/com.gameframex.unity.fairygui.unity
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/blob/main/LICENSE).
+See [LICENSE.md](LICENSE.md) for license information.
