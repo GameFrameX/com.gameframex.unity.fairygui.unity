@@ -81,16 +81,36 @@ FairyGUI は多くのゲームエンジン向けの UI ミドルウェアです�
 
 ## クイックスタート
 
-### インストール方法（いずれかを選択）
+### インストール
 
-1. `manifest.json` の `dependencies` に以下を追加：
-   ```json
-   {
-      "com.gameframex.unity.fairygui.unity": "https://github.com/gameframex/com.gameframex.unity.fairygui.unity.git"
-   }
-   ```
-2. Unity の `Packages Manager` で `Git URL` を使用して追加：`https://github.com/gameframex/com.gameframex.unity.fairygui.unity.git`
-3. リポジトリを直接ダウンロードして Unity プロジェクトの `Packages` ディレクトリに配置すると、自動的に読み込まれます。
+Unity プロジェクトの `Packages/manifest.json` を編集し、`scopedRegistries` セクションを追加してください：
+
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
+
+`scopes` は、どのパッケージをこのレジストリから解決するかを制御します。`com.gameframex` で始まるパッケージのみがこのレジストリから取得されます。
+
+Then add the package to `dependencies`:
+
+```json
+{
+  "dependencies": {
+    "com.gameframex.unity.fairygui.unity": "5.3.3"
+  }
+}
+```
+
 
 ## ドキュメントとリソース
 

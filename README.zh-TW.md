@@ -81,16 +81,36 @@ FairyGUI 還對所有輸入方式進行了完整的封裝，無論是滑鼠、�
 
 ## 快速開始
 
-### 安裝方式（任選其一）
+### 安裝
 
-1. 直接在 `manifest.json` 的 `dependencies` 節點下新增以下內容：
-   ```json
-   {
-      "com.gameframex.unity.fairygui.unity": "https://github.com/gameframex/com.gameframex.unity.fairygui.unity.git"
-   }
-   ```
-2. 在 Unity 的 `Packages Manager` 中使用 `Git URL` 的方式新增庫，地址為：`https://github.com/gameframex/com.gameframex.unity.fairygui.unity.git`
-3. 直接下載倉庫放置到 Unity 專案的 `Packages` 目錄下，會自動載入識別。
+編輯 Unity 專案的 `Packages/manifest.json`，添加 `scopedRegistries` 部分：
+
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
+
+`scopes` 控制哪些套件透過此註冊表解析。只有以 `com.gameframex` 開頭的套件才會從這個註冊表取得。
+
+Then add the package to `dependencies`:
+
+```json
+{
+  "dependencies": {
+    "com.gameframex.unity.fairygui.unity": "5.3.3"
+  }
+}
+```
+
 
 ## 文檔與資源
 
