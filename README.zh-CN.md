@@ -124,6 +124,13 @@ Then add the package to `dependencies`:
 
 查看 [Releases](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/releases) 了解更新日志。
 
+
+## 依赖
+
+| 包 | 说明 |
+|----|------|
+| (无) | - |
+
 ## 开源协议
 
 详见 [LICENSE.md](LICENSE.md) 文件。
