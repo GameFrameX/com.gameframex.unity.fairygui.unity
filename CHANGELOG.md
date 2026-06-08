@@ -1,3 +1,10 @@
+## [5.3.4](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.3...5.3.4) (2026-06-08)
+
+
+### Bug Fixes
+
+* 补全包规范文件（LICENSE/CHANGELOG/URL 字段/unity 字段） ([61ac86c](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/commit/61ac86c4a838684f9118f37b2b13b872d1d2706c))
+
 ## [5.3.3](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.2...5.3.3) (2026-06-05)
 
 
