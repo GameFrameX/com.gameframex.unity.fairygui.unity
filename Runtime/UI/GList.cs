@@ -2728,6 +2728,8 @@ namespace FairyGUI
                     if (_autoResizeItem)
                         child.SetSize(viewWidth, child.height, true);
                     curY += Mathf.CeilToInt(child.height);
+                    if (child.width > maxWidth)
+                        maxWidth = child.width;
                 }
 
                 ch = curY;
