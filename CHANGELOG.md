@@ -1,3 +1,10 @@
+## [5.3.5](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.4...5.3.5) (2026-08-25)
+
+
+### Bug Fixes
+
+* **GList:** accumulate maxWidth in SingleColumn UpdateBounds ([#4](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/issues/4)) ([cf3a351](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/commit/cf3a35184acf0a56d4f535796f976cca1c5bd426))
+
 ## [5.3.4](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.3...5.3.4) (2026-06-08)
 
 
