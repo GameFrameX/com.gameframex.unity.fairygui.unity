@@ -13,7 +13,8 @@ namespace FairyGUI
     public partial class GLoader3D : GObject
     {
         public static Action<SkeletonAnimation> CustomSpineDestroyMethod;
-        
+
+        SkeletonRenderer _spineRenderer;
         SkeletonAnimation _spineAnimation;
 
         /// <summary>
@@ -62,16 +63,19 @@ namespace FairyGUI
             _content.customCloneMaterials = MaterialOverride;
             _content.customRecoverMaterials = CleanMaterialOverride;
 
-            _spineAnimation = SkeletonRenderer.NewSpineGameObject<SkeletonAnimation>(asset);
+            var spineComponents = SkeletonAnimation.NewSkeletonAnimationGameObject(asset);
+            _spineRenderer = spineComponents.skeletonRenderer;
+            _spineAnimation = spineComponents.skeletonAnimation;
             _spineAnimation.gameObject.name = asset.name;
-            Spine.SkeletonData dat = asset.GetSkeletonData(false);
             _spineAnimation.gameObject.transform.localScale = new Vector3(1 / asset.scale, 1 / asset.scale, 1);
             _spineAnimation.gameObject.transform.localPosition = new Vector3(anchor.x, -anchor.y, 0);
             SetWrapTarget(_spineAnimation.gameObject, cloneMaterial, width, height);
 
-            _spineAnimation.skeleton.R = _color.r;
-            _spineAnimation.skeleton.G = _color.g;
-            _spineAnimation.skeleton.B = _color.b;
+            var skeletonColor = _spineAnimation.skeleton.GetColor();
+            skeletonColor.r = _color.r;
+            skeletonColor.g = _color.g;
+            skeletonColor.b = _color.b;
+            _spineAnimation.skeleton.SetColor(skeletonColor);
 
             OnChangeSpine(null);
         }
@@ -92,9 +96,11 @@ namespace FairyGUI
 
             if (propertyName == "color")
             {
-                _spineAnimation.skeleton.R = _color.r;
-                _spineAnimation.skeleton.G = _color.g;
-                _spineAnimation.skeleton.B = _color.b;
+                var skeletonColor = _spineAnimation.skeleton.GetColor();
+                skeletonColor.r = _color.r;
+                skeletonColor.g = _color.g;
+                skeletonColor.b = _color.b;
+                _spineAnimation.skeleton.SetColor(skeletonColor);
                 return;
             }
 
@@ -104,7 +110,7 @@ namespace FairyGUI
             Spine.Animation animationToUse = !string.IsNullOrEmpty(_animationName) ? skeletonData.FindAnimation(_animationName) : null;
             if (animationToUse != null)
             {
-                var trackEntry = state.GetCurrent(0);
+                var trackEntry = state.GetTrack(0);
                 if (trackEntry == null || trackEntry.Animation.Name != _animationName || trackEntry.IsComplete && !trackEntry.Loop)
                     trackEntry = state.SetAnimation(0, animationToUse, _loop);
                 else
@@ -127,7 +133,7 @@ namespace FairyGUI
             if (_spineAnimation.skeleton.Skin != skin)
             {
                 _spineAnimation.skeleton.SetSkin(skin);
-                _spineAnimation.skeleton.SetSlotsToSetupPose();
+                _spineAnimation.skeleton.SetupPoseSlots();
             }
         }
 
@@ -149,30 +155,36 @@ namespace FairyGUI
 
                 _content.customCloneMaterials = null;
                 _content.customRecoverMaterials = null;
+                _spineRenderer = null;
+                _spineAnimation = null;
             }
         }
 
         protected void OnUpdateSpine(UpdateContext context)
         {
             if (_spineAnimation != null)
-                _spineAnimation.skeleton.A = context.alpha * _content.alpha;
+            {
+                var skeletonColor = _spineAnimation.skeleton.GetColor();
+                skeletonColor.a = context.alpha * _content.alpha;
+                _spineAnimation.skeleton.SetColor(skeletonColor);
+            }
         }
 
         private void MaterialOverride(Dictionary<Material, Material> materials)
         {
-            if (_spineAnimation != null)
+            if (_spineRenderer != null)
             {
                 foreach (var kv in materials)
                 {
-                    _spineAnimation.CustomMaterialOverride[kv.Key] = kv.Value;
+                    _spineRenderer.CustomMaterialOverride[kv.Key] = kv.Value;
                 }
             }
         }
 
         private void CleanMaterialOverride()
         {
-            if (_spineAnimation != null)
-                _spineAnimation.CustomMaterialOverride.Clear();
+            if (_spineRenderer != null)
+                _spineRenderer.CustomMaterialOverride.Clear();
         }
 #if UNITY_2019_3_OR_NEWER
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
