@@ -1,3 +1,10 @@
+## [5.3.7](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.6...5.3.7) (2026-09-10)
+
+
+### Bug Fixes
+
+* **editor:** 适配 FreeMoveHandle 2022.2 新重载 ([#6](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/issues/6)) ([de28735](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/commit/de287352dc1bc519b878e82f7ac733f015282c28))
+
 ## [5.3.6](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.5...5.3.6) (2026-09-10)
 
 
