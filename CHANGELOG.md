@@ -1,3 +1,10 @@
+## [5.3.6](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.5...5.3.6) (2026-09-10)
+
+
+### Bug Fixes
+
+* **editor:** 补回 FreeMoveHandle 的 rotation 参数 ([#5](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/issues/5)) ([facd782](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/commit/facd782a80dd9ff4c6e35de2f9e98607845c645e))
+
 ## [5.3.5](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.4...5.3.5) (2026-08-25)
 
 
