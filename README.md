@@ -31,11 +31,16 @@ FairyGUI for Unity, repackaged for [GameFrameX](https://github.com/GameFrameX/Ga
 2. Added `FairyGUICroppingHelper` anti-stripping script
 3. Added `link.xml` for strip filtering
 4. Fixed bug where async asset bundle loading had no callback
-5. Added keyboard input adaptation for WeChat Mini Game and Douyin Mini Game
-6. Added `ENABLE_WECHAT_MINI_GAME` macro for WeChat Mini Game keyboard adaptation (do not enable simultaneously with Douyin)
-7. Added `ENABLE_DOUYIN_MINI_GAME` macro for Douyin Mini Game keyboard adaptation (do not enable simultaneously with WeChat)
-8. Added quick toggle in Unity Editor: `Tools` > `FairyGUI` > corresponding menu
-9. Added pixelation feature for image pixelation effects
+5. Removed the inline WeChat / Douyin mini-game keyboard bridges and the `WECHAT_MINI_GAME` / `DOUYIN_MINI_GAME` macros (6.0.0 breaking change: back to a pure UI package with zero mini-game SDK dependencies); mini-game keyboard adaptation now goes through the [operationkeyboard.fairygui](https://github.com/gameframex/com.gameframex.unity.operationkeyboard.fairygui) binding package (all four platforms: WeChat / Alipay / Kuaishou / Douyin, see migration notes below)
+6. Added pixelation feature for image pixelation effects
+
+#### Mini-game Keyboard Migration (6.0.0 Breaking Change)
+
+As of 6.0.0 `Fairygui.Runtime` no longer inlines any mini-game keyboard adaptation (the former `GTextInputWeChat` / `GTextInputDouYin` classes, the `Wx` / `StarkWebGL` assembly references and the `WECHAT_MINI_GAME` / `DOUYIN_MINI_GAME` macros are all removed). Projects relying on the inline bridges migrate as follows (behavior-equivalent, Chinese input included):
+
+1. Remove the `ENABLE_WECHAT_MINI_GAME` / `ENABLE_DOUYIN_MINI_GAME` scripting define symbols from your project
+2. Install the binding package `com.gameframex.unity.operationkeyboard.fairygui` (probes this package via versionDefines and binds on discovery; focus attaches / blur detaches with zero panel changes)
+3. Install the matching channel package: `com.gameframex.unity.operationkeyboard.wechatminigame` / `.douyinminigame` / `.alipayminigame` / `.kuaishouminigame` (with no channel registered the facade is a no-op on Editor / native platforms and the native keyboard path stays intact)
 
 ### Pixelation Feature
 
@@ -98,7 +103,7 @@ Choose one of the following methods:
        }
      ],
      "dependencies": {
-       "com.gameframex.unity.fairygui.unity": "5.3.3"
+       "com.gameframex.unity.fairygui.unity": "6.0.0"
      }
    }
    ```

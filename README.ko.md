@@ -31,11 +31,16 @@
 2. 안티 스트리핑 스크립트 `FairyGUICroppingHelper` 추가
 3. 스트립 필터링을 위한 `link.xml` 추가
 4. 비동기 에셋 번들 로딩 콜백 누락 버그 수정
-5. WeChat 미니 게임 및 Douyin 미니 게임 키보드 입력 적응 추가
-6. WeChat 미니 게임용 매크로 `ENABLE_WECHAT_MINI_GAME` 추가 (Douyin과 동시에 활성화하지 마세요)
-7. Douyin 미니 게임용 매크로 `ENABLE_DOUYIN_MINI_GAME` 추가 (WeChat과 동시에 활성화하지 마세요)
-8. Unity 에디터 `Tools` > `FairyGUI` 메뉴에서 빠른 토글 추가
-9. 픽셀화 기능 추가
+5. WeChat / Douyin 미니 게임 인라인 키보드 브리지와 `WECHAT_MINI_GAME` / `DOUYIN_MINI_GAME` 매크로 제거 (6.0.0 파괴적 변경: 미니 게임 SDK에 전혀 의존하지 않는 순수 UI 패키지로 회귀); 미니 게임 키보드 적응은 [operationkeyboard.fairygui](https://github.com/gameframex/com.gameframex.unity.operationkeyboard.fairygui) 바인딩 패키지를 통해 연결 (WeChat / Alipay / Kuaishou / Douyin 4개 플랫폼, 아래 마이그레이션 가이드 참조)
+6. 픽셀화 기능 추가
+
+#### 미니 게임 키보드 마이그레이션 (6.0.0 파괴적 변경)
+
+6.0.0부터 `Fairygui.Runtime`은 미니 게임 키보드 적응을 인라인하지 않습니다 (기존 `GTextInputWeChat` / `GTextInputDouYin`, `Wx` / `StarkWebGL` 어셈블리 참조, `WECHAT_MINI_GAME` / `DOUYIN_MINI_GAME` 매크로 모두 제거). 인라인 브리지에 의존하던 WeChat / Douyin 프로젝트는 다음 단계로 마이그레이션하세요 (동작 동등, 중국어 입력 포함):
+
+1. 프로젝트에서 `ENABLE_WECHAT_MINI_GAME` / `ENABLE_DOUYIN_MINI_GAME` 스크립트 정의 심볼 제거
+2. 바인딩 패키지 `com.gameframex.unity.operationkeyboard.fairygui` 설치 (versionDefines로 이 패키지를 탐지하여 발견 즉시 바인딩; 포커스 시 Attach / 블러 시 Detach, 패널 변경 불필요)
+3. 해당 채널 패키지 설치: `com.gameframex.unity.operationkeyboard.wechatminigame` / `.douyinminigame` / `.alipayminigame` / `.kuaishouminigame` (채널 미등록 Editor / 네이티브 플랫폼에서는 퍼사드가 no-op, 네이티브 키보드 경로가 온전히 유지됩니다)
 
 ### 픽셀화 기능
 
@@ -98,7 +103,7 @@ FairyGUI는 많은 게임 엔진을 위한 UI 미들웨어입니다. [에디터 
        }
      ],
      "dependencies": {
-       "com.gameframex.unity.fairygui.unity": "5.3.3"
+       "com.gameframex.unity.fairygui.unity": "6.0.0"
      }
    }
    ```

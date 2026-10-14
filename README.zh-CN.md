@@ -31,11 +31,16 @@
 2. 增加 `FairyGUICroppingHelper` 防裁剪脚本
 3. 增加 `link.xml` 的裁剪过滤
 4. 修复 `异步加载资源包` 没有回调的BUG
-5. 增加 `微信小游戏` 和 `抖音小游戏` 的输入框拉不起键盘的适配
-6. 增加 `微信小游戏的宏定义ENABLE_WECHAT_MINI_GAME` 不开启宏定义将不会生效键盘适配（注意：不要和抖音同时开启）
-7. 增加 `抖音小游戏的宏定义ENABLE_DOUYIN_MINI_GAME` 不开启宏定义将不会生效键盘适配（注意：不要和微信同时开启）
-8. 增加 `抖音小游戏` 和 `微信小游戏` 的快捷开启和关闭在编辑器的 `Tools` > `FairyGUI` > 对应的菜单快速设置
-9. 增加 `像素化功能` 支持图像的像素化效果
+5. 移除 `微信小游戏` / `抖音小游戏` 内联键盘桥与 `WECHAT_MINI_GAME` / `DOUYIN_MINI_GAME` 宏（6.0.0 破坏性变更，回归纯 UI 包零小游戏 SDK 依赖）；小游戏键盘适配改经 [operationkeyboard.fairygui](https://github.com/gameframex/com.gameframex.unity.operationkeyboard.fairygui) 绑定包接入（四端：微信 / 支付宝 / 快手 / 抖音，见下方迁移说明）
+6. 增加 `像素化功能` 支持图像的像素化效果
+
+#### 小游戏键盘迁移（6.0.0 破坏性变更）
+
+6.0.0 起 `Fairygui.Runtime` 不再内联任何小游戏键盘适配（原 `GTextInputWeChat` / `GTextInputDouYin`、`Wx` / `StarkWebGL` 程序集引用与 `WECHAT_MINI_GAME` / `DOUYIN_MINI_GAME` 宏全部移除）。现依赖内联桥的微信 / 抖音工程按以下步骤迁移（行为等价，含中文输入）：
+
+1. 移除工程内的 `ENABLE_WECHAT_MINI_GAME` / `ENABLE_DOUYIN_MINI_GAME` 宏定义
+2. 安装绑定包 `com.gameframex.unity.operationkeyboard.fairygui`（versionDefines 探测本包，发现即挂载；聚焦 Attach / 失焦 Detach，零面板改动）
+3. 安装对应渠道包：`com.gameframex.unity.operationkeyboard.wechatminigame` / `.douyinminigame` / `.alipayminigame` / `.kuaishouminigame`（Editor / 原生平台未注册渠道时门面 no-op，原生键盘路径完整保留）
 
 ### 像素化功能使用说明
 
@@ -98,7 +103,7 @@ FairyGUI 还对所有输入方式进行了完整的封装，无论是鼠标、�
        }
      ],
      "dependencies": {
-       "com.gameframex.unity.fairygui.unity": "5.3.3"
+      "com.gameframex.unity.fairygui.unity": "6.0.0"
      }
    }
    ```

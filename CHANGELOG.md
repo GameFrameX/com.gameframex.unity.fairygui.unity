@@ -1,3 +1,14 @@
+# [6.0.0](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.7...6.0.0) (2026-10-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **runtime:** 移除微信 / 抖音小游戏内联键盘桥（`GTextInputWeChat` / `GTextInputDouYin`）与 `WECHAT_MINI_GAME` / `DOUYIN_MINI_GAME` 宏，`Fairygui.Runtime` 程序集不再引用 `Wx` / `StarkWebGL`——FairyGUI 回归纯 UI 包，零小游戏 SDK 依赖。小游戏键盘适配迁移至 `com.gameframex.unity.operationkeyboard.fairygui` 绑定包 + 对应 operationkeyboard 渠道包（微信 / 支付宝 / 快手 / 抖音），迁移步骤见 README「小游戏键盘迁移」
+
+### Features
+
+* **runtime:** FairyGUI 包去 SDK 化——小游戏下 GTextInput 键盘改经 operationkeyboard.fairygui 绑定包接入 C31 门面与字段会话单槽仲裁，四端渠道包自动生效，maxLength 恒 -1 保证中文输入不掐断
+
 ## [5.3.7](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.6...5.3.7) (2026-09-10)
 
 

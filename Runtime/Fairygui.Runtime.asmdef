@@ -3,10 +3,8 @@
   "rootNamespace": "FairyGUI",
   "references": [
     "spine-unity.Runtime",
-    "StarkWebGL",
     "spine-unity",
     "spine-csharp",
-    "Wx",
     "Unity.InputSystem",
     "Unity.TextMeshPro"
   ],
@@ -18,16 +16,6 @@
   "autoReferenced": true,
   "defineConstraints": [],
   "versionDefines": [
-    {
-      "name": "com.qq.weixin.minigame",
-      "expression": "",
-      "define": "WECHAT_MINI_GAME"
-    },
-    {
-      "name": "com.bytedance.starksdk",
-      "expression": "",
-      "define": "DOUYIN_MINI_GAME"
-    },
     {
       "name": "com.unity.textmeshpro",
       "expression": "",

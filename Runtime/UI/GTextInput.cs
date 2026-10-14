@@ -18,27 +18,10 @@ namespace FairyGUI
 
         EventListener _onSubmit;
 
-#if UNITY_WEBGL
-#if WECHAT_MINI_GAME && ENABLE_WECHAT_MINI_GAME
-        private GTextInputWeChat weChatTextInput;
-#endif
-#if DOUYIN_MINI_GAME && ENABLE_DOUYIN_MINI_GAME
-        private GTextInputDouYin douYinTextInput;
-#endif
-#endif
-
         public GTextInput()
         {
             _textField.autoSize = AutoSizeType.None;
             _textField.wordWrap = false;
-#if UNITY_WEBGL
-#if WECHAT_MINI_GAME && ENABLE_WECHAT_MINI_GAME
-            weChatTextInput = new GTextInputWeChat(this);
-#endif
-#if DOUYIN_MINI_GAME && ENABLE_DOUYIN_MINI_GAME
-            douYinTextInput = new GTextInputDouYin(this);
-#endif
-#endif
         }
 
         public override void Dispose()
@@ -48,14 +31,6 @@ namespace FairyGUI
                 return;
             }
 
-#if UNITY_WEBGL
-#if WECHAT_MINI_GAME && ENABLE_WECHAT_MINI_GAME
-            weChatTextInput.Dispose();
-#endif
-#if DOUYIN_MINI_GAME && ENABLE_DOUYIN_MINI_GAME
-            douYinTextInput.Dispose();
-#endif
-#endif
             base.Dispose();
         }
 
