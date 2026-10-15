@@ -10,6 +10,7 @@ public class EmitComponent : GComponent
     const float OFFSET_ADDITION = 2.2f;
     static Vector2 JITTER_FACTOR = new Vector2(80, 80);
 
+    [UnityEngine.Scripting.Preserve]
     public EmitComponent()
     {
         this.touchable = false;
@@ -24,6 +25,7 @@ public class EmitComponent : GComponent
         AddChild(_numberText);
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void SetHurt(Transform owner, int type, long hurt, bool critical)
     {
         _owner = owner;
@@ -81,6 +83,7 @@ public class EmitComponent : GComponent
         EmitManager.inst.ReturnComponent(this);
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void Cancel()
     {
         _owner = null;

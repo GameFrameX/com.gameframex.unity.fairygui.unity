@@ -13,6 +13,7 @@ namespace FairyGUI
         protected int _tileGridIndice;
         protected FillMesh _fillMesh;
 
+        [UnityEngine.Scripting.Preserve]
         public Image() : this(null)
         {
         }
@@ -21,6 +22,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="texture"></param>
+        [UnityEngine.Scripting.Preserve]
         public Image(NTexture texture)
             : base()
         {
@@ -40,6 +42,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public NTexture texture
         {
             get { return graphics.texture; }
@@ -49,6 +52,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public Vector2 textureScale
         {
             get { return _textureScale; }
@@ -62,6 +66,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color color
         {
             get
@@ -78,6 +83,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public FillMethod fillMethod
         {
             get { return _fillMesh != null ? _fillMesh.method : FillMethod.None; }
@@ -101,6 +107,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int fillOrigin
         {
             get { return _fillMesh != null ? _fillMesh.origin : 0; }
@@ -120,6 +127,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool fillClockwise
         {
             get { return _fillMesh != null ? _fillMesh.clockwise : true; }
@@ -139,6 +147,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float fillAmount
         {
             get { return _fillMesh != null ? _fillMesh.amount : 0; }
@@ -158,6 +167,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Rect? scale9Grid
         {
             get { return _scale9Grid; }
@@ -174,6 +184,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool scaleByTile
         {
             get { return _scaleByTile; }
@@ -190,6 +201,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int tileGridIndice
         {
             get { return _tileGridIndice; }
@@ -206,6 +218,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void SetNativeSize()
         {
             if (graphics.texture != null)
@@ -226,6 +239,7 @@ namespace FairyGUI
             InvalidateBatchingState();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             if (_fillMesh != null && _fillMesh.method != FillMethod.None)
@@ -283,6 +297,7 @@ namespace FairyGUI
         static float[] gridTexX = new float[4];
         static float[] gridTexY = new float[4];
 
+        [UnityEngine.Scripting.Preserve]
         public void SliceFill(VertexBuffer vb)
         {
             NTexture texture = graphics.texture;

@@ -50,6 +50,7 @@ namespace FairyGUI
         /// <summary>
         /// Returns a value between 0 and 1 (inclusive) based on the elapsed time and ease selected
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static float Evaluate(EaseType easeType, float time, float duration,
             float overshootOrAmplitude = 1.70158f,
             float period = 0,

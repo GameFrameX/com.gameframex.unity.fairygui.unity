@@ -68,6 +68,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="keywords"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public int GetFlagsByKeywords(IList<string> keywords)
         {
             if (_addKeywords == null)
@@ -98,6 +99,7 @@ namespace FairyGUI
         /// <param name="blendMode"></param>
         /// <param name="group"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Material GetMaterial(int flags, BlendMode blendMode, uint group)
         {
             if (blendMode != BlendMode.Normal && BlendModeUtils.Factors[(int)blendMode].pma)
@@ -205,6 +207,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void DestroyMaterials()
         {
             var iter = _materials.GetEnumerator();
@@ -231,6 +234,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void RefreshMaterials()
         {
             _combineTexture = _texture.alphaTexture != null;

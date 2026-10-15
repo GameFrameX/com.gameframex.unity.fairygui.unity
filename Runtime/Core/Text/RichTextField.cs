@@ -11,23 +11,28 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public IHtmlPageContext htmlPageContext { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public HtmlParseOptions htmlParseOptions { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Dictionary<uint, Emoji> emojies { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public TextField textField { get; private set; }
 
+        [UnityEngine.Scripting.Preserve]
         public RichTextField()
         {
             gameObject.name = "RichTextField";
@@ -44,6 +49,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         virtual public string text
         {
             get { return textField.text; }
@@ -53,6 +59,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         virtual public string htmlText
         {
             get { return textField.htmlText; }
@@ -62,6 +69,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         virtual public TextFormat textFormat
         {
             get { return textField.textFormat; }
@@ -73,6 +81,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public HtmlElement GetHtmlElement(string name)
         {
             List<HtmlElement> elements = textField.htmlElements;
@@ -92,6 +101,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public HtmlElement GetHtmlElementAt(int index)
         {
             return textField.htmlElements[index];
@@ -100,6 +110,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int htmlElementCount
         {
             get { return textField.htmlElements.Count; }
@@ -110,6 +121,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index"></param>
         /// <param name="show"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ShowHtmlObject(int index, bool show)
         {
             HtmlElement element = textField.htmlElements[index];

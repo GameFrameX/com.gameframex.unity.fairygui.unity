@@ -23,6 +23,7 @@ namespace FairyGUI
         /// <summary>
         /// 动效的名称。在编辑器里设定。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string name { get; private set; }
 
         /// <summary>
@@ -57,6 +58,7 @@ namespace FairyGUI
         const int OPTION_AUTO_STOP_DISABLED = 2;
         const int OPTION_AUTO_STOP_AT_END = 4;
 
+        [UnityEngine.Scripting.Preserve]
         public Transition(GComponent owner)
         {
             _owner = owner;
@@ -71,6 +73,7 @@ namespace FairyGUI
         /// <summary>
         /// 播放动效
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Play()
         {
             _Play(1, 0, 0, -1, null, false);
@@ -80,6 +83,7 @@ namespace FairyGUI
         /// 播放动效
         /// </summary>
         /// <param name="onComplete">完成回调</param>
+        [UnityEngine.Scripting.Preserve]
         public void Play(PlayCompleteCallback onComplete)
         {
             _Play(1, 0, 0, -1, onComplete, false);
@@ -91,6 +95,7 @@ namespace FairyGUI
         /// <param name="times">次数</param>
         /// <param name="delay">延迟</param>
         /// <param name="onComplete">完成回调</param>
+        [UnityEngine.Scripting.Preserve]
         public void Play(int times, float delay, PlayCompleteCallback onComplete)
         {
             _Play(times, delay, 0, -1, onComplete, false);
@@ -104,6 +109,7 @@ namespace FairyGUI
         /// <param name="startTime">开始时间</param>
         /// <param name="endTime">结束时间</param>
         /// <param name="onComplete">完成回调</param>
+        [UnityEngine.Scripting.Preserve]
         public void Play(int times, float delay, float startTime, float endTime, PlayCompleteCallback onComplete)
         {
             _Play(times, delay, startTime, endTime, onComplete, false);
@@ -112,6 +118,7 @@ namespace FairyGUI
         /// <summary>
         /// 反向播放动效
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void PlayReverse()
         {
             _Play(1, 0, 0, -1, null, true);
@@ -121,6 +128,7 @@ namespace FairyGUI
         /// 反向播放动效
         /// </summary>
         /// <param name="onComplete">完成回调</param>
+        [UnityEngine.Scripting.Preserve]
         public void PlayReverse(PlayCompleteCallback onComplete)
         {
             _Play(1, 0, 0, -1, onComplete, true);
@@ -132,6 +140,7 @@ namespace FairyGUI
         /// <param name="times">次数</param>
         /// <param name="delay">延迟</param>
         /// <param name="onComplete">完成回调</param>
+        [UnityEngine.Scripting.Preserve]
         public void PlayReverse(int times, float delay, PlayCompleteCallback onComplete)
         {
             _Play(times, delay, 0, -1, onComplete, true);
@@ -141,6 +150,7 @@ namespace FairyGUI
         /// 设置动效播放次数
         /// </summary>
         /// <param name="value">次数</param>
+        [UnityEngine.Scripting.Preserve]
         public void ChangePlayTimes(int value)
         {
             _totalTimes = value;
@@ -152,6 +162,7 @@ namespace FairyGUI
         /// <param name="autoPlay">是否自动播放</param>
         /// <param name="times">次数</param>
         /// <param name="delay">延迟</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetAutoPlay(bool autoPlay, int times, float delay)
         {
             if (_autoPlay != autoPlay)
@@ -243,6 +254,7 @@ namespace FairyGUI
         /// <summary>
         /// 停止动效
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Stop()
         {
             Stop(true, false);
@@ -253,6 +265,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="setToComplete">是否设置为完成状态</param>
         /// <param name="processCallback">是否处理回调</param>
+        [UnityEngine.Scripting.Preserve]
         public void Stop(bool setToComplete, bool processCallback)
         {
             if (!_playing)
@@ -330,6 +343,7 @@ namespace FairyGUI
         /// 设置动效是否暂停
         /// </summary>
         /// <param name="paused">是否暂停</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetPaused(bool paused)
         {
             if (!_playing || _paused == paused)
@@ -368,6 +382,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             if (_playing)
@@ -396,6 +411,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否正在播放
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool playing
         {
             get { return _playing; }
@@ -404,6 +420,7 @@ namespace FairyGUI
         /// <summary>
         /// 动效的总持续时间，当动效只有一个帧时可能为0
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float totalDuration
         {
             get { return _totalDuration; }
@@ -414,6 +431,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="label">标签</param>
         /// <param name="aParams">参数</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetValue(string label, params object[] aParams)
         {
             int cnt = _items.Length;
@@ -536,6 +554,7 @@ namespace FairyGUI
         /// <param name="label">标签</param>
         /// <param name="callback">回调</param>
         /// <param name="isSetAllLabel">是否设置所有标签</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetHook(string label, TransitionHook callback, bool isSetAllLabel = false)
         {
             int cnt = _items.Length;
@@ -565,6 +584,7 @@ namespace FairyGUI
         /// <summary>
         /// 清除动效回调
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ClearHooks()
         {
             int cnt = _items.Length;
@@ -582,6 +602,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="label">标签</param>
         /// <param name="newTarget">新目标</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetTarget(string label, GObject newTarget)
         {
             int cnt = _items.Length;
@@ -613,6 +634,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="label">标签</param>
         /// <param name="value">持续时间</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetDuration(string label, float value)
         {
             int cnt = _items.Length;
@@ -636,6 +658,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="label">标签</param>
         /// <returns>时间</returns>
+        [UnityEngine.Scripting.Preserve]
         public float GetLabelTime(string label)
         {
             int cnt = _items.Length;
@@ -654,6 +677,7 @@ namespace FairyGUI
         /// <summary>
         /// 设置动效时间缩放
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float timeScale
         {
             get { return _timeScale; }
@@ -687,6 +711,7 @@ namespace FairyGUI
         /// <summary>
         /// 设置动效是否忽略引擎时间缩放
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool ignoreEngineTimeScale
         {
             get { return _ignoreEngineTimeScale; }
@@ -1041,6 +1066,7 @@ namespace FairyGUI
         /// 动效开始
         /// </summary>
         /// <param name="tweener"></param>
+        [UnityEngine.Scripting.Preserve]
         public void OnTweenStart(GTweener tweener)
         {
             TransitionItem item = (TransitionItem)tweener.target;
@@ -1121,6 +1147,7 @@ namespace FairyGUI
             CallHook(item, false);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnTweenUpdate(GTweener tweener)
         {
             TransitionItem item = (TransitionItem)tweener.target;
@@ -1162,6 +1189,7 @@ namespace FairyGUI
         /// 动效结束
         /// </summary>
         /// <param name="tweener"></param>
+        [UnityEngine.Scripting.Preserve]
         public void OnTweenComplete(GTweener tweener)
         {
             TransitionItem item = (TransitionItem)tweener.target;
@@ -1426,6 +1454,7 @@ namespace FairyGUI
             item.target._gearLocked = false;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Setup(ByteBuffer buffer)
         {
             this.name = buffer.ReadS();

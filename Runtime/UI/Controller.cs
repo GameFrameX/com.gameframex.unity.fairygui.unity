@@ -31,6 +31,7 @@ namespace FairyGUI
 
         static uint _nextPageId;
 
+        [UnityEngine.Scripting.Preserve]
         public Controller()
         {
             _pageIds = new List<string>();
@@ -39,6 +40,7 @@ namespace FairyGUI
             _previousIndex = -1;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             RemoveEventListeners();
@@ -49,6 +51,7 @@ namespace FairyGUI
         /// When controller page changed.
         /// 当控制器活动页面改变时，此事件被触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onChanged
         {
             get { return _onChanged ?? (_onChanged = new EventListener(this, EventName.onChanged)); }
@@ -58,6 +61,7 @@ namespace FairyGUI
         /// Current page index.
         /// 获得或设置当前活动页面索引。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int selectedIndex
         {
             get
@@ -89,6 +93,7 @@ namespace FairyGUI
         /// 通过索引设置当前活动页面，和selectedIndex的区别在于，这个方法不会触发onChanged事件。
         /// </summary>
         /// <param name="value">Page index</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetSelectedIndex(int value)
         {
             if (_selectedIndex != value)
@@ -109,6 +114,7 @@ namespace FairyGUI
         /// 通过页面名称设置当前活动页面，和selectedPage的区别在于，这个方法不会触发onChanged事件。
         /// </summary>
         /// <param name="value">Page name</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetSelectedPage(string value)
         {
             int i = _pageNames.IndexOf(value);
@@ -121,6 +127,7 @@ namespace FairyGUI
         /// Current page name.
         /// 获得当前活动页面名称
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string selectedPage
         {
             get
@@ -139,6 +146,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         [Obsolete("Use previousIndex")]
         public int previsousIndex
         {
@@ -149,6 +157,7 @@ namespace FairyGUI
         /// Previouse page index.
         /// 获得上次活动页面索引
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int previousIndex
         {
             get { return _previousIndex; }
@@ -158,6 +167,7 @@ namespace FairyGUI
         /// Previous page name.
         /// 获得上次活动页面名称。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string previousPage
         {
             get
@@ -173,6 +183,7 @@ namespace FairyGUI
         /// Page count of this controller.
         /// 获得页面数量。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int pageCount
         {
             get { return _pageIds.Count; }
@@ -184,6 +195,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index">Page index</param>
         /// <returns>Page Name</returns>
+        [UnityEngine.Scripting.Preserve]
         public string GetPageName(int index)
         {
             return _pageNames[index];
@@ -195,6 +207,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index">Page index</param>
         /// <returns>Page Id</returns>
+        [UnityEngine.Scripting.Preserve]
         public string GetPageId(int index)
         {
             return _pageIds[index];
@@ -205,6 +218,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="aName"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public string GetPageIdByName(string aName)
         {
             int i = _pageNames.IndexOf(aName);
@@ -218,6 +232,7 @@ namespace FairyGUI
         /// Add a new page to this controller.
         /// </summary>
         /// <param name="name">Page name</param>
+        [UnityEngine.Scripting.Preserve]
         public void AddPage(string name)
         {
             if (name == null)
@@ -231,6 +246,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name">Page name</param>
         /// <param name="index">Insert position</param>
+        [UnityEngine.Scripting.Preserve]
         public void AddPageAt(string name, int index)
         {
             string nid = "_" + (_nextPageId++);
@@ -250,6 +266,7 @@ namespace FairyGUI
         /// Remove a page.
         /// </summary>
         /// <param name="name">Page name</param>
+        [UnityEngine.Scripting.Preserve]
         public void RemovePage(string name)
         {
             int i = _pageNames.IndexOf(name);
@@ -268,6 +285,7 @@ namespace FairyGUI
         /// Removes a page at a certain index.
         /// </summary>
         /// <param name="index"></param>
+        [UnityEngine.Scripting.Preserve]
         public void RemovePageAt(int index)
         {
             _pageIds.RemoveAt(index);
@@ -281,6 +299,7 @@ namespace FairyGUI
         /// <summary>
         /// Remove all pages.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ClearPages()
         {
             _pageIds.Clear();
@@ -296,6 +315,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="aName">Page name.</param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool HasPage(string aName)
         {
             return _pageNames.IndexOf(aName) != -1;
@@ -355,6 +375,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void RunActions()
         {
             if (_actions != null)
@@ -367,6 +388,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Setup(ByteBuffer buffer)
         {
             int beginPos = buffer.position;

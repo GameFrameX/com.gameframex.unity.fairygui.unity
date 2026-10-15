@@ -7,6 +7,7 @@ namespace FairyGUI
 {
     public class AsyncCreationHelper
     {
+        [UnityEngine.Scripting.Preserve]
         public static void CreateObject(PackageItem item, UIPackage.CreateObjectCallback callback)
         {
             Timers.inst.StartCoroutine(_CreateObject(item, callback));

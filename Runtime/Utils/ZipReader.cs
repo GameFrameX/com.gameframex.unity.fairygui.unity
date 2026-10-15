@@ -28,6 +28,7 @@
         /// 
         /// </summary>
         /// <param name="stream"></param>
+        [UnityEngine.Scripting.Preserve]
         public ZipReader(byte[] data)
         {
             _stream = new ByteBuffer(data);
@@ -43,6 +44,7 @@
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int entryCount
         {
             get { return _entryCount; }
@@ -52,6 +54,7 @@
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool GetNextEntry(ZipEntry entry)
         {
             if (_index >= _entryCount)
@@ -99,6 +102,7 @@
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public byte[] GetEntryData(ZipEntry entry)
         {
             byte[] data = new byte[entry.size];

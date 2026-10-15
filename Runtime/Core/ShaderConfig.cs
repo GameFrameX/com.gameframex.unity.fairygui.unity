@@ -85,6 +85,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public static Shader GetShader(string name)
         {
             Shader shader = Get(name);

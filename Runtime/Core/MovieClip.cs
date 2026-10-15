@@ -61,6 +61,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public MovieClip()
         {
             interval = 0.1f;
@@ -81,6 +82,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onPlayEnd
         {
             get { return _onPlayEnd ?? (_onPlayEnd = new EventListener(this, EventName.onPlayEnd)); }
@@ -89,6 +91,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Frame[] frames
         {
             get
@@ -132,6 +135,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool playing
         {
             get { return _playing; }
@@ -148,6 +152,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int frame
         {
             get { return _frame; }
@@ -168,6 +173,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Rewind()
         {
             _frame = 0;
@@ -181,6 +187,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="anotherMc"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SyncStatus(MovieClip anotherMc)
         {
             _frame = anotherMc._frame;
@@ -194,6 +201,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="time"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Advance(float time)
         {
             int beginFrame = _frame;
@@ -258,6 +266,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void SetPlaySettings()
         {
             SetPlaySettings(0, -1, 0, -1);
@@ -270,6 +279,7 @@ namespace FairyGUI
         /// <param name="end"></param>
         /// <param name="times"></param>
         /// <param name="endAt"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetPlaySettings(int start, int end, int times, int endAt)
         {
             _start = start;

@@ -16,16 +16,19 @@ namespace FairyGUI
         /// <summary>
         /// Root container.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Container rootContainer { get; private set; }
 
         /// <summary>
         /// 内容容器。如果组件未被裁剪，则 container==rootContainer 。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Container container { get; protected set; }
 
         /// <summary>
         /// ScrollPane 的组件。如果组件不可滚动，则值为 null。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public ScrollPane scrollPane { get; private set; }
 
         internal List<GObject> _children;
@@ -47,6 +50,7 @@ namespace FairyGUI
 
         EventListener _onDrop;
 
+        [UnityEngine.Scripting.Preserve]
         public GComponent()
         {
             _children = new List<GObject>();
@@ -114,6 +118,7 @@ namespace FairyGUI
         /// <summary>
         /// Dispatched when an object was dragged and dropped to this component.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onDrop
         {
             get { return _onDrop ?? (_onDrop = new EventListener(this, EventName.onDrop)); }
@@ -122,6 +127,7 @@ namespace FairyGUI
         /// <summary>
         /// Draw call optimization 开关。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool fairyBatching
         {
             get { return rootContainer.fairyBatching; }
@@ -132,6 +138,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="childChanged"></param>
+        [UnityEngine.Scripting.Preserve]
         public void InvalidateBatchingState(bool childChanged)
         {
             if (childChanged)
@@ -143,6 +150,7 @@ namespace FairyGUI
         /// <summary>
         /// 如果为 true，则鼠标/触摸事件无法穿过组件的空白区域。默认值为 true。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool opaque
         {
             get { return rootContainer.opaque; }
@@ -153,6 +161,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <value></value>
+        [UnityEngine.Scripting.Preserve]
         public Margin margin
         {
             get { return _margin; }
@@ -168,6 +177,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public ChildrenRenderOrder childrenRenderOrder
         {
             get { return _childrenRenderOrder; }
@@ -184,6 +194,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int apexIndex
         {
             get { return _apexIndex; }
@@ -202,6 +213,7 @@ namespace FairyGUI
         /// <summary>
         /// If true, children can be navigated by TAB from first to last, and repeat
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool tabStopChildren
         {
             get { return rootContainer.tabStopChildren; }
@@ -213,6 +225,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child">A child object</param>
         /// <returns>GObject</returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject AddChild(GObject child)
         {
             AddChildAt(child, _children.Count);
@@ -225,6 +238,7 @@ namespace FairyGUI
         /// <param name="child">A child object</param>
         /// <param name="index">Index</param>
         /// <returns>GObject</returns>
+        [UnityEngine.Scripting.Preserve]
         virtual public GObject AddChildAt(GObject child, int index)
         {
             if (index >= 0 && index <= _children.Count)
@@ -289,6 +303,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child">A child object</param>
         /// <returns>GObject</returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject RemoveChild(GObject child)
         {
             return RemoveChild(child, false);
@@ -300,6 +315,7 @@ namespace FairyGUI
         /// <param name="child">A child object</param>
         /// <param name="dispose">If true, the child will be disposed right away.</param>
         /// <returns>GObject</returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject RemoveChild(GObject child, bool dispose)
         {
             int childIndex = _children.IndexOf(child);
@@ -316,6 +332,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index">Index</param>
         /// <returns>GObject</returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject RemoveChildAt(int index)
         {
             return RemoveChildAt(index, false);
@@ -327,6 +344,7 @@ namespace FairyGUI
         /// <param name="index">Index</param>
         /// <param name="dispose">If true, the child will be disposed right away.</param>
         /// <returns>GObject</returns>
+        [UnityEngine.Scripting.Preserve]
         virtual public GObject RemoveChildAt(int index, bool dispose)
         {
             if (index >= 0 && index < numChildren)
@@ -364,6 +382,7 @@ namespace FairyGUI
         /// Remove all children.
         /// </summary>
         /// <param name="dispose">是否销毁</param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveChildren(bool dispose = false)
         {
             RemoveChildren(0, -1, dispose);
@@ -375,6 +394,7 @@ namespace FairyGUI
         /// <param name="beginIndex">Begin index.</param>
         /// <param name="endIndex">End index.(Included).</param>
         /// <param name="dispose">If true, the child will be disposed right away.</param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveChildren(int beginIndex, int endIndex, bool dispose)
         {
             if (endIndex < 0 || endIndex >= numChildren)
@@ -389,6 +409,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index">Index</param>
         /// <returns>A child object.</returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject GetChildAt(int index)
         {
             if (index >= 0 && index < numChildren)
@@ -402,6 +423,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name">Name</param>
         /// <returns>A child object. Null if not found.</returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject GetChild(string name)
         {
             int cnt = _children.Count;
@@ -414,6 +436,7 @@ namespace FairyGUI
             return null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public GObject GetChildByPath(string path)
         {
             string[] arr = path.Split('.');
@@ -446,6 +469,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name">Name</param>
         /// <returns>A child object. Null if not found.</returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject GetVisibleChild(string name)
         {
             int cnt = _children.Count;
@@ -465,6 +489,7 @@ namespace FairyGUI
         /// <param name="group">A group object</param>
         /// <param name="name">Name</param>
         /// <returns>A child object. Null if not found.</returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject GetChildInGroup(GGroup group, string name)
         {
             int cnt = _children.Count;
@@ -494,6 +519,7 @@ namespace FairyGUI
         /// Returns a copy of all children with an array.
         /// </summary>
         /// <returns>An array contains all children</returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject[] GetChildren()
         {
             return _children.ToArray();
@@ -504,6 +530,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child">A child object</param>
         /// <returns>Index of the child. -1 If not found.</returns>
+        [UnityEngine.Scripting.Preserve]
         public int GetChildIndex(GObject child)
         {
             return _children.IndexOf(child);
@@ -514,6 +541,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child">A Child</param>
         /// <param name="index">Index</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetChildIndex(GObject child, int index)
         {
             int oldIndex = _children.IndexOf(child);
@@ -539,6 +567,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <param name="index"></param>
+        [UnityEngine.Scripting.Preserve]
         public int SetChildIndexBefore(GObject child, int index)
         {
             int oldIndex = _children.IndexOf(child);
@@ -618,6 +647,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child1">A child object</param>
         /// <param name="child2">A child object</param>
+        [UnityEngine.Scripting.Preserve]
         public void SwapChildren(GObject child1, GObject child2)
         {
             int index1 = _children.IndexOf(child1);
@@ -632,6 +662,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index1">index of first child</param>
         /// <param name="index2">index of second child</param>
+        [UnityEngine.Scripting.Preserve]
         public void SwapChildrenAt(int index1, int index2)
         {
             GObject child1 = _children[index1];
@@ -644,6 +675,7 @@ namespace FairyGUI
         /// <summary>
         /// The number of children of this component.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int numChildren
         {
             get { return _children.Count; }
@@ -654,6 +686,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool IsAncestorOf(GObject obj)
         {
             if (obj == null)
@@ -676,6 +709,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="objs"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ChangeChildrenOrder(IList<GObject> objs)
         {
             int cnt = objs.Count;
@@ -696,6 +730,7 @@ namespace FairyGUI
         /// Adds a controller to the container.
         /// </summary>
         /// <param name="controller">Controller object</param>
+        [UnityEngine.Scripting.Preserve]
         public void AddController(Controller controller)
         {
             _controllers.Add(controller);
@@ -708,6 +743,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index">Index</param>
         /// <returns>Controller object.</returns>
+        [UnityEngine.Scripting.Preserve]
         public Controller GetControllerAt(int index)
         {
             return _controllers[index];
@@ -718,6 +754,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name">Name</param>
         /// <returns>Controller object. Null if not found.</returns>
+        [UnityEngine.Scripting.Preserve]
         public Controller GetController(string name)
         {
             int cnt = _controllers.Count;
@@ -735,6 +772,7 @@ namespace FairyGUI
         /// Removes a controller from the container. 
         /// </summary>
         /// <param name="c">Controller object.</param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveController(Controller c)
         {
             int index = _controllers.IndexOf(c);
@@ -756,6 +794,7 @@ namespace FairyGUI
         /// Returns controller list.
         /// </summary>
         /// <returns>Controller list</returns>
+        [UnityEngine.Scripting.Preserve]
         public List<Controller> Controllers
         {
             get { return _controllers; }
@@ -766,6 +805,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index">Index</param>
         /// <returns>transition object.</returns>
+        [UnityEngine.Scripting.Preserve]
         public Transition GetTransitionAt(int index)
         {
             return _transitions[index];
@@ -776,6 +816,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name">Name</param>
         /// <returns>Transition Object</returns>
+        [UnityEngine.Scripting.Preserve]
         public Transition GetTransition(string name)
         {
             int cnt = _transitions.Count;
@@ -793,6 +834,7 @@ namespace FairyGUI
         /// Returns transition list.
         /// </summary>
         /// <returns>Transition list</returns>
+        [UnityEngine.Scripting.Preserve]
         public List<Transition> Transitions
         {
             get { return _transitions; }
@@ -987,6 +1029,7 @@ namespace FairyGUI
         /// <summary>
         /// If clipping softness is set, clipped containers will have soft border effect.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 clipSoftness
         {
             get { return _clipSoftness; }
@@ -1005,6 +1048,7 @@ namespace FairyGUI
         /// <summary>
         /// The mask of the component.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject mask
         {
             get { return container.mask; }
@@ -1019,6 +1063,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool reversedMask
         {
             get { return container.reversedMask; }
@@ -1028,6 +1073,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string baseUserData
         {
             get
@@ -1043,6 +1089,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child">A child object</param>
         /// <returns>True if in view</returns>
+        [UnityEngine.Scripting.Preserve]
         public bool IsChildInView(GObject child)
         {
             if (scrollPane != null)
@@ -1058,6 +1105,7 @@ namespace FairyGUI
                 return true;
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public int GetFirstChildInView()
         {
             int cnt = _children.Count;
@@ -1150,6 +1198,7 @@ namespace FairyGUI
         /// <summary>
         /// Notify the component the bounds should recaculate.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void SetBoundsChangedFlag()
         {
             if (scrollPane == null && !_trackBounds)
@@ -1163,6 +1212,7 @@ namespace FairyGUI
         /// Bounds of the component is not updated on every changed. For example, you add a new child to the list, children in the list will be rearranged in next frame.
         /// If you want to access the correct child position immediatelly, call this function first.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void EnsureBoundsCorrect()
         {
             if (_boundsChanged)
@@ -1232,6 +1282,7 @@ namespace FairyGUI
         /// <summary>
         /// Viwe port width of the container.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float viewWidth
         {
             get
@@ -1254,6 +1305,7 @@ namespace FairyGUI
         /// <summary>
         /// View port height of the container.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float viewHeight
         {
             get
@@ -1273,6 +1325,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void GetSnappingPosition(ref float xValue, ref float yValue)
         {
             GetSnappingPositionWithDir(ref xValue, ref yValue, 0, 0);
@@ -1288,6 +1341,7 @@ namespace FairyGUI
         /**
         * dir正数表示右移或者下移，负数表示左移或者上移
         */
+        [UnityEngine.Scripting.Preserve]
         virtual public void GetSnappingPositionWithDir(ref float xValue, ref float yValue, float xDir, float yDir)
         {
             int cnt = _children.Count;
@@ -1650,6 +1704,7 @@ namespace FairyGUI
         /// Method for extensions to override
         /// </summary>
         /// <param name="xml"></param>
+        [UnityEngine.Scripting.Preserve]
         virtual public void ConstructFromXML(XML xml)
         {
         }
@@ -1717,11 +1772,13 @@ namespace FairyGUI
 #if FAIRYGUI_TOLUA
         internal LuaTable _peerTable;
 
+        [UnityEngine.Scripting.Preserve]
         public void SetLuaPeer(LuaTable peerTable)
         {
             _peerTable = peerTable;
         }
 
+        [UnityEngine.Scripting.Preserve]
         [NoToLua]
         public bool CallLua(string funcName)
         {

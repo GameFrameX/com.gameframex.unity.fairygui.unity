@@ -58,6 +58,7 @@ namespace FairyGUI
             /// 创建默认配置
             /// </summary>
             /// <returns>默认的扫光参数配置</returns>
+            [UnityEngine.Scripting.Preserve]
             public static SweepLightConfig Default()
             {
                 return new SweepLightConfig
@@ -74,6 +75,7 @@ namespace FairyGUI
             /// 创建快速扫光配置
             /// </summary>
             /// <returns>快速扫光参数配置</returns>
+            [UnityEngine.Scripting.Preserve]
             public static SweepLightConfig Fast()
             {
                 return new SweepLightConfig
@@ -90,6 +92,7 @@ namespace FairyGUI
             /// 创建慢速扫光配置
             /// </summary>
             /// <returns>慢速扫光参数配置</returns>
+            [UnityEngine.Scripting.Preserve]
             public static SweepLightConfig Slow()
             {
                 return new SweepLightConfig
@@ -107,6 +110,7 @@ namespace FairyGUI
         /// 扫光Shader属性
         /// </summary>
         /// <value>获取扫光Shader，如果未加载则自动加载</value>
+        [UnityEngine.Scripting.Preserve]
         public static Shader SweepLightShader
         {
             get
@@ -128,6 +132,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="config">扫光参数配置</param>
         /// <returns>配置好的扫光材质</returns>
+        [UnityEngine.Scripting.Preserve]
         public static Material CreateSweepLightMaterial(SweepLightConfig config)
         {
             if (SweepLightShader == null)
@@ -144,6 +149,7 @@ namespace FairyGUI
         /// 创建默认扫光材质
         /// </summary>
         /// <returns>使用默认配置的扫光材质</returns>
+        [UnityEngine.Scripting.Preserve]
         public static Material CreateDefaultSweepLightMaterial()
         {
             return CreateSweepLightMaterial(SweepLightConfig.Default());
@@ -155,6 +161,7 @@ namespace FairyGUI
         /// <param name="configName">配置名称</param>
         /// <param name="config">扫光参数配置</param>
         /// <returns>缓存的扫光材质</returns>
+        [UnityEngine.Scripting.Preserve]
         public static Material GetOrCreateCachedMaterial(string configName, SweepLightConfig config)
         {
             if (_materialCache.TryGetValue(configName, out Material cachedMaterial))
@@ -179,6 +186,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="material">目标材质</param>
         /// <param name="config">扫光参数配置</param>
+        [UnityEngine.Scripting.Preserve]
         public static void ApplyConfigToMaterial(Material material, SweepLightConfig config)
         {
             if (material == null) return;
@@ -195,6 +203,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="image">目标图像组件</param>
         /// <param name="config">扫光参数配置</param>
+        [UnityEngine.Scripting.Preserve]
         public static void AddSweepLightToImage(GImage image, SweepLightConfig config)
         {
             if (image == null) return;
@@ -210,6 +219,7 @@ namespace FairyGUI
         /// 为GImage添加默认扫光效果
         /// </summary>
         /// <param name="image">目标图像组件</param>
+        [UnityEngine.Scripting.Preserve]
         public static void AddDefaultSweepLightToImage(GImage image)
         {
             AddSweepLightToImage(image, SweepLightConfig.Default());
@@ -219,6 +229,7 @@ namespace FairyGUI
         /// 移除GImage的扫光效果
         /// </summary>
         /// <param name="image">目标图像组件</param>
+        [UnityEngine.Scripting.Preserve]
         public static void RemoveSweepLightFromImage(GImage image)
         {
             if (image == null) return;
@@ -231,6 +242,7 @@ namespace FairyGUI
         /// 启用材质的扫光效果
         /// </summary>
         /// <param name="material">目标材质</param>
+        [UnityEngine.Scripting.Preserve]
         public static void EnableSweepLight(Material material)
         {
             if (material != null)
@@ -243,6 +255,7 @@ namespace FairyGUI
         /// 禁用材质的扫光效果
         /// </summary>
         /// <param name="material">目标材质</param>
+        [UnityEngine.Scripting.Preserve]
         public static void DisableSweepLight(Material material)
         {
             if (material != null)
@@ -254,6 +267,7 @@ namespace FairyGUI
         /// <summary>
         /// 清理材质缓存
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static void ClearMaterialCache()
         {
             foreach (var kvp in _materialCache)
@@ -274,6 +288,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="presetName">预设名称（"default", "fast", "slow"）</param>
         /// <returns>对应的扫光配置</returns>
+        [UnityEngine.Scripting.Preserve]
         public static SweepLightConfig GetPresetConfig(string presetName)
         {
             switch (presetName.ToLower())

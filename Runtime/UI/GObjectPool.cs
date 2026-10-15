@@ -27,6 +27,7 @@ namespace FairyGUI
         /// 需要设置一个manager，加入池里的对象都成为这个manager的孩子
         /// </summary>
         /// <param name="manager"></param>
+        [UnityEngine.Scripting.Preserve]
         public GObjectPool(Transform manager)
         {
             _manager = manager;
@@ -36,6 +37,7 @@ namespace FairyGUI
         /// <summary>
         /// Dispose all objects in the pool.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Clear()
         {
             foreach (KeyValuePair<string, Queue<GObject>> kv in _pool)
@@ -50,6 +52,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int count
         {
             get { return _pool.Count; }
@@ -60,6 +63,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject GetObject(string url)
         {
             url = UIPackage.NormalizeURL(url);
@@ -85,6 +89,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="obj"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ReturnObject(GObject obj)
         {
             if (obj.displayObject.isDisposed)

@@ -21,6 +21,7 @@ namespace FairyGUI.Utils
 
         public delegate string TagHandler(string tagName, bool end, string attr);
 
+        [UnityEngine.Scripting.Preserve]
         public UBBParser()
         {
             handlers = new Dictionary<string, TagHandler>();
@@ -108,6 +109,7 @@ namespace FairyGUI.Utils
                 return "</p>";
         }
 
+        [UnityEngine.Scripting.Preserve]
         public string GetTagText(bool remove)
         {
             int pos1 = _readPos;
@@ -139,6 +141,7 @@ namespace FairyGUI.Utils
             return buffer.ToString();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public string Parse(string text)
         {
             _text = text;

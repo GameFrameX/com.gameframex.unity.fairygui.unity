@@ -38,6 +38,7 @@ namespace FairyGUI.Utils
         /// <param name="data"></param>
         /// <param name="offset"></param>
         /// <param name="length"></param>
+        [UnityEngine.Scripting.Preserve]
         public ByteBuffer(byte[] data, int offset = 0, int length = -1)
         {
             _data = data;
@@ -53,6 +54,7 @@ namespace FairyGUI.Utils
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int position
         {
             get { return _pointer; }
@@ -62,6 +64,7 @@ namespace FairyGUI.Utils
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int length
         {
             get { return _length; }
@@ -70,6 +73,7 @@ namespace FairyGUI.Utils
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool bytesAvailable
         {
             get { return _pointer < _length; }
@@ -78,6 +82,7 @@ namespace FairyGUI.Utils
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public byte[] buffer
         {
             get { return _data; }
@@ -95,6 +100,7 @@ namespace FairyGUI.Utils
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public int Skip(int count)
         {
             _pointer += count;
@@ -105,6 +111,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public byte ReadByte()
         {
             return _data[_offset + _pointer++];
@@ -117,6 +124,7 @@ namespace FairyGUI.Utils
         /// <param name="destIndex"></param>
         /// <param name="count"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public byte[] ReadBytes(byte[] output, int destIndex, int count)
         {
             if (count > _length - _pointer)
@@ -132,6 +140,7 @@ namespace FairyGUI.Utils
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public byte[] ReadBytes(int count)
         {
             if (count > _length - _pointer)
@@ -147,6 +156,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public ByteBuffer ReadBuffer()
         {
             int count = ReadInt();
@@ -161,6 +171,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public char ReadChar()
         {
             return (char)ReadShort();
@@ -170,6 +181,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool ReadBool()
         {
             bool result = _data[_offset + _pointer] == 1;
@@ -181,6 +193,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public short ReadShort()
         {
             int startIndex = _offset + _pointer;
@@ -195,6 +208,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public ushort ReadUshort()
         {
             return (ushort)ReadShort();
@@ -204,6 +218,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public int ReadInt()
         {
             int startIndex = _offset + _pointer;
@@ -218,6 +233,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public uint ReadUint()
         {
             return (uint)ReadInt();
@@ -227,6 +243,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public float ReadFloat()
         {
             int startIndex = _offset + _pointer;
@@ -247,6 +264,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public long ReadLong()
         {
             int startIndex = _offset + _pointer;
@@ -269,6 +287,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public double ReadDouble()
         {
             int startIndex = _offset + _pointer;
@@ -293,6 +312,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public string ReadString()
         {
             ushort len = ReadUshort();
@@ -306,6 +326,7 @@ namespace FairyGUI.Utils
         /// </summary>
         /// <param name="len"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public string ReadString(int len)
         {
             string result = Encoding.UTF8.GetString(_data, _offset + _pointer, len);
@@ -317,6 +338,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public string ReadS()
         {
             int index = ReadUshort();
@@ -333,6 +355,7 @@ namespace FairyGUI.Utils
         /// </summary>
         /// <param name="cnt"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public string[] ReadSArray(int cnt)
         {
             string[] ret = new string[cnt];
@@ -348,6 +371,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <param name="result"></param>
+        [UnityEngine.Scripting.Preserve]
         public List<GPathPoint> ReadPath()
         {
             helperPoints.Clear();
@@ -385,6 +409,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public void WriteS(string value)
         {
             int index = ReadUshort();
@@ -396,6 +421,7 @@ namespace FairyGUI.Utils
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Color ReadColor()
         {
             int startIndex = _offset + _pointer;
@@ -414,6 +440,7 @@ namespace FairyGUI.Utils
         /// <param name="indexTablePos"></param>
         /// <param name="blockIndex"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool Seek(int indexTablePos, int blockIndex)
         {
             int tmp = _pointer;

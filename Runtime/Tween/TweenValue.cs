@@ -32,6 +32,7 @@ namespace FairyGUI
         /// </summary>
         public double d;
 
+        [UnityEngine.Scripting.Preserve]
         public TweenValue()
         {
         }
@@ -39,6 +40,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 vec2
         {
             get { return new Vector2(x, y); }
@@ -52,6 +54,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector3 vec3
         {
             get { return new Vector3(x, y, z); }
@@ -66,6 +69,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector4 vec4
         {
             get { return new Vector4(x, y, z, w); }
@@ -81,6 +85,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color color
         {
             get { return new Color(x, y, z, w); }
@@ -98,6 +103,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public float this[int index]
         {
             get
@@ -142,6 +148,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void SetZero()
         {
             x = y = z = w = 0;

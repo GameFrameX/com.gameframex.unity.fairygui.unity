@@ -15,6 +15,7 @@ namespace FairyGUI
             WebGLTextInputInit(OnInput, OnBlur);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static void Start(InputTextField target)
         {
             WebGLTextInputSetText(target.text,
@@ -29,11 +30,13 @@ namespace FairyGUI
             SyncTransform(target);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static void Stop()
         {
             WebGLTextInputHide();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static void SyncTransform(InputTextField target)
         {
             Rect rect = target.TransformRect(new Rect(0, 0, target.width, target.height), null);
@@ -63,15 +66,19 @@ namespace FairyGUI
                 Stage.inst.SetFocus(null, true);
         }
 
+        [UnityEngine.Scripting.Preserve]
         [DllImport("__Internal")]
         public static extern void WebGLTextInputInit(Action<string> onInputCallback, Action onBlurCallback);
 
+        [UnityEngine.Scripting.Preserve]
         [DllImport("__Internal")]
         public static extern void WebGLTextInputSetText(string text, bool multiline, string color, int fontSize, string fontFace, int maxLength);
 
+        [UnityEngine.Scripting.Preserve]
         [DllImport("__Internal")]
         public static extern void WebGLTextInputShow(float x, float y, float width, float height, float scaleX, float scaleY);
 
+        [UnityEngine.Scripting.Preserve]
         [DllImport("__Internal")]
         public static extern void WebGLTextInputHide();
     }

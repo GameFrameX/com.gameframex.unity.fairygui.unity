@@ -59,27 +59,33 @@ namespace FairyGUI
         protected const float SupScale = 0.58f;
         protected const float SupOffset = 0.33f;
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void SetFormat(TextFormat format, float fontSizeScale)
         {
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void PrepareCharacters(string text, TextFormat format, float fontSizeScale)
         {
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void Prepare(TextFormat format)
         {
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public bool BuildGraphics(NGraphics graphics)
         {
             return false;
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void StartDraw(NGraphics graphics)
         {
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public bool GetGlyph(char ch, out float width, out float height, out float baseline)
         {
             width = 0;
@@ -88,24 +94,29 @@ namespace FairyGUI
             return false;
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void DrawGlyph(VertexBuffer vb, float x, float y2)
         {
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void DrawLine(VertexBuffer vb, float x, float y, float width, int fontSize, int type)
         {
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public bool HasCharacter(char ch)
         {
             return false;
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public int GetLineHeight(int size)
         {
             return 0;
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void Dispose()
         {
         }

@@ -21,6 +21,7 @@ namespace FairyGUI
         CharacterInfo _lineChar;
         bool _gotLineChar;
 
+        [UnityEngine.Scripting.Preserve]
         public DynamicFont()
         {
             this.canTint = true;
@@ -35,6 +36,7 @@ namespace FairyGUI
         /// <param name="name"></param>
         /// <param name="font"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public DynamicFont(string name, Font font) : this()
         {
             this.name = name;
@@ -46,6 +48,7 @@ namespace FairyGUI
             Font.textureRebuilt -= textureRebuildCallback;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public Font nativeFont
         {
             get { return _font; }

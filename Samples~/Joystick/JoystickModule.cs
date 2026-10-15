@@ -16,11 +16,15 @@ public class JoystickModule : EventDispatcher
     int touchId;
     GTweener _tweener;
 
+    [UnityEngine.Scripting.Preserve]
     public EventListener onMove { get; private set; }
+    [UnityEngine.Scripting.Preserve]
     public EventListener onEnd { get; private set; }
 
+    [UnityEngine.Scripting.Preserve]
     public int radius { get; set; }
 
+    [UnityEngine.Scripting.Preserve]
     public JoystickModule(GComponent mainView)
     {
         onMove = new EventListener(this, "onMove");
@@ -42,6 +46,7 @@ public class JoystickModule : EventDispatcher
         _touchArea.onTouchEnd.Add(this.OnTouchEnd);
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void Trigger(EventContext context)
     {
         OnTouchBegin(context);

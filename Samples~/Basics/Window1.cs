@@ -4,6 +4,7 @@ using FairyGUI;
 
 public class Window1 : Window
 {
+    [UnityEngine.Scripting.Preserve]
     public Window1()
     {
     }

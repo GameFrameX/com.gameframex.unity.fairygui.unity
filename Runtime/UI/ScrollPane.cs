@@ -12,6 +12,7 @@ namespace FairyGUI
         /// <summary>
         /// 当前被拖拽的滚动面板。同一时间只能有一个在进行此操作。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static ScrollPane draggingPane { get; private set; }
 
         ScrollType _scrollType;
@@ -89,6 +90,7 @@ namespace FairyGUI
         public static float TWEEN_TIME_DEFAULT = 0.3f; //惯性滚动的最小缓动时间
         public static float PULL_RATIO = 0.5f; //下拉过顶或者上拉过底时允许超过的距离占显示区域的比例
 
+        [UnityEngine.Scripting.Preserve]
         public ScrollPane(GComponent owner)
         {
             _onScroll = new EventListener(this, EventName.onScroll);
@@ -121,6 +123,7 @@ namespace FairyGUI
             _owner.rootContainer.onTouchEnd.Add(__touchEnd);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Setup(ByteBuffer buffer)
         {
             _scrollType = (ScrollType)buffer.ReadByte();
@@ -239,6 +242,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             RemoveEventListeners();
@@ -265,6 +269,7 @@ namespace FairyGUI
         /// Dispatched when scrolling.
         /// 在滚动时派发该事件。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onScroll
         {
             get { return _onScroll ?? (_onScroll = new EventListener(this, EventName.onScroll)); }
@@ -273,6 +278,7 @@ namespace FairyGUI
         /// <summary>
         /// 在滚动结束时派发该事件。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onScrollEnd
         {
             get { return _onScrollEnd ?? (_onScrollEnd = new EventListener(this, EventName.onScrollEnd)); }
@@ -281,6 +287,7 @@ namespace FairyGUI
         /// <summary>
         /// 向下拉过上边缘后释放则派发该事件。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onPullDownRelease
         {
             get { return _onPullDownRelease ?? (_onPullDownRelease = new EventListener(this, EventName.onPullDownRelease)); }
@@ -289,6 +296,7 @@ namespace FairyGUI
         /// <summary>
         /// 向上拉过下边缘后释放则派发该事件。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onPullUpRelease
         {
             get { return _onPullUpRelease ?? (_onPullUpRelease = new EventListener(this, EventName.onPullUpRelease)); }
@@ -297,6 +305,7 @@ namespace FairyGUI
         /// <summary>
         /// 所属组件
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComponent owner
         {
             get { return _owner; }
@@ -305,6 +314,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GScrollBar hzScrollBar
         {
             get { return _hzScrollBar; }
@@ -313,6 +323,7 @@ namespace FairyGUI
         /// <summary>
         /// 垂直滚动条
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GScrollBar vtScrollBar
         {
             get { return _vtScrollBar; }
@@ -321,6 +332,7 @@ namespace FairyGUI
         /// <summary>
         /// 头部组件
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComponent header
         {
             get { return _header; }
@@ -329,6 +341,7 @@ namespace FairyGUI
         /// <summary>
         /// 尾部组件
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComponent footer
         {
             get { return _footer; }
@@ -337,6 +350,7 @@ namespace FairyGUI
         /// <summary>
         /// 滚动到达边缘时是否允许回弹效果。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool bouncebackEffect
         {
             get { return _bouncebackEffect; }
@@ -346,6 +360,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否允许拖拽内容区域进行滚动。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool touchEffect
         {
             get { return _touchEffect; }
@@ -355,6 +370,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否允许惯性滚动。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool inertiaDisabled
         {
             get { return _inertiaDisabled; }
@@ -364,6 +380,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否允许在左/上边缘显示虚化效果。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool softnessOnTopOrLeftSide
         {
             get { return _softnessOnTopOrLeftSide; }
@@ -373,6 +390,7 @@ namespace FairyGUI
         /// <summary>
         /// 当调用ScrollPane.scrollUp/Down/Left/Right时，或者点击滚动条的上下箭头时，滑动的距离。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float scrollStep
         {
             get { return _scrollStep; }
@@ -387,6 +405,7 @@ namespace FairyGUI
         /// <summary>
         /// 滚动位置是否保持贴近在某个元件的边缘。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool snapToItem
         {
             get { return _snapToItem; }
@@ -396,6 +415,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否页面滚动模式。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool pageMode
         {
             get { return _pageMode; }
@@ -405,6 +425,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Controller pageController
         {
             get { return _pageController; }
@@ -414,6 +435,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否允许使用鼠标滚轮进行滚动。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool mouseWheelEnabled
         {
             get { return _mouseWheelEnabled; }
@@ -424,6 +446,7 @@ namespace FairyGUI
         /// 当处于惯性滚动时减速的速率。默认值是UIConfig.defaultScrollDecelerationRate。
         /// 越接近1，减速越慢，意味着滑动的时间和距离更长。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float decelerationRate
         {
             get { return _decelerationRate; }
@@ -433,6 +456,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否可以拖拽
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isDragged
         {
             get { return _dragged; }
@@ -441,6 +465,7 @@ namespace FairyGUI
         /// <summary>
         /// 当前X轴滚动位置百分比，0~1（包含）。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float percX
         {
             get { return _overlapSize.x == 0 ? 0 : _xPos / _overlapSize.x; }
@@ -452,6 +477,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <param name="ani">是否使用缓动到达目标。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetPercX(float value, bool ani)
         {
             _owner.EnsureBoundsCorrect();
@@ -461,6 +487,7 @@ namespace FairyGUI
         /// <summary>
         /// 当前Y轴滚动位置百分比，0~1（包含）。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float percY
         {
             get { return _overlapSize.y == 0 ? 0 : _yPos / _overlapSize.y; }
@@ -472,6 +499,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <param name="ani">是否使用缓动到达目标。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetPercY(float value, bool ani)
         {
             _owner.EnsureBoundsCorrect();
@@ -481,6 +509,7 @@ namespace FairyGUI
         /// <summary>
         /// 当前X轴滚动位置，值范围是viewWidth与contentWidth之差。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float posX
         {
             get { return _xPos; }
@@ -492,6 +521,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <param name="ani">是否使用缓动到达目标。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetPosX(float value, bool ani)
         {
             _owner.EnsureBoundsCorrect();
@@ -510,6 +540,7 @@ namespace FairyGUI
         /// <summary>
         /// 当前Y轴滚动位置，值范围是viewHeight与contentHeight之差。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float posY
         {
             get { return _yPos; }
@@ -521,6 +552,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <param name="ani">是否使用缓动到达目标。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetPosY(float value, bool ani)
         {
             _owner.EnsureBoundsCorrect();
@@ -539,6 +571,7 @@ namespace FairyGUI
         /// <summary>
         /// 返回当前滚动位置是否在最下边。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isBottomMost
         {
             get { return _yPos == _overlapSize.y || _overlapSize.y == 0; }
@@ -547,6 +580,7 @@ namespace FairyGUI
         /// <summary>
         /// 返回当前滚动位置是否在最右边。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isRightMost
         {
             get { return _xPos == _overlapSize.x || _overlapSize.x == 0; }
@@ -555,6 +589,7 @@ namespace FairyGUI
         /// <summary>
         /// 如果处于分页模式，返回当前在X轴的页码。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int currentPageX
         {
             get
@@ -585,6 +620,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <param name="ani">是否使用缓动到达目标。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetCurrentPageX(int value, bool ani)
         {
             if (!_pageMode)
@@ -599,6 +635,7 @@ namespace FairyGUI
         /// <summary>
         /// 如果处于分页模式，返回当前在Y轴的页码。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int currentPageY
         {
             get
@@ -629,6 +666,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <param name="ani">是否使用缓动到达目标。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetCurrentPageY(int value, bool ani)
         {
             if (!_pageMode)
@@ -643,6 +681,7 @@ namespace FairyGUI
         /// <summary>
         /// 这个值与PosX不同在于，他反映的是实时位置，而PosX在有缓动过程的情况下只是终值。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float scrollingPosX
         {
             get
@@ -654,6 +693,7 @@ namespace FairyGUI
         /// <summary>
         /// 这个值与PosY不同在于，他反映的是实时位置，而PosY在有缓动过程的情况下只是终值。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float scrollingPosY
         {
             get
@@ -665,6 +705,7 @@ namespace FairyGUI
         /// <summary>
         /// 显示内容宽度。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float contentWidth
         {
             get
@@ -676,6 +717,7 @@ namespace FairyGUI
         /// <summary>
         /// 显示内容高度。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float contentHeight
         {
             get
@@ -687,6 +729,7 @@ namespace FairyGUI
         /// <summary>
         /// 显示区域宽度。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float viewWidth
         {
             get { return _viewSize.x; }
@@ -702,6 +745,7 @@ namespace FairyGUI
         /// <summary>
         /// 显示区域高度。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float viewHeight
         {
             get { return _viewSize.y; }
@@ -717,6 +761,7 @@ namespace FairyGUI
         /// <summary>
         /// 滚动到顶部
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollTop()
         {
             ScrollTop(false);
@@ -726,6 +771,7 @@ namespace FairyGUI
         /// 滚动到顶部
         /// </summary>
         /// <param name="ani">是否使用缓动</param>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollTop(bool ani)
         {
             this.SetPercY(0, ani);
@@ -734,6 +780,7 @@ namespace FairyGUI
         /// <summary>
         /// 滚动到底部
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollBottom()
         {
             ScrollBottom(false);
@@ -743,6 +790,7 @@ namespace FairyGUI
         /// 滚动到底部
         /// </summary>
         /// <param name="ani">是否使用缓动</param>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollBottom(bool ani)
         {
             this.SetPercY(1, ani);
@@ -751,6 +799,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollUp()
         {
             ScrollUp(1, false);
@@ -761,6 +810,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="ratio">滚动比例</param>
         /// <param name="ani">是否使用缓动</param>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollUp(float ratio, bool ani)
         {
             if (_pageMode)
@@ -772,6 +822,7 @@ namespace FairyGUI
         /// <summary>
         /// 滚动到底部
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollDown()
         {
             ScrollDown(1, false);
@@ -782,6 +833,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="ratio">滚动比例</param>
         /// <param name="ani">是否使用缓动</param>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollDown(float ratio, bool ani)
         {
             if (_pageMode)
@@ -793,6 +845,7 @@ namespace FairyGUI
         /// <summary>
         /// 滚动到左边
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollLeft()
         {
             ScrollLeft(1, false);
@@ -803,6 +856,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="ratio">滚动比例</param>
         /// <param name="ani">是否使用缓动</param>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollLeft(float ratio, bool ani)
         {
             if (_pageMode)
@@ -814,6 +868,7 @@ namespace FairyGUI
         /// <summary>
         /// 滚动到右边
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollRight()
         {
             ScrollRight(1, false);
@@ -824,6 +879,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="ratio"></param>
         /// <param name="ani"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollRight(float ratio, bool ani)
         {
             if (_pageMode)
@@ -836,6 +892,7 @@ namespace FairyGUI
         /// 滚动到目标对象
         /// </summary>
         /// <param name="obj">obj可以是在舞台上的任何对象，不限于直接子对象。</param>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollToView(GObject obj)
         {
             ScrollToView(obj, false);
@@ -846,6 +903,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="obj">obj可以是在舞台上的任何对象，不限于直接子对象。</param>
         /// <param name="ani">是否使用缓动</param>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollToView(GObject obj, bool ani)
         {
             ScrollToView(obj, ani, false);
@@ -857,6 +915,7 @@ namespace FairyGUI
         /// <param name="obj">obj可以是在舞台上的任何对象，不限于直接子对象。</param>
         /// <param name="ani">是否使用缓动</param>
         /// <param name="setFirst">如果为true，滚动到目标对象在顶部/左边；如果为false，滚动到目标对象在视图内。</param>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollToView(GObject obj, bool ani, bool setFirst)
         {
             _owner.EnsureBoundsCorrect();
@@ -875,6 +934,7 @@ namespace FairyGUI
         /// <param name="rect">Rect in local coordinates</param>
         /// <param name="ani">是否使用缓动</param>
         /// <param name="setFirst">如果为true，滚动到目标对象在顶部/左边；如果为false，滚动到目标对象在视图内。</param>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollToView(Rect rect, bool ani, bool setFirst)
         {
             _owner.EnsureBoundsCorrect();
@@ -936,6 +996,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="obj">obj必须是此容器的直接子对象</param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool IsChildInView(GObject obj)
         {
             if (_overlapSize.y > 0)
@@ -957,6 +1018,7 @@ namespace FairyGUI
         /// <summary>
         /// 当滚动面板处于拖拽滚动状态或即将进入拖拽状态时，可以调用此方法停止或禁止本次拖拽。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void CancelDragging()
         {
             Stage.inst.RemoveTouchMonitor(_owner.rootContainer);
@@ -972,6 +1034,7 @@ namespace FairyGUI
         /// 设置Header固定显示。如果size为0，则取消固定显示。
         /// </summary>
         /// <param name="size">Header显示的大小</param>
+        [UnityEngine.Scripting.Preserve]
         public void LockHeader(int size)
         {
             if (_headerLockedSize == size)
@@ -992,6 +1055,7 @@ namespace FairyGUI
         /// 设置Footer固定显示。如果size为0，则取消固定显示。
         /// </summary>
         /// <param name="size"></param>
+        [UnityEngine.Scripting.Preserve]
         public void LockFooter(int size)
         {
             if (_footerLockedSize == size)
@@ -1773,6 +1837,7 @@ namespace FairyGUI
             CheckRefreshBar();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void UpdateScrollBarVisible()
         {
             if (_vtScrollBar != null)

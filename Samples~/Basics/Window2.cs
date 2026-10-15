@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Window2 : Window
 {
+    [UnityEngine.Scripting.Preserve]
     public Window2()
     {
     }

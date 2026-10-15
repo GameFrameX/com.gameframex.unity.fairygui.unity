@@ -14,6 +14,7 @@ public class Card : GButton
         _front.visible = false;
     }
 
+    [UnityEngine.Scripting.Preserve]
     public bool opened
     {
         get
@@ -30,12 +31,14 @@ public class Card : GButton
         }
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void SetPerspective()
     {
         _front.displayObject.perspective = true;
         _back.displayObject.perspective = true;
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void Turn()
     {
         if (GTween.IsTweening(this))

@@ -2,6 +2,7 @@
 
 public class Window4 : Window
 {
+    [UnityEngine.Scripting.Preserve]
     public Window4()
     {
     }

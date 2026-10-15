@@ -13,6 +13,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="collider"></param>
+        [UnityEngine.Scripting.Preserve]
         public MeshColliderHitTest(MeshCollider collider)
         {
             this.collider = collider;

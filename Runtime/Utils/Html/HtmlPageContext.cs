@@ -16,6 +16,7 @@ namespace FairyGUI.Utils
 
         static HtmlPageContext _inst;
 
+        [UnityEngine.Scripting.Preserve]
         public static HtmlPageContext inst
         {
             get
@@ -34,6 +35,7 @@ namespace FairyGUI.Utils
             _poolManager = null;
         }
 #endif
+        [UnityEngine.Scripting.Preserve]
         public HtmlPageContext()
         {
             _imagePool = new Stack<IHtmlObject>();
@@ -46,6 +48,7 @@ namespace FairyGUI.Utils
                 _poolManager = Stage.inst.CreatePoolManager("HtmlObjectPool");
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public IHtmlObject CreateObject(RichTextField owner, HtmlElement element)
         {
             IHtmlObject ret = null;
@@ -135,6 +138,7 @@ namespace FairyGUI.Utils
             return ret;
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void FreeObject(IHtmlObject obj)
         {
             if (_poolManager == null)
@@ -164,11 +168,13 @@ namespace FairyGUI.Utils
                 obj.displayObject.cachedTransform.SetParent(_poolManager, false);
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public NTexture GetImageTexture(HtmlImage image)
         {
             return null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void FreeImageTexture(HtmlImage image, NTexture texture)
         {
         }

@@ -27,12 +27,14 @@ namespace FairyGUI
         /// </summary>
         public bool clockwise;
 
+        [UnityEngine.Scripting.Preserve]
         public FillMesh()
         {
             clockwise = true;
             amount = 1;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             float amount = Mathf.Clamp01(this.amount);

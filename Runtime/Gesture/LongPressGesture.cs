@@ -12,19 +12,23 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GObject host { get; private set; }
 
         /// <summary>
         /// 当手指按下时派发该事件。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onBegin { get; private set; }
         /// <summary>
         /// 手指离开屏幕时派发该事件。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onEnd { get; private set; }
         /// <summary>
         /// 当手指按下后一段时间后派发该事件。并且在手指离开前按一定周期派发该事件。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onAction { get; private set; }
 
         /// <summary>
@@ -54,6 +58,7 @@ namespace FairyGUI
         public static float TRIGGER = 1.5f;
         public static float INTERVAL = 1f;
 
+        [UnityEngine.Scripting.Preserve]
         public LongPressGesture(GObject host)
         {
             this.host = host;
@@ -67,12 +72,14 @@ namespace FairyGUI
             onAction = new EventListener(this, EventName.onLongPressAction);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             Enable(false);
             host = null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Enable(bool value)
         {
             if (value)
@@ -104,6 +111,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Cancel()
         {
             Timers.inst.Remove(__timer);

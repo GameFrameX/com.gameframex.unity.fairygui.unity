@@ -9,6 +9,7 @@ namespace FairyGUI
     {
         public int gridSize = 30;
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             float w = vb.contentRect.width;

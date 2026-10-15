@@ -18,12 +18,14 @@ namespace FairyGUI
         /// </summary>
         public int activeIndex;
 
+        [UnityEngine.Scripting.Preserve]
         public CompositeMesh()
         {
             elements = new List<IMeshFactory>();
             activeIndex = -1;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             int cnt = elements.Count;
@@ -47,6 +49,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool HitTest(Rect contentRect, Vector2 point)
         {
             if (!contentRect.Contains(point))

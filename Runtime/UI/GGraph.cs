@@ -15,6 +15,7 @@ namespace FairyGUI
     {
         Shape _shape;
 
+        [UnityEngine.Scripting.Preserve]
         public GGraph()
         {
         }
@@ -31,6 +32,7 @@ namespace FairyGUI
         /// 在显示列表中，将指定对象取代这个图形对象。这个图形对象相当于一个占位的用途。
         /// </summary>
         /// <param name="target">Target object.</param>
+        [UnityEngine.Scripting.Preserve]
         public void ReplaceMe(GObject target)
         {
             if (parent == null)
@@ -57,6 +59,7 @@ namespace FairyGUI
         /// 在显示列表中，将另一个对象插入到这个对象的前面。
         /// </summary>
         /// <param name="target">Target object.</param>
+        [UnityEngine.Scripting.Preserve]
         public void AddBeforeMe(GObject target)
         {
             if (parent == null)
@@ -71,6 +74,7 @@ namespace FairyGUI
         /// 在显示列表中，将另一个对象插入到这个对象的后面。
         /// </summary>
         /// <param name="target">Target object.</param>
+        [UnityEngine.Scripting.Preserve]
         public void AddAfterMe(GObject target)
         {
             if (parent == null)
@@ -85,6 +89,7 @@ namespace FairyGUI
         /// 设置内容为一个原生对象。这个图形对象相当于一个占位的用途。
         /// </summary>
         /// <param name="obj">原生对象</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetNativeObject(DisplayObject obj)
         {
             if (displayObject == obj)
@@ -119,6 +124,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color color
         {
             get
@@ -142,6 +148,7 @@ namespace FairyGUI
         /// Get the shape object. It can be used for drawing.
         /// 获取图形的原生对象，可用于绘制图形。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Shape shape
         {
             get { return _shape; }
@@ -156,6 +163,7 @@ namespace FairyGUI
         /// <param name="lineSize">Line size</param>
         /// <param name="lineColor">Line color</param>
         /// <param name="fillColor">Fill color</param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawRect(float aWidth, float aHeight, int lineSize, Color lineColor, Color fillColor)
         {
             this.SetSize(aWidth, aHeight);
@@ -169,6 +177,7 @@ namespace FairyGUI
         /// <param name="aHeight"></param>
         /// <param name="fillColor"></param>
         /// <param name="corner"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawRoundRect(float aWidth, float aHeight, Color fillColor, float[] corner)
         {
             this.SetSize(aWidth, aHeight);
@@ -181,6 +190,7 @@ namespace FairyGUI
         /// <param name="aWidth"></param>
         /// <param name="aHeight"></param>
         /// <param name="fillColor"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawEllipse(float aWidth, float aHeight, Color fillColor)
         {
             this.SetSize(aWidth, aHeight);
@@ -194,6 +204,7 @@ namespace FairyGUI
         /// <param name="aHeight"></param>
         /// <param name="points"></param>
         /// <param name="fillColor"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawPolygon(float aWidth, float aHeight, IList<Vector2> points, Color fillColor)
         {
             this.SetSize(aWidth, aHeight);
@@ -209,6 +220,7 @@ namespace FairyGUI
         /// <param name="fillColor"></param>
         /// <param name="lineSize"></param>
         /// <param name="lineColor"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawPolygon(float aWidth, float aHeight, IList<Vector2> points, Color fillColor, float lineSize, Color lineColor)
         {
             this.SetSize(aWidth, aHeight);

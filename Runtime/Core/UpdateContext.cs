@@ -51,6 +51,7 @@ namespace FairyGUI
             OnEnd = null;
         }
 #endif
+        [UnityEngine.Scripting.Preserve]
         public UpdateContext()
         {
             _clipStack = new Stack<ClipInfo>();
@@ -59,6 +60,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Begin()
         {
             current = this;
@@ -93,6 +95,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void End()
         {
             working = false;
@@ -109,6 +112,7 @@ namespace FairyGUI
         /// <param name="clipId"></param>
         /// <param name="clipRect"></param>
         /// <param name="softness"></param>
+        [UnityEngine.Scripting.Preserve]
         public void EnterClipping(uint clipId, Rect clipRect, Vector4? softness)
         {
             _clipStack.Push(clipInfo);
@@ -167,6 +171,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="clipId"></param>
         /// <param name="reversedMask"></param>
+        [UnityEngine.Scripting.Preserve]
         public void EnterClipping(uint clipId, bool reversedMask)
         {
             _clipStack.Push(clipInfo);
@@ -195,6 +200,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void LeaveClipping()
         {
             clipInfo = _clipStack.Pop();
@@ -203,6 +209,7 @@ namespace FairyGUI
             clipped = stencilReferenceValue != 0 || rectMaskDepth != 0;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void EnterPaintingMode()
         {
             //Reset clipping
@@ -214,6 +221,7 @@ namespace FairyGUI
             clipped = false;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void LeavePaintingMode()
         {
             clipInfo = _clipStack.Pop();
@@ -222,6 +230,7 @@ namespace FairyGUI
             clipped = stencilReferenceValue != 0 || rectMaskDepth != 0;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void ApplyClippingProperties(Material mat, bool isStdMaterial)
         {
             if (rectMaskDepth > 0) //在矩形剪裁下，且不是遮罩对象
@@ -267,6 +276,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void ApplyAlphaMaskProperties(Material mat, bool erasing)
         {
             if (!erasing)

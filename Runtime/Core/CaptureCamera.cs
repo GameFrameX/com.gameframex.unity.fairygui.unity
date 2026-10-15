@@ -44,6 +44,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static void CheckMain()
         {
             if (_main != null && _main.cachedCamera != null)
@@ -81,6 +82,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static int layer
         {
             get
@@ -102,6 +104,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static int hiddenLayer
         {
             get
@@ -127,6 +130,7 @@ namespace FairyGUI
         /// <param name="height"></param>
         /// <param name="stencilSupport"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public static RenderTexture CreateRenderTexture(int width, int height, bool stencilSupport)
         {
             RenderTexture texture = new RenderTexture(width, height, stencilSupport ? 24 : 0, RenderTextureFormat.ARGB32);
@@ -146,6 +150,7 @@ namespace FairyGUI
         /// <param name="texture"></param>
         /// <param name="contentHeight"></param>
         /// <param name="offset"></param>
+        [UnityEngine.Scripting.Preserve]
         public static void Capture(DisplayObject target, RenderTexture texture, float contentHeight, Vector2 offset)
         {
             CheckMain();

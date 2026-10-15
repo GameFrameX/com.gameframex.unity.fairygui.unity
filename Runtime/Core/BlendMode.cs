@@ -38,6 +38,7 @@ namespace FairyGUI
             public NativeBlendMode dstFactor;
             public bool pma;
 
+            [UnityEngine.Scripting.Preserve]
             public BlendFactor(NativeBlendMode srcFactor, NativeBlendMode dstFactor, bool pma = false)
             {
                 this.srcFactor = srcFactor;
@@ -82,6 +83,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="mat"></param>
         /// <param name="blendMode"></param>
+        [UnityEngine.Scripting.Preserve]
         public static void Apply(Material mat, BlendMode blendMode)
         {
             BlendFactor bf = Factors[(int)blendMode];
@@ -100,6 +102,7 @@ namespace FairyGUI
         /// <param name="blendMode"></param>
         /// <param name="srcFactor"></param>
         /// <param name="dstFactor"></param>
+        [UnityEngine.Scripting.Preserve]
         public static void Override(BlendMode blendMode, NativeBlendMode srcFactor, NativeBlendMode dstFactor)
         {
             BlendFactor bf = Factors[(int)blendMode];

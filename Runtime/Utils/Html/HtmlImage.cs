@@ -9,12 +9,14 @@ namespace FairyGUI.Utils
     /// </summary>
     public class HtmlImage : IHtmlObject
     {
+        [UnityEngine.Scripting.Preserve]
         public GLoader loader { get; private set; }
 
         RichTextField _owner;
         HtmlElement _element;
         bool _externalTexture;
 
+        [UnityEngine.Scripting.Preserve]
         public HtmlImage()
         {
             loader = (GLoader)UIObjectFactory.NewObject(ObjectType.Loader);
@@ -23,26 +25,31 @@ namespace FairyGUI.Utils
             loader.touchable = false;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject displayObject
         {
             get { return loader.displayObject; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public HtmlElement element
         {
             get { return _element; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public float width
         {
             get { return loader.width; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public float height
         {
             get { return loader.height; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Create(RichTextField owner, HtmlElement element)
         {
             _owner = owner;
@@ -86,22 +93,26 @@ namespace FairyGUI.Utils
             loader.SetSize(width, height);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void SetPosition(float x, float y)
         {
             loader.SetXY(x, y);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Add()
         {
             _owner.AddChild(loader.displayObject);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Remove()
         {
             if (loader.displayObject.parent != null)
                 _owner.RemoveChild(loader.displayObject);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Release()
         {
             loader.RemoveEventListeners();
@@ -116,6 +127,7 @@ namespace FairyGUI.Utils
             _element = null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             if (_externalTexture)

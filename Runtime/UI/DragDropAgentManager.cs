@@ -21,6 +21,7 @@ namespace FairyGUI
 #endif
         private static DragDropAgentManager _inst;
 
+        [UnityEngine.Scripting.Preserve]
         public static DragDropAgentManager Instance
         {
             get
@@ -38,6 +39,7 @@ namespace FairyGUI
         /// Loader object for real dragging.
         /// 用于实际拖动的对象。你可以根据实际情况设置对象的大小，对齐等。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GObject DragAgent
         {
             get { return _agent; }
@@ -47,6 +49,7 @@ namespace FairyGUI
         /// Is dragging?
         /// 返回当前是否正在拖动。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool Dragging
         {
             get { return _agent.parent != null; }
@@ -62,6 +65,7 @@ namespace FairyGUI
         /// <param name="onDragEndCallback"></param>
         /// <param name="touchPointID">Copy the touchId from InputEvent to here, if has one.</param>
         //public void StartDrag(GObject source, string icon, object sourceData, int touchPointID = -1)
+        [UnityEngine.Scripting.Preserve]
         public void StartDrag(GObject source, GObject newAgent, object sourceData, EventCallback1 onDragEndCallback, int touchPointID = -1)
         {
             if (_agent != null && _agent.parent != null)
@@ -108,6 +112,7 @@ namespace FairyGUI
         /// <param name="onDragEndCallback">拖动结束回调</param>
         /// <param name="touchPointID"></param>
         /// <param name="scale">拖动对象的缩放</param>
+        [UnityEngine.Scripting.Preserve]
         public void StartDrag(GObject source, object sourceData, EventCallback1 onDragEndCallback = null, int touchPointID = -1, float scale = 1.5f)
         {
             if (source.parent != null)
@@ -156,6 +161,7 @@ namespace FairyGUI
         /// Cancel dragging.
         /// 取消拖动。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Cancel()
         {
             if (_agent.parent != null)

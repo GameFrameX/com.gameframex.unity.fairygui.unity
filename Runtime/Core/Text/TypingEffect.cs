@@ -29,6 +29,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否正在打印
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool IsTyping
         {
             get { return _started; }
@@ -38,6 +39,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="textField"></param>
+        [UnityEngine.Scripting.Preserve]
         public TypingEffect(TextField textField)
         {
             _textField = textField;
@@ -48,6 +50,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="textField"></param>
+        [UnityEngine.Scripting.Preserve]
         public TypingEffect(GTextField textField)
         {
             if (textField is GRichTextField)
@@ -65,6 +68,7 @@ namespace FairyGUI
         /// <summary>
         /// 总输出次数
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int TotalTimes
         {
             get
@@ -96,6 +100,7 @@ namespace FairyGUI
         /// <summary>
         /// 开始打字效果。可以重复调用重复启动。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Start()
         {
             if (_textField.SetTypingEffectPos(0) != -1)
@@ -151,6 +156,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="interval">每个字符输出的时间间隔</param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public IEnumerator Print(float interval)
         {
             while (Print())
@@ -163,11 +169,13 @@ namespace FairyGUI
         /// 使用固定时间间隔完成整个打印过程。
         /// </summary>
         /// <param name="interval"></param>
+        [UnityEngine.Scripting.Preserve]
         public void PrintAll(float interval)
         {
             Timers.inst.StartCoroutine(Print(interval));
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Cancel()
         {
             if (!_started)

@@ -29,6 +29,7 @@ namespace FairyGUI
         /// <param name="url"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
+        [UnityEngine.Scripting.Preserve]
         public Emoji(string url, int width, int height)
         {
             this.url = url;
@@ -40,6 +41,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="url"></param>
+        [UnityEngine.Scripting.Preserve]
         public Emoji(string url)
         {
             this.url = url;

@@ -16,11 +16,13 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GTreeNode parent { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GTree tree { get; private set; }
 
         List<GTreeNode> _children;
@@ -33,6 +35,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="hasChild"></param>
+        [UnityEngine.Scripting.Preserve]
         public GTreeNode(bool hasChild) : this(hasChild, null)
         {
 
@@ -43,6 +46,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="hasChild"></param>
         /// <param name="resURL"></param>
+        [UnityEngine.Scripting.Preserve]
         public GTreeNode(bool hasChild, string resURL)
         {
             if (hasChild)
@@ -53,6 +57,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComponent cell
         {
             get { return _cell; }
@@ -61,6 +66,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int level
         {
             get { return _level; }
@@ -69,6 +75,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool expanded
         {
             get
@@ -98,6 +105,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ExpandToRoot()
         {
             GTreeNode p = this;
@@ -111,6 +119,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isFolder
         {
             get { return _children != null; }
@@ -119,6 +128,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string text
         {
             get
@@ -139,6 +149,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string icon
         {
             get
@@ -161,6 +172,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTreeNode AddChild(GTreeNode child)
         {
             AddChildAt(child, _children.Count);
@@ -173,6 +185,7 @@ namespace FairyGUI
         /// <param name="child"></param>
         /// <param name="index"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTreeNode AddChildAt(GTreeNode child, int index)
         {
             if (child == null)
@@ -217,6 +230,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTreeNode RemoveChild(GTreeNode child)
         {
             int childIndex = _children.IndexOf(child);
@@ -232,6 +246,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTreeNode RemoveChildAt(int index)
         {
             if (index >= 0 && index < numChildren)
@@ -259,6 +274,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="beginIndex"></param>
         /// <param name="endIndex"></param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveChildren(int beginIndex = 0, int endIndex = -1)
         {
             if (endIndex < 0 || endIndex >= numChildren)
@@ -273,6 +289,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTreeNode GetChildAt(int index)
         {
             if (index >= 0 && index < numChildren)
@@ -286,6 +303,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public int GetChildIndex(GTreeNode child)
         {
             return _children.IndexOf(child);
@@ -295,6 +313,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTreeNode GetPrevSibling()
         {
             if (parent == null)
@@ -311,6 +330,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTreeNode GetNextSibling()
         {
             if (parent == null)
@@ -328,6 +348,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <param name="index"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetChildIndex(GTreeNode child, int index)
         {
             int oldIndex = _children.IndexOf(child);
@@ -354,6 +375,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child1"></param>
         /// <param name="child2"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SwapChildren(GTreeNode child1, GTreeNode child2)
         {
             int index1 = _children.IndexOf(child1);
@@ -368,6 +390,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index1"></param>
         /// <param name="index2"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SwapChildrenAt(int index1, int index2)
         {
             GTreeNode child1 = _children[index1];
@@ -380,6 +403,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int numChildren
         {
             get { return (null == _children) ? 0 : _children.Count; }

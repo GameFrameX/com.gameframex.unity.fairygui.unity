@@ -24,6 +24,7 @@ namespace FairyGUI
 
         const string EVENT_TYPE = "PopupMenuItemClick";
 
+        [UnityEngine.Scripting.Preserve]
         public PopupMenu()
         {
             Create(null);
@@ -33,16 +34,19 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="resourceURL"></param>
+        [UnityEngine.Scripting.Preserve]
         public PopupMenu(string resourceURL)
         {
             Create(resourceURL);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public EventListener onPopup
         {
             get { return _onPopup ?? (_onPopup = new EventListener(this, EventName.onPopup)); }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public EventListener onClose
         {
             get { return _onClose ?? (_onClose = new EventListener(this, EventName.onClose)); }
@@ -85,6 +89,7 @@ namespace FairyGUI
         /// <param name="caption"></param>
         /// <param name="callback"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GButton AddItem(string caption, EventCallback0 callback)
         {
             GButton item = CreateItem(caption, callback);
@@ -99,6 +104,7 @@ namespace FairyGUI
         /// <param name="caption"></param>
         /// <param name="callback"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GButton AddItem(string caption, EventCallback1 callback)
         {
             GButton item = CreateItem(caption, callback);
@@ -114,6 +120,7 @@ namespace FairyGUI
         /// <param name="index"></param>
         /// <param name="callback"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GButton AddItemAt(string caption, int index, EventCallback1 callback)
         {
             GButton item = CreateItem(caption, callback);
@@ -129,6 +136,7 @@ namespace FairyGUI
         /// <param name="index"></param>
         /// <param name="callback"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GButton AddItemAt(string caption, int index, EventCallback0 callback)
         {
             GButton item = CreateItem(caption, callback);
@@ -160,6 +168,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void AddSeperator()
         {
             AddSeperator(-1);
@@ -168,6 +177,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void AddSeperator(int index)
         {
             if (UIConfig.popupMenu_seperator == null)
@@ -190,6 +200,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public string GetItemName(int index)
         {
             GButton item = _list.GetChildAt(index).asButton;
@@ -201,6 +212,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name"></param>
         /// <param name="caption"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetItemText(string name, string caption)
         {
             GButton item = _list.GetChild(name).asButton;
@@ -212,6 +224,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name"></param>
         /// <param name="visible"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetItemVisible(string name, bool visible)
         {
             GButton item = _list.GetChild(name).asButton;
@@ -227,6 +240,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name"></param>
         /// <param name="grayed"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetItemGrayed(string name, bool grayed)
         {
             GButton item = _list.GetChild(name).asButton;
@@ -238,6 +252,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name"></param>
         /// <param name="checkable"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetItemCheckable(string name, bool checkable)
         {
             GButton item = _list.GetChild(name).asButton;
@@ -259,6 +274,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name"></param>
         /// <param name="check"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetItemChecked(string name, bool check)
         {
             GButton item = _list.GetChild(name).asButton;
@@ -267,6 +283,7 @@ namespace FairyGUI
                 c.selectedIndex = check ? 2 : 1;
         }
 
+        [UnityEngine.Scripting.Preserve]
         [Obsolete("Use IsItemChecked instead")]
         public bool isItemChecked(string name)
         {
@@ -278,6 +295,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool IsItemChecked(string name)
         {
             GButton item = _list.GetChild(name).asButton;
@@ -292,6 +310,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="name"></param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveItem(string name)
         {
             GComponent item = _list.GetChild(name).asCom;
@@ -311,6 +330,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ClearItems()
         {
             _list.RemoveChildrenToPool();
@@ -319,6 +339,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int itemCount
         {
             get { return _list.numChildren; }
@@ -327,6 +348,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComponent contentPane
         {
             get { return _contentPane; }
@@ -335,11 +357,13 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GList list
         {
             get { return _list; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             int cnt = _list.numChildren;
@@ -355,6 +379,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Show()
         {
             Show(null, PopupDirection.Auto);
@@ -364,11 +389,13 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="target"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Show(GObject target)
         {
             Show(target, PopupDirection.Auto, null);
         }
 
+        [UnityEngine.Scripting.Preserve]
         [Obsolete]
         public void Show(GObject target, object downward)
         {
@@ -380,6 +407,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="target"></param>
         /// <param name="dir"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Show(GObject target, PopupDirection dir)
         {
             Show(target, PopupDirection.Auto, null);
@@ -391,6 +419,7 @@ namespace FairyGUI
         /// <param name="target"></param>
         /// <param name="dir"></param>
         /// <param name="parentMenu"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Show(GObject target, PopupDirection dir, PopupMenu parentMenu)
         {
             GRoot r = target != null ? target.root : GRoot.inst;
@@ -398,6 +427,7 @@ namespace FairyGUI
             _parentMenu = parentMenu;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Hide()
         {
             if (contentPane.parent != null)

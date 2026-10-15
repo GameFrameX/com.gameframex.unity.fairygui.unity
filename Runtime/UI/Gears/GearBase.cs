@@ -13,11 +13,13 @@ namespace FairyGUI
         protected Controller _controller;
         protected GearTweenConfig _tweenConfig;
 
+        [UnityEngine.Scripting.Preserve]
         public GearBase(GObject owner)
         {
             _owner = owner;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             if (_tweenConfig != null && _tweenConfig._tweener != null)
@@ -30,6 +32,7 @@ namespace FairyGUI
         /// <summary>
         /// Controller object.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Controller controller
         {
             get
@@ -48,6 +51,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public GearTweenConfig tweenConfig
         {
             get
@@ -58,6 +62,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Setup(ByteBuffer buffer)
         {
             _controller = _owner.parent.GetControllerAt(buffer.ReadShort());
@@ -144,6 +149,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void UpdateFromRelations(float dx, float dy)
         {
         }
@@ -192,6 +198,7 @@ namespace FairyGUI
         internal uint _displayLockToken;
         internal GTweener _tweener;
 
+        [UnityEngine.Scripting.Preserve]
         public GearTweenConfig()
         {
             tween = true;

@@ -28,6 +28,7 @@ namespace FairyGUI
         /// <summary>
         /// 拖动对象单例
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static DragDropManager Instance
         {
             get
@@ -38,6 +39,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public DragDropManager()
         {
             _agent = (GLoader)UIObjectFactory.NewObject(ObjectType.Loader);
@@ -58,6 +60,7 @@ namespace FairyGUI
         /// <summary>
         /// 用于实际拖动的对象。你可以根据实际情况设置对象的大小，对齐等。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GObject DragAgent
         {
             get { return _useCustomAgent ? _customAgent : _agent; }
@@ -67,6 +70,7 @@ namespace FairyGUI
         /// Is dragging?
         /// 返回当前是否正在拖动。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool dragging
         {
             get { return DragAgent.parent != null; }
@@ -80,6 +84,7 @@ namespace FairyGUI
         /// <param name="icon">Icon to be used as the dragging sign.</param>
         /// <param name="sourceData">Custom data. You can get it in the onDrop event data.</param>
         /// <param name="touchPointID">Copy the touchId from InputEvent to here, if has one.</param>
+        [UnityEngine.Scripting.Preserve]
         public void StartDrag(GObject source, string icon, object sourceData, int touchPointID = -1)
         {
             if (DragAgent.parent != null)
@@ -101,6 +106,7 @@ namespace FairyGUI
         /// <param name="customAgent">自定义拖动中的代理对象</param>
         /// <param name="sourceData">源数据</param>
         /// <param name="touchPointID">触摸ID</param>
+        [UnityEngine.Scripting.Preserve]
         public void StartDrag(GObject source, GObject customAgent, object sourceData, int touchPointID = -1)
         {
             if (DragAgent.parent != null)
@@ -120,6 +126,7 @@ namespace FairyGUI
         /// Cancel dragging.
         /// 取消拖动。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Cancel()
         {
             if (DragAgent.parent == null)

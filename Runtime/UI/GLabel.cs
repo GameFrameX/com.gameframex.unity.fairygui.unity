@@ -11,6 +11,7 @@ namespace FairyGUI
         protected GObject _titleObject;
         protected GObject _iconObject;
 
+        [UnityEngine.Scripting.Preserve]
         public GLabel()
         {
         }
@@ -39,6 +40,7 @@ namespace FairyGUI
         /// <summary>
         /// Title of the label.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string title
         {
             get
@@ -68,6 +70,7 @@ namespace FairyGUI
         /// <summary>
         /// If title is input text.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool editable
         {
             get
@@ -88,6 +91,7 @@ namespace FairyGUI
         /// <summary>
         /// Title color of the label
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color titleColor
         {
             get
@@ -112,6 +116,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int titleFontSize
         {
             get
@@ -137,6 +142,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color color
         {
             get { return this.titleColor; }
@@ -147,6 +153,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTextField GetTextField()
         {
             if (_titleObject is GTextField)

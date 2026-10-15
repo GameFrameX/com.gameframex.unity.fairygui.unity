@@ -9,6 +9,7 @@ namespace FairyGUI.Utils
     /// </summary>
     public class HtmlSelect : IHtmlObject
     {
+        [UnityEngine.Scripting.Preserve]
         public GComboBox comboBox { get; private set; }
 
         public const string CHANGED_EVENT = "OnHtmlSelectChanged";
@@ -19,6 +20,7 @@ namespace FairyGUI.Utils
         HtmlElement _element;
         EventCallback0 _changeHandler;
 
+        [UnityEngine.Scripting.Preserve]
         public HtmlSelect()
         {
             comboBox = UIPackage.CreateObjectFromURL(resource).asComboBox;
@@ -28,26 +30,31 @@ namespace FairyGUI.Utils
             };
         }
 
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject displayObject
         {
             get { return comboBox.displayObject; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public HtmlElement element
         {
             get { return _element; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public float width
         {
             get { return comboBox != null ? comboBox.width : 0; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public float height
         {
             get { return comboBox != null ? comboBox.height : 0; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Create(RichTextField owner, HtmlElement element)
         {
             _owner = owner;
@@ -66,24 +73,28 @@ namespace FairyGUI.Utils
             comboBox.value = element.GetString("value");
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void SetPosition(float x, float y)
         {
             if (comboBox != null)
                 comboBox.SetXY(x, y);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Add()
         {
             if (comboBox != null)
                 _owner.AddChild(comboBox.displayObject);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Remove()
         {
             if (comboBox != null && comboBox.displayObject.parent != null)
                 _owner.RemoveChild(comboBox.displayObject);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Release()
         {
             if (comboBox != null)
@@ -93,6 +104,7 @@ namespace FairyGUI.Utils
             _element = null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             if (comboBox != null)

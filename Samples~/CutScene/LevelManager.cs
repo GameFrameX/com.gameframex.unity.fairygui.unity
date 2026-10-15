@@ -8,6 +8,7 @@ using FairyGUI;
 public class LevelManager : MonoBehaviour
 {
     static LevelManager _instance;
+    [UnityEngine.Scripting.Preserve]
     public static LevelManager inst
     {
         get
@@ -25,10 +26,12 @@ public class LevelManager : MonoBehaviour
     GComponent _cutSceneView;
     GComponent _mainView;
 
+    [UnityEngine.Scripting.Preserve]
     public LevelManager()
     {
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void Init()
     {
         _cutSceneView = UIPackage.CreateObject("CutScene", "CutScene").asCom;
@@ -50,6 +53,7 @@ public class LevelManager : MonoBehaviour
         });
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void LoadLevel(string levelName)
     {
         StartCoroutine(DoLoad(levelName));

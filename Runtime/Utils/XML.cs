@@ -16,6 +16,7 @@ namespace FairyGUI.Utils
         Dictionary<string, string> _attributes;
         XMLList _children;
 
+        [UnityEngine.Scripting.Preserve]
         public static XML Create(string tag)
         {
             XML xml = new XML();
@@ -23,6 +24,7 @@ namespace FairyGUI.Utils
             return xml;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public XML(string XmlString)
         {
             Parse(XmlString);
@@ -32,6 +34,7 @@ namespace FairyGUI.Utils
         {
         }
 
+        [UnityEngine.Scripting.Preserve]
         public Dictionary<string, string> attributes
         {
             get
@@ -42,6 +45,7 @@ namespace FairyGUI.Utils
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool HasAttribute(string attrName)
         {
             if (_attributes == null)
@@ -50,11 +54,13 @@ namespace FairyGUI.Utils
             return _attributes.ContainsKey(attrName);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public string GetAttribute(string attrName)
         {
             return GetAttribute(attrName, null);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public string GetAttribute(string attrName, string defValue)
         {
             if (_attributes == null)
@@ -67,11 +73,13 @@ namespace FairyGUI.Utils
                 return defValue;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public int GetAttributeInt(string attrName)
         {
             return GetAttributeInt(attrName, 0);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public int GetAttributeInt(string attrName, int defValue)
         {
             string value = GetAttribute(attrName);
@@ -85,11 +93,13 @@ namespace FairyGUI.Utils
                 return defValue;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public float GetAttributeFloat(string attrName)
         {
             return GetAttributeFloat(attrName, 0);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public float GetAttributeFloat(string attrName, float defValue)
         {
             string value = GetAttribute(attrName);
@@ -103,11 +113,13 @@ namespace FairyGUI.Utils
                 return defValue;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool GetAttributeBool(string attrName)
         {
             return GetAttributeBool(attrName, false);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool GetAttributeBool(string attrName, bool defValue)
         {
             string value = GetAttribute(attrName);
@@ -121,6 +133,7 @@ namespace FairyGUI.Utils
                 return defValue;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public string[] GetAttributeArray(string attrName)
         {
             string value = GetAttribute(attrName);
@@ -135,6 +148,7 @@ namespace FairyGUI.Utils
                 return null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public string[] GetAttributeArray(string attrName, char seperator)
         {
             string value = GetAttribute(attrName);
@@ -149,6 +163,7 @@ namespace FairyGUI.Utils
                 return null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public Color GetAttributeColor(string attrName, Color defValue)
         {
             string value = GetAttribute(attrName);
@@ -158,6 +173,7 @@ namespace FairyGUI.Utils
             return ToolSet.ConvertFromHtmlColor(value);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public Vector2 GetAttributeVector(string attrName)
         {
             string value = GetAttribute(attrName);
@@ -170,6 +186,7 @@ namespace FairyGUI.Utils
                 return Vector2.zero;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void SetAttribute(string attrName, string attrValue)
         {
             if (_attributes == null)
@@ -178,6 +195,7 @@ namespace FairyGUI.Utils
             _attributes[attrName] = attrValue;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void SetAttribute(string attrName, bool attrValue)
         {
             if (_attributes == null)
@@ -186,6 +204,7 @@ namespace FairyGUI.Utils
             _attributes[attrName] = attrValue ? "true" : "false";
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void SetAttribute(string attrName, int attrValue)
         {
             if (_attributes == null)
@@ -194,6 +213,7 @@ namespace FairyGUI.Utils
             _attributes[attrName] = attrValue.ToString();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void SetAttribute(string attrName, float attrValue)
         {
             if (_attributes == null)
@@ -202,12 +222,14 @@ namespace FairyGUI.Utils
             _attributes[attrName] = string.Format("{0:0.####}", attrValue);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void RemoveAttribute(string attrName)
         {
             if (_attributes != null)
                 _attributes.Remove(attrName);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public XML GetNode(string selector)
         {
             if (_children == null)
@@ -216,6 +238,7 @@ namespace FairyGUI.Utils
                 return _children.Find(selector);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public XMLList elements
         {
             get
@@ -226,6 +249,7 @@ namespace FairyGUI.Utils
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public XMLList Elements()
         {
             if (_children == null)
@@ -233,6 +257,7 @@ namespace FairyGUI.Utils
             return _children;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public XMLList Elements(string selector)
         {
             if (_children == null)
@@ -240,6 +265,7 @@ namespace FairyGUI.Utils
             return _children.Filter(selector);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public XMLList.Enumerator GetEnumerator()
         {
             if (_children == null)
@@ -248,6 +274,7 @@ namespace FairyGUI.Utils
                 return new XMLList.Enumerator(_children.rawList, null);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public XMLList.Enumerator GetEnumerator(string selector)
         {
             if (_children == null)
@@ -256,11 +283,13 @@ namespace FairyGUI.Utils
                 return new XMLList.Enumerator(_children.rawList, selector);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void AppendChild(XML child)
         {
             this.elements.Add(child);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void RemoveChild(XML child)
         {
             if (_children == null)
@@ -269,6 +298,7 @@ namespace FairyGUI.Utils
             this._children.rawList.Remove(child);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void RemoveChildren(string selector)
         {
             if (_children == null)
@@ -281,6 +311,7 @@ namespace FairyGUI.Utils
         }
 
         static Stack<XML> sNodeStack = new Stack<XML>();
+        [UnityEngine.Scripting.Preserve]
         public void Parse(string aSource)
         {
             Reset();
@@ -341,6 +372,7 @@ namespace FairyGUI.Utils
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Reset()
         {
             if (_attributes != null)
@@ -350,6 +382,7 @@ namespace FairyGUI.Utils
             this.text = null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public string ToXMLString(bool includeHeader)
         {
             StringBuilder sb = new StringBuilder();

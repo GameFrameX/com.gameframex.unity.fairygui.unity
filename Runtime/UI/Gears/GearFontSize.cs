@@ -12,6 +12,7 @@ namespace FairyGUI
         int _default;
         GTextField _textField;
 
+        [UnityEngine.Scripting.Preserve]
         public GearFontSize(GObject owner)
             : base(owner)
         {

@@ -32,6 +32,7 @@ namespace FairyGUI
         /// </summary>
         public bool repeatFill;
 
+        [UnityEngine.Scripting.Preserve]
         public StraightLineMesh()
         {
             color = Color.black;
@@ -44,6 +45,7 @@ namespace FairyGUI
         /// <param name="lineWidth"></param>
         /// <param name="color"></param>
         /// <param name="repeatFill"></param>
+        [UnityEngine.Scripting.Preserve]
         public StraightLineMesh(float lineWidth, Color color, bool repeatFill)
         {
             this.lineWidth = lineWidth;
@@ -51,6 +53,7 @@ namespace FairyGUI
             this.repeatFill = repeatFill;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             if (origin == end)

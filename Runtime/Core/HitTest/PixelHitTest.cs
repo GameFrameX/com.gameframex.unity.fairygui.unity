@@ -14,6 +14,7 @@ namespace FairyGUI
         public int pixelsLength;
         public int pixelsOffset;
 
+        [UnityEngine.Scripting.Preserve]
         public void Load(ByteBuffer ba)
         {
             ba.ReadInt();
@@ -44,6 +45,7 @@ namespace FairyGUI
         /// <param name="data"></param>
         /// <param name="offsetX"></param>
         /// <param name="offsetY"></param>
+        [UnityEngine.Scripting.Preserve]
         public PixelHitTest(PixelHitTestData data, int offsetX, int offsetY, float sourceWidth, float sourceHeight)
         {
             _data = data;
@@ -59,6 +61,7 @@ namespace FairyGUI
         /// <param name="contentRect"></param>
         /// <param name="localPoint"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool HitTest(Rect contentRect, Vector2 localPoint)
         {
             if (!contentRect.Contains(localPoint))

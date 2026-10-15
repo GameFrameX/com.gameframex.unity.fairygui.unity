@@ -49,6 +49,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="pos"></param>
+        [UnityEngine.Scripting.Preserve]
         public GPathPoint(Vector3 pos)
         {
             this.pos = pos;
@@ -63,6 +64,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="pos"></param>
         /// <param name="control"></param>
+        [UnityEngine.Scripting.Preserve]
         public GPathPoint(Vector3 pos, Vector3 control)
         {
             this.pos = pos;
@@ -78,6 +80,7 @@ namespace FairyGUI
         /// <param name="pos"></param>
         /// <param name="control1"></param>
         /// <param name="control2"></param>
+        [UnityEngine.Scripting.Preserve]
         public GPathPoint(Vector3 pos, Vector3 control1, Vector3 control2)
         {
             this.pos = pos;
@@ -92,6 +95,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="pos"></param>
         /// <param name="curveType"></param>
+        [UnityEngine.Scripting.Preserve]
         public GPathPoint(Vector3 pos, CurveType curveType)
         {
             this.pos = pos;
@@ -122,6 +126,7 @@ namespace FairyGUI
         static List<GPathPoint> helperList = new List<GPathPoint>();
         static List<Vector3> splinePoints = new List<Vector3>();
 
+        [UnityEngine.Scripting.Preserve]
         public GPath()
         {
             _segments = new List<Segment>();
@@ -131,6 +136,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float length
         {
             get { return _fullLength; }
@@ -141,6 +147,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="pt1"></param>
         /// <param name="pt2"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Create(GPathPoint pt1, GPathPoint pt2)
         {
             helperList.Clear();
@@ -155,6 +162,7 @@ namespace FairyGUI
         /// <param name="pt1"></param>
         /// <param name="pt2"></param>
         /// <param name="pt3"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Create(GPathPoint pt1, GPathPoint pt2, GPathPoint pt3)
         {
             helperList.Clear();
@@ -171,6 +179,7 @@ namespace FairyGUI
         /// <param name="pt2"></param>
         /// <param name="pt3"></param>
         /// <param name="pt4"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Create(GPathPoint pt1, GPathPoint pt2, GPathPoint pt3, GPathPoint pt4)
         {
             helperList.Clear();
@@ -185,6 +194,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="points"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Create(IEnumerable<GPathPoint> points)
         {
             _segments.Clear();
@@ -278,6 +288,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Clear()
         {
             _segments.Clear();
@@ -289,6 +300,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector3 GetPointAt(float t)
         {
             t = Mathf.Clamp01(t);
@@ -337,6 +349,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int segmentCount
         {
             get { return _segments.Count; }
@@ -347,6 +360,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="segmentIndex"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public float GetSegmentLength(int segmentIndex)
         {
             return _segments[segmentIndex].length;
@@ -360,6 +374,7 @@ namespace FairyGUI
         /// <param name="t1"></param>
         /// <param name="points"></param>
         /// <param name="ts"></param>
+        [UnityEngine.Scripting.Preserve]
         public void GetPointsInSegment(int segmentIndex, float t0, float t1, List<Vector3> points, List<float> ts = null, float pointDensity = 0.1f)
         {
             if (points == null)
@@ -414,6 +429,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="points"></param>
+        [UnityEngine.Scripting.Preserve]
         public void GetAllPoints(List<Vector3> points, float pointDensity = 0.1f)
         {
             int cnt = _segments.Count;

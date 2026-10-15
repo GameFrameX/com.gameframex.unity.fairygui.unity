@@ -15,6 +15,7 @@ public delegate void LoadErrorCallback(string error);
 public class IconManager : MonoBehaviour
 {
     static IconManager _instance;
+    [UnityEngine.Scripting.Preserve]
     public static IconManager inst
     {
         get
@@ -48,6 +49,7 @@ public class IconManager : MonoBehaviour
         StartCoroutine(FreeIdleIcons());
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void LoadIcon(string url,
                     LoadCompleteCallback onSuccess,
                     LoadErrorCallback onFail)

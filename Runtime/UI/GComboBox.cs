@@ -49,6 +49,7 @@ namespace FairyGUI
 
         EventListener _onChanged;
 
+        [UnityEngine.Scripting.Preserve]
         public GComboBox()
         {
             visibleItemCount = UIConfig.defaultComboBoxVisibleItemCount;
@@ -63,6 +64,7 @@ namespace FairyGUI
         /// <summary>
         /// Dispatched when selection was changed.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onChanged
         {
             get { return _onChanged ?? (_onChanged = new EventListener(this, EventName.onChanged)); }
@@ -92,6 +94,7 @@ namespace FairyGUI
         /// <summary>
         /// Title of the combobox.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string title
         {
             get
@@ -121,6 +124,7 @@ namespace FairyGUI
         /// <summary>
         /// Text color
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color titleColor
         {
             get
@@ -142,6 +146,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int titleFontSize
         {
             get
@@ -167,6 +172,7 @@ namespace FairyGUI
         /// <summary>
         /// Items to build up drop down list.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string[] items
         {
             get
@@ -185,6 +191,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string[] icons
         {
             get { return _icons != null ? _icons.ToArray() : null; }
@@ -200,6 +207,7 @@ namespace FairyGUI
         /// <summary>
         /// Values, should be same size of the items. 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string[] values
         {
             get { return _values.ToArray(); }
@@ -214,6 +222,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public List<string> itemList
         {
             get { return _items; }
@@ -222,6 +231,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public List<string> valueList
         {
             get { return _values; }
@@ -230,6 +240,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public List<string> iconList
         {
             get { return _icons ?? (_icons = new List<string>()); }
@@ -238,6 +249,7 @@ namespace FairyGUI
         /// <summary>
         /// Call this method after you made changes on itemList or iconList
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ApplyListChange()
         {
             if (_items.Count > 0)
@@ -265,6 +277,7 @@ namespace FairyGUI
         /// <summary>
         /// Selected index.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int selectedIndex
         {
             get
@@ -297,6 +310,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Controller selectionController
         {
             get { return _selectionController; }
@@ -306,6 +320,7 @@ namespace FairyGUI
         /// <summary>
         /// Selected value.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string value
         {
             get
@@ -329,6 +344,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public PopupDirection popupDirection
         {
             get { return _popupDirection; }
@@ -339,6 +355,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTextField GetTextField()
         {
             if (_titleObject is GTextField)
@@ -522,6 +539,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void UpdateDropdownList()
         {
             if (_itemsUpdated)

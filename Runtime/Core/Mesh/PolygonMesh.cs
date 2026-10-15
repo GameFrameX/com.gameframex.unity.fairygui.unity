@@ -45,6 +45,7 @@ namespace FairyGUI
 
         static List<int> sRestIndices = new List<int>();
 
+        [UnityEngine.Scripting.Preserve]
         public PolygonMesh()
         {
             points = new List<Vector2>();
@@ -55,6 +56,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="point"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Add(Vector2 point)
         {
             points.Add(point);
@@ -65,12 +67,14 @@ namespace FairyGUI
         /// </summary>
         /// <param name="point"></param>
         /// <param name="texcoord"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Add(Vector2 point, Vector2 texcoord)
         {
             points.Add(point);
             texcoords.Add(texcoord);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             int numVertices = points.Count;
@@ -247,6 +251,7 @@ namespace FairyGUI
             return (u >= 0) && (v >= 0) && (u + v < 1);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool HitTest(Rect contentRect, Vector2 point)
         {
             if (!contentRect.Contains(point))

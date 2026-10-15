@@ -11,11 +11,13 @@ namespace FairyGUI
         /// <summary>
         /// Pages involed in this gear.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string[] pages { get; set; }
         public int condition;
 
         int _visible;
 
+        [UnityEngine.Scripting.Preserve]
         public GearDisplay2(GObject owner)
             : base(owner)
         {
@@ -42,6 +44,7 @@ namespace FairyGUI
         override public void UpdateState()
         {
         }
+        [UnityEngine.Scripting.Preserve]
         public bool Evaluate(bool connected)
         {
             bool v = _controller == null || _visible > 0;

@@ -18,21 +18,25 @@ public class MailItem : GButton
         _trans = this.GetTransition("t0");
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void setTime(string value)
     {
         _timeText.text = value;
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void setRead(bool value)
     {
         _readController.selectedIndex = value ? 1 : 0;
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void setFetched(bool value)
     {
         _fetchController.selectedIndex = value ? 1 : 0;
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void PlayEffect(float delay)
     {
         this.visible = false;

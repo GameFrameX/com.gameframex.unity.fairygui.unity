@@ -13,23 +13,28 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GObject host { get; private set; }
 
         /// <summary>
         /// 当手指开始扫动时派发该事件。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onBegin { get; private set; }
         /// <summary>
         /// 手指离开屏幕时派发该事件。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onEnd { get; private set; }
         /// <summary>
         /// 手指在滑动时派发该事件。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onMove { get; private set; }
         /// <summary>
         /// 当手指从按下到离开经过的距离大于actionDistance时派发该事件。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onAction { get; private set; }
 
         /// <summary>
@@ -66,6 +71,7 @@ namespace FairyGUI
 
         public static int ACTION_DISTANCE = 200;
 
+        [UnityEngine.Scripting.Preserve]
         public SwipeGesture(GObject host)
         {
             this.host = host;
@@ -79,12 +85,14 @@ namespace FairyGUI
             onAction = new EventListener(this, EventName.onnSwipeAction);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             Enable(false);
             host = null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Enable(bool value)
         {
             if (value)

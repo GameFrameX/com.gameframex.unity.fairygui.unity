@@ -58,6 +58,7 @@ namespace FairyGUI
         public const string DISABLED = "disabled";
         public const string SELECTED_DISABLED = "selectedDisabled";
 
+        [UnityEngine.Scripting.Preserve]
         public GButton()
         {
             sound = UIConfig.buttonSound;
@@ -71,6 +72,7 @@ namespace FairyGUI
         /// Dispatched when the button status was changed.
         /// 如果为单选或多选按钮，当按钮的选中状态发生改变时，此事件触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onChanged
         {
             get { return _onChanged ?? (_onChanged = new EventListener(this, EventName.onChanged)); }
@@ -98,6 +100,7 @@ namespace FairyGUI
         /// <summary>
         /// Title of the button
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string title
         {
             get
@@ -125,6 +128,7 @@ namespace FairyGUI
         /// <summary>
         /// Icon value on selected status.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string selectedIcon
         {
             get
@@ -143,6 +147,7 @@ namespace FairyGUI
         /// <summary>
         /// Title value on selected status.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string selectedTitle
         {
             get
@@ -160,6 +165,7 @@ namespace FairyGUI
         /// <summary>
         /// Title color.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color titleColor
         {
             get
@@ -184,6 +190,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color color
         {
             get { return this.titleColor; }
@@ -193,6 +200,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int titleFontSize
         {
             get
@@ -218,6 +226,7 @@ namespace FairyGUI
         /// <summary>
         /// If the button is in selected status.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool selected
         {
             get
@@ -264,6 +273,7 @@ namespace FairyGUI
         /// Button mode.
         /// </summary>
         /// <seealso cref="ButtonMode"/>
+        [UnityEngine.Scripting.Preserve]
         public ButtonMode mode
         {
             get
@@ -285,6 +295,7 @@ namespace FairyGUI
         /// A controller is connected to this button, the activate page of this controller will change while the button status changed.
         /// 对应编辑器中的单选控制器。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Controller relatedController
         {
             get
@@ -304,6 +315,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string relatedPageId
         {
             get
@@ -321,6 +333,7 @@ namespace FairyGUI
         /// 模拟点击这个按钮。
         /// </summary>
         /// <param name="downEffect">If the down effect will simulate too.</param>
+        [UnityEngine.Scripting.Preserve]
         public void FireClick(bool downEffect, bool clickCall = false)
         {
             if (downEffect && _mode == ButtonMode.Common)
@@ -353,6 +366,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTextField GetTextField()
         {
             if (_titleObject is GTextField)

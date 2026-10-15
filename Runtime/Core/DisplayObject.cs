@@ -19,26 +19,31 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Container parent { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GameObject gameObject { get; protected set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Transform cachedTransform { get; protected set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public NGraphics graphics { get; protected set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public NGraphics paintingGraphics { get; protected set; }
 
         /// <summary>
@@ -99,6 +104,7 @@ namespace FairyGUI
 
         internal static HideFlags hideFlags = HideFlags.None;
 
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject()
         {
             id = _gInstanceCounter++;
@@ -116,6 +122,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onClick
         {
             get { return _onClick ?? (_onClick = new EventListener(this, EventName.onClick)); }
@@ -124,6 +131,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onRightClick
         {
             get { return _onRightClick ?? (_onRightClick = new EventListener(this, EventName.onRightClick)); }
@@ -132,6 +140,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onTouchBegin
         {
             get { return _onTouchBegin ?? (_onTouchBegin = new EventListener(this, EventName.onTouchBegin)); }
@@ -140,6 +149,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onTouchMove
         {
             get { return _onTouchMove ?? (_onTouchMove = new EventListener(this, EventName.onTouchMove)); }
@@ -148,6 +158,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onTouchEnd
         {
             get { return _onTouchEnd ?? (_onTouchEnd = new EventListener(this, EventName.onTouchEnd)); }
@@ -156,6 +167,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onRollOver
         {
             get { return _onRollOver ?? (_onRollOver = new EventListener(this, EventName.onRollOver)); }
@@ -164,6 +176,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onRollOut
         {
             get { return _onRollOut ?? (_onRollOut = new EventListener(this, EventName.onRollOut)); }
@@ -172,6 +185,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onMouseWheel
         {
             get { return _onMouseWheel ?? (_onMouseWheel = new EventListener(this, EventName.onMouseWheel)); }
@@ -180,6 +194,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onAddedToStage
         {
             get { return _onAddedToStage ?? (_onAddedToStage = new EventListener(this, EventName.onAddedToStage)); }
@@ -188,6 +203,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onRemovedFromStage
         {
             get { return _onRemovedFromStage ?? (_onRemovedFromStage = new EventListener(this, EventName.onRemovedFromStage)); }
@@ -196,6 +212,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onKeyDown
         {
             get { return _onKeyDown ?? (_onKeyDown = new EventListener(this, EventName.onKeyDown)); }
@@ -204,6 +221,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onClickLink
         {
             get { return _onClickLink ?? (_onClickLink = new EventListener(this, EventName.onClickLink)); }
@@ -212,6 +230,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onFocusIn
         {
             get { return _onFocusIn ?? (_onFocusIn = new EventListener(this, EventName.onFocusIn)); }
@@ -220,6 +239,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onFocusOut
         {
             get { return _onFocusOut ?? (_onFocusOut = new EventListener(this, EventName.onFocusOut)); }
@@ -268,6 +288,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float alpha
         {
             get { return _alpha; }
@@ -277,6 +298,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool grayed
         {
             get { return _grayed; }
@@ -286,6 +308,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool visible
         {
             get { return _visible; }
@@ -327,6 +350,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float x
         {
             get { return cachedTransform.localPosition.x; }
@@ -336,6 +360,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float y
         {
             get { return -cachedTransform.localPosition.y; }
@@ -345,6 +370,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float z
         {
             get { return cachedTransform.localPosition.z; }
@@ -354,6 +380,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 xy
         {
             get { return new Vector2(this.x, this.y); }
@@ -363,6 +390,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector3 position
         {
             get { return new Vector3(this.x, this.y, this.z); }
@@ -374,6 +402,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="xv"></param>
         /// <param name="yv"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetXY(float xv, float yv)
         {
             if (cachedTransform == null) // ui被删除
@@ -387,6 +416,7 @@ namespace FairyGUI
         /// <param name="xv"></param>
         /// <param name="yv"></param>
         /// <param name="zv"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetPosition(float xv, float yv, float zv)
         {
             Vector3 v = new Vector3();
@@ -409,6 +439,7 @@ namespace FairyGUI
         /// <summary>
         /// If the object position is align by pixel
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool pixelPerfect
         {
             get { return (_flags & Flags.PixelPerfect) != 0; }
@@ -424,6 +455,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float width
         {
             get
@@ -446,6 +478,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float height
         {
             get
@@ -468,6 +501,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 size
         {
             get
@@ -486,6 +520,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="wv"></param>
         /// <param name="hv"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetSize(float wv, float hv)
         {
             if (!Mathf.Approximately(wv, _contentRect.width))
@@ -505,6 +540,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void EnsureSizeCorrect()
         {
         }
@@ -523,6 +559,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float scaleX
         {
             get { return cachedTransform.localScale.x; }
@@ -539,6 +576,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float scaleY
         {
             get { return cachedTransform.localScale.y; }
@@ -557,6 +595,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="xv"></param>
         /// <param name="yv"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetScale(float xv, float yv)
         {
             Vector3 v = new Vector3();
@@ -587,6 +626,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 scale
         {
             get { return cachedTransform.localScale; }
@@ -599,6 +639,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float rotation
         {
             get
@@ -623,6 +664,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float rotationX
         {
             get
@@ -646,6 +688,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float rotationY
         {
             get
@@ -669,6 +712,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 skew
         {
             get { return _skew; }
@@ -687,6 +731,7 @@ namespace FairyGUI
         /// <summary>
         /// 当对象处于ScreenSpace，也就是使用正交相机渲染时，对象虽然可以绕X轴或者Y轴旋转，但没有透视效果。设置perspective，可以模拟出透视效果。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool perspective
         {
             get
@@ -712,6 +757,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int focalLength
         {
             get { return _focalLength; }
@@ -767,6 +813,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 pivot
         {
             get { return _pivot; }
@@ -822,6 +869,7 @@ namespace FairyGUI
         /// <summary>
         /// This is the pivot position
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector3 location
         {
             get
@@ -842,6 +890,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Material material
         {
             get
@@ -861,6 +910,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string shader
         {
             get
@@ -880,6 +930,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int renderingOrder
         {
             get
@@ -888,6 +939,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void SetRenderingOrder(UpdateContext context, bool inBatch)
         {
             if ((_flags & Flags.GameObjectDisposed) != 0)
@@ -909,6 +961,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int layer
         {
             get
@@ -927,6 +980,7 @@ namespace FairyGUI
         /// <summary>
         /// If the object can be focused?
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool focusable
         {
             get { return (_flags & Flags.NotFocusable) == 0; }
@@ -942,6 +996,7 @@ namespace FairyGUI
         /// <summary>
         /// If the object can be navigated by TAB?
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool tabStop
         {
             get { return (_flags & Flags.TabStop) != 0; }
@@ -957,6 +1012,7 @@ namespace FairyGUI
         /// <summary>
         /// If the object focused?
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool focused
         {
             get
@@ -982,6 +1038,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <value></value>
+        [UnityEngine.Scripting.Preserve]
         public string cursor
         {
             get { return _cursor; }
@@ -999,6 +1056,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isDisposed
         {
             get { return (_flags & Flags.Disposed) != 0 || gameObject == null; }
@@ -1023,6 +1081,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Container topmost
         {
             get
@@ -1037,6 +1096,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Stage stage
         {
             get
@@ -1048,6 +1108,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Container worldSpaceContainer
         {
             get
@@ -1072,6 +1133,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool touchable
         {
             get { return _touchable; }
@@ -1094,6 +1156,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <value></value>
+        [UnityEngine.Scripting.Preserve]
         public bool touchDisabled
         {
             get { return (_flags & Flags.TouchDisabled) != 0; }
@@ -1103,6 +1166,7 @@ namespace FairyGUI
         /// 进入绘画模式，整个对象将画到一张RenderTexture上，然后这种贴图将代替原有的显示内容。
         /// 可以在onPaint回调里对这张纹理进行进一步操作，实现特殊效果。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void EnterPaintingMode()
         {
             EnterPaintingMode(16384, null, 1);
@@ -1115,6 +1179,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="requestId">请求者id</param>
         /// <param name="extend">纹理四周的留空。如果特殊处理后的内容大于原内容，那么这里的设置可以使纹理扩大。</param>
+        [UnityEngine.Scripting.Preserve]
         public void EnterPaintingMode(int requestorId, Margin? extend)
         {
             EnterPaintingMode(requestorId, extend, 1);
@@ -1128,6 +1193,7 @@ namespace FairyGUI
         /// <param name="requestorId">请求者id</param>
         /// <param name="extend">扩展纹理。如果特殊处理后的内容大于原内容，那么这里的设置可以使纹理扩大。</param>
         /// <param name="scale">附加一个缩放系数</param>
+        [UnityEngine.Scripting.Preserve]
         public void EnterPaintingMode(int requestorId, Margin? extend, float scale)
         {
             bool first = _paintingMode == 0;
@@ -1183,6 +1249,7 @@ namespace FairyGUI
         /// 离开绘画模式
         /// </summary>
         /// <param name="requestId"></param>
+        [UnityEngine.Scripting.Preserve]
         public void LeavePaintingMode(int requestorId)
         {
             if (_paintingMode == 0 || (_flags & Flags.Disposed) != 0)
@@ -1209,6 +1276,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool paintingMode
         {
             get { return _paintingMode > 0; }
@@ -1219,6 +1287,7 @@ namespace FairyGUI
         /// DC将保持为1。CPU消耗将降到最低。但对象的任何变化不会更新。
         /// 当cacheAsBitmap已经为true时，再次调用cacheAsBitmap=true将会刷新对象一次。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool cacheAsBitmap
         {
             get { return (_flags & Flags.CacheAsBitmap) != 0; }
@@ -1243,6 +1312,7 @@ namespace FairyGUI
         /// <param name="extend"></param>
         /// <param name="scale"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Texture2D GetScreenShot(Margin? extend, float scale)
         {
             EnterPaintingMode(8, null, scale);
@@ -1271,6 +1341,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public IFilter filter
         {
             get
@@ -1301,6 +1372,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public BlendMode blendMode
         {
             get { return _blendMode; }
@@ -1332,6 +1404,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="targetSpace"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         virtual public Rect GetBounds(DisplayObject targetSpace)
         {
             EnsureSizeCorrect();
@@ -1383,6 +1456,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 GlobalToLocal(Vector2 point)
         {
             Container wsc = this.worldSpaceContainer;
@@ -1431,6 +1505,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 LocalToGlobal(Vector2 point)
         {
             Container wsc = this.worldSpaceContainer;
@@ -1459,6 +1534,7 @@ namespace FairyGUI
         /// <param name="worldPoint"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector3 WorldToLocal(Vector3 worldPoint, Vector3 direction)
         {
             Vector3 localPoint = this.cachedTransform.InverseTransformPoint(worldPoint);
@@ -1500,6 +1576,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="localPoint"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector3 LocalToWorld(Vector3 localPoint)
         {
             localPoint.y = -localPoint.y;
@@ -1528,6 +1605,7 @@ namespace FairyGUI
         /// <param name="point"></param>
         /// <param name="targetSpace">null if to world space</param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 TransformPoint(Vector2 point, DisplayObject targetSpace)
         {
             if (targetSpace == this)
@@ -1546,6 +1624,7 @@ namespace FairyGUI
         /// <param name="rect"></param>
         /// <param name="targetSpace">null if to world space</param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Rect TransformRect(Rect rect, DisplayObject targetSpace)
         {
             if (targetSpace == this)
@@ -1583,6 +1662,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveFromParent()
         {
             if (parent != null)
@@ -1592,12 +1672,14 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void InvalidateBatchingState()
         {
             if (parent != null)
                 parent.InvalidateBatchingState(true);
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void Update(UpdateContext context)
         {
             if (_checkPixelPerfect != 0)
@@ -1692,6 +1774,7 @@ namespace FairyGUI
         /// <summary>
         /// 为对象设置一个默认的父Transform。当对象不在显示列表里时，它的GameObject挂到哪里。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Transform home
         {
             get { return _home; }
@@ -1800,6 +1883,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void Dispose()
         {
             if ((_flags & Flags.Disposed) != 0)
@@ -1855,6 +1939,7 @@ namespace FairyGUI
         }
 
         BatchElement _batchElement;
+        [UnityEngine.Scripting.Preserve]
         virtual public BatchElement AddToBatch(List<BatchElement> batchElements, bool force)
         {
             if (graphics != null || force)

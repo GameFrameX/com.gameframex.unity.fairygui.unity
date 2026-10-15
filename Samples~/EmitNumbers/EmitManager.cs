@@ -5,6 +5,7 @@ using FairyGUI;
 public class EmitManager
 {
     static EmitManager _instance;
+    [UnityEngine.Scripting.Preserve]
     public static EmitManager inst
     {
         get
@@ -19,10 +20,12 @@ public class EmitManager
     public string hurtFont2;
     public string criticalSign;
 
+    [UnityEngine.Scripting.Preserve]
     public GComponent view { get; private set; }
 
     private readonly Stack<EmitComponent> _componentPool = new Stack<EmitComponent>();
 
+    [UnityEngine.Scripting.Preserve]
     public EmitManager()
     {
         hurtFont1 = "ui://EmitNumbers/number1";
@@ -33,6 +36,7 @@ public class EmitManager
         GRoot.inst.AddChild(view);
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void Emit(Transform owner, int type, long hurt, bool critical)
     {
         EmitComponent ec;
@@ -43,6 +47,7 @@ public class EmitManager
         ec.SetHurt(owner, type, hurt, critical);
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void ReturnComponent(EmitComponent com)
     {
         _componentPool.Push(com);

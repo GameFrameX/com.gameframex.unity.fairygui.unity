@@ -95,6 +95,7 @@ namespace FairyGUI
 
         EventCallback1 _itemClickDelegate;
 
+        [UnityEngine.Scripting.Preserve]
         public GList()
             : base()
         {
@@ -129,6 +130,7 @@ namespace FairyGUI
         /// <summary>
         /// 点击item时，回调函数
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onClickItem
         {
             get { return _onClickItem ?? (_onClickItem = new EventListener(this, EventName.onClickItem)); }
@@ -137,6 +139,7 @@ namespace FairyGUI
         /// <summary>
         /// 右键点击item时，回调函数
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onRightClickItem
         {
             get { return _onRightClickItem ?? (_onRightClickItem = new EventListener(this, EventName.onRightClickItem)); }
@@ -145,6 +148,7 @@ namespace FairyGUI
         /// <summary>
         /// 点击item时，在 onClickItem 之前的回调函数，可以决定是否执行 onClickItem 回调函数
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onPreviousClickItem
         {
             get { return _onPreviousClickItem ?? (_onPreviousClickItem = new EventListener(this, EventName.onPreviousClickItem)); }
@@ -153,6 +157,7 @@ namespace FairyGUI
         /// <summary>
         /// 默认item的资源url
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string defaultItem
         {
             get { return _defaultItem; }
@@ -162,6 +167,7 @@ namespace FairyGUI
         /// <summary>
         /// 列表布局类型
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public ListLayoutType layout
         {
             get { return _layout; }
@@ -180,6 +186,7 @@ namespace FairyGUI
         /// <summary>
         /// 行数
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int lineCount
         {
             get { return _lineCount; }
@@ -201,6 +208,7 @@ namespace FairyGUI
         /// <summary>
         /// 列数
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int columnCount
         {
             get { return _columnCount; }
@@ -222,6 +230,7 @@ namespace FairyGUI
         /// <summary>
         /// 行间距
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int lineGap
         {
             get { return _lineGap; }
@@ -240,6 +249,7 @@ namespace FairyGUI
         /// <summary>
         /// 列间距
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int columnGap
         {
             get { return _columnGap; }
@@ -258,6 +268,7 @@ namespace FairyGUI
         /// <summary>
         /// 对齐方式
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public AlignType align
         {
             get { return _align; }
@@ -276,6 +287,7 @@ namespace FairyGUI
         /// <summary>
         /// 垂直对齐方式
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public VertAlignType verticalAlign
         {
             get { return _verticalAlign; }
@@ -294,6 +306,7 @@ namespace FairyGUI
         /// <summary>
         /// 如果item会调整自身以适应列表的宽度/高度
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool autoResizeItem
         {
             get { return _autoResizeItem; }
@@ -313,6 +326,7 @@ namespace FairyGUI
         /// 默认item的尺寸
         /// </summary>
         /// <value></value>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 defaultItemSize
         {
             get { return _itemSize; }
@@ -333,6 +347,7 @@ namespace FairyGUI
         /// <summary>
         /// item池
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GObjectPool itemPool
         {
             get { return _pool; }
@@ -343,6 +358,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="url">item的资源url</param>
         /// <returns>item</returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject GetFromPool(string url)
         {
             if (string.IsNullOrEmpty(url))
@@ -363,6 +379,7 @@ namespace FairyGUI
         /// 添加item到列表，相当于GetFromPool+AddChild
         /// </summary>
         /// <returns>item</returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject AddItemFromPool()
         {
             GObject obj = GetFromPool(null);
@@ -375,6 +392,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="url">item的资源url</param>
         /// <returns>item</returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject AddItemFromPool(string url)
         {
             GObject obj = GetFromPool(url);
@@ -423,6 +441,7 @@ namespace FairyGUI
         /// 移除item并将其返回item池    
         /// </summary>
         /// <param name="index">index</param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveChildToPoolAt(int index)
         {
             GObject child = base.RemoveChildAt(index);
@@ -433,6 +452,7 @@ namespace FairyGUI
         /// 移除item并将其返回item池
         /// </summary>
         /// <param name="child">item</param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveChildToPool(GObject child)
         {
             base.RemoveChild(child);
@@ -442,6 +462,7 @@ namespace FairyGUI
         /// <summary>
         /// 移除所有item并将其返回item池
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveChildrenToPool()
         {
             RemoveChildrenToPool(0, -1);
@@ -452,6 +473,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="beginIndex">开始索引</param>
         /// <param name="endIndex">结束索引</param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveChildrenToPool(int beginIndex, int endIndex)
         {
             if (endIndex < 0 || endIndex >= _children.Count)
@@ -464,6 +486,7 @@ namespace FairyGUI
         /// <summary>
         /// 选中的item的index
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int selectedIndex
         {
             get
@@ -514,6 +537,7 @@ namespace FairyGUI
         /// <summary>
         /// 选中的item的Controller
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Controller selectionController
         {
             get { return _selectionController; }
@@ -524,6 +548,7 @@ namespace FairyGUI
         /// 获取选中的item的index
         /// </summary>
         /// <returns>index</returns>
+        [UnityEngine.Scripting.Preserve]
         public List<int> GetSelection()
         {
             return GetSelection(null);
@@ -534,6 +559,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="result">结果</param>
         /// <returns>index</returns>
+        [UnityEngine.Scripting.Preserve]
         public List<int> GetSelection(List<int> result)
         {
             if (result == null)
@@ -578,6 +604,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index">index</param>
         /// <param name="scrollItToView">是否滚动到item</param>
+        [UnityEngine.Scripting.Preserve]
         public void AddSelection(int index, bool scrollItToView)
         {
             if (selectionMode == ListSelectionMode.None)
@@ -614,6 +641,7 @@ namespace FairyGUI
         /// 移除选中item
         /// </summary>
         /// <param name="index">index</param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveSelection(int index)
         {
             if (selectionMode == ListSelectionMode.None)
@@ -637,6 +665,7 @@ namespace FairyGUI
         /// <summary>
         /// 清除选中item
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ClearSelection()
         {
             if (_virtual)
@@ -693,6 +722,7 @@ namespace FairyGUI
         /// <summary>
         /// 选中所有item
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void SelectAll()
         {
             CheckVirtualList();
@@ -734,6 +764,7 @@ namespace FairyGUI
         /// <summary>
         /// 清除选中item
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void SelectNone()
         {
             ClearSelection();
@@ -742,6 +773,7 @@ namespace FairyGUI
         /// <summary>
         /// 反向选中item
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void SelectReverse()
         {
             CheckVirtualList();
@@ -786,6 +818,7 @@ namespace FairyGUI
         /// 启用选中item的焦点事件
         /// </summary>
         /// <param name="enabled">是否启用</param>
+        [UnityEngine.Scripting.Preserve]
         public void EnableSelectionFocusEvents(bool enabled)
         {
             if (((_miscFlags & 2) != 0) == enabled)
@@ -822,6 +855,7 @@ namespace FairyGUI
         /// 启用箭头键导航
         /// </summary>
         /// <param name="enabled">是否启用</param>
+        [UnityEngine.Scripting.Preserve]
         public void EnableArrowKeyNavigation(bool enabled)
         {
             if (enabled)
@@ -873,6 +907,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="dir">方向</param>
         /// <returns>index</returns>
+        [UnityEngine.Scripting.Preserve]
         public int HandleArrowKey(int dir)
         {
             int curIndex = this.selectedIndex;
@@ -1174,6 +1209,7 @@ namespace FairyGUI
         /// 如果列表布局为单列或水平流，则高度将改变以适应。
         /// 如果列表布局为单行或垂直流，则宽度将改变以适应。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ResizeToFit()
         {
             ResizeToFit(int.MaxValue, 0);
@@ -1185,6 +1221,7 @@ namespace FairyGUI
         /// 如果列表布局为单行或垂直流，则宽度将改变以适应。
         /// </summary>
         /// <param name="itemCount">Item count</param>
+        [UnityEngine.Scripting.Preserve]
         public void ResizeToFit(int itemCount)
         {
             ResizeToFit(itemCount, 0);
@@ -1197,6 +1234,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="itemCount">Item count</param>
         /// <param name="minSize">If the result size if smaller than minSize, then use minSize.</param>
+        [UnityEngine.Scripting.Preserve]
         public void ResizeToFit(int itemCount, int minSize)
         {
             EnsureBoundsCorrect();
@@ -1296,6 +1334,7 @@ namespace FairyGUI
         /// 滚动列表以使指定索引的item可见。
         /// </summary>
         /// <param name="index">Item index</param>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollToView(int index)
         {
             ScrollToView(index, false);
@@ -1306,6 +1345,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index">Item index</param>
         /// <param name="ani">True to scroll smoothly, othewise immdediately.</param>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollToView(int index, bool ani)
         {
             ScrollToView(index, ani, false);
@@ -1317,6 +1357,7 @@ namespace FairyGUI
         /// <param name="index">Item index</param>
         /// <param name="ani">True to scroll smoothly, othewise immdediately.</param>
         /// <param name="setFirst">If true, scroll to make the target on the top/left; If false, scroll to make the target any position in view.</param>
+        [UnityEngine.Scripting.Preserve]
         public void ScrollToView(int index, bool ani, bool setFirst)
         {
             if (_virtual)
@@ -1374,6 +1415,7 @@ namespace FairyGUI
         /// <summary>
         /// 获取当前点击哪个item
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GObject touchItem
         {
             get
@@ -1409,6 +1451,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index">子对象的索引</param>
         /// <returns>item的索引</returns>
+        [UnityEngine.Scripting.Preserve]
         public int ChildIndexToItemIndex(int index)
         {
             if (!_virtual)
@@ -1443,6 +1486,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index">item的索引</param>
         /// <returns>子对象的索引</returns>
+        [UnityEngine.Scripting.Preserve]
         public int ItemIndexToChildIndex(int index)
         {
             if (!_virtual)
@@ -1477,6 +1521,7 @@ namespace FairyGUI
         /// ‘单行’或者‘单列’的列表布局可支持不等高的列表项目。
         /// 除了‘页面’的列表布局，其他布局均支持使用不同资源构建列表项目，你可以在itemProvider里返回。如果不提供，默认使用defaultItem。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void SetVirtual()
         {
             SetVirtual(false);
@@ -1485,6 +1530,7 @@ namespace FairyGUI
         /// <summary>
         /// 获取列表是否为虚拟列表
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isVirtual
         {
             get { return _virtual; }
@@ -1493,6 +1539,7 @@ namespace FairyGUI
         /// <summary>
         /// 设置列表为虚拟列表，并开启循环滚动
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void SetVirtualAndLoop()
         {
             SetVirtual(true);
@@ -1571,6 +1618,7 @@ namespace FairyGUI
         /// 设置list数据源
         /// 设置后会绑定数据在每个子对象，可以根据 dataSource 来直接获取数据
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public List<object> DataList
         {
             get { return _dataList; }
@@ -1586,6 +1634,7 @@ namespace FairyGUI
         /// 如果列表不是虚拟列表，则指定数量的item会被创建。
         /// 如果列表是虚拟列表，则只有视口内的item会被创建。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int numItems
         {
             get
@@ -1670,6 +1719,7 @@ namespace FairyGUI
         /// <summary>
         /// 刷新虚拟列表
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void RefreshVirtualList()
         {
             if (!_virtual)

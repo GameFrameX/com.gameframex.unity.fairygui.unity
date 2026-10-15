@@ -16,6 +16,7 @@ namespace FairyGUI
         protected bool _updatingSize;
         protected Dictionary<string, string> _templateVars;
 
+        [UnityEngine.Scripting.Preserve]
         public GTextField()
             : base()
         {
@@ -103,6 +104,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Dictionary<string, string> templateVars
         {
             get { return _templateVars; }
@@ -123,6 +125,7 @@ namespace FairyGUI
         /// <param name="name"></param>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTextField SetVar(string name, string value)
         {
             if (_templateVars == null)
@@ -135,6 +138,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void FlushVars()
         {
             SetTextFieldText();
@@ -144,6 +148,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool HasCharacter(char ch)
         {
             return _textField.HasCharacter(ch);
@@ -206,6 +211,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public TextFormat textFormat
         {
             get { return _textField.textFormat; }
@@ -220,6 +226,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color color
         {
             get { return _textField.textFormat.color; }
@@ -238,6 +245,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public AlignType align
         {
             get { return _textField.align; }
@@ -247,6 +255,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public VertAlignType verticalAlign
         {
             get { return _textField.verticalAlign; }
@@ -256,6 +265,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool singleLine
         {
             get { return _textField.singleLine; }
@@ -265,6 +275,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float stroke
         {
             get { return _textField.stroke; }
@@ -274,6 +285,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color strokeColor
         {
             get { return _textField.strokeColor; }
@@ -287,6 +299,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 shadowOffset
         {
             get { return _textField.shadowOffset; }
@@ -296,6 +309,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool UBBEnabled
         {
             get { return _ubbEnabled; }
@@ -305,6 +319,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public AutoSizeType autoSize
         {
             get { return _textField.autoSize; }
@@ -339,6 +354,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float textWidth
         {
             get { return _textField.textWidth; }
@@ -347,6 +363,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float textHeight
         {
             get { return _textField.textHeight; }

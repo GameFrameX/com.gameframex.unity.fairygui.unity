@@ -11,6 +11,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Shape()
         {
             CreateGameObject("Shape");
@@ -22,6 +23,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color color
         {
             get
@@ -41,6 +43,7 @@ namespace FairyGUI
         /// <param name="lineSize"></param>
         /// <param name="lineColor"></param>
         /// <param name="fillColor"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawRect(float lineSize, Color lineColor, Color fillColor)
         {
             RectMesh mesh = graphics.GetMeshFactory<RectMesh>();
@@ -58,6 +61,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="lineSize"></param>
         /// <param name="colors"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawRect(float lineSize, Color32[] colors)
         {
             RectMesh mesh = graphics.GetMeshFactory<RectMesh>();
@@ -77,6 +81,7 @@ namespace FairyGUI
         /// <param name="topRightRadius"></param>
         /// <param name="bottomLeftRadius"></param>
         /// <param name="bottomRightRadius"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawRoundRect(float lineSize, Color lineColor, Color fillColor,
             float topLeftRadius, float topRightRadius, float bottomLeftRadius, float bottomRightRadius)
         {
@@ -97,6 +102,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="fillColor"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawEllipse(Color fillColor)
         {
             EllipseMesh mesh = graphics.GetMeshFactory<EllipseMesh>();
@@ -119,6 +125,7 @@ namespace FairyGUI
         /// <param name="fillColor"></param>
         /// <param name="startDegree"></param>
         /// <param name="endDegree"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawEllipse(float lineSize, Color centerColor, Color lineColor, Color fillColor, float startDegree, float endDegree)
         {
             EllipseMesh mesh = graphics.GetMeshFactory<EllipseMesh>();
@@ -141,6 +148,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="points"></param>
         /// <param name="fillColor"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawPolygon(IList<Vector2> points, Color fillColor)
         {
             PolygonMesh mesh = graphics.GetMeshFactory<PolygonMesh>();
@@ -158,6 +166,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="points"></param>
         /// <param name="colors"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawPolygon(IList<Vector2> points, Color32[] colors)
         {
             PolygonMesh mesh = graphics.GetMeshFactory<PolygonMesh>();
@@ -176,6 +185,7 @@ namespace FairyGUI
         /// <param name="fillColor"></param>
         /// <param name="lineSize"></param>
         /// <param name="lineColor"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawPolygon(IList<Vector2> points, Color fillColor, float lineSize, Color lineColor)
         {
             PolygonMesh mesh = graphics.GetMeshFactory<PolygonMesh>();
@@ -200,6 +210,7 @@ namespace FairyGUI
         /// <param name="fillColor"></param>
         /// <param name="rotation"></param>
         /// <param name="distances"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DrawRegularPolygon(int sides, float lineSize, Color centerColor, Color lineColor, Color fillColor, float rotation, float[] distances)
         {
             RegularPolygonMesh mesh = graphics.GetMeshFactory<RegularPolygonMesh>();
@@ -218,6 +229,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Clear()
         {
             graphics.meshFactory = null;
@@ -226,6 +238,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isEmpty
         {
             get { return graphics.meshFactory == null; }

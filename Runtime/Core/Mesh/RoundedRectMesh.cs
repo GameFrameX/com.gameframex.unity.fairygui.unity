@@ -44,11 +44,13 @@ namespace FairyGUI
         /// </summary>
         public float bottomRightRadius;
 
+        [UnityEngine.Scripting.Preserve]
         public RoundedRectMesh()
         {
             lineColor = Color.black;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             Rect rect = drawRect != null ? (Rect)drawRect : vb.contentRect;
@@ -166,6 +168,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool HitTest(Rect contentRect, Vector2 point)
         {
             if (drawRect != null)

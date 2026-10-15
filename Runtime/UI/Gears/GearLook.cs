@@ -28,6 +28,7 @@ namespace FairyGUI
         Dictionary<string, GearLookValue> _storage;
         GearLookValue _default;
 
+        [UnityEngine.Scripting.Preserve]
         public GearLook(GObject owner)
             : base(owner)
         {
@@ -106,10 +107,12 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnTweenStart(GTweener tweener)
         {
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnTweenUpdate(GTweener tweener)
         {
             int flag = (int)tweener.userData;
@@ -124,6 +127,7 @@ namespace FairyGUI
             _owner._gearLocked = false;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnTweenComplete(GTweener tweener)
         {
             _tweenConfig._tweener = null;

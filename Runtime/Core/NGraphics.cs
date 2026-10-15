@@ -14,21 +14,25 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GameObject gameObject { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public MeshFilter meshFilter { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public MeshRenderer meshRenderer { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Mesh mesh { get; private set; }
 
         /// <summary>
@@ -93,6 +97,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="gameObject"></param>
+        [UnityEngine.Scripting.Preserve]
         public NGraphics(GameObject gameObject)
         {
             this.gameObject = gameObject;
@@ -124,6 +129,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public IMeshFactory meshFactory
         {
             get { return _meshFactory; }
@@ -142,6 +148,7 @@ namespace FairyGUI
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public T GetMeshFactory<T>() where T : IMeshFactory, new()
         {
             if (!(_meshFactory is T))
@@ -155,6 +162,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Rect contentRect
         {
             get { return _contentRect; }
@@ -174,6 +182,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public FlipType flip
         {
             get { return _flip; }
@@ -190,6 +199,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public NTexture texture
         {
             get { return _texture; }
@@ -222,6 +232,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string shader
         {
             get { return _shader; }
@@ -237,6 +248,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="shader"></param>
         /// <param name="texture"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetShaderAndTexture(string shader, NTexture texture)
         {
             _shader = shader;
@@ -253,6 +265,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Material material
         {
             get
@@ -298,6 +311,7 @@ namespace FairyGUI
         /// Same as material property except that ownership is transferred to this object.
         /// </summary>
         /// <param name="material"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetMaterial(Material material)
         {
             this.material = material;
@@ -307,6 +321,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string[] materialKeywords
         {
             get { return _shaderKeywords; }
@@ -322,6 +337,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="enabled"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ToggleKeyword(string keyword, bool enabled)
         {
             if (enabled)
@@ -388,6 +404,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool enabled
         {
             get { return meshRenderer.enabled; }
@@ -397,6 +414,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         [Obsolete("Use renderingOrder")]
         public int sortingOrder
         {
@@ -407,12 +425,14 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int renderingOrder
         {
             get { return meshRenderer.sortingOrder; }
             set { meshRenderer.sortingOrder = value; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void SetRenderingOrder(UpdateContext context, bool inBatch)
         {
             meshRenderer.sortingOrder = context.renderingOrder++;
@@ -439,6 +459,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public Color color
         {
             get { return _color; }
@@ -448,6 +469,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Tint()
         {
             if (_meshDirty)
@@ -496,6 +518,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public VertexMatrix vertexMatrix
         {
             get { return _vertexMatrix; }
@@ -516,6 +539,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public MaterialPropertyBlock materialPropertyBlock
         {
             get
@@ -531,6 +555,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void SetMeshDirty()
         {
             _meshDirty = true;
@@ -546,6 +571,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool UpdateMesh()
         {
             bool ret = false;
@@ -570,6 +596,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             if (mesh != null)
@@ -618,6 +645,7 @@ namespace FairyGUI
         /// <param name="context"></param>
         /// <param name="alpha"></param>
         /// <param name="grayed"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Update(UpdateContext context, float alpha, bool grayed)
         {
             Stats.GraphicsCount++;
@@ -905,6 +933,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             Rect rect = texture.GetDrawRect(vb.contentRect, flip);
@@ -914,6 +943,7 @@ namespace FairyGUI
             vb._isArbitraryQuad = _vertexMatrix != null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public NGraphics CreateSubInstance(string name)
         {
             if (subInstances == null)

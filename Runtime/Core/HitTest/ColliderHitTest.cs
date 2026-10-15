@@ -18,6 +18,7 @@ namespace FairyGUI
         /// <param name="contentRect"></param>
         /// <param name="localPoint"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         virtual public bool HitTest(Rect contentRect, Vector2 localPoint)
         {
             RaycastHit hit;

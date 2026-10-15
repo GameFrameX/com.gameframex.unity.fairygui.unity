@@ -11,16 +11,19 @@ namespace FairyGUI
         /// <summary>
         /// 事件发送者。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventDispatcher sender { get; internal set; }
 
         /// <summary>
         /// 事件发起者。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public object initiator { get; internal set; }
 
         /// <summary>
         /// 输入事件。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public InputEvent inputEvent { get; internal set; }
 
         /// <summary>
@@ -42,6 +45,7 @@ namespace FairyGUI
         /// <summary>
         /// 停止事件传播。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void StopPropagation()
         {
             _stopsPropagation = true;
@@ -50,6 +54,7 @@ namespace FairyGUI
         /// <summary>
         /// 阻止事件默认行为。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void PreventDefault()
         {
             _defaultPrevented = true;
@@ -58,6 +63,7 @@ namespace FairyGUI
         /// <summary>
         /// 捕获触摸事件。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void CaptureTouch()
         {
             _touchCapture = true;
@@ -66,6 +72,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否阻止事件默认行为。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isDefaultPrevented
         {
             get { return _defaultPrevented; }

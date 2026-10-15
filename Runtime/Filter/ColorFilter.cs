@@ -21,12 +21,14 @@ namespace FairyGUI
         static float[] IDENTITY = new float[] { 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0 };
         static float[] tmp = new float[20];
 
+        [UnityEngine.Scripting.Preserve]
         public ColorFilter()
         {
             _matrix = new float[20];
             Array.Copy(IDENTITY, _matrix, _matrix.Length);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject target
         {
             get { return _target; }
@@ -47,6 +49,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             if (!_target.isDisposed)
@@ -63,10 +66,12 @@ namespace FairyGUI
             _target = null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Update()
         {
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Invert()
         {
             _ConcatValues(0, -1, 0, 0, 0, 1);
@@ -81,6 +86,7 @@ namespace FairyGUI
         /// '-1' will produce a grayscale image. 
         /// </summary>
         /// <param name="sat"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AdjustSaturation(float sat)
         {
             sat += 1;
@@ -101,6 +107,7 @@ namespace FairyGUI
         /// Values above zero will raise, values below zero will reduce the contrast.
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AdjustContrast(float value)
         {
             float s = value + 1;
@@ -117,6 +124,7 @@ namespace FairyGUI
         /// Values above zero will make the image brighter, values below zero will make it darker.
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AdjustBrightness(float value)
         {
             _ConcatValues(0, 1, 0, 0, 0, value);
@@ -129,6 +137,7 @@ namespace FairyGUI
         ///Changes the hue of the image. Typical values are in the range (-1, 1).
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AdjustHue(float value)
         {
             value *= Mathf.PI;
@@ -147,6 +156,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="color">the RGB color with which the image should be tinted.</param>
         /// <param name="amount">the intensity with which tinting should be applied. Range (0, 1).</param>
+        [UnityEngine.Scripting.Preserve]
         public void Tint(Color color, float amount = 1.0f)
         {
             float q = 1 - amount;
@@ -164,6 +174,7 @@ namespace FairyGUI
         /// <summary>
         /// Changes the filter matrix back to the identity matrix
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Reset()
         {
             Array.Copy(IDENTITY, _matrix, _matrix.Length);
@@ -191,6 +202,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="values"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ConcatValues(params float[] values)
         {
             int i = 0;

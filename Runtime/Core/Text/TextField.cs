@@ -46,6 +46,7 @@ namespace FairyGUI
         const int ELLIPSIS_LENGTH = 2;
         static List<LineCharInfo> sLineChars = new List<LineCharInfo>();
 
+        [UnityEngine.Scripting.Preserve]
         public TextField()
         {
             _flags |= Flags.TouchDisabled;
@@ -77,6 +78,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void EnableCharPositionSupport()
         {
             if (_charPositions == null)
@@ -89,6 +91,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public TextFormat textFormat
         {
             get { return _textFormat; }
@@ -102,6 +105,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ApplyFormat()
         {
             string fontName = _textFormat.font;
@@ -122,6 +126,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public AlignType align
         {
             get { return _textFormat.align; }
@@ -139,6 +144,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public VertAlignType verticalAlign
         {
             get
@@ -159,6 +165,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string text
         {
             get { return _text; }
@@ -176,6 +183,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string htmlText
         {
             get { return _text; }
@@ -190,6 +198,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public string parsedText
         {
             get { return _parsedText; }
@@ -198,6 +207,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public AutoSizeType autoSize
         {
             get { return _autoSize; }
@@ -214,6 +224,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool wordWrap
         {
             get { return _wordWrap; }
@@ -230,6 +241,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool singleLine
         {
             get { return _singleLine; }
@@ -246,6 +258,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float stroke
         {
             get
@@ -265,6 +278,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color strokeColor
         {
             get
@@ -284,6 +298,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 shadowOffset
         {
             get
@@ -300,6 +315,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float textWidth
         {
             get
@@ -314,6 +330,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float textHeight
         {
             get
@@ -328,6 +345,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int maxWidth
         {
             get { return _maxWidth; }
@@ -344,6 +362,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public List<HtmlElement> htmlElements
         {
             get
@@ -358,6 +377,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public List<LineInfo> lines
         {
             get
@@ -372,6 +392,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public List<CharPosition> charPositions
         {
             get
@@ -388,6 +409,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public RichTextField richTextField
         {
             get { return _richTextField; }
@@ -396,6 +418,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool Redraw()
         {
             if (_font == null)
@@ -427,6 +450,7 @@ namespace FairyGUI
             return graphics.UpdateMesh();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public int SetTypingEffectPos(int pos)
         {
             _typingEffectPos = pos;
@@ -440,6 +464,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool HasCharacter(char ch)
         {
             return _font.HasCharacter(ch);
@@ -454,6 +479,7 @@ namespace FairyGUI
         /// <param name="endCharX"></param>
         /// <param name="clipped"></param>
         /// <param name="resultRects"></param>
+        [UnityEngine.Scripting.Preserve]
         public void GetLinesShape(int startLine, float startCharX, int endLine, float endCharX,
             bool clipped,
             List<Rect> resultRects)
@@ -1101,6 +1127,7 @@ namespace FairyGUI
             return elementIndex;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             if (_textWidth == 0 && _lines.Count == 1 || _typingEffectPos == 0)
@@ -1576,6 +1603,7 @@ namespace FairyGUI
             /// 
             /// </summary>
             /// <returns></returns>
+            [UnityEngine.Scripting.Preserve]
             public static LineInfo Borrow()
             {
                 if (pool.Count > 0)
@@ -1594,6 +1622,7 @@ namespace FairyGUI
             /// 
             /// </summary>
             /// <param name="value"></param>
+            [UnityEngine.Scripting.Preserve]
             public static void Return(LineInfo value)
             {
                 pool.Push(value);
@@ -1603,6 +1632,7 @@ namespace FairyGUI
             /// 
             /// </summary>
             /// <param name="values"></param>
+            [UnityEngine.Scripting.Preserve]
             public static void Return(List<LineInfo> values)
             {
                 int cnt = values.Count;

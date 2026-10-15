@@ -17,21 +17,25 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public TreeNode parent { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public TreeView tree { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComponent cell { get; internal set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int level { get; private set; }
 
         private List<TreeNode> _children;
@@ -41,6 +45,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="hasChild"></param>
+        [UnityEngine.Scripting.Preserve]
         public TreeNode(bool hasChild)
         {
             if (hasChild)
@@ -50,6 +55,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool expanded
         {
             get
@@ -79,6 +85,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isFolder
         {
             get { return _children != null; }
@@ -87,6 +94,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string text
         {
             get
@@ -103,6 +111,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public TreeNode AddChild(TreeNode child)
         {
             AddChildAt(child, _children.Count);
@@ -115,6 +124,7 @@ namespace FairyGUI
         /// <param name="child"></param>
         /// <param name="index"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public TreeNode AddChildAt(TreeNode child, int index)
         {
             if (child == null)
@@ -159,6 +169,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public TreeNode RemoveChild(TreeNode child)
         {
             int childIndex = _children.IndexOf(child);
@@ -174,6 +185,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public TreeNode RemoveChildAt(int index)
         {
             if (index >= 0 && index < numChildren)
@@ -201,6 +213,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="beginIndex"></param>
         /// <param name="endIndex"></param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveChildren(int beginIndex = 0, int endIndex = -1)
         {
             if (endIndex < 0 || endIndex >= numChildren)
@@ -215,6 +228,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public TreeNode GetChildAt(int index)
         {
             if (index >= 0 && index < numChildren)
@@ -228,6 +242,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public int GetChildIndex(TreeNode child)
         {
             return _children.IndexOf(child);
@@ -237,6 +252,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public TreeNode GetPrevSibling()
         {
             if (parent == null)
@@ -253,6 +269,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public TreeNode GetNextSibling()
         {
             if (parent == null)
@@ -270,6 +287,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <param name="index"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetChildIndex(TreeNode child, int index)
         {
             int oldIndex = _children.IndexOf(child);
@@ -296,6 +314,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child1"></param>
         /// <param name="child2"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SwapChildren(TreeNode child1, TreeNode child2)
         {
             int index1 = _children.IndexOf(child1);
@@ -310,6 +329,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index1"></param>
         /// <param name="index2"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SwapChildrenAt(int index1, int index2)
         {
             TreeNode child1 = _children[index1];
@@ -322,6 +342,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int numChildren
         {
             get { return (null == _children) ? 0 : _children.Count; }

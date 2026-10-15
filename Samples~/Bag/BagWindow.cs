@@ -5,6 +5,7 @@ public class BagWindow : Window
 {
     GList _list;
 
+    [UnityEngine.Scripting.Preserve]
     public BagWindow()
     {
     }

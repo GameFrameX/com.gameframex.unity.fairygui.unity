@@ -88,6 +88,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static NTexture Empty
         {
             get
@@ -102,6 +103,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static void DisposeEmpty()
         {
             if (_empty != null)
@@ -125,6 +127,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="texture"></param>
+        [UnityEngine.Scripting.Preserve]
         public NTexture(Texture texture) : this(texture, null, 1, 1)
         {
         }
@@ -135,6 +138,7 @@ namespace FairyGUI
         /// <param name="texture"></param>
         /// <param name="xScale"></param>
         /// <param name="yScale"></param>
+        [UnityEngine.Scripting.Preserve]
         public NTexture(Texture texture, Texture alphaTexture, float xScale, float yScale)
         {
             _root = this;
@@ -161,6 +165,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="texture"></param>
         /// <param name="region"></param>
+        [UnityEngine.Scripting.Preserve]
         public NTexture(Texture texture, Rect region)
         {
             _root = this;
@@ -180,6 +185,7 @@ namespace FairyGUI
         /// <param name="root"></param>
         /// <param name="region"></param>
         /// <param name="rotated"></param>
+        [UnityEngine.Scripting.Preserve]
         public NTexture(NTexture root, Rect region, bool rotated)
         {
             _root = root;
@@ -210,6 +216,7 @@ namespace FairyGUI
         /// <param name="rotated"></param>
         /// <param name="originalSize"></param>
         /// <param name="offset"></param>
+        [UnityEngine.Scripting.Preserve]
         public NTexture(NTexture root, Rect region, bool rotated, Vector2 originalSize, Vector2 offset)
             : this(root, region, rotated)
         {
@@ -221,6 +228,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="sprite"></param>
+        [UnityEngine.Scripting.Preserve]
         public NTexture(Sprite sprite)
         {
             Rect rect = sprite.textureRect;
@@ -237,6 +245,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int width
         {
             get { return (int)_region.width; }
@@ -245,6 +254,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int height
         {
             get { return (int)_region.height; }
@@ -253,6 +263,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 offset
         {
             get { return _offset; }
@@ -262,6 +273,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 originalSize
         {
             get { return _originalSize; }
@@ -273,6 +285,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="drawRect"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Rect GetDrawRect(Rect drawRect)
         {
             return GetDrawRect(drawRect, FlipType.None);
@@ -284,6 +297,7 @@ namespace FairyGUI
         /// <param name="drawRect"></param>
         /// <param name="flip"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Rect GetDrawRect(Rect drawRect, FlipType flip)
         {
             if (_originalSize.x == _region.width && _originalSize.y == _region.height)
@@ -312,6 +326,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="uv"></param>
+        [UnityEngine.Scripting.Preserve]
         public void GetUV(Vector2[] uv)
         {
             uv[0] = uvRect.position;
@@ -339,6 +354,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public NTexture root
         {
             get { return _root; }
@@ -347,6 +363,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool disposed
         {
             get { return _root == null; }
@@ -355,6 +372,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Texture nativeTexture
         {
             get { return _root != null ? _root._nativeTexture : null; }
@@ -363,6 +381,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Texture alphaTexture
         {
             get { return _root != null ? _root._alphaTexture : null; }
@@ -371,6 +390,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public MaterialManager GetMaterialManager(string shaderName)
         {
             if (_root != this)
@@ -397,6 +417,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Unload()
         {
             Unload(false);
@@ -405,6 +426,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Unload(bool destroyMaterials)
         {
             if (this == _empty)
@@ -429,6 +451,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="nativeTexture"></param>
         /// <param name="alphaTexture"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Reload(Texture nativeTexture, Texture alphaTexture)
         {
             if (_root != this)
@@ -519,6 +542,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void AddRef()
         {
             if (_root == null) //disposed
@@ -530,6 +554,7 @@ namespace FairyGUI
             refCount++;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void ReleaseRef()
         {
             if (_root == null) //disposed
@@ -550,6 +575,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             if (this == _empty)

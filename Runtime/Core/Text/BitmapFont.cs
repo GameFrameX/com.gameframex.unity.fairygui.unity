@@ -42,6 +42,7 @@ namespace FairyGUI
         protected BMGlyph _glyph;
         float _scale;
 
+        [UnityEngine.Scripting.Preserve]
         public BitmapFont()
         {
             this.canTint = true;
@@ -53,6 +54,7 @@ namespace FairyGUI
             _scale = 1;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void AddChar(char ch, BMGlyph glyph)
         {
             _dict[ch] = glyph;

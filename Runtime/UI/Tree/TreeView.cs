@@ -12,11 +12,13 @@ namespace FairyGUI
         /// <summary>
         /// TreeView使用的List对象
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GList list { get; private set; }
 
         /// <summary>
         /// TreeView的顶层节点，这是个虚拟节点，也就是他不会显示出来。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public TreeNode root { get; private set; }
 
         /// <summary>
@@ -46,17 +48,20 @@ namespace FairyGUI
         /// <summary>
         /// 点击任意TreeNode时触发
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onClickNode { get; private set; }
 
         /// <summary>
         /// 右键点击任意TreeNode时触发
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onRightClickNode { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="list"></param>
+        [UnityEngine.Scripting.Preserve]
         public TreeView(GList list)
         {
             this.list = list;
@@ -79,6 +84,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public TreeNode GetSelectedNode()
         {
             if (list.selectedIndex != -1)
@@ -91,6 +97,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public List<TreeNode> GetSelection()
         {
             List<int> sels = list.GetSelection();
@@ -109,6 +116,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="node"></param>
         /// <param name="scrollItToView"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AddSelection(TreeNode node, bool scrollItToView = false)
         {
             TreeNode parentNode = node.parent;
@@ -124,6 +132,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="node"></param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveSelection(TreeNode node)
         {
             list.RemoveSelection(list.GetChildIndex(node.cell));
@@ -132,6 +141,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ClearSelection()
         {
             list.ClearSelection();
@@ -142,6 +152,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public int GetNodeIndex(TreeNode node)
         {
             return list.GetChildIndex(node.cell);
@@ -151,6 +162,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="node"></param>
+        [UnityEngine.Scripting.Preserve]
         public void UpdateNode(TreeNode node)
         {
             if (node.cell == null)
@@ -164,6 +176,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="nodes"></param>
+        [UnityEngine.Scripting.Preserve]
         public void UpdateNodes(List<TreeNode> nodes)
         {
             int cnt = nodes.Count;
@@ -182,6 +195,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="folderNode"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ExpandAll(TreeNode folderNode)
         {
             folderNode.expanded = true;
@@ -198,6 +212,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="folderNode"></param>
+        [UnityEngine.Scripting.Preserve]
         public void CollapseAll(TreeNode folderNode)
         {
             if (folderNode != root)

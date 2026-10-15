@@ -35,6 +35,7 @@ namespace FairyGUI
         public Action<NTexture> __freeExternal;
 #endif
 
+        [UnityEngine.Scripting.Preserve]
         public GLoader()
         {
             _url = string.Empty;
@@ -94,6 +95,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool useResize
         {
             get { return _useResize; }
@@ -110,6 +112,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public virtual string url
         {
             get { return _url; }
@@ -149,6 +152,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public AlignType align
         {
             get { return _align; }
@@ -165,6 +169,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public VertAlignType verticalAlign
         {
             get { return _verticalAlign; }
@@ -181,6 +186,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public FillType fill
         {
             get { return _fill; }
@@ -197,6 +203,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool shrinkOnly
         {
             get { return _shrinkOnly; }
@@ -213,6 +220,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool autoSize
         {
             get { return _autoSize; }
@@ -229,6 +237,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool playing
         {
             get { return _content.playing; }
@@ -242,6 +251,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int frame
         {
             get { return _content.frame; }
@@ -255,6 +265,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float timeScale
         {
             get { return _content.timeScale; }
@@ -264,6 +275,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool ignoreEngineTimeScale
         {
             get { return _content.ignoreEngineTimeScale; }
@@ -274,6 +286,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="time"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Advance(float time)
         {
             _content.Advance(time);
@@ -282,6 +295,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Material material
         {
             get { return _content.material; }
@@ -291,6 +305,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string shader
         {
             get { return _content.shader; }
@@ -300,6 +315,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color color
         {
             get { return _content.color; }
@@ -316,6 +332,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public FillMethod fillMethod
         {
             get { return _content.fillMethod; }
@@ -325,6 +342,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int fillOrigin
         {
             get { return _content.fillOrigin; }
@@ -334,6 +352,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool fillClockwise
         {
             get { return _content.fillClockwise; }
@@ -343,6 +362,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float fillAmount
         {
             get { return _content.fillAmount; }
@@ -352,6 +372,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Image image
         {
             get { return _content; }
@@ -360,6 +381,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public MovieClip movieClip
         {
             get { return _content; }
@@ -368,6 +390,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComponent component
         {
             get { return _content2; }
@@ -376,6 +399,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public NTexture texture
         {
             get
@@ -531,6 +555,7 @@ namespace FairyGUI
 #endif
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void onExternalLoadSuccess(NTexture texture)
         {
             _content.texture = texture;
@@ -542,6 +567,7 @@ namespace FairyGUI
             UpdateLayout();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void onExternalLoadFailed()
         {
             SetErrorState();

@@ -12,12 +12,14 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public InputTextField inputTextField { get; private set; }
 
         EventListener _onChanged;
 
         EventListener _onSubmit;
 
+        [UnityEngine.Scripting.Preserve]
         public GTextInput()
         {
             _textField.autoSize = AutoSizeType.None;
@@ -37,6 +39,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onChanged
         {
             get { return _onChanged ?? (_onChanged = new EventListener(this, EventName.onChanged)); }
@@ -45,6 +48,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onSubmit
         {
             get { return _onSubmit ?? (_onSubmit = new EventListener(this, EventName.onSubmit)); }
@@ -53,6 +57,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool editable
         {
             get { return inputTextField.editable; }
@@ -62,6 +67,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool hideInput
         {
             get { return inputTextField.hideInput; }
@@ -71,6 +77,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int maxLength
         {
             get { return inputTextField.maxLength; }
@@ -80,6 +87,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string restrict
         {
             get { return inputTextField.restrict; }
@@ -89,6 +97,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool displayAsPassword
         {
             get { return inputTextField.displayAsPassword; }
@@ -98,6 +107,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int caretPosition
         {
             get { return inputTextField.caretPosition; }
@@ -107,6 +117,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string promptText
         {
             get { return inputTextField.promptText; }
@@ -116,6 +127,7 @@ namespace FairyGUI
         /// <summary>
         /// 在移动设备上是否使用键盘输入。如果false，则文本在获得焦点后不会弹出键盘。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool keyboardInput
         {
             get { return inputTextField.keyboardInput; }
@@ -125,6 +137,7 @@ namespace FairyGUI
         /// <summary>
         /// <see cref="UnityEngine.TouchScreenKeyboardType"/>
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int keyboardType
         {
             get { return inputTextField.keyboardType; }
@@ -134,6 +147,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool disableIME
         {
             get { return inputTextField.disableIME; }
@@ -143,6 +157,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Dictionary<uint, Emoji> emojies
         {
             get { return inputTextField.emojies; }
@@ -152,6 +167,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int border
         {
             get { return inputTextField.border; }
@@ -161,6 +177,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int corner
         {
             get { return inputTextField.corner; }
@@ -170,6 +187,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color borderColor
         {
             get { return inputTextField.borderColor; }
@@ -179,6 +197,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color backgroundColor
         {
             get { return inputTextField.backgroundColor; }
@@ -188,6 +207,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool mouseWheelEnabled
         {
             get { return inputTextField.mouseWheelEnabled; }
@@ -199,6 +219,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="start"></param>
         /// <param name="length"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetSelection(int start, int length)
         {
             inputTextField.SetSelection(start, length);
@@ -208,6 +229,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ReplaceSelection(string value)
         {
             inputTextField.ReplaceSelection(value);

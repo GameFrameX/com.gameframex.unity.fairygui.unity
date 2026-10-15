@@ -7,6 +7,7 @@ namespace FairyGUI
     {
         public static Dictionary<string, Dictionary<string, string>> strings;
 
+        [UnityEngine.Scripting.Preserve]
         public static void LoadFromXML(XML source)
         {
             strings = new Dictionary<string, Dictionary<string, string>>();
@@ -32,6 +33,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static void TranslateComponent(PackageItem item)
         {
             if (TranslationHelper.strings == null)

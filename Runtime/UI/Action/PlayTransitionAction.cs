@@ -11,6 +11,7 @@ namespace FairyGUI
 
         private Transition _currentTransition;
 
+        [UnityEngine.Scripting.Preserve]
         public PlayTransitionAction()
         {
             playTimes = 1;

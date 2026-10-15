@@ -18,6 +18,7 @@ namespace FairyGUI
         /// 扫光时间（秒）
         /// </summary>
         /// <value>扫光从开始到结束的持续时间</value>
+        [UnityEngine.Scripting.Preserve]
         public float lightTime
         {
             get { return GetMaterialFloat("_LightTime", 0.6f); }
@@ -28,6 +29,7 @@ namespace FairyGUI
         /// 扫光厚度
         /// </summary>
         /// <value>扫光带的宽度，范围通常为0-1</value>
+        [UnityEngine.Scripting.Preserve]
         public float lightThick
         {
             get { return GetMaterialFloat("_LightThick", 0.3f); }
@@ -38,6 +40,7 @@ namespace FairyGUI
         /// 下次扫光间隔时间（秒）
         /// </summary>
         /// <value>两次扫光之间的等待时间</value>
+        [UnityEngine.Scripting.Preserve]
         public float nextTime
         {
             get { return GetMaterialFloat("_NextTime", 2.0f); }
@@ -48,6 +51,7 @@ namespace FairyGUI
         /// 扫光角度
         /// </summary>
         /// <value>扫光的倾斜角度，范围0-360度</value>
+        [UnityEngine.Scripting.Preserve]
         public float lightAngle
         {
             get { return GetMaterialFloat("_LightAngle", 45.0f); }
@@ -58,6 +62,7 @@ namespace FairyGUI
         /// 扫光强度
         /// </summary>
         /// <value>扫光的亮度强度，范围0-3</value>
+        [UnityEngine.Scripting.Preserve]
         public float lightIntensity
         {
             get { return GetMaterialFloat("_LightIntensity", 1.4f); }
@@ -68,6 +73,7 @@ namespace FairyGUI
         /// 是否启用扫光效果
         /// </summary>
         /// <value>true表示启用扫光效果，false表示禁用</value>
+        [UnityEngine.Scripting.Preserve]
         public bool sweepLightEnabled
         {
             get { return _sweepLightMaterial != null && _sweepLightMaterial.IsKeywordEnabled("SWEEP_LIGHT"); }
@@ -88,6 +94,7 @@ namespace FairyGUI
         /// <summary>
         /// 构造函数
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GImageSweepLight()
         {
         }
@@ -187,6 +194,7 @@ namespace FairyGUI
         /// 开始扫光效果
         /// 重置时间参数以立即开始新的扫光循环
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void StartSweepLight()
         {
             sweepLightEnabled = true;
@@ -195,6 +203,7 @@ namespace FairyGUI
         /// <summary>
         /// 停止扫光效果
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void StopSweepLight()
         {
             sweepLightEnabled = false;
@@ -208,6 +217,7 @@ namespace FairyGUI
         /// <param name="nextTime">下次扫光间隔</param>
         /// <param name="lightAngle">扫光角度</param>
         /// <param name="lightIntensity">扫光强度</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetSweepLightParameters(float lightTime, float lightThick, float nextTime, float lightAngle, float lightIntensity)
         {
             this.lightTime = lightTime;

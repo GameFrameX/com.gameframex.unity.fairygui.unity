@@ -17,6 +17,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="font"></param>
         /// <param name="alias"></param>
+        [UnityEngine.Scripting.Preserve]
         static public void RegisterFont(BaseFont font, string alias = null)
         {
             sFontFactory[font.name] = font;
@@ -28,6 +29,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="font"></param>
+        [UnityEngine.Scripting.Preserve]
         static public void UnregisterFont(BaseFont font)
         {
             List<string> toDelete = new List<string>();
@@ -46,6 +48,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         static public BaseFont GetFont(string name)
         {
             BaseFont font;
@@ -142,6 +145,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         static public void Clear()
         {
             foreach (KeyValuePair<string, BaseFont> kv in sFontFactory)

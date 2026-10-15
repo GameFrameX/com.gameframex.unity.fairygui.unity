@@ -7,6 +7,7 @@ public class Window3 : Window
 {
     RenderImage _renderImage;
 
+    [UnityEngine.Scripting.Preserve]
     public Window3()
     {
     }

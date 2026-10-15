@@ -12,8 +12,10 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public RichTextField richTextField { get; private set; }
 
+        [UnityEngine.Scripting.Preserve]
         public GRichTextField()
             : base()
         {
@@ -44,6 +46,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Dictionary<uint, Emoji> emojies
         {
             get { return richTextField.emojies; }

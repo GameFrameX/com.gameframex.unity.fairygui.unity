@@ -21,6 +21,7 @@ namespace FairyGUI
 
         Vector2 _dragOffset;
 
+        [UnityEngine.Scripting.Preserve]
         public GScrollBar()
         {
             _scrollPerc = 0;
@@ -31,6 +32,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="target"></param>
         /// <param name="vertical"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetScrollPane(ScrollPane target, bool vertical)
         {
             _target = target;
@@ -40,6 +42,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void SetDisplayPerc(float value)
         {
             if (_vertical)
@@ -61,6 +64,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void setScrollPerc(float value)
         {
             _scrollPerc = value;
@@ -73,6 +77,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float minSize
         {
             get
@@ -87,6 +92,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool gripDragging
         {
             get

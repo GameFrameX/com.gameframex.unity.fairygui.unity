@@ -54,6 +54,7 @@ namespace FairyGUI.Utils
         /// </summary>
         public static Color DefaultLinkHoverBgColor = Color.clear;
 
+        [UnityEngine.Scripting.Preserve]
         public HtmlParseOptions()
         {
             linkUnderline = DefaultLinkUnderline;

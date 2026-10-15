@@ -35,6 +35,7 @@ namespace FairyGUI
         public bool changeOnClick;
         public bool canDrag;
 
+        [UnityEngine.Scripting.Preserve]
         public GSlider()
         {
             _value = 50;
@@ -46,6 +47,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onChanged
         {
             get { return _onChanged ?? (_onChanged = new EventListener(this, EventName.onChanged)); }
@@ -54,6 +56,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onGripTouchEnd
         {
             get { return _onGripTouchEnd ?? (_onGripTouchEnd = new EventListener(this, EventName.onGripTouchEnd)); }
@@ -62,6 +65,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public ProgressTitleType titleType
         {
             get
@@ -81,6 +85,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public double min
         {
             get
@@ -100,6 +105,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public double max
         {
             get
@@ -119,6 +125,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public double value
         {
             get
@@ -138,6 +145,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool wholeNumbers
         {
             get

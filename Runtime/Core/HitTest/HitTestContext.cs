@@ -28,6 +28,7 @@ namespace FairyGUI
         /// <param name="camera"></param>
         /// <param name="hit"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public static bool GetRaycastHitFromCache(Camera camera, out RaycastHit hit)
         {
             RaycastHit? hitRef;
@@ -62,6 +63,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="hit"></param>
+        [UnityEngine.Scripting.Preserve]
         public static void CacheRaycastHit(Camera camera, ref RaycastHit hit)
         {
             raycastHits[camera] = hit;
@@ -70,6 +72,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static void ClearRaycastHitCache()
         {
             raycastHits.Clear();

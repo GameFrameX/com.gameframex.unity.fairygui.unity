@@ -28,6 +28,7 @@ namespace FairyGUI
 
         Action _refreshDelegate;
 
+        [UnityEngine.Scripting.Preserve]
         public GGroup()
         {
             _mainGridIndex = -1;
@@ -39,6 +40,7 @@ namespace FairyGUI
         /// <summary>
         /// Group layout type.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GroupLayoutType layout
         {
             get { return _layout; }
@@ -55,6 +57,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int lineGap
         {
             get { return _lineGap; }
@@ -71,6 +74,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int columnGap
         {
             get { return _columnGap; }
@@ -87,6 +91,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool excludeInvisibles
         {
             get { return _excludeInvisibles; }
@@ -103,6 +108,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool autoSizeDisabled
         {
             get { return _autoSizeDisabled; }
@@ -119,6 +125,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int mainGridMinSize
         {
             get { return _mainGridMinSize; }
@@ -135,6 +142,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int mainGridIndex
         {
             get { return _mainGridIndex; }
@@ -152,6 +160,7 @@ namespace FairyGUI
         /// Update group bounds.
         /// 更新组的包围.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void SetBoundsChangedFlag(bool positionChangedOnly = false)
         {
             if (_updating == 0 && parent != null)
@@ -172,6 +181,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void EnsureBoundsCorrect()
         {
             if (parent == null || !_boundsChanged)

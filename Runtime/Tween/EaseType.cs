@@ -57,6 +57,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="pointDensity"></param>
+        [UnityEngine.Scripting.Preserve]
         public CustomEase(int pointDensity = 200)
         {
             _points = new Vector2[pointDensity + 1];
@@ -67,6 +68,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="pathPoints"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Create(IEnumerable<GPathPoint> pathPoints)
         {
             helperPath.Create(pathPoints);
@@ -89,6 +91,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public float Evaluate(float time)
         {
             if (time <= 0)

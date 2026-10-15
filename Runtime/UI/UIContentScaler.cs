@@ -133,6 +133,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ApplyModifiedProperties()
         {
             _changed = true;
@@ -141,6 +142,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ApplyChange()
         {
             float screenWidth;

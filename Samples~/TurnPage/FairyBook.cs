@@ -173,6 +173,7 @@ public class FairyBook : GComponent
     /// <summary>
     /// 
     /// </summary>
+    [UnityEngine.Scripting.Preserve]
     public EventListener onTurnComplete
     {
         get { return _onTurnComplete ?? (_onTurnComplete = new EventListener(this, "onTurnComplete")); }
@@ -182,6 +183,7 @@ public class FairyBook : GComponent
     /// 
     /// </summary>
     /// <param name="res"></param>
+    [UnityEngine.Scripting.Preserve]
     public void SetSoftShadowResource(string res)
     {
         _softShadow = UIPackage.CreateObjectFromURL(res);
@@ -193,6 +195,7 @@ public class FairyBook : GComponent
     /// <summary>
     /// 
     /// </summary>
+    [UnityEngine.Scripting.Preserve]
     public Paper pageSoftness
     {
         get { return _paper; }
@@ -202,6 +205,7 @@ public class FairyBook : GComponent
     /// <summary>
     /// 
     /// </summary>
+    [UnityEngine.Scripting.Preserve]
     public int pageCount
     {
         get { return _pageCount; }
@@ -217,6 +221,7 @@ public class FairyBook : GComponent
     /// <summary>
     /// 
     /// </summary>
+    [UnityEngine.Scripting.Preserve]
     public int currentPage
     {
         get { return _currentPage; }
@@ -241,6 +246,7 @@ public class FairyBook : GComponent
     /// 
     /// </summary>
     /// <param name="pageIndex"></param>
+    [UnityEngine.Scripting.Preserve]
     public void TurnTo(int pageIndex)
     {
         if (pageIndex < 0 || pageIndex > _pageCount - 1)
@@ -288,6 +294,7 @@ public class FairyBook : GComponent
     /// <summary>
     /// 
     /// </summary>
+    [UnityEngine.Scripting.Preserve]
     public void TurnNext()
     {
         GTween.Kill(this, true);
@@ -305,6 +312,7 @@ public class FairyBook : GComponent
     /// <summary>
     /// 
     /// </summary>
+    [UnityEngine.Scripting.Preserve]
     public void TurnPrevious()
     {
         GTween.Kill(this, true);
@@ -324,6 +332,7 @@ public class FairyBook : GComponent
     /// </summary>
     /// <param name="cover"></param>
     /// <param name="turnEffect"></param>
+    [UnityEngine.Scripting.Preserve]
     public void ShowCover(CoverType cover, bool turnEffect)
     {
         GTween.Kill(this, true);
@@ -375,6 +384,7 @@ public class FairyBook : GComponent
     /// </summary>
     /// <param name="cover"></param>
     /// <returns></returns>
+    [UnityEngine.Scripting.Preserve]
     public bool isCoverShowing(CoverType cover)
     {
         return cover == CoverType.Front ? (_coverStatus == CoverStatus.ShowingFront) : (_coverStatus == CoverStatus.ShowingBack);

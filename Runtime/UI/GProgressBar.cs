@@ -26,6 +26,7 @@ namespace FairyGUI
         float _barStartX;
         float _barStartY;
 
+        [UnityEngine.Scripting.Preserve]
         public GProgressBar()
         {
             _value = 50;
@@ -35,6 +36,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public ProgressTitleType titleType
         {
 
@@ -55,6 +57,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public double min
         {
             get
@@ -74,6 +77,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public double max
         {
             get
@@ -93,6 +97,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public double value
         {
             get
@@ -111,6 +116,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool reverse
         {
             get { return _reverse; }
@@ -122,6 +128,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <param name="duration"></param>
+        [UnityEngine.Scripting.Preserve]
         public GTweener TweenValue(double value, float duration)
         {
             double oldValule;
@@ -145,6 +152,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="newValue"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Update(double newValue)
         {
             float percent = Mathf.Clamp01((float)((newValue - _min) / (_max - _min)));

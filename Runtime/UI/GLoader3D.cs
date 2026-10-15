@@ -25,6 +25,7 @@ namespace FairyGUI
         protected PackageItem _contentItem;
         protected GoWrapper _content;
 
+        [UnityEngine.Scripting.Preserve]
         public GLoader3D()
         {
             _url = string.Empty;
@@ -55,6 +56,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public virtual string url
         {
             get { return _url; }
@@ -79,6 +81,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public AlignType align
         {
             get { return _align; }
@@ -95,6 +98,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public VertAlignType verticalAlign
         {
             get { return _verticalAlign; }
@@ -111,6 +115,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public FillType fill
         {
             get { return _fill; }
@@ -127,6 +132,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool shrinkOnly
         {
             get { return _shrinkOnly; }
@@ -143,6 +149,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool autoSize
         {
             get { return _autoSize; }
@@ -156,6 +163,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool playing
         {
             get { return _playing; }
@@ -170,6 +178,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public int frame
         {
             get { return _frame; }
@@ -187,17 +196,20 @@ namespace FairyGUI
         /// <summary>
         /// Not implemented
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float timeScale { get; set; }
 
         /// <summary>
         /// Not implemented
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool ignoreEngineTimeScale { get; set; }
 
         /// <summary>
         /// Not implemented
         /// </summary>
         /// <param name="time"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Advance(float time)
         {
         }
@@ -205,6 +217,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool loop
         {
             get { return _loop; }
@@ -222,6 +235,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <value></value>
+        [UnityEngine.Scripting.Preserve]
         public string animationName
         {
             get { return _animationName; }
@@ -237,6 +251,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <value></value>
+        [UnityEngine.Scripting.Preserve]
         public string skinName
         {
             get { return _skinName; }
@@ -251,6 +266,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Material material
         {
             get { return _content.material; }
@@ -260,6 +276,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string shader
         {
             get { return _content.shader; }
@@ -269,6 +286,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color color
         {
             get { return _color; }
@@ -287,6 +305,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GameObject wrapTarget
         {
             get { return _content.wrapTarget; }
@@ -299,6 +318,7 @@ namespace FairyGUI
         /// <param name="cloneMaterial"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetWrapTarget(GameObject gameObject, bool cloneMaterial, int width, int height)
         {
             _content.SetWrapTarget(gameObject, cloneMaterial);

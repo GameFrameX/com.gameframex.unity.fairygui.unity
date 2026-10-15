@@ -47,12 +47,14 @@ namespace FairyGUI
         /// </summary>
         public float rotation;
 
+        [UnityEngine.Scripting.Preserve]
         public RegularPolygonMesh()
         {
             sides = 3;
             lineColor = Color.black;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             if (distances != null && distances.Length < sides)
@@ -117,6 +119,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool HitTest(Rect contentRect, Vector2 point)
         {
             if (drawRect != null)

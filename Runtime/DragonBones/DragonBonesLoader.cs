@@ -16,6 +16,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <value></value>
+        [UnityEngine.Scripting.Preserve]
         public UnityArmatureComponent armatureComponent
         {
             get { return _armatureComponent; }
@@ -28,6 +29,7 @@ namespace FairyGUI
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="anchor"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetDragonBones(DragonBonesData asset, int width, int height, Vector2 anchor)
         {
             if (_armatureComponent != null)

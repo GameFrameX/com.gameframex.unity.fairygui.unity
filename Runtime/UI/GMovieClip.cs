@@ -11,6 +11,7 @@ namespace FairyGUI
         MovieClip _content;
         EventListener _onPlayEnd;
 
+        [UnityEngine.Scripting.Preserve]
         public GMovieClip()
         {
         }
@@ -26,6 +27,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onPlayEnd
         {
             get { return _onPlayEnd ?? (_onPlayEnd = new EventListener(this, EventName.onPlayEnd)); }
@@ -34,6 +36,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool playing
         {
             get { return _content.playing; }
@@ -47,6 +50,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int frame
         {
             get { return _content.frame; }
@@ -60,6 +64,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color color
         {
             get { return _content.color; }
@@ -73,6 +78,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public FlipType flip
         {
             get { return _content.graphics.flip; }
@@ -82,6 +88,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Material material
         {
             get { return _content.material; }
@@ -91,6 +98,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string shader
         {
             get { return _content.shader; }
@@ -100,6 +108,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float timeScale
         {
             get { return _content.timeScale; }
@@ -109,6 +118,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool ignoreEngineTimeScale
         {
             get { return _content.ignoreEngineTimeScale; }
@@ -118,6 +128,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Rewind()
         {
             _content.Rewind();
@@ -127,6 +138,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="anotherMc"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SyncStatus(GMovieClip anotherMc)
         {
             _content.SyncStatus(anotherMc._content);
@@ -136,6 +148,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="time"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Advance(float time)
         {
             _content.Advance(time);
@@ -149,6 +162,7 @@ namespace FairyGUI
         /// <param name="end">End frame. -1 indicates the last frame.</param>
         /// <param name="times">Repeat times. 0 indicates infinite loop.</param>
         /// <param name="endAt">Stop frame. -1 indicates to equal to the end parameter.</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetPlaySettings(int start, int end, int times, int endAt)
         {
             ((MovieClip)displayObject).SetPlaySettings(start, end, times, endAt);

@@ -13,55 +13,66 @@ namespace FairyGUI
         /// <summary>
         /// x position in stage coordinates.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float x { get; internal set; }
 
         /// <summary>
         /// y position in stage coordinates.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float y { get; internal set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public KeyCode keyCode { get; internal set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public char character { get; internal set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventModifiers modifiers { get; internal set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float mouseWheelDelta { get; internal set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int touchId { get; internal set; }
 
         /// <summary>
         /// -1-none,0-left,1-right,2-middle
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int button { get; internal set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <value></value>
+        [UnityEngine.Scripting.Preserve]
         public int clickCount { get; internal set; }
 
         /// <summary>
         /// Duraion of holding the button. You can read this in touchEnd or click event.
         /// </summary>
         /// <value></value>
+        [UnityEngine.Scripting.Preserve]
         public float holdTime { get; internal set; }
 
+        [UnityEngine.Scripting.Preserve]
         public InputEvent()
         {
             touchId = -1;
@@ -77,6 +88,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 position
         {
             get { return new Vector2(x, y); }
@@ -85,6 +97,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isDoubleClick
         {
             get { return clickCount > 1 && button == 0; }
@@ -93,6 +106,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool ctrlOrCmd
         {
             get { return ctrl || command; }
@@ -101,6 +115,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool ctrl
         {
             get
@@ -117,6 +132,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool shift
         {
             get
@@ -133,6 +149,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool alt
         {
             get
@@ -149,6 +166,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool command
         {
             get

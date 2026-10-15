@@ -32,11 +32,13 @@ namespace FairyGUI
         /// </summary>
         public Color32[] colors;
 
+        [UnityEngine.Scripting.Preserve]
         public RectMesh()
         {
             lineColor = Color.black;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             Rect rect = drawRect != null ? (Rect)drawRect : vb.contentRect;
@@ -77,6 +79,7 @@ namespace FairyGUI
             vb.AddTriangles();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool HitTest(Rect contentRect, Vector2 point)
         {
             return contentRect.Contains(point);

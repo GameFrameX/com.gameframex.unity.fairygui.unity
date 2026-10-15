@@ -14,6 +14,7 @@ namespace FairyGUI
 
         public GObject handling;
 
+        [UnityEngine.Scripting.Preserve]
         public Relations(GObject owner)
         {
             _owner = owner;
@@ -25,6 +26,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="target"></param>
         /// <param name="relationType"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Add(GObject target, RelationType relationType)
         {
             Add(target, relationType, false);
@@ -36,6 +38,7 @@ namespace FairyGUI
         /// <param name="target"></param>
         /// <param name="relationType"></param>
         /// <param name="usePercent"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Add(GObject target, RelationType relationType, bool usePercent)
         {
             int cnt = _items.Count;
@@ -59,6 +62,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="target"></param>
         /// <param name="relationType"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Remove(GObject target, RelationType relationType)
         {
             int cnt = _items.Count;
@@ -88,6 +92,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="target"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool Contains(GObject target)
         {
             int cnt = _items.Count;
@@ -104,6 +109,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="target"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ClearFor(GObject target)
         {
             int cnt = _items.Count;
@@ -125,6 +131,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ClearAll()
         {
             int cnt = _items.Count;
@@ -140,6 +147,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="source"></param>
+        [UnityEngine.Scripting.Preserve]
         public void CopyFrom(Relations source)
         {
             ClearAll();
@@ -156,6 +164,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             ClearAll();
@@ -168,6 +177,7 @@ namespace FairyGUI
         /// <param name="dWidth"></param>
         /// <param name="dHeight"></param>
         /// <param name="applyPivot"></param>
+        [UnityEngine.Scripting.Preserve]
         public void OnOwnerSizeChanged(float dWidth, float dHeight, bool applyPivot)
         {
             int cnt = _items.Count;
@@ -181,6 +191,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isEmpty
         {
             get
@@ -189,6 +200,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Setup(ByteBuffer buffer, bool parentToChild)
         {
             int cnt = buffer.ReadByte();

@@ -10,6 +10,7 @@ namespace FairyGUI
     {
         internal Image _content;
 
+        [UnityEngine.Scripting.Preserve]
         public GImage()
         {
         }
@@ -24,6 +25,7 @@ namespace FairyGUI
         /// <summary>
         /// Color of the image. 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color color
         {
             get { return _content.color; }
@@ -38,6 +40,7 @@ namespace FairyGUI
         /// Flip type.
         /// </summary>
         /// <seealso cref="FlipType"/>
+        [UnityEngine.Scripting.Preserve]
         public FlipType flip
         {
             get { return _content.graphics.flip; }
@@ -48,6 +51,7 @@ namespace FairyGUI
         /// Fill method.
         /// </summary>
         /// <seealso cref="FillMethod"/>
+        [UnityEngine.Scripting.Preserve]
         public FillMethod fillMethod
         {
             get { return _content.fillMethod; }
@@ -62,6 +66,7 @@ namespace FairyGUI
         /// <seealso cref="Origin90"/>
         /// <seealso cref="Origin180"/>
         /// <seealso cref="Origin360"/>
+        [UnityEngine.Scripting.Preserve]
         public int fillOrigin
         {
             get { return _content.fillOrigin; }
@@ -71,6 +76,7 @@ namespace FairyGUI
         /// <summary>
         /// Fill clockwise if true.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool fillClockwise
         {
             get { return _content.fillClockwise; }
@@ -80,6 +86,7 @@ namespace FairyGUI
         /// <summary>
         /// Fill amount. (0~1)
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float fillAmount
         {
             get { return _content.fillAmount; }
@@ -89,6 +96,7 @@ namespace FairyGUI
         /// <summary>
         /// Set texture directly. The image wont own the texture.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public NTexture texture
         {
             get { return _content.texture; }
@@ -114,6 +122,7 @@ namespace FairyGUI
         /// <summary>
         /// Set material.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Material material
         {
             get { return _content.material; }
@@ -123,6 +132,7 @@ namespace FairyGUI
         /// <summary>
         /// Set shader.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string shader
         {
             get { return _content.shader; }

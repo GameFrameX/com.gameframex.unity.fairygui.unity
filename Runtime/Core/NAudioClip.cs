@@ -24,6 +24,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="audioClip"></param>
+        [UnityEngine.Scripting.Preserve]
         public NAudioClip(AudioClip audioClip)
         {
             nativeClip = audioClip;
@@ -32,6 +33,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Unload()
         {
             if (nativeClip == null)
@@ -60,6 +62,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="audioClip"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Reload(AudioClip audioClip)
         {
             if (nativeClip != null && nativeClip != audioClip)

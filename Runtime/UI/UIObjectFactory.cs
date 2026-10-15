@@ -24,6 +24,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="url"></param>
         /// <param name="type"></param>
+        [UnityEngine.Scripting.Preserve]
         public static void SetPackageItemExtension(string url, System.Type type)
         {
             SetPackageItemExtension(url, () => { return (GComponent)Activator.CreateInstance(type); });
@@ -34,6 +35,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="url"></param>
         /// <param name="creator"></param>
+        [UnityEngine.Scripting.Preserve]
         public static void SetPackageItemExtension(string url, GComponentCreator creator)
         {
             if (url == null)
@@ -47,6 +49,7 @@ namespace FairyGUI
         }
 
 #if FAIRYGUI_TOLUA
+        [UnityEngine.Scripting.Preserve]
         public static void SetExtension(string url, System.Type baseType, LuaFunction extendFunction)
         {
             SetPackageItemExtension(url, () =>
@@ -68,6 +71,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="type"></param>
+        [UnityEngine.Scripting.Preserve]
         public static void SetLoaderExtension(System.Type type)
         {
             loaderCreator = () => { return (GLoader)Activator.CreateInstance(type); };
@@ -77,6 +81,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="creator"></param>
+        [UnityEngine.Scripting.Preserve]
         public static void SetLoaderExtension(GLoaderCreator creator)
         {
             loaderCreator = creator;
@@ -89,6 +94,7 @@ namespace FairyGUI
                 pi.extensionCreator = null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static void Clear()
         {
             packageItemExtensions.Clear();
@@ -101,6 +107,7 @@ namespace FairyGUI
         /// <param name="pi"></param>
         /// <param name="userClass"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public static GObject NewObject(PackageItem pi, System.Type userClass = null)
         {
             GObject obj;
@@ -133,6 +140,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public static GObject NewObject(ObjectType type)
         {
             Stats.LatestObjectCreation++;

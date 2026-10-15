@@ -19,32 +19,38 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int maxLength { get; set; }
 
         /// <summary>
         /// 如果是true，则当文本获得焦点时，弹出键盘进行输入，如果是false则不会。
         /// 默认是使用Stage.keyboardInput的值。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool keyboardInput { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int keyboardType { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool hideInput { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool disableIME { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool mouseWheelEnabled { get; set; }
 
         /// <summary>
@@ -91,6 +97,7 @@ namespace FairyGUI
         const int GUTTER_X = 2;
         const int GUTTER_Y = 2;
 
+        [UnityEngine.Scripting.Preserve]
         public InputTextField()
         {
             gameObject.name = "InputTextField";
@@ -125,6 +132,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onChanged
         {
             get { return _onChanged ?? (_onChanged = new EventListener(this, EventName.onChanged)); }
@@ -133,6 +141,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onSubmit
         {
             get { return _onSubmit ?? (_onSubmit = new EventListener(this, EventName.onSubmit)); }
@@ -172,6 +181,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string restrict
         {
             get { return _restrict; }
@@ -188,6 +198,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int caretPosition
         {
             get
@@ -198,11 +209,13 @@ namespace FairyGUI
             set { SetSelection(value, 0); }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public int selectionBeginIndex
         {
             get { return _selectionStart < _caretPosition ? _selectionStart : _caretPosition; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public int selectionEndIndex
         {
             get { return _selectionStart < _caretPosition ? _caretPosition : _selectionStart; }
@@ -211,6 +224,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string promptText
         {
             get { return _promptText; }
@@ -228,6 +242,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool displayAsPassword
         {
             get { return _displayAsPassword; }
@@ -244,6 +259,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool editable
         {
             get { return _editable; }
@@ -258,6 +274,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int border
         {
             get { return _border; }
@@ -271,6 +288,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int corner
         {
             get { return _corner; }
@@ -284,6 +302,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color borderColor
         {
             get { return _borderColor; }
@@ -297,6 +316,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color backgroundColor
         {
             get { return _backgroundColor; }
@@ -333,6 +353,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="start"></param>
         /// <param name="length">-1 means the rest count from start</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetSelection(int start, int length)
         {
             if (!_editing)
@@ -355,6 +376,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ReplaceSelection(string value)
         {
             if (keyboardInput && Stage.keyboardInput && !Stage.keyboard.supportsCaret)
@@ -422,6 +444,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ReplaceText(string value)
         {
             if (value == _text)
@@ -599,6 +622,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public string GetSelection()
         {
             if (_selectionStart == _caretPosition)
@@ -1504,6 +1528,7 @@ namespace FairyGUI
 #if !FAIRYGUI_INPUT_SYSTEM
         static bool _IMEActive;
 
+        [UnityEngine.Scripting.Preserve]
         public static bool EatKeyEvent(Event evt)
         {
             if (compositionString.Length > 0)
@@ -1537,6 +1562,7 @@ namespace FairyGUI
         }
 
 
+        [UnityEngine.Scripting.Preserve]
         public static string compositionString
         {
             get
@@ -1552,6 +1578,7 @@ namespace FairyGUI
         static string _compositionString = string.Empty;
         static int _keydownFrame;
         static char _keydownChar;
+        [UnityEngine.Scripting.Preserve]
         public static void RegisterEvent()
         {
             Keyboard keyboard = Keyboard.current;
@@ -1564,6 +1591,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static void UnregisterEvent()
         {
             Keyboard keyboard = Keyboard.current;
@@ -1574,6 +1602,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static bool EatKeyEvent(Event evt)
         {
             return compositionString.Length > 0;
@@ -1613,6 +1642,7 @@ namespace FairyGUI
         /// <summary>
         /// The current IME composition string being typed by the user.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static string compositionString
         {
             get

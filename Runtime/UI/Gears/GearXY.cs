@@ -30,6 +30,7 @@ namespace FairyGUI
         Dictionary<string, GearXYValue> _storage;
         GearXYValue _default;
 
+        [UnityEngine.Scripting.Preserve]
         public GearXY(GObject owner)
             : base(owner)
         {
@@ -56,6 +57,7 @@ namespace FairyGUI
             gv.y = buffer.ReadInt();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void AddExtStatus(string pageId, ByteBuffer buffer)
         {
             GearXYValue gv;
@@ -120,10 +122,12 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnTweenStart(GTweener tweener)
         {//nothing
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnTweenUpdate(GTweener tweener)
         {
             _owner._gearLocked = true;
@@ -133,6 +137,7 @@ namespace FairyGUI
             _owner.InvalidateBatchingState();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnTweenComplete(GTweener tweener)
         {
             _tweenConfig._tweener = null;

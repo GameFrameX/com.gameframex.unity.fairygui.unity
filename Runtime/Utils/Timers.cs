@@ -25,6 +25,7 @@ namespace FairyGUI
         GameObject gameObject;
 
         private static Timers _inst;
+        [UnityEngine.Scripting.Preserve]
         public static Timers inst
         {
             get
@@ -41,6 +42,7 @@ namespace FairyGUI
             _inst = null;
         }
 #endif
+        [UnityEngine.Scripting.Preserve]
         public Timers()
         {
             _inst = this;
@@ -57,6 +59,7 @@ namespace FairyGUI
             _pool = new List<Anymous_T>(100);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Add(float interval, int repeat, TimerCallback callback)
         {
             Add(interval, repeat, callback, null);
@@ -66,6 +69,7 @@ namespace FairyGUI
          * @interval in seconds
          * @repeat 0 indicate loop infinitely, otherwise the run count
          **/
+        [UnityEngine.Scripting.Preserve]
         public void Add(float interval, int repeat, TimerCallback callback, object callbackParam)
         {
             if (callback == null)
@@ -97,21 +101,25 @@ namespace FairyGUI
             _toAdd[callback] = t;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void CallLater(TimerCallback callback)
         {
             Add(0.001f, 1, callback);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void CallLater(TimerCallback callback, object callbackParam)
         {
             Add(0.001f, 1, callback, callbackParam);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void AddUpdate(TimerCallback callback)
         {
             Add(0.001f, 0, callback);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void AddUpdate(TimerCallback callback, object callbackParam)
         {
             Add(0.001f, 0, callback, callbackParam);
@@ -121,6 +129,7 @@ namespace FairyGUI
         /// 启动协程
         /// </summary>
         /// <param name="routine"></param>
+        [UnityEngine.Scripting.Preserve]
         public void StartCoroutine(IEnumerator routine)
         {
             _engine.StartCoroutine(routine);
@@ -130,11 +139,13 @@ namespace FairyGUI
         /// 停止协程
         /// </summary>
         /// <param name="routine"></param>
+        [UnityEngine.Scripting.Preserve]
         public void StopCoroutine(IEnumerator routine)
         {
             _engine.StopCoroutine(routine);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool Exists(TimerCallback callback)
         {
             if (_toAdd.ContainsKey(callback))
@@ -147,6 +158,7 @@ namespace FairyGUI
             return false;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Remove(TimerCallback callback)
         {
             Anymous_T t;
@@ -183,6 +195,7 @@ namespace FairyGUI
             _pool.Add(t);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Update()
         {
             float dt = Time.unscaledDeltaTime;

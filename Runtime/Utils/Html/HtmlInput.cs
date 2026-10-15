@@ -7,6 +7,7 @@ namespace FairyGUI.Utils
     /// </summary>
     public class HtmlInput : IHtmlObject
     {
+        [UnityEngine.Scripting.Preserve]
         public GTextInput textInput { get; private set; }
 
         RichTextField _owner;
@@ -17,6 +18,7 @@ namespace FairyGUI.Utils
         public static Color defaultBorderColor = ToolSet.ColorFromRGB(0xA9A9A9);
         public static Color defaultBackgroundColor = Color.clear;
 
+        [UnityEngine.Scripting.Preserve]
         public HtmlInput()
         {
             textInput = (GTextInput)UIObjectFactory.NewObject(ObjectType.InputText);
@@ -24,26 +26,31 @@ namespace FairyGUI.Utils
             textInput.verticalAlign = VertAlignType.Middle;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject displayObject
         {
             get { return textInput.displayObject; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public HtmlElement element
         {
             get { return _element; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public float width
         {
             get { return _hidden ? 0 : textInput.width; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public float height
         {
             get { return _hidden ? 0 : textInput.height; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Create(RichTextField owner, HtmlElement element)
         {
             _owner = owner;
@@ -82,24 +89,28 @@ namespace FairyGUI.Utils
             textInput.text = element.GetString("value");
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void SetPosition(float x, float y)
         {
             if (!_hidden)
                 textInput.SetXY(x, y);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Add()
         {
             if (!_hidden)
                 _owner.AddChild(textInput.displayObject);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Remove()
         {
             if (!_hidden && textInput.displayObject.parent != null)
                 _owner.RemoveChild(textInput.displayObject);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Release()
         {
             textInput.RemoveEventListeners();
@@ -109,6 +120,7 @@ namespace FairyGUI.Utils
             _element = null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             textInput.Dispose();

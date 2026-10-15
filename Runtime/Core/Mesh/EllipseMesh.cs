@@ -53,6 +53,7 @@ namespace FairyGUI
             2, 1, 6
         };
 
+        [UnityEngine.Scripting.Preserve]
         public EllipseMesh()
         {
             lineColor = Color.black;
@@ -60,6 +61,7 @@ namespace FairyGUI
             endDegreee = 360;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             Rect rect = drawRect != null ? (Rect)drawRect : vb.contentRect;
@@ -172,6 +174,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool HitTest(Rect contentRect, Vector2 point)
         {
             if (!contentRect.Contains(point))

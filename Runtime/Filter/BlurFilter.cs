@@ -19,11 +19,13 @@ namespace FairyGUI
         DisplayObject _target;
         Material _blitMaterial;
 
+        [UnityEngine.Scripting.Preserve]
         public BlurFilter()
         {
             blurSize = 1f;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject target
         {
             get { return _target; }
@@ -38,6 +40,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Dispose()
         {
             _target.LeavePaintingMode(1);
@@ -50,6 +53,7 @@ namespace FairyGUI
                 Material.DestroyImmediate(_blitMaterial);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Update()
         {
         }

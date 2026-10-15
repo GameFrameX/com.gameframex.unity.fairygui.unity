@@ -11,6 +11,7 @@ namespace FairyGUI
     {
         public readonly List<Rect> rects;
 
+        [UnityEngine.Scripting.Preserve]
         public SelectionShape()
         {
             CreateGameObject("SelectionShape");
@@ -24,6 +25,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Color color
         {
             get
@@ -37,6 +39,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Refresh()
         {
             int count = rects.Count;
@@ -57,12 +60,14 @@ namespace FairyGUI
             graphics.SetMeshDirty();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Clear()
         {
             rects.Clear();
             graphics.SetMeshDirty();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             int count = rects.Count;

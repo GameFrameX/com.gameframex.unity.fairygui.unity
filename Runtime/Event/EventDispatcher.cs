@@ -14,6 +14,7 @@ namespace FairyGUI
     {
         Dictionary<string, EventBridge> _dic;
 
+        [UnityEngine.Scripting.Preserve]
         public EventDispatcher()
         {
         }
@@ -23,6 +24,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="strType">事件类型</param>
         /// <param name="callback">事件回调</param>
+        [UnityEngine.Scripting.Preserve]
         public void AddEventListener(string strType, EventCallback1 callback)
         {
             GetBridge(strType).Add(callback);
@@ -33,6 +35,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="strType">事件类型</param>
         /// <param name="callback">事件回调</param>
+        [UnityEngine.Scripting.Preserve]
         public void AddEventListener(string strType, EventCallback0 callback)
         {
             GetBridge(strType).Add(callback);
@@ -43,6 +46,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="strType">事件类型</param>
         /// <param name="callback">事件回调</param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveEventListener(string strType, EventCallback1 callback)
         {
             if (_dic == null)
@@ -58,6 +62,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="strType">事件类型</param>
         /// <param name="callback">事件回调</param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveEventListener(string strType, EventCallback0 callback)
         {
             if (_dic == null)
@@ -73,6 +78,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="strType">事件类型</param>
         /// <param name="callback">事件回调</param>
+        [UnityEngine.Scripting.Preserve]
         public void AddCapture(string strType, EventCallback1 callback)
         {
             GetBridge(strType).AddCapture(callback);
@@ -83,6 +89,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="strType">事件类型</param>
         /// <param name="callback">事件回调</param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveCapture(string strType, EventCallback1 callback)
         {
             if (_dic == null)
@@ -96,6 +103,7 @@ namespace FairyGUI
         /// <summary>
         /// 移除所有事件监听器。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveEventListeners()
         {
             RemoveEventListeners(null);
@@ -105,6 +113,7 @@ namespace FairyGUI
         /// 移除所有事件监听器。
         /// </summary>
         /// <param name="strType">事件类型</param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveEventListeners(string strType)
         {
             if (_dic == null)
@@ -128,6 +137,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="strType">事件类型</param>
         /// <returns>是否存在事件监听器</returns>
+        [UnityEngine.Scripting.Preserve]
         public bool hasEventListeners(string strType)
         {
             EventBridge bridge = TryGetEventBridge(strType);
@@ -142,6 +152,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="strType">事件类型</param>
         /// <returns>是否正在分发事件</returns>
+        [UnityEngine.Scripting.Preserve]
         public bool isDispatching(string strType)
         {
             EventBridge bridge = TryGetEventBridge(strType);
@@ -181,6 +192,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="strType">事件类型</param>
         /// <returns>是否阻止事件继续分发</returns>
+        [UnityEngine.Scripting.Preserve]
         public bool DispatchEvent(string strType)
         {
             return DispatchEvent(strType, null);
@@ -192,6 +204,7 @@ namespace FairyGUI
         /// <param name="strType">事件类型</param>
         /// <param name="data">事件数据</param>
         /// <returns>是否阻止事件继续分发</returns>
+        [UnityEngine.Scripting.Preserve]
         public bool DispatchEvent(string strType, object data)
         {
             return InternalDispatchEvent(strType, null, data, null);
@@ -204,6 +217,7 @@ namespace FairyGUI
         /// <param name="data">事件数据</param>
         /// <param name="initiator">事件发起者</param>
         /// <returns>是否阻止事件继续分发</returns>
+        [UnityEngine.Scripting.Preserve]
         public bool DispatchEvent(string strType, object data, object initiator)
         {
             return InternalDispatchEvent(strType, null, data, initiator);
@@ -267,6 +281,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="context">事件上下文</param>
         /// <returns>是否阻止事件继续分发</returns>
+        [UnityEngine.Scripting.Preserve]
         public bool DispatchEvent(EventContext context)
         {
             EventBridge bridge = TryGetEventBridge(context.type);
@@ -373,6 +388,7 @@ namespace FairyGUI
         /// <param name="strType">事件类型</param>
         /// <param name="data">事件数据</param>
         /// <returns>是否阻止事件继续分发</returns>
+        [UnityEngine.Scripting.Preserve]
         public bool BubbleEvent(string strType, object data)
         {
             return BubbleEvent(strType, data, null);
@@ -384,6 +400,7 @@ namespace FairyGUI
         /// <param name="strType">事件类型</param>
         /// <param name="data">事件数据</param>
         /// <returns>是否阻止事件继续分发</returns>
+        [UnityEngine.Scripting.Preserve]
         public bool BroadcastEvent(string strType, object data)
         {
             EventContext context = EventContext.Get();

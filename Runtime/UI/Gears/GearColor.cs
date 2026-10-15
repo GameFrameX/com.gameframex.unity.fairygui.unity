@@ -28,6 +28,7 @@ namespace FairyGUI
         Dictionary<string, GearColorValue> _storage;
         GearColorValue _default;
 
+        [UnityEngine.Scripting.Preserve]
         public GearColor(GObject owner)
             : base(owner)
         {
@@ -105,10 +106,12 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnTweenStart(GTweener tweener)
         {
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnTweenUpdate(GTweener tweener)
         {
             _owner._gearLocked = true;
@@ -118,6 +121,7 @@ namespace FairyGUI
             _owner.InvalidateBatchingState();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnTweenComplete(GTweener tweener)
         {
             _tweenConfig._tweener = null;

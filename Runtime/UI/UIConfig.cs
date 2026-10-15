@@ -228,6 +228,7 @@ namespace FairyGUI
             public bool b;
             public Color c;
 
+            [UnityEngine.Scripting.Preserve]
             public void Reset()
             {
                 valid = false;
@@ -255,6 +256,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Load()
         {
             int cnt = Items.Count;
@@ -374,6 +376,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static void SetDefaultValue(ConfigKey key, ConfigValue value)
         {
             switch (key)
@@ -437,6 +440,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static void ClearResourceRefs()
         {
             defaultFont = "";
@@ -453,6 +457,7 @@ namespace FairyGUI
             UIPackage.branch = null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void ApplyModifiedProperties()
         {
             EMRenderSupport.Reload();

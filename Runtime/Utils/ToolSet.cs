@@ -7,6 +7,7 @@ namespace FairyGUI.Utils
     /// </summary>
     public static class ToolSet
     {
+        [UnityEngine.Scripting.Preserve]
         public static Color ConvertFromHtmlColor(string str)
         {
             if (str.Length < 7 || str[0] != '#')
@@ -35,16 +36,19 @@ namespace FairyGUI.Utils
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static Color ColorFromRGB(int value)
         {
             return new Color(((value >> 16) & 0xFF) / 255f, ((value >> 8) & 0xFF) / 255f, (value & 0xFF) / 255f, 1);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static Color ColorFromRGBA(uint value)
         {
             return new Color(((value >> 16) & 0xFF) / 255f, ((value >> 8) & 0xFF) / 255f, (value & 0xFF) / 255f, ((value >> 24) & 0xFF) / 255f);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static int CharToHex(char c)
         {
             if (c >= '0' && c <= '9')
@@ -57,6 +61,7 @@ namespace FairyGUI.Utils
                 return 0;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static Rect Intersection(ref Rect rect1, ref Rect rect2)
         {
             if (rect1.width == 0 || rect1.height == 0 || rect2.width == 0 || rect2.height == 0)
@@ -73,6 +78,7 @@ namespace FairyGUI.Utils
                 return Rect.MinMaxRect(left, top, right, bottom);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static Rect Union(ref Rect rect1, ref Rect rect2)
         {
             if (rect2.width == 0 || rect2.height == 0)
@@ -86,6 +92,7 @@ namespace FairyGUI.Utils
             return new Rect(x, y, Mathf.Max(rect1.xMax, rect2.xMax) - x, Mathf.Max(rect1.yMax, rect2.yMax) - y);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static void SkewMatrix(ref Matrix4x4 matrix, float skewX, float skewY)
         {
             skewX = -skewX * Mathf.Deg2Rad;
@@ -110,6 +117,7 @@ namespace FairyGUI.Utils
             matrix.m12 = m12;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static void RotateUV(Vector2[] uv, ref Rect baseUVRect)
         {
             int vertCount = uv.Length;

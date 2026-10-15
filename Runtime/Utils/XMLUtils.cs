@@ -8,6 +8,7 @@ namespace FairyGUI.Utils
     /// </summary>
     public class XMLUtils
     {
+        [UnityEngine.Scripting.Preserve]
         public static string DecodeString(string aSource)
         {
             int len = aSource.Length;
@@ -107,6 +108,7 @@ namespace FairyGUI.Utils
             "\n", "&#xA;",
             "\r", "&#xD;"
         };
+        [UnityEngine.Scripting.Preserve]
         public static void EncodeString(StringBuilder sb, int start, bool isAttribute = false)
         {
             int count;
@@ -118,6 +120,7 @@ namespace FairyGUI.Utils
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static string EncodeString(string str, bool isAttribute = false)
         {
             if (string.IsNullOrEmpty(str))

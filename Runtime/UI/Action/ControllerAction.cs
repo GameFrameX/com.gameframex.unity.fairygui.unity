@@ -14,6 +14,7 @@ namespace FairyGUI
         public string[] fromPage;
         public string[] toPage;
 
+        [UnityEngine.Scripting.Preserve]
         public static ControllerAction CreateAction(ActionType type)
         {
             switch (type)
@@ -27,10 +28,12 @@ namespace FairyGUI
             return null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public ControllerAction()
         {
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Run(Controller controller, string prevPage, string curPage)
         {
             if ((fromPage == null || fromPage.Length == 0 || Array.IndexOf(fromPage, prevPage) != -1)
@@ -50,6 +53,7 @@ namespace FairyGUI
 
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void Setup(ByteBuffer buffer)
         {
             int cnt;

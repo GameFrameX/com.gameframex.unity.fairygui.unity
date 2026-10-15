@@ -11,6 +11,7 @@ namespace FairyGUI
         Dictionary<string, string> _storage;
         string _default;
 
+        [UnityEngine.Scripting.Preserve]
         public GearIcon(GObject owner)
             : base(owner)
         {

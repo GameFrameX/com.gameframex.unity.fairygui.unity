@@ -40,6 +40,7 @@ namespace FairyGUI.Utils
         const string COMMENT_START = "<!--";
         const string COMMENT_END = "-->";
 
+        [UnityEngine.Scripting.Preserve]
         public static void Begin(string source, bool lowerCaseName = false)
         {
             XMLIterator.source = source;
@@ -52,6 +53,7 @@ namespace FairyGUI.Utils
             tagName = null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static bool NextTag()
         {
             int pos;
@@ -183,11 +185,13 @@ namespace FairyGUI.Utils
             return false;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static string GetTagSource()
         {
             return source.Substring(tagPos, tagLength);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static string GetRawText(bool trim = false)
         {
             if (lastTagEnd == tagPos)
@@ -211,6 +215,7 @@ namespace FairyGUI.Utils
                 return source.Substring(lastTagEnd, tagPos - lastTagEnd);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static string GetText(bool trim = false)
         {
             if (lastTagEnd == tagPos)
@@ -234,6 +239,7 @@ namespace FairyGUI.Utils
                 return XMLUtils.DecodeString(source.Substring(lastTagEnd, tagPos - lastTagEnd));
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static bool HasAttribute(string attrName)
         {
             if (!attrParsed)
@@ -246,6 +252,7 @@ namespace FairyGUI.Utils
             return attributes.ContainsKey(attrName);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static string GetAttribute(string attrName)
         {
             if (!attrParsed)
@@ -262,6 +269,7 @@ namespace FairyGUI.Utils
                 return null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static string GetAttribute(string attrName, string defValue)
         {
             string ret = GetAttribute(attrName);
@@ -271,11 +279,13 @@ namespace FairyGUI.Utils
                 return defValue;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static int GetAttributeInt(string attrName)
         {
             return GetAttributeInt(attrName, 0);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static int GetAttributeInt(string attrName, int defValue)
         {
             string value = GetAttribute(attrName);
@@ -289,11 +299,13 @@ namespace FairyGUI.Utils
                 return defValue;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static float GetAttributeFloat(string attrName)
         {
             return GetAttributeFloat(attrName, 0);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static float GetAttributeFloat(string attrName, float defValue)
         {
             string value = GetAttribute(attrName);
@@ -307,11 +319,13 @@ namespace FairyGUI.Utils
                 return defValue;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static bool GetAttributeBool(string attrName)
         {
             return GetAttributeBool(attrName, false);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static bool GetAttributeBool(string attrName, bool defValue)
         {
             string value = GetAttribute(attrName);
@@ -325,6 +339,7 @@ namespace FairyGUI.Utils
                 return defValue;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static Dictionary<string, string> GetAttributes(Dictionary<string, string> result)
         {
             if (result == null)
@@ -341,6 +356,7 @@ namespace FairyGUI.Utils
             return result;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static Hashtable GetAttributes(Hashtable result)
         {
             if (result == null)

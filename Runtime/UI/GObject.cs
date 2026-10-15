@@ -10,6 +10,7 @@ namespace FairyGUI
         /// GObject的id，仅作为内部使用。与name不同，id值是不会相同的。
         /// id is for internal use only.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string id { get; private set; }
 
         private string _name;
@@ -17,6 +18,7 @@ namespace FairyGUI
         /// <summary>
         /// Name of the object.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string name
         {
             get { return _name; }
@@ -31,6 +33,7 @@ namespace FairyGUI
         /// User defined data.
         /// GList 内部会赋值
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public object dataSource { get; internal set; }
 
         /// <summary>
@@ -81,6 +84,7 @@ namespace FairyGUI
         /// <summary>
         /// 关系对象。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Relations relations { get; private set; }
 
         /// <summary>
@@ -91,16 +95,19 @@ namespace FairyGUI
         /// <summary>
         /// 父对象。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComponent parent { get; private set; }
 
         /// <summary>
         /// 显示对象。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject displayObject { get; protected set; }
 
         /// <summary>
         /// 当前全局正在被拖动的对象
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static GObject draggingObject { get; private set; }
 
         /// <summary>
@@ -164,6 +171,7 @@ namespace FairyGUI
 
         internal static uint _gInstanceCounter;
 
+        [UnityEngine.Scripting.Preserve]
         public GObject()
         {
             _width = 0;
@@ -186,6 +194,7 @@ namespace FairyGUI
         /// <summary>
         /// 当对象或其子对象被点击时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onClick
         {
             get { return _onClick ?? (_onClick = new EventListener(this, EventName.onClick)); }
@@ -194,6 +203,7 @@ namespace FairyGUI
         /// <summary>
         /// 当对象或其子对象被右键点击时触发。仅限Web。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onRightClick
         {
             get { return _onRightClick ?? (_onRightClick = new EventListener(this, EventName.onRightClick)); }
@@ -202,6 +212,7 @@ namespace FairyGUI
         /// <summary>
         /// 当手指触摸到对象或其子对象时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onTouchBegin
         {
             get { return _onTouchBegin ?? (_onTouchBegin = new EventListener(this, EventName.onTouchBegin)); }
@@ -210,6 +221,7 @@ namespace FairyGUI
         /// <summary>
         /// 当手指触摸到对象或其子对象时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onTouchMove
         {
             get { return _onTouchMove ?? (_onTouchMove = new EventListener(this, EventName.onTouchMove)); }
@@ -218,6 +230,7 @@ namespace FairyGUI
         /// <summary>
         /// 当手指从屏幕或鼠标按钮上抬起时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onTouchEnd
         {
             get { return _onTouchEnd ?? (_onTouchEnd = new EventListener(this, EventName.onTouchEnd)); }
@@ -226,6 +239,7 @@ namespace FairyGUI
         /// <summary>
         /// 当光标或手指悬停在对象上时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onRollOver
         {
             get { return _onRollOver ?? (_onRollOver = new EventListener(this, EventName.onRollOver)); }
@@ -234,6 +248,7 @@ namespace FairyGUI
         /// <summary>
         /// 当光标或手指离开对象时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onRollOut
         {
             get { return _onRollOut ?? (_onRollOut = new EventListener(this, EventName.onRollOut)); }
@@ -242,6 +257,7 @@ namespace FairyGUI
         /// <summary>
         /// 当对象被添加到舞台时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onAddedToStage
         {
             get { return _onAddedToStage ?? (_onAddedToStage = new EventListener(this, EventName.onAddedToStage)); }
@@ -250,6 +266,7 @@ namespace FairyGUI
         /// <summary>
         /// 当对象从舞台移除时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onRemovedFromStage
         {
             get { return _onRemovedFromStage ?? (_onRemovedFromStage = new EventListener(this, EventName.onRemovedFromStage)); }
@@ -258,6 +275,7 @@ namespace FairyGUI
         /// <summary>
         /// 当对象处于焦点时，按下按键时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onKeyDown
         {
             get { return _onKeyDown ?? (_onKeyDown = new EventListener(this, EventName.onKeyDown)); }
@@ -266,6 +284,7 @@ namespace FairyGUI
         /// <summary>
         /// 当对象或其子对象中的链接被点击时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onClickLink
         {
             get { return _onClickLink ?? (_onClickLink = new EventListener(this, EventName.onClickLink)); }
@@ -274,6 +293,7 @@ namespace FairyGUI
         /// <summary>
         /// 当对象被移动时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onPositionChanged
         {
             get { return _onPositionChanged ?? (_onPositionChanged = new EventListener(this, EventName.onPositionChanged)); }
@@ -282,6 +302,7 @@ namespace FairyGUI
         /// <summary>
         /// 当对象被调整大小时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onSizeChanged
         {
             get { return _onSizeChanged ?? (_onSizeChanged = new EventListener(this, EventName.onSizeChanged)); }
@@ -290,6 +311,7 @@ namespace FairyGUI
         /// <summary>
         /// 当拖动开始时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onDragStart
         {
             get { return _onDragStart ?? (_onDragStart = new EventListener(this, EventName.onDragStart)); }
@@ -298,6 +320,7 @@ namespace FairyGUI
         /// <summary>
         /// 当拖动时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onDragMove
         {
             get { return _onDragMove ?? (_onDragMove = new EventListener(this, EventName.onDragMove)); }
@@ -306,6 +329,7 @@ namespace FairyGUI
         /// <summary>
         /// 当拖动结束时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onDragEnd
         {
             get { return _onDragEnd ?? (_onDragEnd = new EventListener(this, EventName.onDragEnd)); }
@@ -314,6 +338,7 @@ namespace FairyGUI
         /// <summary>
         /// 当齿轮停止时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onGearStop
         {
             get { return _onGearStop ?? (_onGearStop = new EventListener(this, EventName.onGearStop)); }
@@ -322,6 +347,7 @@ namespace FairyGUI
         /// <summary>
         /// 当对象获得焦点时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onFocusIn
         {
             get { return _onFocusIn ?? (_onFocusIn = new EventListener(this, EventName.onFocusIn)); }
@@ -330,6 +356,7 @@ namespace FairyGUI
         /// <summary>
         /// 当对象失去焦点时触发。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onFocusOut
         {
             get { return _onFocusOut ?? (_onFocusOut = new EventListener(this, EventName.onFocusOut)); }
@@ -338,6 +365,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象相对于父对象的x坐标。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float x
         {
             get { return _x; }
@@ -350,6 +378,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象相对于父对象的y坐标。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float y
         {
             get { return _y; }
@@ -362,6 +391,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象相对于父对象的z坐标。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float z
         {
             get { return _z; }
@@ -374,6 +404,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象相对于父对象的x和y坐标。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 xy
         {
             get { return new Vector2(_x, _y); }
@@ -383,6 +414,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象相对于父对象的x,y,z坐标。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector3 position
         {
             get { return new Vector3(_x, _y, _z); }
@@ -394,6 +426,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="xv">x值。</param>
         /// <param name="yv">y值。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetXY(float xv, float yv)
         {
             SetPosition(xv, yv, _z);
@@ -405,6 +438,7 @@ namespace FairyGUI
         /// <param name="xv">x值。</param>
         /// <param name="yv">y值。</param>
         /// <param name="topLeftValue">是否使用左上角坐标。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetXY(float xv, float yv, bool topLeftValue)
         {
             if (_pivotAsAnchor)
@@ -419,6 +453,7 @@ namespace FairyGUI
         /// <param name="xv">x值。</param>
         /// <param name="yv">y值。</param>
         /// <param name="zv">z值。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetPosition(float xv, float yv, float zv)
         {
             if (_x != xv || _y != yv || _z != zv)
@@ -449,6 +484,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         [Obsolete("Use UIConfig.makePixelPerfect or DisplayObject.pixelPerfect")]
         public bool pixelSnapping
         {
@@ -459,6 +495,7 @@ namespace FairyGUI
         /// <summary>
         /// 将对象设置为父对象或GRoot的中间位置。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Center()
         {
             Center(false);
@@ -468,6 +505,7 @@ namespace FairyGUI
         /// 将对象设置为父对象或GRoot的中间位置。
         /// </summary>
         /// <param name="restraint">添加关系以保持中间状态。</param>
+        [UnityEngine.Scripting.Preserve]
         public virtual void Center(bool restraint)
         {
             GComponent r;
@@ -487,6 +525,7 @@ namespace FairyGUI
         /// <summary>
         /// 拖动开始位置。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 dragStartPos
         {
             get { return _dragTouchStartPos; }
@@ -495,6 +534,7 @@ namespace FairyGUI
         /// <summary>
         /// 设置对象为全屏大小（逻辑屏幕）。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void MakeFullScreen()
         {
             this.SetSize(GRoot.inst.width, GRoot.inst.height);
@@ -503,6 +543,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的宽度（像素）。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float width
         {
             get
@@ -518,6 +559,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的高度（像素）。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float height
         {
             get
@@ -533,6 +575,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的大小（像素）。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 size
         {
             get { return new Vector2(width, height); }
@@ -542,6 +585,7 @@ namespace FairyGUI
         /// <summary>
         /// 实际宽度 = 宽度 * 缩放x
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float actualWidth
         {
             get { return this.width * _scaleX; }
@@ -550,6 +594,7 @@ namespace FairyGUI
         /// <summary>
         /// 实际高度 = 高度 * 缩放y
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float actualHeight
         {
             get { return this.height * _scaleY; }
@@ -560,6 +605,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="wv">宽度值。</param>
         /// <param name="hv">高度值。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetSize(float wv, float hv)
         {
             SetSize(wv, hv, false);
@@ -571,6 +617,7 @@ namespace FairyGUI
         /// <param name="wv">宽度值。</param>
         /// <param name="hv">高度值。</param>
         /// <param name="ignorePivot">如果设置了pivot，当对象的大小改变时，对象的位置会改变。设置ignorePivot=true以保持位置。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetSize(float wv, float hv, bool ignorePivot)
         {
             if (_rawWidth != wv || _rawHeight != hv)
@@ -637,6 +684,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的最小x坐标。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float xMin
         {
             get
@@ -655,6 +703,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的最小y坐标。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float yMin
         {
             get
@@ -673,6 +722,7 @@ namespace FairyGUI
         /// <summary>
         /// 水平缩放因子。'1'表示没有缩放，不能为负。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float scaleX
         {
             get { return _scaleX; }
@@ -685,6 +735,7 @@ namespace FairyGUI
         /// <summary>
         /// 垂直缩放因子。'1'表示没有缩放，不能为负。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float scaleY
         {
             get { return _scaleY; }
@@ -697,6 +748,7 @@ namespace FairyGUI
         /// <summary>
         /// 缩放因子。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 scale
         {
             get { return new Vector2(_scaleX, _scaleY); }
@@ -708,6 +760,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="wv">水平缩放因子。</param>
         /// <param name="hv">垂直缩放因子。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetScale(float wv, float hv)
         {
             if (_scaleX != wv || _scaleY != hv)
@@ -723,6 +776,7 @@ namespace FairyGUI
         /// <summary>
         /// 倾斜因子。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 skew
         {
             get
@@ -743,6 +797,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的原点x坐标。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float pivotX
         {
             get { return _pivotX; }
@@ -755,6 +810,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的原点y坐标。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float pivotY
         {
             get { return _pivotY; }
@@ -767,6 +823,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的原点坐标。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 pivot
         {
             get { return new Vector2(_pivotX, _pivotY); }
@@ -776,6 +833,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否使用pivot作为锚点。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool pivotAsAnchor
         {
             get { return _pivotAsAnchor; }
@@ -790,6 +848,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="xv">x值。</param>
         /// <param name="yv">y值。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetPivot(float xv, float yv)
         {
             SetPivot(xv, yv, false);
@@ -801,6 +860,7 @@ namespace FairyGUI
         /// <param name="xv">x值。</param>
         /// <param name="yv">y值。</param>
         /// <param name="asAnchor">如果使用pivot作为锚点。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetPivot(float xv, float yv, bool asAnchor)
         {
             if (_pivotX != xv || _pivotY != yv || _pivotAsAnchor != asAnchor)
@@ -817,6 +877,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否可以触摸或点击。GImage/GTextField即使设置为true，也无法触摸或点击。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool touchable
         {
             get
@@ -839,6 +900,7 @@ namespace FairyGUI
         /// <summary>
         /// 如果为true，则对对象应用灰色效果。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool grayed
         {
             get
@@ -859,6 +921,7 @@ namespace FairyGUI
         /// <summary>
         /// 启用是灰色和不可触摸的组合。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool enabled
         {
             get
@@ -875,6 +938,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的z轴旋转角度。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float rotation
         {
             get
@@ -893,6 +957,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的x轴旋转角度。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float rotationX
         {
             get
@@ -910,6 +975,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的y轴旋转角度。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float rotationY
         {
             get
@@ -927,6 +993,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的不透明度。0 = 透明，1 = 不透明。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float alpha
         {
 
@@ -946,6 +1013,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的可见性。不可见对象将无法触摸。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool visible
         {
             get
@@ -995,6 +1063,7 @@ namespace FairyGUI
         /// 默认情况下（当sortingOrder==0），添加到组件的对象按添加顺序排列。
         /// 排序顺序越大，对象越靠前。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int sortingOrder
         {
             get { return _sortingOrder; }
@@ -1015,6 +1084,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否可以聚焦？
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool focusable
         {
             get { return displayObject != null && displayObject.focusable; }
@@ -1027,6 +1097,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否可以通过TAB键聚焦？
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool tabStop
         {
             get { return displayObject != null && displayObject.tabStop; }
@@ -1039,6 +1110,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否聚焦。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool focused
         {
             get { return displayObject != null && displayObject.focused; }
@@ -1047,6 +1119,7 @@ namespace FairyGUI
         /// <summary>
         /// 请求聚焦。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void RequestFocus()
         {
             if (displayObject != null)
@@ -1056,6 +1129,7 @@ namespace FairyGUI
         /// <summary>
         /// 请求聚焦。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void RequestFocus(bool byKey)
         {
             if (displayObject != null)
@@ -1065,6 +1139,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的工具提示。UIConfig.tooltipsWin必须先设置。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string tooltips
         {
             get { return _tooltips; }
@@ -1090,6 +1165,7 @@ namespace FairyGUI
         /// 对象的鼠标光标。
         /// </summary>
         /// <value></value>
+        [UnityEngine.Scripting.Preserve]
         public string cursor
         {
             get { return displayObject != null ? displayObject.cursor : null; }
@@ -1113,6 +1189,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的滤镜。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         virtual public IFilter filter
         {
             get { return displayObject != null ? displayObject.filter : null; }
@@ -1125,6 +1202,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的混合模式。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         virtual public BlendMode blendMode
         {
             get { return displayObject != null ? displayObject.blendMode : BlendMode.None; }
@@ -1137,6 +1215,7 @@ namespace FairyGUI
         /// <summary>
         /// 设定GameObject的名称
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string gameObjectName
         {
             get
@@ -1158,6 +1237,7 @@ namespace FairyGUI
         /// 设置对象的home。
         /// </summary>
         /// <param name="obj"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetHome(GObject obj)
         {
             if (obj != null && displayObject != null && obj.displayObject != null)
@@ -1167,6 +1247,7 @@ namespace FairyGUI
         /// <summary>
         /// 如果对象有显示对象，并且显示对象有容器父级？
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool inContainer
         {
             get { return displayObject != null && displayObject.parent != null; }
@@ -1175,6 +1256,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象是否在舞台上。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool onStage
         {
             get { return displayObject != null && displayObject.stage != null; }
@@ -1183,6 +1265,7 @@ namespace FairyGUI
         /// <summary>
         /// 对象的资源URL。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string resourceURL
         {
             get
@@ -1197,6 +1280,7 @@ namespace FairyGUI
         /// <summary>
         /// xy控制器。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GearXY gearXY
         {
             get { return (GearXY)GetGear(1); }
@@ -1205,6 +1289,7 @@ namespace FairyGUI
         /// <summary>
         /// 尺寸控制器。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GearSize gearSize
         {
             get { return (GearSize)GetGear(2); }
@@ -1213,11 +1298,13 @@ namespace FairyGUI
         /// <summary>
         /// 外观控制器。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GearLook gearLook
         {
             get { return (GearLook)GetGear(3); }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public GearBase GetGear(int index)
         {
             GearBase gear = _gears[index];
@@ -1332,6 +1419,7 @@ namespace FairyGUI
         /// <summary>
         /// 标记fairy批处理状态无效。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void InvalidateBatchingState()
         {
             if (displayObject != null)
@@ -1340,6 +1428,7 @@ namespace FairyGUI
                 parent.container.InvalidateBatchingState(true);
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void HandleControllerChanged(Controller c)
         {
             _handlingController = true;
@@ -1360,6 +1449,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="target">目标对象</param>
         /// <param name="relationType">关系类型</param>
+        [UnityEngine.Scripting.Preserve]
         public void AddRelation(GObject target, RelationType relationType)
         {
             AddRelation(target, relationType, false);
@@ -1371,6 +1461,7 @@ namespace FairyGUI
         /// <param name="target">目标对象</param>
         /// <param name="relationType">关系类型</param>
         /// <param name="usePercent">是否使用百分比</param>
+        [UnityEngine.Scripting.Preserve]
         public void AddRelation(GObject target, RelationType relationType, bool usePercent)
         {
             relations.Add(target, relationType, usePercent);
@@ -1381,6 +1472,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="target">目标对象</param>
         /// <param name="relationType">关系类型</param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveRelation(GObject target, RelationType relationType)
         {
             relations.Remove(target, relationType);
@@ -1389,6 +1481,7 @@ namespace FairyGUI
         /// <summary>
         /// 从父级移除。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveFromParent()
         {
             if (parent != null)
@@ -1398,6 +1491,7 @@ namespace FairyGUI
         /// <summary>
         /// 所属组。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GGroup group
         {
             get { return _group; }
@@ -1420,6 +1514,7 @@ namespace FairyGUI
         /// <summary>
         /// 根对象。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GRoot root
         {
             get
@@ -1445,6 +1540,7 @@ namespace FairyGUI
         /// <summary>
         /// 文本。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         virtual public string text
         {
             get { return null; }
@@ -1457,6 +1553,7 @@ namespace FairyGUI
         /// <summary>
         /// 图标。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         virtual public string icon
         {
             get { return null; }
@@ -1469,6 +1566,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否可拖动。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool draggable
         {
             get { return _draggable; }
@@ -1485,6 +1583,7 @@ namespace FairyGUI
         /// <summary>
         /// 开始拖动。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void StartDrag()
         {
             StartDrag(-1);
@@ -1494,6 +1593,7 @@ namespace FairyGUI
         /// 开始拖动。
         /// </summary>
         /// <param name="touchId">触摸ID</param>
+        [UnityEngine.Scripting.Preserve]
         public void StartDrag(int touchId)
         {
             if (displayObject.stage == null)
@@ -1505,6 +1605,7 @@ namespace FairyGUI
         /// <summary>
         /// 停止拖动。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void StopDrag()
         {
             DragEnd();
@@ -1513,6 +1614,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否正在拖动。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool dragging
         {
             get { return draggingObject == this; }
@@ -1523,6 +1625,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="pt">点</param>
         /// <returns>点</returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 LocalToGlobal(Vector2 pt)
         {
             if (_pivotAsAnchor)
@@ -1539,6 +1642,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="pt">点</param>
         /// <returns>点</returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 GlobalToLocal(Vector2 pt)
         {
             pt = displayObject.GlobalToLocal(pt);
@@ -1556,6 +1660,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="rect">矩形</param>
         /// <returns>矩形</returns>
+        [UnityEngine.Scripting.Preserve]
         public Rect LocalToGlobal(Rect rect)
         {
             Rect ret = new Rect();
@@ -1573,6 +1678,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="rect">矩形</param>
         /// <returns>矩形</returns>
+        [UnityEngine.Scripting.Preserve]
         public Rect GlobalToLocal(Rect rect)
         {
             Rect ret = new Rect();
@@ -1591,6 +1697,7 @@ namespace FairyGUI
         /// <param name="pt">点</param>
         /// <param name="r">GRoot</param>
         /// <returns>点</returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 LocalToRoot(Vector2 pt, GRoot r)
         {
             pt = LocalToGlobal(pt);
@@ -1611,6 +1718,7 @@ namespace FairyGUI
         /// <param name="pt">点</param>
         /// <param name="r">GRoot</param>
         /// <returns>点</returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 RootToLocal(Vector2 pt, GRoot r)
         {
             if (r == null || r == GRoot.inst)
@@ -1630,6 +1738,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="pt">点</param>
         /// <returns>点</returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 WorldToLocal(Vector3 pt)
         {
             return WorldToLocal(pt, HitTestContext.cachedMainCamera);
@@ -1641,6 +1750,7 @@ namespace FairyGUI
         /// <param name="pt">点</param>
         /// <param name="camera">相机</param>
         /// <returns>点</returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 WorldToLocal(Vector3 pt, Camera camera)
         {
             Vector3 v = camera.WorldToScreenPoint(pt);
@@ -1655,6 +1765,7 @@ namespace FairyGUI
         /// <param name="point">点</param>
         /// <param name="targetSpace">目标坐标系</param>
         /// <returns>点</returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 TransformPoint(Vector2 pt, GObject targetSpace)
         {
             if (_pivotAsAnchor)
@@ -1672,6 +1783,7 @@ namespace FairyGUI
         /// <param name="rect">矩形</param>
         /// <param name="targetSpace">目标坐标系</param>
         /// <returns>矩形</returns>
+        [UnityEngine.Scripting.Preserve]
         public Rect TransformRect(Rect rect, GObject targetSpace)
         {
             if (_pivotAsAnchor)
@@ -1686,6 +1798,7 @@ namespace FairyGUI
         /// <summary>
         /// 是否已释放。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isDisposed
         {
             get { return _disposed; }
@@ -1694,6 +1807,7 @@ namespace FairyGUI
         /// <summary>
         /// 释放。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         virtual public void Dispose()
         {
             if (_disposed)
@@ -1724,6 +1838,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GImage。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GImage asImage
         {
             get { return this as GImage; }
@@ -1732,6 +1847,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GComponent。    
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComponent asCom
         {
             get { return this as GComponent; }
@@ -1740,6 +1856,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GButton。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GButton asButton
         {
             get { return this as GButton; }
@@ -1748,6 +1865,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GLabel。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GLabel asLabel
         {
             get { return this as GLabel; }
@@ -1756,6 +1874,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GProgressBar。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GProgressBar asProgress
         {
             get { return this as GProgressBar; }
@@ -1764,6 +1883,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GSlider。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GSlider asSlider
         {
             get { return this as GSlider; }
@@ -1772,6 +1892,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GComboBox。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComboBox asComboBox
         {
             get { return this as GComboBox; }
@@ -1780,6 +1901,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GTextField。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GTextField asTextField
         {
             get { return this as GTextField; }
@@ -1788,6 +1910,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GRichTextField。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GRichTextField asRichTextField
         {
             get { return this as GRichTextField; }
@@ -1796,6 +1919,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GTextInput。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GTextInput asTextInput
         {
             get { return this as GTextInput; }
@@ -1804,6 +1928,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GLoader。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GLoader asLoader
         {
             get { return this as GLoader; }
@@ -1812,6 +1937,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GLoader3D。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GLoader3D asLoader3D
         {
             get { return this as GLoader3D; }
@@ -1820,6 +1946,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GList。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GList asList
         {
             get { return this as GList; }
@@ -1828,6 +1955,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GGraph。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GGraph asGraph
         {
             get { return this as GGraph; }
@@ -1836,6 +1964,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GGroup。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GGroup asGroup
         {
             get { return this as GGroup; }
@@ -1844,6 +1973,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GMovieClip。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GMovieClip asMovieClip
         {
             get { return this as GMovieClip; }
@@ -1852,6 +1982,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GTree。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GTree asTree
         {
             get { return this as GTree; }
@@ -1860,6 +1991,7 @@ namespace FairyGUI
         /// <summary>
         /// 作为GTreeNode。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GTreeNode treeNode
         {
             get { return _treeNode; }
@@ -1920,10 +2052,12 @@ namespace FairyGUI
                 displayObject.visible = internalVisible2;
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void ConstructFromResource()
         {
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void Setup_BeforeAdd(ByteBuffer buffer, int beginPos)
         {
             buffer.Seek(beginPos, 0);
@@ -2004,6 +2138,7 @@ namespace FairyGUI
                 this.data = str;
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void Setup_AfterAdd(ByteBuffer buffer, int beginPos)
         {
             buffer.Seek(beginPos, 1);
@@ -2180,6 +2315,7 @@ namespace FairyGUI
         /// <param name="endValue">结束值</param>
         /// <param name="duration">持续时间</param>
         /// <returns>Tweener</returns>  
+        [UnityEngine.Scripting.Preserve]
         public GTweener TweenMove(Vector2 endValue, float duration)
         {
             return GTween.To(this.xy, endValue, duration).SetTarget(this, TweenPropType.XY);
@@ -2191,6 +2327,7 @@ namespace FairyGUI
         /// <param name="endValue">结束值</param>
         /// <param name="duration">持续时间</param>
         /// <returns>Tweener</returns>  
+        [UnityEngine.Scripting.Preserve]
         public GTweener TweenMoveX(float endValue, float duration)
         {
             return GTween.To(_x, endValue, duration).SetTarget(this, TweenPropType.X);
@@ -2202,6 +2339,7 @@ namespace FairyGUI
         /// <param name="endValue">结束值</param>
         /// <param name="duration">持续时间</param>
         /// <returns>Tweener</returns>  
+        [UnityEngine.Scripting.Preserve]
         public GTweener TweenMoveY(float endValue, float duration)
         {
             return GTween.To(_y, endValue, duration).SetTarget(this, TweenPropType.Y);
@@ -2213,6 +2351,7 @@ namespace FairyGUI
         /// <param name="endValue">结束值</param>
         /// <param name="duration">持续时间</param>
         /// <returns>Tweener</returns>    
+        [UnityEngine.Scripting.Preserve]
         public GTweener TweenScale(Vector2 endValue, float duration)
         {
             return GTween.To(this.scale, endValue, duration).SetTarget(this, TweenPropType.Scale);
@@ -2224,6 +2363,7 @@ namespace FairyGUI
         /// <param name="endValue">结束值</param>
         /// <param name="duration">持续时间</param>
         /// <returns>Tweener</returns>  
+        [UnityEngine.Scripting.Preserve]
         public GTweener TweenScaleX(float endValue, float duration)
         {
             return GTween.To(_scaleX, endValue, duration).SetTarget(this, TweenPropType.ScaleX);
@@ -2235,6 +2375,7 @@ namespace FairyGUI
         /// <param name="endValue">结束值</param>
         /// <param name="duration">持续时间</param>
         /// <returns>Tweener</returns>  
+        [UnityEngine.Scripting.Preserve]
         public GTweener TweenScaleY(float endValue, float duration)
         {
             return GTween.To(_scaleY, endValue, duration).SetTarget(this, TweenPropType.ScaleY);
@@ -2246,6 +2387,7 @@ namespace FairyGUI
         /// <param name="endValue">结束值</param>
         /// <param name="duration">持续时间</param>
         /// <returns>Tweener</returns>      
+        [UnityEngine.Scripting.Preserve]
         public GTweener TweenResize(Vector2 endValue, float duration)
         {
             return GTween.To(this.size, endValue, duration).SetTarget(this, TweenPropType.Size);
@@ -2257,6 +2399,7 @@ namespace FairyGUI
         /// <param name="endValue">结束值</param>
         /// <param name="duration">持续时间</param>
         /// <returns>Tweener</returns>  
+        [UnityEngine.Scripting.Preserve]
         public GTweener TweenFade(float endValue, float duration)
         {
             return GTween.To(_alpha, endValue, duration).SetTarget(this, TweenPropType.Alpha);
@@ -2268,6 +2411,7 @@ namespace FairyGUI
         /// <param name="endValue">结束值</param>
         /// <param name="duration">持续时间</param>
         /// <returns>Tweener</returns>  
+        [UnityEngine.Scripting.Preserve]
         public GTweener TweenRotate(float endValue, float duration)
         {
             return GTween.To(_rotation, endValue, duration).SetTarget(this, TweenPropType.Rotation);
@@ -2275,6 +2419,7 @@ namespace FairyGUI
 
         #endregion
 
+        [UnityEngine.Scripting.Preserve]
         public string Path
         {
             get { return PathFinderHelper.GetUIPath(this); }

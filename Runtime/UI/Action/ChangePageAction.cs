@@ -8,6 +8,7 @@ namespace FairyGUI
         public string controllerName;
         public string targetPage;
 
+        [UnityEngine.Scripting.Preserve]
         public ChangePageAction()
         {
         }

@@ -25,11 +25,13 @@ public class ScrollPaneHeader : GComponent
             _c1.selectedIndex = 0;
     }
 
+    [UnityEngine.Scripting.Preserve]
     public bool ReadyToRefresh
     {
         get { return _c1.selectedIndex == 1; }
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void SetRefreshStatus(int value)
     {
         _c1.selectedIndex = value;

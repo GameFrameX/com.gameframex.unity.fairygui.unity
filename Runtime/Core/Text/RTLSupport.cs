@@ -51,6 +51,7 @@ namespace FairyGUI
         private static StringBuilder sbFinal = new StringBuilder();
         private static StringBuilder sbReverse = new StringBuilder();
 
+        [UnityEngine.Scripting.Preserve]
         public static bool IsArabicLetter(char ch)
         {
             if (ch >= 0x600 && ch <= 0x6ff)
@@ -70,6 +71,7 @@ namespace FairyGUI
             return false;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static string ConvertNumber(string strNumber)
         {
             sbRep.Length = 0;
@@ -104,6 +106,7 @@ namespace FairyGUI
             return sbRep.ToString();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static bool ContainsArabicLetters(string text)
         {
             foreach (char character in text)
@@ -124,6 +127,7 @@ namespace FairyGUI
         }
 
         // 检测文本主方向
+        [UnityEngine.Scripting.Preserve]
         public static DirectionType DetectTextDirection(string text)
         {
             bool isContainRTL = false;
@@ -189,6 +193,7 @@ namespace FairyGUI
             return (un >= 0x610 && un <= 0x61e) || (un >= 0x64b && un <= 0x65f);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static string DoMapping(string input)
         {
             if (!isCharsInitialized)
@@ -308,6 +313,7 @@ namespace FairyGUI
         }
 
         // 主体语言是LTR
+        [UnityEngine.Scripting.Preserve]
         public static string ConvertLineL(string source)
         {
             listFinal.Clear();
@@ -418,6 +424,7 @@ namespace FairyGUI
         }
 
         // 主体语言是RTL，整个文本就从右往左读，LTR语言就作为嵌入语段处理
+        [UnityEngine.Scripting.Preserve]
         public static string ConvertLineR(string source)
         {
             listFinal.Clear();

@@ -32,6 +32,7 @@ namespace FairyGUI.Utils
         static List<string> sHelperList1 = new List<string>();
         static List<string> sHelperList2 = new List<string>();
 
+        [UnityEngine.Scripting.Preserve]
         public HtmlParser()
         {
             _textFormatStack = new List<TextFormat2>();
@@ -39,6 +40,7 @@ namespace FairyGUI.Utils
             _defaultOptions = new HtmlParseOptions();
         }
 
+        [UnityEngine.Scripting.Preserve]
         virtual public void Parse(string aSource, TextFormat defaultFormat, List<HtmlElement> elements, HtmlParseOptions parseOptions)
         {
             if (parseOptions == null)

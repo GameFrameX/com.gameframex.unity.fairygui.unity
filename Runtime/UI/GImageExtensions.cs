@@ -18,6 +18,7 @@ namespace FairyGUI
         /// <param name="lightAngle">扫光角度（0-90度）</param>
         /// <param name="lightIntensity">扫光强度（0-3）</param>
         /// <returns>返回图像组件本身，支持链式调用</returns>
+        [UnityEngine.Scripting.Preserve]
         public static GImage AddSweepLight(this GImage image, float lightTime = 0.6f, float lightThick = 0.3f, float nextTime = 2.0f, float lightAngle = 45.0f, float lightIntensity = 1.4f)
         {
             if (image == null)
@@ -43,6 +44,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="image">目标图像组件</param>
         /// <returns>返回图像组件本身，支持链式调用</returns>
+        [UnityEngine.Scripting.Preserve]
         public static GImage AddDefaultSweepLight(this GImage image)
         {
             if (image == null)
@@ -59,6 +61,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="image">目标图像组件</param>
         /// <returns>返回图像组件本身，支持链式调用</returns>
+        [UnityEngine.Scripting.Preserve]
         public static GImage AddFastSweepLight(this GImage image)
         {
             if (image == null)
@@ -75,6 +78,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="image">目标图像组件</param>
         /// <returns>返回图像组件本身，支持链式调用</returns>
+        [UnityEngine.Scripting.Preserve]
         public static GImage AddSlowSweepLight(this GImage image)
         {
             if (image == null)
@@ -92,6 +96,7 @@ namespace FairyGUI
         /// <param name="image">目标图像组件</param>
         /// <param name="presetName">预设名称（"default", "fast", "slow"）</param>
         /// <returns>返回图像组件本身，支持链式调用</returns>
+        [UnityEngine.Scripting.Preserve]
         public static GImage AddSweepLightPreset(this GImage image, string presetName)
         {
             if (image == null)
@@ -109,6 +114,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="image">目标图像组件</param>
         /// <returns>返回图像组件本身，支持链式调用</returns>
+        [UnityEngine.Scripting.Preserve]
         public static GImage RemoveSweepLight(this GImage image)
         {
             if (image == null)
@@ -125,6 +131,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="image">目标图像组件</param>
         /// <returns>返回图像组件本身，支持链式调用</returns>
+        [UnityEngine.Scripting.Preserve]
         public static GImage EnableSweepLight(this GImage image)
         {
             if (image == null || image.material == null)
@@ -141,6 +148,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="image">目标图像组件</param>
         /// <returns>返回图像组件本身，支持链式调用</returns>
+        [UnityEngine.Scripting.Preserve]
         public static GImage DisableSweepLight(this GImage image)
         {
             if (image == null || image.material == null)
@@ -157,6 +165,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="image">目标图像组件</param>
         /// <returns>true表示有扫光效果，false表示没有</returns>
+        [UnityEngine.Scripting.Preserve]
         public static bool HasSweepLight(this GImage image)
         {
             if (image == null || image.material == null)
@@ -177,6 +186,7 @@ namespace FairyGUI
         /// <param name="lightAngle">扫光角度（0-90度）</param>
         /// <param name="lightIntensity">扫光强度（0-3）</param>
         /// <returns>返回图像组件本身，支持链式调用</returns>
+        [UnityEngine.Scripting.Preserve]
         public static GImage UpdateSweepLightParameters(this GImage image, float? lightTime = null, float? lightThick = null, float? nextTime = null, float? lightAngle = null, float? lightIntensity = null)
         {
             if (image == null || image.material == null)
@@ -219,6 +229,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="image">目标图像组件</param>
         /// <returns>当前的扫光参数配置，如果没有扫光效果则返回默认配置</returns>
+        [UnityEngine.Scripting.Preserve]
         public static SweepLightManager.SweepLightConfig GetSweepLightConfig(this GImage image)
         {
             if (image == null || image.material == null)

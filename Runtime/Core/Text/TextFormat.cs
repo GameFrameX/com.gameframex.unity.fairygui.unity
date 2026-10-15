@@ -94,6 +94,7 @@ namespace FairyGUI
         /// </summary>
         public Color shadowColor;
 
+        [UnityEngine.Scripting.Preserve]
         public TextFormat()
         {
             color = Color.black;
@@ -106,6 +107,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetColor(uint value)
         {
             uint rr = (value >> 16) & 0x0000ff;
@@ -122,6 +124,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="aFormat"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool EqualStyle(TextFormat aFormat)
         {
             return size == aFormat.size && color == aFormat.color
@@ -137,6 +140,7 @@ namespace FairyGUI
         /// Only base NOT all formats will be copied
         /// </summary>
         /// <param name="source"></param>
+        [UnityEngine.Scripting.Preserve]
         public void CopyFrom(TextFormat source)
         {
             this.size = source.size;
@@ -159,6 +163,7 @@ namespace FairyGUI
             this.specialStyle = source.specialStyle;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void FillVertexColors(Color32[] vertexColors)
         {
             if (gradientColor == null)

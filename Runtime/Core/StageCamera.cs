@@ -142,6 +142,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void ApplyModifiedProperties()
         {
             screenWidth = 0; //force OnScreenSizeChanged called in next update
@@ -150,6 +151,7 @@ namespace FairyGUI
         /// <summary>
         /// Check if there is a stage camera in the scene. If none, create one.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static void CheckMainCamera()
         {
             if (GameObject.Find(Name) == null)
@@ -164,6 +166,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static void CheckCaptureCamera()
         {
             if (GameObject.Find(Name) == null)
@@ -179,6 +182,7 @@ namespace FairyGUI
         /// <param name="name"></param>
         /// <param name="cullingMask"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public static Camera CreateCamera(string name, int cullingMask)
         {
             GameObject cameraObject = new GameObject(name);

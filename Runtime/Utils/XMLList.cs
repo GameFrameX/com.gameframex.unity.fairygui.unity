@@ -10,47 +10,56 @@ namespace FairyGUI.Utils
     {
         public List<XML> rawList;
 
+        [UnityEngine.Scripting.Preserve]
         public XMLList()
         {
             rawList = new List<XML>();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public XMLList(List<XML> list)
         {
             rawList = list;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Add(XML xml)
         {
             rawList.Add(xml);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Clear()
         {
             rawList.Clear();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public int Count
         {
             get { return rawList.Count; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public XML this[int index]
         {
             get { return rawList[index]; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public Enumerator GetEnumerator()
         {
             return new Enumerator(rawList, null);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public Enumerator GetEnumerator(string selector)
         {
             return new Enumerator(rawList, selector);
         }
 
         static List<XML> _tmpList = new List<XML>();
+        [UnityEngine.Scripting.Preserve]
         public XMLList Filter(string selector)
         {
             bool allFit = true;
@@ -75,6 +84,7 @@ namespace FairyGUI.Utils
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public XML Find(string selector)
         {
             int cnt = rawList.Count;
@@ -87,6 +97,7 @@ namespace FairyGUI.Utils
             return null;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void RemoveAll(string selector)
         {
             rawList.RemoveAll(xml => xml.name == selector);
@@ -100,6 +111,7 @@ namespace FairyGUI.Utils
             int _total;
             XML _current;
 
+            [UnityEngine.Scripting.Preserve]
             public Enumerator(List<XML> source, string selector)
             {
                 _source = source;
@@ -112,11 +124,13 @@ namespace FairyGUI.Utils
                 _current = null;
             }
 
+            [UnityEngine.Scripting.Preserve]
             public XML Current
             {
                 get { return _current; }
             }
 
+            [UnityEngine.Scripting.Preserve]
             public bool MoveNext()
             {
                 while (++_index < _total)
@@ -129,12 +143,14 @@ namespace FairyGUI.Utils
                 return false;
             }
 
+            [UnityEngine.Scripting.Preserve]
             public void Erase()
             {
                 _source.RemoveAt(_index);
                 _total--;
             }
 
+            [UnityEngine.Scripting.Preserve]
             public void Reset()
             {
                 _index = -1;

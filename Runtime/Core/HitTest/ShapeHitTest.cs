@@ -12,6 +12,7 @@ namespace FairyGUI
         /// </summary>
         public DisplayObject shape;
 
+        [UnityEngine.Scripting.Preserve]
         public ShapeHitTest(DisplayObject obj)
         {
             shape = obj;
@@ -23,6 +24,7 @@ namespace FairyGUI
         /// <param name="contentRect"></param>
         /// <param name="localPoint"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool HitTest(Rect contentRect, Vector2 localPoint)
         {
             if (shape.graphics == null)

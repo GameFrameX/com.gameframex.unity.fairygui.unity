@@ -32,6 +32,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GTree()
         {
             _indent = 30;
@@ -45,6 +46,7 @@ namespace FairyGUI
         /// <summary>
         /// TreeView的顶层节点，这是个虚拟节点，也就是他不会显示出来。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GTreeNode rootNode
         {
             get { return _rootNode; }
@@ -53,6 +55,7 @@ namespace FairyGUI
         /// <summary>
         /// TreeView每级的缩进，单位像素。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int indent
         {
             get { return _indent; }
@@ -62,6 +65,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int clickToExpand
         {
             get { return _clickToExpand; }
@@ -72,6 +76,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTreeNode GetSelectedNode()
         {
             int i = this.selectedIndex;
@@ -85,6 +90,7 @@ namespace FairyGUI
 		/// 
 		/// </summary>
 		/// <returns></returns>
+		[UnityEngine.Scripting.Preserve]
 		public List<GTreeNode> GetSelectedNodes()
         {
             return GetSelectedNodes(null);
@@ -95,6 +101,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public List<GTreeNode> GetSelectedNodes(List<GTreeNode> result)
         {
             if (result == null)
@@ -113,6 +120,7 @@ namespace FairyGUI
 		/// 
 		/// </summary>
 		/// <param name="node"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SelectNode(GTreeNode node)
         {
             SelectNode(node, false);
@@ -123,6 +131,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="node"></param>
         /// <param name="scrollItToView"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SelectNode(GTreeNode node, bool scrollItToView)
         {
             GTreeNode parentNode = node.parent;
@@ -138,6 +147,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="node"></param>
+        [UnityEngine.Scripting.Preserve]
         public void UnselectNode(GTreeNode node)
         {
             RemoveSelection(GetChildIndex(node.cell));
@@ -146,6 +156,7 @@ namespace FairyGUI
         /// <summary>
 		/// 
 		/// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ExpandAll()
         {
             ExpandAll(_rootNode);
@@ -155,6 +166,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="folderNode"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ExpandAll(GTreeNode folderNode)
         {
             folderNode.expanded = true;
@@ -171,6 +183,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="folderNode"></param>
+        [UnityEngine.Scripting.Preserve]
         public void CollapseAll()
         {
             CollapseAll(_rootNode);
@@ -180,6 +193,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="folderNode"></param>
+        [UnityEngine.Scripting.Preserve]
         public void CollapseAll(GTreeNode folderNode)
         {
             if (folderNode != _rootNode)

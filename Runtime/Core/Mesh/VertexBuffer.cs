@@ -68,6 +68,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public static VertexBuffer Begin()
         {
             if (_pool.Count > 0)
@@ -84,6 +85,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="source"></param>
+        [UnityEngine.Scripting.Preserve]
         public static VertexBuffer Begin(VertexBuffer source)
         {
             VertexBuffer vb = Begin();
@@ -107,6 +109,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void End()
         {
             _pool.Push(this);
@@ -115,6 +118,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Clear()
         {
             vertices.Clear();
@@ -130,6 +134,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int currentVertCount
         {
             get
@@ -142,6 +147,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="position"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AddVert(Vector3 position)
         {
             position.y = -position.y;
@@ -159,6 +165,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="position"></param>
         /// <param name="color"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AddVert(Vector3 position, Color32 color)
         {
             position.y = -position.y;
@@ -177,6 +184,7 @@ namespace FairyGUI
         /// <param name="position"></param>
         /// <param name="color"></param>
         /// <param name="uv"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AddVert(Vector3 position, Color32 color, Vector2 uv)
         {
             position.y = -position.y;
@@ -194,6 +202,7 @@ namespace FairyGUI
         /// 0---3
         /// </summary>
         /// <param name="vertRect"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AddQuad(Rect vertRect)
         {
             AddVert(new Vector3(vertRect.xMin, vertRect.yMax, 0f));
@@ -207,6 +216,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="vertRect"></param>
         /// <param name="color"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AddQuad(Rect vertRect, Color32 color)
         {
             AddVert(new Vector3(vertRect.xMin, vertRect.yMax, 0f), color);
@@ -221,6 +231,7 @@ namespace FairyGUI
         /// <param name="vertRect"></param>
         /// <param name="color"></param>
         /// <param name="uvRect"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AddQuad(Rect vertRect, Color32 color, Rect uvRect)
         {
             vertices.Add(new Vector3(vertRect.xMin, -vertRect.yMax, 0f));
@@ -289,6 +300,7 @@ namespace FairyGUI
         /// <param name="value"></param>
         /// <param name="startIndex"></param>
         /// <param name="count"></param>
+        [UnityEngine.Scripting.Preserve]
         public void RepeatColors(Color32[] value, int startIndex, int count)
         {
             int len = Mathf.Min(startIndex + count, vertices.Count);
@@ -309,6 +321,7 @@ namespace FairyGUI
         /// <param name="idx0"></param>
         /// <param name="idx1"></param>
         /// <param name="idx2"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AddTriangle(int idx0, int idx1, int idx2)
         {
             triangles.Add(idx0);
@@ -321,6 +334,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="idxList"></param>
         /// <param name="startVertexIndex"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AddTriangles(int[] idxList, int startVertexIndex = 0)
         {
             if (startVertexIndex != 0)
@@ -340,6 +354,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="startVertexIndex"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AddTriangles(int startVertexIndex = 0)
         {
             int cnt = vertices.Count;
@@ -363,6 +378,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector3 GetPosition(int index)
         {
             if (index < 0)
@@ -379,6 +395,7 @@ namespace FairyGUI
         /// <param name="position"></param>
         /// <param name="usePercent"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 GetUVAtPosition(Vector2 position, bool usePercent)
         {
             if (usePercent)
@@ -395,6 +412,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="vb"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Append(VertexBuffer vb)
         {
             int len = vertices.Count;
@@ -419,6 +437,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="vb"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Insert(VertexBuffer vb)
         {
             vertices.InsertRange(0, vb.vertices);
@@ -445,6 +464,7 @@ namespace FairyGUI
             -1, -1, 1, -1,
             -1, 1, 1, 1
         };
+        [UnityEngine.Scripting.Preserve]
         public void GenerateOutline(int dirs, float width, Color color)
         {
             int count = vertices.Count;
@@ -472,6 +492,7 @@ namespace FairyGUI
             vb2.End();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void GenerateShadow(Vector2 offset, Color color)
         {
             int count = vertices.Count;
@@ -497,6 +518,7 @@ namespace FairyGUI
         }
 
         const int VerticesLimit = 65000;
+        [UnityEngine.Scripting.Preserve]
         public void CheckMeshLimit()
         {
             int count = vertices.Count;

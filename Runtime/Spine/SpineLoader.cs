@@ -20,6 +20,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <value></value>
+        [UnityEngine.Scripting.Preserve]
         public SkeletonAnimation spineAnimation
         {
             get { return _spineAnimation; }
@@ -29,6 +30,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="asset"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetSpine(SkeletonDataAsset asset)
         {
             SetSpine(asset, _contentItem.width, _contentItem.height, _contentItem.skeletonAnchor);
@@ -41,6 +43,7 @@ namespace FairyGUI
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="anchor"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetSpine(SkeletonDataAsset asset, int width, int height, Vector2 anchor)
         {
             SetSpine(asset, width, height, anchor, true);
@@ -54,6 +57,7 @@ namespace FairyGUI
         /// <param name="height"></param>
         /// <param name="anchor"></param>
         /// <param name="cloneMaterial"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetSpine(SkeletonDataAsset asset, int width, int height, Vector2 anchor, bool cloneMaterial)
         {
             if (_spineAnimation != null)

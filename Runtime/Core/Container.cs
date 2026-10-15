@@ -61,6 +61,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Container()
             : base()
         {
@@ -72,6 +73,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="gameObjectName"></param>
+        [UnityEngine.Scripting.Preserve]
         public Container(string gameObjectName)
             : base()
         {
@@ -83,6 +85,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="attachTarget"></param>
+        [UnityEngine.Scripting.Preserve]
         public Container(GameObject attachTarget)
             : base()
         {
@@ -99,6 +102,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int numChildren
         {
             get { return _children.Count; }
@@ -109,6 +113,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject AddChild(DisplayObject child)
         {
             AddChildAt(child, _children.Count);
@@ -121,6 +126,7 @@ namespace FairyGUI
         /// <param name="child"></param>
         /// <param name="index"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject AddChildAt(DisplayObject child, int index)
         {
             int count = _children.Count;
@@ -162,6 +168,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool Contains(DisplayObject child)
         {
             return _children.Contains(child);
@@ -172,6 +179,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject GetChildAt(int index)
         {
             return _children[index];
@@ -182,6 +190,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject GetChild(string name)
         {
             int cnt = _children.Count;
@@ -198,6 +207,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject[] GetChildren()
         {
             return _children.ToArray();
@@ -208,6 +218,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public int GetChildIndex(DisplayObject child)
         {
             return _children.IndexOf(child);
@@ -218,6 +229,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject RemoveChild(DisplayObject child)
         {
             return RemoveChild(child, false);
@@ -229,6 +241,7 @@ namespace FairyGUI
         /// <param name="child"></param>
         /// <param name="dispose"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject RemoveChild(DisplayObject child, bool dispose)
         {
             if (child.parent != this)
@@ -246,6 +259,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject RemoveChildAt(int index)
         {
             return RemoveChildAt(index, false);
@@ -257,6 +271,7 @@ namespace FairyGUI
         /// <param name="index"></param>
         /// <param name="dispose"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject RemoveChildAt(int index, bool dispose)
         {
             if (index >= 0 && index < _children.Count)
@@ -294,6 +309,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveChildren()
         {
             RemoveChildren(0, int.MaxValue, false);
@@ -305,6 +321,7 @@ namespace FairyGUI
         /// <param name="beginIndex"></param>
         /// <param name="endIndex"></param>
         /// <param name="dispose"></param>
+        [UnityEngine.Scripting.Preserve]
         public void RemoveChildren(int beginIndex, int endIndex, bool dispose)
         {
             if (endIndex < 0 || endIndex >= numChildren)
@@ -319,6 +336,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child"></param>
         /// <param name="index"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetChildIndex(DisplayObject child, int index)
         {
             int oldIndex = _children.IndexOf(child);
@@ -337,6 +355,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="child1"></param>
         /// <param name="child2"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SwapChildren(DisplayObject child1, DisplayObject child2)
         {
             int index1 = _children.IndexOf(child1);
@@ -351,6 +370,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="index1"></param>
         /// <param name="index2"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SwapChildrenAt(int index1, int index2)
         {
             DisplayObject obj1 = _children[index1];
@@ -365,6 +385,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="indice"></param>
         /// <param name="objs"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ChangeChildrenOrder(IList<int> indice, IList<DisplayObject> objs)
         {
             int cnt = objs.Count;
@@ -383,6 +404,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public IEnumerator<DisplayObject> GetDescendants(bool backward)
         {
             return new DescendantsEnumerator(this, backward);
@@ -391,6 +413,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Rect? clipRect
         {
             get { return _clipRect; }
@@ -407,6 +430,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject mask
         {
             get { return _mask; }
@@ -424,6 +448,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void CreateGraphics()
         {
             if (graphics == null)
@@ -474,6 +499,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Camera GetRenderCamera()
         {
             if (renderMode == RenderMode.ScreenSpaceOverlay)
@@ -503,6 +529,7 @@ namespace FairyGUI
         /// <param name="forTouch"></param>
         /// <param name="displayIndex"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject HitTest(Vector2 stagePoint, bool forTouch)
         {
             if (StageCamera.main == null)
@@ -645,6 +672,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool IsAncestorOf(DisplayObject obj)
         {
             if (obj == null)
@@ -664,6 +692,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool fairyBatching
         {
             get { return (_flags & Flags.FairyBatching) != 0; }
@@ -704,6 +733,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="childrenChanged"></param>
+        [UnityEngine.Scripting.Preserve]
         public void InvalidateBatchingState(bool childrenChanged)
         {
             if (childrenChanged && (_flags & Flags.BatchingRoot) != 0)
@@ -728,6 +758,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetChildrenLayer(int value)
         {
             int cnt = _children.Count;
@@ -996,6 +1027,7 @@ namespace FairyGUI
         /// <summary>
         /// If true, when the container is focused, tab navigation is lock inside it.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool tabStopChildren
         {
             get { return (_flags & Flags.TabStopChildren) != 0; }
@@ -1122,6 +1154,7 @@ namespace FairyGUI
         public bool isRoot;
         public bool breakBatch;
 
+        [UnityEngine.Scripting.Preserve]
         public BatchElement(IBatchable owner, float[] bounds)
         {
             this.owner = owner;

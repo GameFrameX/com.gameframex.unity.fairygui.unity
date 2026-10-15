@@ -19,6 +19,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static float contentScaleFactor
         {
             get { return UIContentScaler.scaleFactor; }
@@ -27,6 +28,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static int contentScaleLevel
         {
             get { return UIContentScaler.scaleLevel; }
@@ -42,6 +44,7 @@ namespace FairyGUI
 
         internal static GRoot _inst;
 
+        [UnityEngine.Scripting.Preserve]
         public static GRoot inst
         {
             get
@@ -53,6 +56,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public GRoot()
         {
             this.name = this.rootContainer.name = this.rootContainer.gameObject.name = "GRoot";
@@ -79,6 +83,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="designResolutionX">Design resolution of x axis.</param>
         /// <param name="designResolutionY">Design resolution of y axis.</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetContentScaleFactor(int designResolutionX, int designResolutionY)
         {
             SetContentScaleFactor(designResolutionX, designResolutionY, UIContentScaler.ScreenMatchMode.MatchWidthOrHeight);
@@ -90,6 +95,7 @@ namespace FairyGUI
         /// <param name="designResolutionX">Design resolution of x axis.</param>
         /// <param name="designResolutionY">Design resolution of y axis.</param>
         /// <param name="screenMatchMode">Match mode.</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetContentScaleFactor(int designResolutionX, int designResolutionY, UIContentScaler.ScreenMatchMode screenMatchMode)
         {
             UIContentScaler scaler = Stage.inst.gameObject.GetComponent<UIContentScaler>();
@@ -105,6 +111,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="constantScaleFactor"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetContentScaleFactor(float constantScaleFactor)
         {
             UIContentScaler scaler = Stage.inst.gameObject.GetComponent<UIContentScaler>();
@@ -117,6 +124,7 @@ namespace FairyGUI
         /// <summary>
         /// This is called after screen size changed.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ApplyContentScaleFactor()
         {
             this.SetSize(Mathf.CeilToInt(Stage.inst.width / UIContentScaler.scaleFactor), Mathf.CeilToInt(Stage.inst.height / UIContentScaler.scaleFactor));
@@ -127,6 +135,7 @@ namespace FairyGUI
         /// Display a window.
         /// </summary>
         /// <param name="win"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ShowWindow(GWindow win)
         {
             AddChild(win);
@@ -138,6 +147,7 @@ namespace FairyGUI
         /// 关闭一个窗口。将调用Window.Hide方法。
         /// </summary>
         /// <param name="win"></param>
+        [UnityEngine.Scripting.Preserve]
         public void HideWindow(GWindow win)
         {
             win.Hide();
@@ -148,6 +158,7 @@ namespace FairyGUI
         ///立刻关闭一个窗口。不会调用Window.Hide方法，Window.OnHide也不会被调用。
         /// </summary>
         /// <param name="win"></param>
+        [UnityEngine.Scripting.Preserve]
         public void HideWindowImmediately(GWindow win)
         {
             HideWindowImmediately(win, false);
@@ -159,6 +170,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="win"></param>
         /// <param name="dispose">True to dispose the window.</param>
+        [UnityEngine.Scripting.Preserve]
         public void HideWindowImmediately(GWindow win, bool dispose)
         {
             if (win.parent == this)
@@ -173,6 +185,7 @@ namespace FairyGUI
         /// 将一个窗口提到所有窗口的最前面
         /// </summary>
         /// <param name="win"></param>
+        [UnityEngine.Scripting.Preserve]
         public void BringToFront(GWindow win)
         {
             int cnt = this.numChildren;
@@ -200,6 +213,7 @@ namespace FairyGUI
         /// 显示一个半透明层和一个等待标志在最前面。半透明层的颜色可以通过UIConfig.modalLayerColor设定。
         /// 等待标志的资源可以通过UIConfig.globalModalWaiting。等待标志组件会设置为屏幕大小，请内部做好关联。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ShowModalWait()
         {
             if (UIConfig.globalModalWaiting != null)
@@ -220,6 +234,7 @@ namespace FairyGUI
         /// <summary>
         /// Hide modal layer and waiting sign.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void CloseModalWait()
         {
             if (_modalWaitPane != null && _modalWaitPane.parent != null)
@@ -229,6 +244,7 @@ namespace FairyGUI
         /// <summary>
         /// Close all windows except modal windows.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void CloseAllExceptModals()
         {
             GObject[] arr = _children.ToArray();
@@ -242,6 +258,7 @@ namespace FairyGUI
         /// <summary>
         /// Close all windows.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void CloseAllWindows()
         {
             GObject[] arr = _children.ToArray();
@@ -256,6 +273,7 @@ namespace FairyGUI
         /// Get window on top.
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GWindow GetTopWindow()
         {
             int cnt = this.numChildren;
@@ -274,6 +292,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GGraph modalLayer
         {
             get
@@ -297,6 +316,7 @@ namespace FairyGUI
         /// <summary>
         /// Return true if a modal window is on stage.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool hasModalWindow
         {
             get { return _modalLayer != null && _modalLayer.parent != null; }
@@ -305,6 +325,7 @@ namespace FairyGUI
         /// <summary>
         /// Return true if modal waiting layer is on stage.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool modalWaiting
         {
             get { return (_modalWaitPane != null) && _modalWaitPane.onStage; }
@@ -313,6 +334,7 @@ namespace FairyGUI
         /// <summary>
         /// Get current touch target. (including hover)
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GObject touchTarget
         {
             get { return DisplayObjectToGObject(Stage.inst.touchTarget); }
@@ -323,6 +345,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GObject DisplayObjectToGObject(DisplayObject obj)
         {
             while (obj != null)
@@ -369,6 +392,7 @@ namespace FairyGUI
         /// popup的特点是点击popup对象外的区域，popup对象将自动消失。
         /// </summary>
         /// <param name="popup"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ShowPopup(GObject popup)
         {
             ShowPopup(popup, null, PopupDirection.Auto, false);
@@ -381,11 +405,13 @@ namespace FairyGUI
         /// </summary>
         /// <param name="popup"></param>
         /// <param name="target"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ShowPopup(GObject popup, GObject target)
         {
             ShowPopup(popup, target, PopupDirection.Auto, false);
         }
 
+        [UnityEngine.Scripting.Preserve]
         [Obsolete]
         public void ShowPopup(GObject popup, GObject target, object downward)
         {
@@ -402,6 +428,7 @@ namespace FairyGUI
         /// <param name="popup"></param>
         /// <param name="target"></param>
         /// <param name="dir"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ShowPopup(GObject popup, GObject target, PopupDirection dir)
         {
             ShowPopup(popup, target, dir, false);
@@ -417,6 +444,7 @@ namespace FairyGUI
         /// <param name="target"></param>
         /// <param name="dir"></param>
         /// <param name="closeUntilUpEvent"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ShowPopup(GObject popup, GObject target, PopupDirection dir, bool closeUntilUpEvent)
         {
             if (_popupStack.Count > 0)
@@ -468,6 +496,7 @@ namespace FairyGUI
             popup.xy = pos;
         }
 
+        [UnityEngine.Scripting.Preserve]
         [Obsolete]
         public Vector2 GetPoupPosition(GObject popup, GObject target, object downward)
         {
@@ -482,6 +511,7 @@ namespace FairyGUI
         /// <param name="target"></param>
         /// <param name="dir"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 GetPoupPosition(GObject popup, GObject target, PopupDirection dir)
         {
             Vector2 pos;
@@ -519,6 +549,7 @@ namespace FairyGUI
         /// If a popup is showing, then close it; otherwise, open it.
         /// </summary>
         /// <param name="popup"></param>
+        [UnityEngine.Scripting.Preserve]
         public void TogglePopup(GObject popup)
         {
             TogglePopup(popup, null, PopupDirection.Auto, false);
@@ -529,11 +560,13 @@ namespace FairyGUI
         /// </summary>
         /// <param name="popup"></param>
         /// <param name="target"></param>
+        [UnityEngine.Scripting.Preserve]
         public void TogglePopup(GObject popup, GObject target)
         {
             TogglePopup(popup, target, PopupDirection.Auto, false);
         }
 
+        [UnityEngine.Scripting.Preserve]
         [Obsolete]
         public void TogglePopup(GObject popup, GObject target, object downward)
         {
@@ -548,6 +581,7 @@ namespace FairyGUI
         /// <param name="popup"></param>
         /// <param name="target"></param>
         /// <param name="dir"></param>
+        [UnityEngine.Scripting.Preserve]
         public void TogglePopup(GObject popup, GObject target, PopupDirection dir)
         {
             TogglePopup(popup, target, dir, false);
@@ -560,6 +594,7 @@ namespace FairyGUI
         /// <param name="target"></param>
         /// <param name="dir"></param>
         /// <param name="closeUntilUpEvent"></param>
+        [UnityEngine.Scripting.Preserve]
         public void TogglePopup(GObject popup, GObject target, PopupDirection dir, bool closeUntilUpEvent)
         {
             if (_justClosedPopups.IndexOf(popup) != -1)
@@ -571,6 +606,7 @@ namespace FairyGUI
         /// <summary>
         /// Close all popups.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void HidePopup()
         {
             HidePopup(null);
@@ -580,6 +616,7 @@ namespace FairyGUI
         /// Close a popup.
         /// </summary>
         /// <param name="popup"></param>
+        [UnityEngine.Scripting.Preserve]
         public void HidePopup(GObject popup)
         {
             if (popup != null)
@@ -609,6 +646,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool hasAnyPopup
         {
             get { return _popupStack.Count > 0; }
@@ -629,6 +667,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="msg"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ShowTooltips(string msg)
         {
             ShowTooltips(msg, 0.1f);
@@ -639,6 +678,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="msg"></param>
         /// <param name="delay"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ShowTooltips(string msg, float delay)
         {
             if (_defaultTooltipWin == null || _defaultTooltipWin.isDisposed)
@@ -663,6 +703,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="tooltipWin"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ShowTooltipsWin(GObject tooltipWin)
         {
             ShowTooltipsWin(tooltipWin, 0.1f);
@@ -673,6 +714,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="tooltipWin"></param>
         /// <param name="delay"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ShowTooltipsWin(GObject tooltipWin, float delay)
         {
             HideTooltips();
@@ -710,6 +752,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void HideTooltips()
         {
             if (_tooltipWin != null)
@@ -723,6 +766,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GObject focus
         {
             get
@@ -813,6 +857,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void EnableSound()
         {
             Stage.inst.EnableSound();
@@ -821,6 +866,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void DisableSound()
         {
             Stage.inst.DisableSound();
@@ -831,6 +877,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="clip"></param>
         /// <param name="volumeScale"></param>
+        [UnityEngine.Scripting.Preserve]
         public void PlayOneShotSound(AudioClip clip, float volumeScale)
         {
             Stage.inst.PlayOneShotSound(clip, volumeScale);
@@ -840,6 +887,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="clip"></param>
+        [UnityEngine.Scripting.Preserve]
         public void PlayOneShotSound(AudioClip clip)
         {
             Stage.inst.PlayOneShotSound(clip);
@@ -848,6 +896,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float soundVolume
         {
             get { return Stage.inst.soundVolume; }

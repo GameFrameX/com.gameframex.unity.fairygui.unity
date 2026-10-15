@@ -57,6 +57,7 @@ namespace FairyGUI
         static List<Vector3> points = new List<Vector3>();
         static List<float> ts = new List<float>();
 
+        [UnityEngine.Scripting.Preserve]
         public LineMesh()
         {
             path = new GPath();
@@ -66,6 +67,7 @@ namespace FairyGUI
             pointDensity = 0.1f;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnPopulateMesh(VertexBuffer vb)
         {
             Vector2 uvMin = vb.uvRect.position;

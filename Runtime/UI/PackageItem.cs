@@ -51,11 +51,13 @@ namespace FairyGUI
         public Vector2 skeletonAnchor;
         public object skeletonAsset;
         public HashSet<GLoader3D> skeletonLoaders;
+        [UnityEngine.Scripting.Preserve]
         public object Load()
         {
             return owner.GetItemAsset(this);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public PackageItem getBranch()
         {
             if (branches != null && owner._branchIndex != -1)
@@ -68,6 +70,7 @@ namespace FairyGUI
             return this;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public PackageItem getHighResolution()
         {
             if (highResolution != null && GRoot.contentScaleLevel > 0)

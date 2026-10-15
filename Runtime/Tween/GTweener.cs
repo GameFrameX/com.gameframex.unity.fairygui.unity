@@ -86,6 +86,7 @@ namespace FairyGUI
         float _normalizedTime;
         int _smoothStart;
 
+        [UnityEngine.Scripting.Preserve]
         public GTweener()
         {
             _startValue = new TweenValue();
@@ -99,6 +100,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetDelay(float value)
         {
             _delay = value;
@@ -108,6 +110,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float delay
         {
             get { return _delay; }
@@ -118,6 +121,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetDuration(float value)
         {
             _duration = value;
@@ -127,6 +131,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float duration
         {
             get { return _duration; }
@@ -137,6 +142,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetBreakpoint(float value)
         {
             _breakpoint = value;
@@ -148,6 +154,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetEase(EaseType value)
         {
             _easeType = value;
@@ -160,6 +167,7 @@ namespace FairyGUI
         /// <param name="value"></param>
         /// <param name="customEase"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetEase(EaseType value, CustomEase customEase)
         {
             _easeType = value;
@@ -172,6 +180,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetEasePeriod(float value)
         {
             _easePeriod = value;
@@ -183,6 +192,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetEaseOvershootOrAmplitude(float value)
         {
             _easeOvershootOrAmplitude = value;
@@ -195,6 +205,7 @@ namespace FairyGUI
         /// <param name="times"></param>
         /// <param name="yoyo"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetRepeat(int times, bool yoyo = false)
         {
             _repeat = times;
@@ -205,6 +216,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int repeat
         {
             get { return _repeat; }
@@ -215,6 +227,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetTimeScale(float value)
         {
             _timeScale = value;
@@ -226,6 +239,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetIgnoreEngineTimeScale(bool value)
         {
             _ignoreEngineTimeScale = value;
@@ -237,6 +251,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetSnapping(bool value)
         {
             _snapping = value;
@@ -248,6 +263,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetPath(GPath value)
         {
             _path = value;
@@ -259,6 +275,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetTarget(object value)
         {
             _target = value;
@@ -272,6 +289,7 @@ namespace FairyGUI
         /// <param name="value"></param>
         /// <param name="propType"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetTarget(object value, TweenPropType propType)
         {
             _target = value;
@@ -282,6 +300,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public object target
         {
             get { return _target; }
@@ -292,6 +311,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetUserData(object value)
         {
             _userData = value;
@@ -301,6 +321,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public object userData
         {
             get { return _userData; }
@@ -314,6 +335,7 @@ namespace FairyGUI
 #if FAIRYGUI_TOLUA
         [NoToLua]
 #endif
+        [UnityEngine.Scripting.Preserve]
         public GTweener OnUpdate(GTweenCallback callback)
         {
             _onUpdate = callback;
@@ -328,6 +350,7 @@ namespace FairyGUI
 #if FAIRYGUI_TOLUA
         [NoToLua]
 #endif
+        [UnityEngine.Scripting.Preserve]
         public GTweener OnStart(GTweenCallback callback)
         {
             _onStart = callback;
@@ -342,6 +365,7 @@ namespace FairyGUI
 #if FAIRYGUI_TOLUA
         [NoToLua]
 #endif
+        [UnityEngine.Scripting.Preserve]
         public GTweener OnComplete(GTweenCallback callback)
         {
             _onComplete = callback;
@@ -353,6 +377,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="callback"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener OnUpdate(GTweenCallback1 callback)
         {
             _onUpdate1 = callback;
@@ -364,6 +389,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="callback"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener OnStart(GTweenCallback1 callback)
         {
             _onStart1 = callback;
@@ -375,6 +401,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="callback"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener OnComplete(GTweenCallback1 callback)
         {
             _onComplete1 = callback;
@@ -386,6 +413,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetListener(ITweenListener value)
         {
             _listener = value;
@@ -395,6 +423,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public TweenValue startValue
         {
             get { return _startValue; }
@@ -403,6 +432,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public TweenValue endValue
         {
             get { return _endValue; }
@@ -411,6 +441,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public TweenValue value
         {
             get { return _value; }
@@ -419,6 +450,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public TweenValue deltaValue
         {
             get { return _deltaValue; }
@@ -427,6 +459,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float normalizedTime
         {
             get { return _normalizedTime; }
@@ -435,6 +468,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool completed
         {
             get { return _ended != 0; }
@@ -443,6 +477,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool allCompleted
         {
             get { return _ended == 1; }
@@ -453,6 +488,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="paused"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public GTweener SetPaused(bool paused)
         {
             _paused = paused;
@@ -465,6 +501,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="time"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Seek(float time)
         {
             if (_killed)
@@ -486,6 +523,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="complete"></param>
+        [UnityEngine.Scripting.Preserve]
         public void Kill(bool complete = false)
         {
             if (_killed)

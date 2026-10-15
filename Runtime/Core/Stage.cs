@@ -21,12 +21,14 @@ namespace FairyGUI
     /// </summary>
     public partial class Stage : Container
     {
+        [UnityEngine.Scripting.Preserve]
         [Obsolete("Use size.y")]
         public int stageHeight
         {
             get { return (int)_contentRect.height; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         [Obsolete("Use size.x")]
         public int stageWidth
         {
@@ -36,6 +38,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public float soundVolume { get; set; }
 
         public event Action beforeUpdate;
@@ -96,6 +99,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static Stage inst
         {
             get
@@ -110,6 +114,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static void Instantiate()
         {
             if (_inst == null)
@@ -128,6 +133,7 @@ namespace FairyGUI
         /// 如果是false，表示使用鼠标输入，将使用Input.GetMouseButtonXXX接口读取鼠标输入。
         /// 一般来说，不需要设置，底层会自动根据系统环境设置正确的值。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static bool touchScreen
         {
             get { return _touchScreen; }
@@ -158,6 +164,7 @@ namespace FairyGUI
         /// 如果是false，表示是接受按键消息输入文字。常见于PC。
         /// 一般来说，不需要设置，底层会自动根据系统环境设置正确的值。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static bool keyboardInput
         {
             get { return _keyboardInput; }
@@ -176,6 +183,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static IKeyboard keyboard
         {
             get { return _keyboard; }
@@ -185,6 +193,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static bool isTouchOnUI
         {
             get { return _inst != null && _inst.touchTarget != null; }
@@ -196,16 +205,19 @@ namespace FairyGUI
         /// 1. compoistion cursor pos.
         /// 2. mouse wheel speed.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static float devicePixelRatio { get; set; }
 
         /// <summary>
         /// The scale of the mouse scroll delta.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static float mouseWheelScale { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Stage() : base()
         {
             _inst = this;
@@ -304,6 +316,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public EventListener onStageResized
         {
             get { return _onStageResized ?? (_onStageResized = new EventListener(this, EventName.onStageResized)); }
@@ -312,6 +325,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject touchTarget
         {
             get
@@ -329,6 +343,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject focus
         {
             get
@@ -340,6 +355,7 @@ namespace FairyGUI
             set { SetFocus(value); }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void SetFocus(DisplayObject newFocus, bool byKey = false)
         {
             if (newFocus == this)
@@ -490,6 +506,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="backward"></param>
+        [UnityEngine.Scripting.Preserve]
         public void DoKeyNavigate(bool backward)
         {
             Container navBase = null;
@@ -546,6 +563,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 touchPosition
         {
             get
@@ -560,6 +578,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="touchId"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public Vector2 GetTouchPosition(int touchId)
         {
             UpdateTouchPosition();
@@ -582,6 +601,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="touchId"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public DisplayObject GetTouchTarget(int touchId)
         {
             if (_frameGotHitTarget != Time.frameCount)
@@ -601,11 +621,13 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public int touchCount
         {
             get { return _touchCount; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public int[] GetAllTouch(int[] result)
         {
             if (result == null)
@@ -628,6 +650,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ResetInputState()
         {
             for (int j = 0; j < 5; j++)
@@ -644,6 +667,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="touchId"></param>
+        [UnityEngine.Scripting.Preserve]
         public void CancelClick(int touchId)
         {
             for (int j = 0; j < 5; j++)
@@ -657,6 +681,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void EnableSound()
         {
             if (_audio == null)
@@ -669,6 +694,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void DisableSound()
         {
             if (_audio != null)
@@ -683,6 +709,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="clip"></param>
         /// <param name="volumeScale"></param>
+        [UnityEngine.Scripting.Preserve]
         public void PlayOneShotSound(AudioClip clip, float volumeScale)
         {
             if (_audio != null && this.soundVolume > 0)
@@ -693,6 +720,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="clip"></param>
+        [UnityEngine.Scripting.Preserve]
         public void PlayOneShotSound(AudioClip clip)
         {
             if (_audio != null && this.soundVolume > 0)
@@ -711,6 +739,7 @@ namespace FairyGUI
         /// <param name="textPlaceholder"></param>
         /// <param name="keyboardType"></param>
         /// <param name="hideInput"></param>
+        [UnityEngine.Scripting.Preserve]
         public void OpenKeyboard(string text, bool autocorrection, bool multiline, bool secure,
             bool alert, string textPlaceholder, int keyboardType, bool hideInput)
         {
@@ -733,6 +762,7 @@ namespace FairyGUI
         /// <param name="hideInput"></param>
         /// <param name="textPlaceholder"></param>
         /// <param name="characterLimit"></param>
+        [UnityEngine.Scripting.Preserve]
         public void OpenKeyboard(string text, int keyboardType, bool autocorrection, bool multiline, bool secure,
             bool alert, bool hideInput, string textPlaceholder, int characterLimit)
         {
@@ -746,6 +776,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void CloseKeyboard()
         {
             if (_keyboard != null)
@@ -758,6 +789,7 @@ namespace FairyGUI
         /// 输入字符到当前光标位置
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public void InputString(string value)
         {
             if (_lastInput != null)
@@ -769,6 +801,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="screenPos"></param>
         /// <param name="buttonDown"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetCustomInput(Vector2 screenPos, bool buttonDown)
         {
             _customInput = true;
@@ -783,6 +816,7 @@ namespace FairyGUI
         /// <param name="screenPos"></param>
         /// <param name="buttonDown"></param>
         /// <param name="buttonUp"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetCustomInput(Vector2 screenPos, bool buttonDown, bool buttonUp)
         {
             _customInput = true;
@@ -799,6 +833,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="hit"></param>
         /// <param name="buttonDown"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetCustomInput(ref RaycastHit hit, bool buttonDown)
         {
             Vector2 screenPos = HitTestContext.cachedMainCamera.WorldToScreenPoint(hit.point);
@@ -812,6 +847,7 @@ namespace FairyGUI
         /// <param name="hit"></param>
         /// <param name="buttonDown"></param>
         /// <param name="buttonUp"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetCustomInput(ref RaycastHit hit, bool buttonDown, bool buttonUp)
         {
             Vector2 screenPos = HitTestContext.cachedMainCamera.WorldToScreenPoint(hit.point);
@@ -819,6 +855,7 @@ namespace FairyGUI
             SetCustomInput(screenPos, buttonDown, buttonUp);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void ForceUpdate()
         {
             _updateContext.Begin();
@@ -1438,6 +1475,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="target"></param>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ApplyPanelOrder(Container target)
         {
             int sortingOrder = target._panelOrder;
@@ -1484,6 +1522,7 @@ namespace FairyGUI
         /// Adjust display order of all UIPanels rendering in worldspace by their z order.
         /// </summary>
         /// <param name="panelSortingOrder">Only UIPanel.sortingOrder equals to this value will be involve in this sorting</param>
+        [UnityEngine.Scripting.Preserve]
         public void SortWorldSpacePanelsByZOrder(int panelSortingOrder)
         {
             if (sTempList1 == null)
@@ -1529,6 +1568,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="texture"></param>
+        [UnityEngine.Scripting.Preserve]
         public void MonitorTexture(NTexture texture)
         {
             if (_toCollectTextures.IndexOf(texture) == -1)
@@ -1559,6 +1599,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void AddTouchMonitor(int touchId, EventDispatcher target)
         {
             TouchInfo touch = null;
@@ -1574,6 +1615,7 @@ namespace FairyGUI
                 touch.touchMonitors.Add(target);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void RemoveTouchMonitor(EventDispatcher target)
         {
             for (int j = 0; j < 5; j++)
@@ -1585,6 +1627,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool IsTouchMonitoring(EventDispatcher target)
         {
             for (int j = 0; j < 5; j++)
@@ -1615,6 +1658,7 @@ namespace FairyGUI
         /// <param name="cursorName"></param>
         /// <param name="texture"></param>
         /// <param name="hotspot"></param>
+        [UnityEngine.Scripting.Preserve]
         public void RegisterCursor(string cursorName, Texture2D texture, Vector2 hotspot)
         {
             _cursors[cursorName] = new CursorDef() { texture = texture, hotspot = hotspot };
@@ -1624,6 +1668,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <value></value>
+        [UnityEngine.Scripting.Preserve]
         public string activeCursor
         {
             get { return _currentCursor; }

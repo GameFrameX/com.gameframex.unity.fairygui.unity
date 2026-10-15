@@ -25,6 +25,7 @@ namespace FairyGUI
         Dictionary<string, GearAnimationValue> _storage;
         GearAnimationValue _default;
 
+        [UnityEngine.Scripting.Preserve]
         public GearAnimation(GObject owner)
             : base(owner)
         {
@@ -56,6 +57,7 @@ namespace FairyGUI
             gv.frame = buffer.ReadInt();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void AddExtStatus(string pageId, ByteBuffer buffer)
         {
             GearAnimationValue gv;

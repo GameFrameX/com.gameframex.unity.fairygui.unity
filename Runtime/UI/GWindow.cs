@@ -44,6 +44,7 @@ namespace FairyGUI
         public Action __doHideAnimation;
 #endif
 
+        [UnityEngine.Scripting.Preserve]
         public GWindow()
             : base()
         {
@@ -66,6 +67,7 @@ namespace FairyGUI
         /// 都ready后，窗口才会继续初始化和显示。
         /// </summary>
         /// <param name="source"></param>
+        [UnityEngine.Scripting.Preserve]
         public void AddUISource(IUISource source)
         {
             _uiSources.Add(source);
@@ -74,6 +76,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComponent contentPane
         {
             set
@@ -116,6 +119,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComponent frame
         {
             get { return _frame; }
@@ -124,6 +128,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GObject closeButton
         {
             get { return _closeButton; }
@@ -140,6 +145,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GObject dragArea
         {
             get { return _dragArea; }
@@ -169,6 +175,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GObject contentArea
         {
             get { return _contentArea; }
@@ -178,6 +185,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GObject modalWaitingPane
         {
             get { return _modalWaitPane; }
@@ -186,6 +194,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Show()
         {
             GRoot.inst.ShowWindow(this);
@@ -195,6 +204,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="r"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ShowOn(GRoot r)
         {
             r.ShowWindow(this);
@@ -203,6 +213,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Hide()
         {
             if (this.isShowing)
@@ -212,6 +223,7 @@ namespace FairyGUI
         /// <summary>
         /// Hide window immediately, no OnHide will be called.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void HideImmediately()
         {
             this.root.HideWindowImmediately(this);
@@ -222,6 +234,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="r"></param>
         /// <param name="restraint">Add relations to ensure keeping center on screen size changed.</param>
+        [UnityEngine.Scripting.Preserve]
         public void CenterOn(GRoot r, bool restraint)
         {
             this.SetXY((int)((r.width - this.width) / 2), (int)((r.height - this.height) / 2));
@@ -235,6 +248,7 @@ namespace FairyGUI
         /// <summary>
         /// Switch show and hide status.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ToggleStatus()
         {
             if (isTop)
@@ -246,6 +260,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isShowing
         {
             get { return parent != null; }
@@ -254,6 +269,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool isTop
         {
             get { return parent != null && parent.GetChildIndex(this) == parent.numChildren - 1; }
@@ -262,6 +278,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool modal
         {
             get { return _modal; }
@@ -271,6 +288,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void BringToFront()
         {
             this.root.BringToFront(this);
@@ -279,6 +297,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void ShowModalWait()
         {
             ShowModalWait(0);
@@ -290,6 +309,7 @@ namespace FairyGUI
         /// 还可以设定一个requestingCmd作为等待的命令字，在CloseModalWait里传入相同的命令字ModalWait将结束，否则CloseModalWait无效。
         /// </summary>
         /// <param name="requestingCmd"></param>
+        [UnityEngine.Scripting.Preserve]
         public void ShowModalWait(int requestingCmd)
         {
             if (requestingCmd != 0)
@@ -326,6 +346,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool CloseModalWait()
         {
             return CloseModalWait(0);
@@ -338,6 +359,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="requestingCmd"></param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public bool CloseModalWait(int requestingCmd)
         {
             if (requestingCmd != 0)
@@ -356,6 +378,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public bool modalWaiting
         {
             get { return (_modalWaitPane != null) && _modalWaitPane.inContainer; }
@@ -364,6 +387,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void Init()
         {
             if (_inited || _loading)

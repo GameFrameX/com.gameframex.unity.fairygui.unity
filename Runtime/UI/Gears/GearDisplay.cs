@@ -11,11 +11,13 @@ namespace FairyGUI
         /// <summary>
         /// Pages involed in this gear.
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string[] pages { get; set; }
 
         int _visible;
         uint _displayLockToken;
 
+        [UnityEngine.Scripting.Preserve]
         public GearDisplay(GObject owner)
             : base(owner)
         {
@@ -48,18 +50,21 @@ namespace FairyGUI
         {
         }
 
+        [UnityEngine.Scripting.Preserve]
         public uint AddLock()
         {
             _visible++;
             return _displayLockToken;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void ReleaseLock(uint token)
         {
             if (token == _displayLockToken)
                 _visible--;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool connected
         {
             get { return _controller == null || _visible > 0; }

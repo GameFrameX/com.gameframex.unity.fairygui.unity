@@ -38,11 +38,13 @@ namespace FairyGUI.Utils
 
         Hashtable attributes;
 
+        [UnityEngine.Scripting.Preserve]
         public HtmlElement()
         {
             format = new TextFormat();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public object Get(string attrName)
         {
             if (attributes == null)
@@ -51,6 +53,7 @@ namespace FairyGUI.Utils
             return attributes[attrName];
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void Set(string attrName, object attrValue)
         {
             if (attributes == null)
@@ -59,11 +62,13 @@ namespace FairyGUI.Utils
             attributes[attrName] = attrValue;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public string GetString(string attrName)
         {
             return GetString(attrName, null);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public string GetString(string attrName, string defValue)
         {
             if (attributes == null)
@@ -76,11 +81,13 @@ namespace FairyGUI.Utils
                 return defValue;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public int GetInt(string attrName)
         {
             return GetInt(attrName, 0);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public int GetInt(string attrName, int defValue)
         {
             string value = GetString(attrName);
@@ -105,11 +112,13 @@ namespace FairyGUI.Utils
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public float GetFloat(string attrName)
         {
             return GetFloat(attrName, 0);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public float GetFloat(string attrName, float defValue)
         {
             string value = GetString(attrName);
@@ -123,11 +132,13 @@ namespace FairyGUI.Utils
                 return defValue;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool GetBool(string attrName)
         {
             return GetBool(attrName, false);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public bool GetBool(string attrName, bool defValue)
         {
             string value = GetString(attrName);
@@ -141,6 +152,7 @@ namespace FairyGUI.Utils
                 return defValue;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public Color GetColor(string attrName, Color defValue)
         {
             string value = GetString(attrName);
@@ -150,12 +162,14 @@ namespace FairyGUI.Utils
             return ToolSet.ConvertFromHtmlColor(value);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void FetchAttributes()
         {
             attributes = XMLIterator.GetAttributes(attributes);
         }
 
 
+        [UnityEngine.Scripting.Preserve]
         public bool isEntity
         {
             get { return type == HtmlElementType.Image || type == HtmlElementType.Select || type == HtmlElementType.Input || type == HtmlElementType.Object; }
@@ -171,6 +185,7 @@ namespace FairyGUI.Utils
             elementPool.Clear();
         }
 #endif
+        [UnityEngine.Scripting.Preserve]
         public static HtmlElement GetElement(HtmlElementType type)
         {
             HtmlElement ret;
@@ -186,6 +201,7 @@ namespace FairyGUI.Utils
             return ret;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static void ReturnElement(HtmlElement element)
         {
             element.name = null;
@@ -197,6 +213,7 @@ namespace FairyGUI.Utils
             elementPool.Push(element);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public static void ReturnElements(List<HtmlElement> elements)
         {
             int count = elements.Count;

@@ -32,11 +32,13 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static bool packageListReady { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static bool hasTarget
         {
             get { return _targets.Count > 0; }
@@ -46,6 +48,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public static void Add(EMRenderTarget value)
         {
             if (!_targets.Contains(value))
@@ -57,6 +60,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public static void Remove(EMRenderTarget value)
         {
             _targets.Remove(value);
@@ -65,6 +69,7 @@ namespace FairyGUI
         /// <summary>
         /// 由StageCamera调用
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static void Update()
         {
             if (Application.isPlaying)
@@ -101,6 +106,7 @@ namespace FairyGUI
         /// <summary>
         /// 当发生二进制重载时，或用户点击刷新菜单
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public static void Reload()
         {
             if (Application.isPlaying)

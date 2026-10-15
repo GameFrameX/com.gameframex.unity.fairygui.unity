@@ -42,6 +42,7 @@ namespace FairyGUI
         VertexBuffer[] _subMeshBuffers;
         bool _preparing;
 
+        [UnityEngine.Scripting.Preserve]
         public TMPFont()
         {
             this.canTint = true;
@@ -59,6 +60,7 @@ namespace FairyGUI
             Release();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public TMP_FontAsset fontAsset
         {
             get { return _fontAsset; }
@@ -69,6 +71,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public FontWeight fontWeight
         {
             get { return _defaultFontWeight; }

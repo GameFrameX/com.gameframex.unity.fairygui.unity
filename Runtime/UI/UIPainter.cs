@@ -14,6 +14,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Container container { get; private set; }
 
         /// <summary>
@@ -130,6 +131,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value">sorting order value</param>
         /// <param name="apply">false if you dont want the default sorting behavior.</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetSortingOrder(int value, bool apply)
         {
             this.sortingOrder = value;
@@ -142,6 +144,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComponent ui
         {
             get
@@ -156,6 +159,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void CreateUI()
         {
             if (_ui != null)
@@ -279,6 +283,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void ApplyModifiedProperties(bool sortingOrderChanged)
         {
             if (sortingOrderChanged)
@@ -290,6 +295,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void OnUpdateSource(object[] data)
         {
             if (Application.isPlaying)
@@ -303,11 +309,13 @@ namespace FairyGUI
                 _captured = false;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public int EM_sortingOrder
         {
             get { return sortingOrder; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void EM_BeforeUpdate()
         {
             if (_renderer == null)
@@ -319,12 +327,14 @@ namespace FairyGUI
                 CaptureInEditMode();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void EM_Update(UpdateContext context)
         {
             if (_renderer != null)
                 _renderer.sortingOrder = context.renderingOrder++;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void EM_Reload()
         {
             _captured = false;

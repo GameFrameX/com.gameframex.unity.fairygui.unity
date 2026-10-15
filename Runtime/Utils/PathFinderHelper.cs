@@ -15,6 +15,7 @@ namespace FairyGUI.Utils
         /// </summary>
         /// <param name="o">UI对象</param>
         /// <returns>UI所在路径</returns>
+        [UnityEngine.Scripting.Preserve]
         public static string GetUIPath(GObject o)
         {
             var ls = new List<string>();
@@ -41,6 +42,7 @@ namespace FairyGUI.Utils
         /// </summary>
         /// <param name="path">UI路径</param>
         /// <returns>UI对象</returns>
+        [UnityEngine.Scripting.Preserve]
         public static GObject GetUIFromPath(string path)
         {
             //GRoot / UISynthesisScene / ContentBox / ListSelect / 1990197248 / icon
@@ -127,6 +129,7 @@ namespace FairyGUI.Utils
         /// <param name="gObject">对象</param>
         /// <param name="path">路径</param>
         /// <returns>是否包含</returns> 
+        [UnityEngine.Scripting.Preserve]
         public static bool IsIncludePath(this GObject gObject, string path)
         {
             if ("all".ToLower() == path)
@@ -196,6 +199,7 @@ namespace FairyGUI.Utils
         /// <param name="path">路径</param>
         /// <param name="gObject">对象</param>
         /// <returns></returns>
+        [UnityEngine.Scripting.Preserve]
         public static bool SearchPathInclude(string path, GObject gObject)
         {
             if ("all".ToLower() == path)

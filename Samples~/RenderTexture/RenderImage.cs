@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RenderImage
 {
+    [UnityEngine.Scripting.Preserve]
     public Transform modelRoot { get; private set; }
 
     Camera _camera;
@@ -21,6 +22,7 @@ public class RenderImage
     const int RENDER_LAYER = 0;
     const int HIDDEN_LAYER = 10;
 
+    [UnityEngine.Scripting.Preserve]
     public RenderImage(GGraph holder)
     {
         _width = (int)holder.width;
@@ -57,6 +59,7 @@ public class RenderImage
             _camera.gameObject.SetActive(false);
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void Dispose()
     {
         Object.Destroy(_camera.gameObject);
@@ -72,6 +75,7 @@ public class RenderImage
     /// Be careful if your image is 9 grid scaling, you must make sure the place holder is inside the middle box(dont cover from border to middle).
     /// </summary>
     /// <param name="image"></param>
+    [UnityEngine.Scripting.Preserve]
     public void SetBackground(GObject image)
     {
         SetBackground(image, null);
@@ -83,6 +87,7 @@ public class RenderImage
     /// </summary>
     /// <param name="image1"></param>
     /// <param name="image2"></param>
+    [UnityEngine.Scripting.Preserve]
     public void SetBackground(GObject image1, GObject image2)
     {
         Image source1 = (Image)image1.displayObject;
@@ -184,6 +189,7 @@ public class RenderImage
         return uvRect;
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void LoadModel(string model)
     {
         this.UnloadModel();
@@ -194,6 +200,7 @@ public class RenderImage
         _model.SetParent(this.modelRoot, false);
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void UnloadModel()
     {
         if (_model != null)
@@ -204,11 +211,13 @@ public class RenderImage
         _rotating = 0;
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void StartRotate(float delta)
     {
         _rotating = delta;
     }
 
+    [UnityEngine.Scripting.Preserve]
     public void StopRotate()
     {
         _rotating = 0;

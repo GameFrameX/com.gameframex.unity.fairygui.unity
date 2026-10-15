@@ -36,6 +36,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GoWrapper()
         {
             _renderers = new List<RendererInfo>();
@@ -48,6 +49,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="go">包装对象。</param>
+        [UnityEngine.Scripting.Preserve]
         public GoWrapper(GameObject go) : this()
         {
             SetWrapTarget(go, false);
@@ -57,12 +59,14 @@ namespace FairyGUI
         /// 设置包装对象。注意如果原来有包装对象，设置新的包装对象后，原来的包装对象只会被删除引用，但不会被销毁。
         /// 对象包含的所有材质不会被复制，如果材质已经是公用的，这可能影响到其他对象。如果希望自动复制，改为使用SetWrapTarget(target, true)设置。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GameObject wrapTarget
         {
             get { return _wrapTarget; }
             set { SetWrapTarget(value, false); }
         }
 
+        [UnityEngine.Scripting.Preserve]
         [Obsolete("setWrapTarget is deprecated. Use SetWrapTarget instead.")]
         public void setWrapTarget(GameObject target, bool cloneMaterial)
         {
@@ -74,6 +78,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="target"></param>
         /// <param name="cloneMaterial">如果true，则复制材质，否则直接使用sharedMaterial。</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetWrapTarget(GameObject target, bool cloneMaterial)
         {
             InvalidateBatchingState();
@@ -133,6 +138,7 @@ namespace FairyGUI
         /// GoWrapper会在构造函数里查询你的gameobject所有的Renderer并保存。如果你的gameobject
         /// 后续发生了改变，调用这个函数通知GoWrapper重新查询和保存。
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void CacheRenderers()
         {
             if (_canvas != null)

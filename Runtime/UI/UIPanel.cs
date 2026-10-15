@@ -28,6 +28,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public Container container { get; private set; }
 
         /// <summary>
@@ -209,6 +210,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public GComponent ui
         {
             get
@@ -228,6 +230,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void CreateUI()
         {
             if (_ui != null)
@@ -244,6 +247,7 @@ namespace FairyGUI
         /// </summary>
         /// <param name="value">sorting order value</param>
         /// <param name="apply">false if you dont want the default sorting behavior. e.g. call Stage.SortWorldSpacePanelsByZOrder later.</param>
+        [UnityEngine.Scripting.Preserve]
         public void SetSortingOrder(int value, bool apply)
         {
             this.sortingOrder = value;
@@ -257,6 +261,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="value"></param>
+        [UnityEngine.Scripting.Preserve]
         public void SetHitTestMode(HitTestMode value)
         {
             if (this.hitTestMode != value)
@@ -285,6 +290,7 @@ namespace FairyGUI
         /// <summary>
         /// 
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public void CacheNativeChildrenRenderers()
         {
             if (_renders == null)
@@ -486,6 +492,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void ApplyModifiedProperties(bool sortingOrderChanged, bool fitScreenChanged)
         {
             if (container != null)
@@ -525,6 +532,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void MoveUI(Vector3 delta)
         {
             if (fitScreen != FitScreen.None)
@@ -536,6 +544,7 @@ namespace FairyGUI
             uiBounds.position = position;
         }
 
+        [UnityEngine.Scripting.Preserve]
         public Vector3 GetUIWorldPosition()
         {
             if (_ui != null)
@@ -570,11 +579,13 @@ namespace FairyGUI
             Gizmos.DrawWireCube(pos, size);
         }
 
+        [UnityEngine.Scripting.Preserve]
         public int EM_sortingOrder
         {
             get { return sortingOrder; }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void EM_BeforeUpdate()
         {
             if (container == null)
@@ -587,6 +598,7 @@ namespace FairyGUI
                 HandleScreenSizeChanged();
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void EM_Update(UpdateContext context)
         {
             DisplayObject.hideFlags = HideFlags.DontSaveInEditor;
@@ -608,6 +620,7 @@ namespace FairyGUI
             }
         }
 
+        [UnityEngine.Scripting.Preserve]
         public void EM_Reload()
         {
             if (_ui != null)
