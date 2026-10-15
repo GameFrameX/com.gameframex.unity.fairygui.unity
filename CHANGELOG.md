@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/6.0.0...6.0.1) (2026-10-15)
+
+
+### Bug Fixes
+
+* **runtime:** DontDestroyOnLoad 统一改为完全限定调用 ([6ad01d3](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/commit/6ad01d34e4f6216d0001a90805eabbc999decb8c))
+
 # [6.0.0](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.7...6.0.0) (2026-10-15)
 
 
