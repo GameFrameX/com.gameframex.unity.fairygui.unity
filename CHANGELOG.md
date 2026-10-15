@@ -1,3 +1,23 @@
+# [6.0.0](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.7...6.0.0) (2026-10-15)
+
+
+### Bug Fixes
+
+* **package:** 修正品牌命名为 Game Frame X ([62923ca](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/commit/62923cae4b104c393f2484233888a0d619e52623))
+* **runtime:** 补全 Preserve 防裁剪标注 ([1d53bf5](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/commit/1d53bf598648770e23ec35d61c5085d3be97b90d))
+
+
+### Features
+
+* **runtime:** 移除小游戏键盘内联桥，回归纯 UI 包 ([0fe5de0](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/commit/0fe5de067b345dfdb03274f1aed5e942d5e8ea8d))
+
+
+### BREAKING CHANGES
+
+* **runtime:** 6.0.0 起小游戏下 GTextInput 不再自动驱动平台键盘，
+改经 com.gameframex.unity.operationkeyboard.fairygui 绑定包接入
+OperationKeyboard（详见 CHANGELOG 迁移说明）。
+
 # [6.0.0](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/5.3.7...6.0.0) (2026-10-14)
 
 
