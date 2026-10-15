@@ -61,7 +61,7 @@ namespace FairyGUI
 #endif
         void OnEnable()
         {
-            DontDestroyOnLoad(this);
+            UnityEngine.Object.DontDestroyOnLoad(this);
             cachedTransform = this.transform;
             cachedCamera = this.GetComponent<Camera>();
             if (this.gameObject.name == Name)

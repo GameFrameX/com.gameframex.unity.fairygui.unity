@@ -23,7 +23,7 @@ public class IconManager : MonoBehaviour
             if (_instance == null)
             {
                 GameObject go = new GameObject("IconManager");
-                DontDestroyOnLoad(go);
+                UnityEngine.Object.DontDestroyOnLoad(go);
                 _instance = go.AddComponent<IconManager>();
             }
             return _instance;

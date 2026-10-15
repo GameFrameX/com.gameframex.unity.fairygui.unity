@@ -38,7 +38,7 @@ public class RenderImage
         _camera.transform.position = new Vector3(0, 1000, 0);
         _camera.cullingMask = 1 << RENDER_LAYER;
         _camera.enabled = false;
-        Object.DontDestroyOnLoad(_camera.gameObject);
+        UnityEngine.Object.DontDestroyOnLoad(_camera.gameObject);
 
         this._root = new GameObject("RenderImage").transform;
         this._root.SetParent(_camera.transform, false);

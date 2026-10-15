@@ -49,7 +49,7 @@ namespace FairyGUI
             gameObject = new GameObject("[FairyGUI.Timers]");
             gameObject.hideFlags = HideFlags.HideInHierarchy;
             gameObject.SetActive(true);
-            Object.DontDestroyOnLoad(gameObject);
+            UnityEngine.Object.DontDestroyOnLoad(gameObject);
 
             _engine = gameObject.AddComponent<TimersEngine>();
 

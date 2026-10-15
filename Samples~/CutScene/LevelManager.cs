@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour
             if (_instance == null)
             {
                 GameObject go = new GameObject("LevelManager");
-                DontDestroyOnLoad(go);
+                UnityEngine.Object.DontDestroyOnLoad(go);
                 _instance = go.AddComponent<LevelManager>();
             }
             return _instance;

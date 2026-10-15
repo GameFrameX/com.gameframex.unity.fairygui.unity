@@ -165,7 +165,7 @@ namespace FairyGUI
                 GameObject gameObject = new GameObject("[FairyGUI.TweenManager]");
                 gameObject.hideFlags = HideFlags.HideInHierarchy;
                 gameObject.SetActive(true);
-                Object.DontDestroyOnLoad(gameObject);
+                UnityEngine.Object.DontDestroyOnLoad(gameObject);
 
                 gameObject.AddComponent<TweenEngine>();
             }
