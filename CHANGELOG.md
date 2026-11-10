@@ -1,3 +1,10 @@
+## [6.0.2](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/6.0.1...6.0.2) (2026-11-10)
+
+
+### Bug Fixes
+
+* **fairygui.unity:** 添加完整 link.xml 防代码裁剪保护 ([15e242a](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/commit/15e242abc7ef0eb4a3bd4aec7cee162c1061c397))
+
 ## [6.0.1](https://github.com/gameframex/com.gameframex.unity.fairygui.unity/compare/6.0.0...6.0.1) (2026-10-15)
 
 
